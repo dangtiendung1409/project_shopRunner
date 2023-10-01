@@ -24,7 +24,8 @@
                 <div class="col-lg-6">
                     <div class="s_Product_carousel">
                         <div class="single-prd-item">
-                            <img class="img-fluid" src="/customer/img/product/s-p1.jpg" alt="">
+                            <img class="img-fluid" src="/customer/img/shop-details/product1.jpg
+" alt="">
                         </div>
                     </div>
                 </div>
@@ -342,7 +343,8 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-1.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-1
+">
                             <span class="label">New</span>
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
@@ -377,7 +379,8 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-2.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-2
+">
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
                                 <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
@@ -411,7 +414,8 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
                     <div class="product__item sale">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-3.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-3
+">
                             <span class="label">Sale</span>
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>

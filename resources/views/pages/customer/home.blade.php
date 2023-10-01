@@ -3,7 +3,7 @@
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="hero__slider owl-carousel">
-            <div class="hero__items set-bg" data-setbg="/customer/img/hero/hero-1.jpg">
+            <div class="hero__items set-bg" data-setbg="/customer/img/hero/runner1.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-7 col-md-8">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hero__items set-bg" data-setbg="/customer/img/hero/hero-2.jpg">
+            <div class="hero__items set-bg" data-setbg="/customer/img/hero/runner2.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-7 col-md-8">
@@ -56,7 +56,7 @@
                 <div class="col-lg-7 offset-lg-4">
                     <div class="banner__item">
                         <div class="banner__item__pic">
-                            <img src="/customer/img/banner/banner-1.jpg" alt="">
+                            <img src="/customer/img/banner/banner1.jpg" alt="">
                         </div>
                         <div class="banner__item__text">
                             <h2>Clothing Collections 2030</h2>
@@ -67,7 +67,7 @@
                 <div class="col-lg-5">
                     <div class="banner__item banner__item--middle">
                         <div class="banner__item__pic">
-                            <img src="/customer/img/banner/banner-2.jpg" alt="">
+                            <img src="/customer/img/banner/banner2.jpg" alt="">
                         </div>
                         <div class="banner__item__text">
                             <h2>Accessories</h2>
@@ -78,7 +78,7 @@
                 <div class="col-lg-7">
                     <div class="banner__item banner__item--last">
                         <div class="banner__item__pic">
-                            <img src="/customer/img/banner/banner-3.jpg" alt="">
+                            <img src="/customer/img/banner/banner3.jpg" alt="">
                         </div>
                         <div class="banner__item__text">
                             <h2>Shoes Spring 2030</h2>
@@ -106,7 +106,7 @@
             <div class="row product__filter">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-1.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product1.jpg">
                             <span class="label">New</span>
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
@@ -141,7 +141,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-2.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product2.jpg">
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
                                 <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
@@ -175,7 +175,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item sale">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-3.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product3.jpg">
                             <span class="label">Sale</span>
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
@@ -210,7 +210,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-4.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product4.jpg">
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
                                 <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
@@ -244,7 +244,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-5.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product5.jpg">
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
                                 <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
@@ -278,7 +278,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div class="product__item sale">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-6.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product6.jpg">
                             <span class="label">Sale</span>
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
@@ -313,7 +313,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-7.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product7.jpg">
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
                                 <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
@@ -347,7 +347,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-8.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product8.jpg">
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
                                 <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
@@ -395,7 +395,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="categories__hot__deal">
-                        <img src="/customer/img/product-sale.png" alt="">
+                        <img src="/customer/img/productsale.png" alt="">
                         <div class="hot__deal__sticker">
                             <span>Sale Of</span>
                             <h5>$29.99</h5>
