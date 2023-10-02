@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedDecimal("price",14,2);
             $table->string("thumbnail", 500)->nullable();
             $table->unsignedSmallInteger("qty")->default(0);
-            $table->string("status");
+//            $table->string("status");
             $table->longText("description")->nullable();
             $table->unsignedBigInteger("category_id");
             $table->foreign("category_id")->references("id")->on("categories");

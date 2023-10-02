@@ -41,8 +41,7 @@
                                                     <li><a href="#">Shoes (20)</a></li>
                                                     <li><a href="#">Accessories (20)</a></li>
                                                     <li><a href="#">Kids (20)</a></li>
-                                                    <li><a href="#">Kids (20)</a></li>
-                                                    <li><a href="#">Kids (20)</a></li>
+
                                                 </ul>
                                             </div>
                                         </div>

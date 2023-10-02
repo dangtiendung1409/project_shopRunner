@@ -20,7 +20,7 @@ class Product extends Model
         "price",
         "thumbnail",
         "qty",
-        "status",
+//        "status",
         "description",
         "category_id"
     ];
