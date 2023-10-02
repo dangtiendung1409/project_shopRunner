@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="about__pic">
-                    <img src="/customer/img/about/about-us.jpg" alt="">
+                    <img src="/customer/img/about/aboutus.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -32,22 +32,25 @@
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="about__item">
                     <h4>Who We Are ?</h4>
-                    <p>Contextual advertising programs sometimes have strict policies that need to be adhered too.
-                        Let’s take Google as an example.</p>
+                    <p>We are a shop runner, a shop that sells sportswear for runners. We are passionate
+                        about running and we want to help our customers achieve their running goals. We offer a
+                        wide range of products, including running shoes, apparel, and accessories.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="about__item">
                     <h4>Who We Do ?</h4>
-                    <p>In this digital generation where information can be easily obtained within seconds, business
-                        cards still have retained their importance.</p>
+                    <p>We do for runners of all levels, from beginners to experienced marathoners. We offer
+                        personalized advice to help our customers find the right products for their needs. We also
+                        offer a variety of services, such as gait analysis and shoe fitting.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="about__item">
                     <h4>Why Choose Us</h4>
-                    <p>A two or three storey house is the ideal way to maximise the piece of earth on which our home
-                        sits, but for older or infirm people.</p>
+                    <p>We are a trusted source of running gear and advice. We have a team of experienced runners who
+                        can help you find the right products and services for your needs. We are also committed to
+                        providing our customers with the best possible shopping experience.</p>
                 </div>
             </div>
         </div>
@@ -62,8 +65,9 @@
             <div class="col-lg-6 p-0">
                 <div class="testimonial__text">
                     <span class="icon_quotations"></span>
-                    <p>“Going out after work? Take your butane curling iron with you to the office, heat it up,
-                        style your hair before you leave the office and you won’t have to make a trip back home.”
+                    <p>“Going out after work? Take your running shoes with you to the office, pack your running gear,
+                        and hit the pavement before you leave the office. You'll get your workout in and be ready to enjoy
+                        your evening.”
                     </p>
                     <div class="testimonial__author">
                         <div class="testimonial__author__pic">
@@ -71,13 +75,13 @@
                         </div>
                         <div class="testimonial__author__text">
                             <h5>Augusta Schultz</h5>
-                            <p>Fashion Design</p>
+                            <p>Shop Runner</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 p-0">
-                <div class="testimonial__pic set-bg" data-setbg="/customer/img/about/testimonial-pic.jpg"></div>
+                <div class="testimonial__pic set-bg" data-setbg="/customer/img/about/testimonial-pic1.jpg"></div>
             </div>
         </div>
     </div>
@@ -99,7 +103,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="counter__item">
                     <div class="counter__item__number">
-                        <h2 class="cn_num">30</h2>
+                        <h2 class="cn_num">45</h2>
                     </div>
                     <span>Total <br />Categories</span>
                 </div>
