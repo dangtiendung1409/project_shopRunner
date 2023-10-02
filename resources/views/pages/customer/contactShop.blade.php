@@ -21,11 +21,11 @@
                         <ul>
                             <li>
                                 <h4>Ha Noi</h4>
-                                <p>So 8 Ton That Thuyet , My Đinh , Nam Tu Liem<br />09238187245</p>
+                                <p>So 8 Ton That Thuyet , My Đinh , Nam Tu Liem<br />0923 818 7245</p>
                             </li>
                             <li>
                                 <h4>Ho Chi Minh</h4>
-                                <p> 391A Nam Ky Khoi Nghia, Vo thi Sau, Quan 3 <br />09618736234</p>
+                                <p> 391A Nam Ky Khoi Nghia, Vo thi Sau, Quan 3 <br />0961 873 6234</p>
                             </li>
                         </ul>
                     </div>
