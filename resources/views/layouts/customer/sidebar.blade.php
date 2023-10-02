@@ -14,10 +14,10 @@
                                     $categories = App\Models\Category::all();
                                 @endphp
                                 <ul class="nice-scroll">
-                                    {{--                                                    <li><a href="#">Men (20)</a></li>--}}
-                                    {{--                                                    <li><a href="#">Women (20)</a></li>--}}
-                                    {{--                                                    <li><a href="#">Bags (20)</a></li>--}}
-                                    {{--                                                    <li><a href="#">Clothing (20)</a></li>--}}
+{{--                                                                                        <li><a href="#">Men (20)</a></li>--}}
+{{--                                                                                        <li><a href="#">Women (20)</a></li>--}}
+{{--                                                                                        <li><a href="#">Bags (20)</a></li>--}}
+{{--                                                                                        <li><a href="#">Clothing (20)</a></li>--}}
                                     @foreach ($categories as $c)
                                         <li><a href="{{url("/category",["category"=>$c->slug])}}">{{$c->name}}</a></li>
                                     @endforeach
@@ -53,11 +53,9 @@
                             <div class="shop__sidebar__price">
                                 <ul>
                                     <li><a href="#">$0.00 - $50.00</a></li>
-                                    <li><a href="#">$50.00 - $100.00</a></li>
-                                    <li><a href="#">$100.00 - $150.00</a></li>
-                                    <li><a href="#">$150.00 - $200.00</a></li>
-                                    <li><a href="#">$200.00 - $250.00</a></li>
-                                    <li><a href="#">250.00+</a></li>
+                                    @foreach ($categories as $c)
+                                        <li><a href="{{url("/category",["category"=>$c->slug])}}">${{$c->price}} - ${{$c->price + $c->price}}</a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -70,30 +68,36 @@
                     <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="shop__sidebar__size">
-                                <label for="xs">xs
-                                    <input type="radio" id="xs">
-                                </label>
-                                <label for="sm">s
-                                    <input type="radio" id="sm">
-                                </label>
-                                <label for="md">m
-                                    <input type="radio" id="md">
-                                </label>
-                                <label for="xl">xl
-                                    <input type="radio" id="xl">
-                                </label>
-                                <label for="2xl">2xl
-                                    <input type="radio" id="2xl">
-                                </label>
-                                <label for="xxl">xxl
-                                    <input type="radio" id="xxl">
-                                </label>
-                                <label for="3xl">3xl
-                                    <input type="radio" id="3xl">
-                                </label>
-                                <label for="4xl">4xl
-                                    <input type="radio" id="4xl">
-                                </label>
+{{--                                <label for="xs">xs--}}
+{{--                                    <input type="radio" id="xs">--}}
+{{--                                </label>--}}
+{{--                                <label for="sm">s--}}
+{{--                                    <input type="radio" id="sm">--}}
+{{--                                </label>--}}
+{{--                                <label for="md">m--}}
+{{--                                    <input type="radio" id="md">--}}
+{{--                                </label>--}}
+{{--                                <label for="xl">xl--}}
+{{--                                    <input type="radio" id="xl">--}}
+{{--                                </label>--}}
+{{--                                <label for="2xl">2xl--}}
+{{--                                    <input type="radio" id="2xl">--}}
+{{--                                </label>--}}
+{{--                                <label for="xxl">xxl--}}
+{{--                                    <input type="radio" id="xxl">--}}
+{{--                                </label>--}}
+{{--                                <label for="3xl">3xl--}}
+{{--                                    <input type="radio" id="3xl">--}}
+{{--                                </label>--}}
+{{--                                <label for="4xl">4xl--}}
+{{--                                    <input type="radio" id="4xl">--}}
+{{--                                </label>--}}
+                                @foreach ($categories as $c)
+                                    <label for="4xl">
+                                        <a type="radio" href="{{url("/category",["category"=>$c->slug])}}">{{$c->size}}</a>
+{{--                                        <input type="radio" id="4xl">--}}
+                                    </label>
+                                @endforeach
                             </div>
                         </div>
                     </div>

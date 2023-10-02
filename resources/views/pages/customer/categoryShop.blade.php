@@ -21,7 +21,7 @@
     <section class="shop spad">
         <div class="container">
             <div class="row">
-                @include("layouts.customer.slidebar")
+                @include("layouts.customer.sidebar")
                 <div class="col-lg-9">
                     <div class="shop__product__option">
                         <div class="row">
@@ -38,7 +38,8 @@
                                 <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product1.jpg">
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
+                                                <span>Compare</span></a>
                                         </li>
                                         <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
                                     </ul>
@@ -74,7 +75,8 @@
                                     <span class="label">Sale</span>
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
+                                                <span>Compare</span></a>
                                         </li>
                                         <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
                                     </ul>
@@ -109,7 +111,8 @@
                                 <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product4.jpg">
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
+                                                <span>Compare</span></a>
                                         </li>
                                         <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
                                     </ul>
@@ -145,7 +148,8 @@
                                     <span class="label">Sale</span>
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
+                                                <span>Compare</span></a>
                                         </li>
                                         <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
                                     </ul>
@@ -180,7 +184,8 @@
                                 <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product7.jpg">
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
+                                                <span>Compare</span></a>
                                         </li>
                                         <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
                                     </ul>
@@ -215,7 +220,8 @@
                                 <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product8.jpg">
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
+                                                <span>Compare</span></a>
                                         </li>
                                         <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
                                     </ul>
@@ -250,7 +256,8 @@
                                 <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product9.jpg">
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
+                                                <span>Compare</span></a>
                                         </li>
                                         <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
                                     </ul>
@@ -286,7 +293,8 @@
                                     <span class="label">Sale</span>
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
+                                                <span>Compare</span></a>
                                         </li>
                                         <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
                                     </ul>
@@ -321,7 +329,8 @@
                                 <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product11.jpg">
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
+                                                <span>Compare</span></a>
                                         </li>
                                         <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
                                     </ul>
@@ -357,7 +366,8 @@
                                     <span class="label">Sale</span>
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
+                                                <span>Compare</span></a>
                                         </li>
                                         <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
                                     </ul>
@@ -392,7 +402,8 @@
                                 <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product13.jpg">
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
+                                                <span>Compare</span></a>
                                         </li>
                                         <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
                                     </ul>
@@ -427,7 +438,8 @@
                                 <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product14.jpg">
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
+                                                <span>Compare</span></a>
                                         </li>
                                         <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
                                     </ul>
