@@ -15,12 +15,12 @@ class Product extends Model
     protected $fillable = [
         "name",
         "slug",
-        "color",
-        "size",
+//        "color",
+//        "size",
         "price",
         "thumbnail",
         "qty",
-        "status",
+//        "status",
         "description",
         "category_id"
     ];
