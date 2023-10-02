@@ -343,7 +343,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-1
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product41.jpg
 ">
                             <span class="label">New</span>
                             <ul class="product__hover">
@@ -379,7 +379,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-2
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product42.jpg
 ">
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
@@ -414,7 +414,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
                     <div class="product__item sale">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-3
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product43.jpg
 ">
                             <span class="label">Sale</span>
                             <ul class="product__hover">
@@ -450,7 +450,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product-4.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product44.jpg">
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
                                 <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
