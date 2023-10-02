@@ -17,24 +17,15 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-//            "user_id" =>random_int(1, 10),
-//            "full_name" =>  $this->faker->name,
-//            "tel" => $this->faker->phoneNumber,
-//            "address" => $this->faker-> address,
-//            "grand_total" => 0,
-//            "shipping_method" => "Express",
-//            "payment_method" => "COD",
-////            "note" =>  $this->faker->text,
-//            "status" => random_int(0,3),
-
-            "grand_total"=>0,
-            "user_id"=>random_int(1,10),
-            "full_name"=> $this->faker->name,
-            "tel"=>$this->faker->phoneNumber,
-            "address"=>$this->faker->address,
-            "shipping_method"=>"Express",
-            "payment_method"=>"COD",
-            "status"=>random_int(0,3)
+            "user_id" =>random_int(1, 10),
+            "full_name" =>  $this->faker->name,
+            "tel" => $this->faker->phoneNumber,
+            "address" => $this->faker-> address,
+            "grand_total" => 0,
+            "shipping_method" => "Express",
+            "payment_method" => "COD",
+            "note" =>  $this->faker->text,
+            "status" => random_int(0,3)
         ];
     }
 }
