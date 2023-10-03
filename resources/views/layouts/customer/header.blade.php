@@ -32,7 +32,7 @@
                             <div class="top-icon">
                                 <p style="font-weight:600; font-size: 16px; font-family: 'Nunito Sans', 'sans-serif';">Hi Đặng Tiến Dũng</p>
                             </div>
-                            <a href="#"><i class="fa-brands fa-shopify"></i>My order</a>
+                            <a href="{{url("my-order")}}"><i class="fa-brands fa-shopify"></i>My order</a>
                             <a href="{{url("/login-user")}}"><i class="fa-solid fa-right-to-bracket"></i>Exit</a>
                         </div>
                         <a href="{{url("/cart")}}"><img src="/customer/img/icon/cart.png" alt=""></a>
