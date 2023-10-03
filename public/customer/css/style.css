@@ -4119,7 +4119,7 @@ button:focus {
 /* CSS cho phần bên trái (sidebar) */
 
 
-.contain {
+.contain1 {
     margin-top:0px;
     background-color: #f8f8f8;
     padding: 50px;
@@ -4241,10 +4241,10 @@ button:focus {
     border-top: 1px solid #DDE1EF;
 }
 
-form{
+.form1{
     padding: 30px 30px;
 }
-form button{
+.form1 button{
     width: 85px ;
     margin-left: 315px;
 }
@@ -4256,5 +4256,3 @@ form button{
 .mb-3 input{
     height: 50px;
 }
-
-

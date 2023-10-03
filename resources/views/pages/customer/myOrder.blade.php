@@ -1,7 +1,7 @@
 @extends("layouts.customer.app")
 @section("main")
 
-    <div class="contain">
+    <div class="contain1">
         <div class="title">
             <div class="title-top">
                 <p>Trang chủ  /  Tài khoản</p>

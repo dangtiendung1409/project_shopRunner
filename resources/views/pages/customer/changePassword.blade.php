@@ -1,7 +1,8 @@
 @extends("layouts.customer.app")
 @section("main")
 
-    <div class="contain">
+    <div class="contain1">
+        }
         <div class="title">
             <div class="title-top">
                 <p>Trang chủ  /  Tài khoản</p>
@@ -37,10 +38,10 @@
         </div>
 
         <div  class="content">
-            <div class="content-top">
+            <div style="border-bottom: 1px solid #DDE1EF;" class="content-top">
                 <p>Đổi mật khẩu(Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác)</p>
             </div>
-            <form>
+            <form class="form1">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
