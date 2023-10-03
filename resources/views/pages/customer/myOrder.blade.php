@@ -13,24 +13,24 @@
         <div class="sidebar">
             <img src="images/img.jpg" alt="Avatar" class="profile-img">
             <div class="username">Tên tài khoản</div>
-            <button class="logout-button">Đăng xuất</button>
+            <button class="logout-button">Log out</button>
             <ul>
                 <div class="menu">
                     <i style="color: #ff5722;" class="fa-solid fa-file-circle-check"></i>
-                    <a>
-                        <li style="color: #ff5722;" class="li1">Đơn hàng của tôi</li>
+                    <a href="{{url("my-order")}}">
+                        <li style="color: #ff5722;" class="li1">My order</li>
                     </a>
                 </div>
                 <div class="menu">
                     <i class="fa-solid fa-lock"></i>
-                    <a>
-                        <li >Đổi mật khẩu</li>
+                    <a href="{{url("change-password")}}">
+                        <li >Change password</li>
                     </a>
                 </div>
                 <div class="menu">
                     <i class="fa-solid fa-heart"></i>
-                    <a>
-                        <li >sản phẩm yêu thích</li>
+                    <a href="{{url("favorite-order")}}">
+                        <li >favorite product</li>
                     </a>
                 </div>
             </ul>
