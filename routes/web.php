@@ -28,7 +28,7 @@ Route::get('/favorite-order', [\App\Http\Controllers\HomeController::class,"favo
 
 
 
-// giao diện quantri
+// giao diện admin
 Route::get('/admin-quan-ly-nhan-vien', [\App\Http\Controllers\HomeController::class,"qlNhanVien"]);
 Route::get('/admin-quan-ly-khach-hang', [\App\Http\Controllers\HomeController::class,"qlKhachHang"]);
 Route::get('/admin-quan-ly-đon-hang', [\App\Http\Controllers\HomeController::class,"qlDonHang"]);

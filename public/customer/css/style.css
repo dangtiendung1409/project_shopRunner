@@ -3,7 +3,7 @@
 html,
 body {
 	height: 100%;
-	font-family: "Nunito Sans", sans-serif;
+	font-family:"Roboto", sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -2698,7 +2698,7 @@ button:focus {
 #backTop {
     width: 50px;
     height: 50px;
-    background: orange;
+    background: #ff5722;
     color:whitesmoke;
     display: flex;
     justify-content: center;
@@ -4123,7 +4123,7 @@ button:focus {
     margin-top:0px;
     background-color: #f8f8f8;
     padding: 50px;
-    font-family: 'SVN-Gilroy Bold';
+    font-family: "Roboto", sans-serif;
 }
 
 .title{
@@ -4145,9 +4145,6 @@ button:focus {
     flex-direction: column;
     align-items: center;
     min-height: 80vh;
-    /* Tăng độ dài */
-
-    /* Đổ bóng sang phải và sang trái */
 }
 
 
@@ -4163,6 +4160,7 @@ button:focus {
 
 .username {
     font-size: 18px;
+    margin-top: 9px;
 }
 
 .logout-button {
@@ -4229,9 +4227,9 @@ button:focus {
 .order-table th,
 .order-table td {
     border: none;
-    /* Loại bỏ đường gạch dọc */
     padding: 8px;
     text-align: center;
+    color: black;
 }
 
 .order-table th {
@@ -4239,15 +4237,20 @@ button:focus {
     height: 30px;
     border-bottom: 1px solid #DDE1EF;
     border-top: 1px solid #DDE1EF;
+    font-weight: 1000;
+    color: #ff5722;
+
+
 }
 
 .form1{
     padding: 30px 30px;
 }
-.form1 button{
-    width: 85px ;
+.form1 button {
+    width: 85px;
     margin-left: 315px;
 }
+
 
 .mb-3{
     width: 400px;
