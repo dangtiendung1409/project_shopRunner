@@ -36,7 +36,7 @@
                         @foreach($products as $item)
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="{{$item->thumbnail}}">
+                                    <div class="product__item__pic set-bg" data-setbg="{{ asset($item->thumbnail) }}">
                                         <ul class="product__hover">
                                             <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
                                             <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">

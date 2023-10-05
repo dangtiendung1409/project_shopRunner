@@ -20,6 +20,15 @@ class HomeController
             ->orderBy("created_at", "desc")->paginate(12);
         return view("pages.customer.category", compact("products"));
     }
+    public function shopDetails(Product $product){
+        $related = Product::where("category_id", $product-> categories_id )
+            ->where("id","!=",$product->id)
+                ->where("qty",">",0)
+                ->orderBy("created_at","desc")
+                ->limit(4)
+                ->get();
+        return view("pages.customer.shopDetails", compact("product","related"));
+    }
     public function contactShop(){
        return view("pages.customer.contactShop");
     }
@@ -31,9 +40,6 @@ class HomeController
     }
     public function checkOut(){
         return view("pages.customer.checkOut");
-    }
-    public function shopDetails(){
-        return view("pages.customer.shopDetails");
     }
     public function myOrder(){
         return view("pages.customer.myOrder");
