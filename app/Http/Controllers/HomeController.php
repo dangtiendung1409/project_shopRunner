@@ -20,14 +20,8 @@ class HomeController
             ->orderBy("created_at", "desc")->paginate(12);
         return view("pages.customer.category", compact("products"));
     }
-    public function shopDetails(Product $product){
-        $related = Product::where("category_id", $product-> categories_id )
-            ->where("id","!=",$product->id)
-                ->where("qty",">",0)
-                ->orderBy("created_at","desc")
-                ->limit(4)
-                ->get();
-        return view("pages.customer.shopDetails", compact("product","related"));
+    public function details(Product $product){
+        return view("pages.customer.shopDetails",compact("product"));
     }
     public function contactShop(){
        return view("pages.customer.contactShop");

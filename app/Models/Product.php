@@ -23,7 +23,10 @@ class Product extends Model
         "description",
         "category_id"
     ];
+    public function Category(){
+        return $this->belongsTo(Category::class);
+    }
     public function Orders(){
-        return $this->belongsToMany(Order::class, "order_product");
+        return $this->belongsToMany(Order::class, "order_products");
     }
 }
