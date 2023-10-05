@@ -25,7 +25,6 @@ return new class extends Migration
             $table->boolean("is_paid")->default(false);
             $table->timestamps();
             $table->foreign("user_id")->references("id")->on("users");
-
         });
     }
 
