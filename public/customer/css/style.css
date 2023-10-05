@@ -2054,7 +2054,13 @@ button:focus {
 
 /* End Single Product Area css / Shop detail
 ============================================================================================ */
+.single-prd-item {
+    margin-bottom: 20px;
+}
 
+.single-prd-item img {
+    min-width: 100%;
+}
 .product__details__pic {
 	text-align: center;
 	background: #f3f2ee;
@@ -2470,6 +2476,7 @@ button:focus {
 .product__details__tab__content__item p {
 	margin-bottom: 0;
 }
+
 
 /*---------------------
   Related
@@ -4582,3 +4589,5 @@ button:focus {
     border-top: 1px solid #ddd; }
 .order_details_table .table tbody tr:last-child td p {
     color: #222222; }
+
+
