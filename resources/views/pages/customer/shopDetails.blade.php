@@ -8,7 +8,7 @@
                     <div class="breadcrumb__text">
                         <h4>Shop</h4>
                         <div class="breadcrumb__links">
-                            <a href="./index.html">Product</a>
+                            <a href="/">Product</a>
                             <span>Faded SkyBlu Denim Jeans</span>
                         </div>
                     </div>
@@ -24,25 +24,21 @@
                 <div class="col-lg-6">
                     <div class="s_Product_carousel">
                         <div class="single-prd-item">
-                            <img class="img-fluid" src="/customer/img/shop-details/product1.jpg" alt="">
+                            <img class="img-fluid" src="{{$product->thumbnail}}" alt="">
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-5 offset-lg-1">
                     <div class="s_product_text">
-                        <h3 style=" margin-left: -8px; font-size:25px;">Faded SkyBlu Denim Jeans</h3>
-                        <h2>$149.99</h2>
+                        <h3 style=" margin-left: -8px; font-size:25px;">{{$product -> name}}</h3>
+                        <h2>${{$product -> price}}</h2>
                         <ul class="list">
-                            <li><a class="active" href="#"><span>Category</span> : Household</a></li>
-                            <li><a href="#"><span>Availibility</span> : In Stock</a></li>
-                            <li><a href="#"><span>Sold</span> : 0</a></li>
+{{--                            <li><a class="active" href="#"><span>Category</span> : {{$product->Category->name}}</a></li>--}}
+                            <li><a href="#"><span>Qty</span> : {{$product->qty}}</a></li>
+                            <li><a href="#"><span>Sold</span> : {{$product->Orders->count()}}</a></li>
                         </ul>
-
-                        <p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for
-                            something that can make your interior look awesome, and at the same time give you the pleasant warm feeling
-                            during the winter.
-                        </p>
+                        <p>{{$product->description}}</p>
                         <div class="flex rY0UiC j9be9C">
                             <div class="flex flex-column">
                                 <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
