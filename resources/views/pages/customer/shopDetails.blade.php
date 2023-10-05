@@ -41,7 +41,9 @@
 
                             </ul>
 
-                            <p> {{$product -> }}
+                            <p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for
+                                something that can make your interior look awesome, and at the same time give you the pleasant warm feeling
+                                during the winter.
                             </p>
                             <div class="flex rY0UiC j9be9C">
                                 <div class="flex flex-column">
