@@ -40,6 +40,10 @@ class HomeController
     public function favoriteOrder(){
         return view("pages.customer.favoriteOrder");
     }
+    public function ThankYou(){
+        return view("pages.customer.ThankYou");
+    }
+
 
     // giao diện admin
     public function qlNhanVien(){
