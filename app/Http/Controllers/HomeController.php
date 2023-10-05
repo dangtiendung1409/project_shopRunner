@@ -12,12 +12,12 @@ class HomeController
         return view("pages.customer.home");
     }
     public function categoryShop(){
-        $products = Product::orderBy("created_at", "desc")->paginate(18);
+        $products = Product::orderBy("created_at", "desc")->paginate(12);
         return view("pages.customer.CategoryShop", compact("products"));
     }
     public function category(Category $category){
         $products = Product::where("category_id", $category-> id)
-            ->orderBy("created_at", "desc")->paginate(18);
+            ->orderBy("created_at", "desc")->paginate(12);
         return view("pages.customer.category", compact("products"));
     }
     public function contactShop(){
