@@ -1,6 +1,8 @@
 <div class="col-lg-3">
     <div class="shop__sidebar">
-
+        @php
+            $categories = App\Models\Category::all();
+        @endphp
         <div class="shop__sidebar__accordion">
             <div class="accordion" id="accordionExample">
                 <div class="card">
@@ -10,9 +12,6 @@
                     <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="shop__sidebar__categories">
-                                @php
-                                    $categories = App\Models\Category::all();
-                                @endphp
                                 <ul class="nice-scroll">
                                     @foreach ($categories as $c)
                                         <li><a href="{{url("/category",["category"=>$c->slug])}}">{{$c->name}}</a></li>
@@ -46,9 +45,8 @@
                         <div class="card-body">
                             <div class="shop__sidebar__price">
                                 <ul>
-                                    <li><a href="#">$0.00 - $50.00</a></li>
                                     @foreach ($categories as $c)
-                                        <li><a href="{{url("/category",["category"=>$c->slug])}}">${{$c->price}} - ${{$c->price + $c->price}}</a></li>
+                                        <li><a href="{{url("/category",["category"=>$c->price])}}">${{$c->price}} - ${{$c->price + $c->price}}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -70,7 +68,7 @@
 {{--                                </label>--}}
                                 @foreach ($categories as $c)
                                     <label for="4xl">
-                                        <a type="radio" href="{{url("/category",["category"=>$c->slug])}}">{{$c->size}}</a>
+                                        <a type="radio" href="{{url("/category",["category"=>$c->size])}}">{{$c->size}}</a>
                                     </label>
                                 @endforeach
                             </div>

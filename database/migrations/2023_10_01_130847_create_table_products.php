@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("color");
 //            $table->integer("size");
             $table->unsignedDecimal("price",14,2);
-            $table->string("thumbnail", 500)->nullable();
+            $table->string("thumbnail")->nullable();
             $table->unsignedSmallInteger("qty")->default(0);
 //            $table->string("status");
             $table->longText("description")->nullable();

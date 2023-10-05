@@ -46,8 +46,8 @@
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
-                                        <h6>{{$item->name}}</h6>
-                                        <a href="{{url("detail",["product"=>$item->slug])}}" class="add-cart btn">Add To Cart</a>
+                                        <h6 >{{$item->name}}</h6>
+                                        <a href="{{url("/detail",["product"=>$item->slug])}}" class="add-cart btn">Add To Cart</a>
                                         <div class="rating">
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star-o"></i>
@@ -72,7 +72,7 @@
                             </div>
                         @endforeach
                     </div>
-                    {!! $products->links("pagination::bootstrap-4") !!}
+                    {!! $products->links("pagination::bootstrap-5") !!}
                 </div>
             </div>
         </div>
