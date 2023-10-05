@@ -14,14 +14,9 @@
                                     $categories = App\Models\Category::all();
                                 @endphp
                                 <ul class="nice-scroll">
-{{--                                                                                        <li><a href="#">Men (20)</a></li>--}}
-{{--                                                                                        <li><a href="#">Women (20)</a></li>--}}
-{{--                                                                                        <li><a href="#">Bags (20)</a></li>--}}
-{{--                                                                                        <li><a href="#">Clothing (20)</a></li>--}}
                                     @foreach ($categories as $c)
                                         <li><a href="{{url("/category",["category"=>$c->slug])}}">{{$c->name}}</a></li>
                                     @endforeach
-
                                 </ul>
                             </div>
                         </div>
@@ -35,10 +30,9 @@
                         <div class="card-body">
                             <div class="shop__sidebar__brand">
                                 <ul>
-                                    <li><a href="#">Louis Vuitton</a></li>
-                                    <li><a href="#">Chanel</a></li>
-                                    <li><a href="#">Hermes</a></li>
-                                    <li><a href="#">Gucci</a></li>
+                                    @foreach ($categories as $c)
+                                        <li><a href="{{url("/category",["category"=>$c->slug])}}">{{$c->name}}</a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -74,28 +68,9 @@
 {{--                                <label for="sm">s--}}
 {{--                                    <input type="radio" id="sm">--}}
 {{--                                </label>--}}
-{{--                                <label for="md">m--}}
-{{--                                    <input type="radio" id="md">--}}
-{{--                                </label>--}}
-{{--                                <label for="xl">xl--}}
-{{--                                    <input type="radio" id="xl">--}}
-{{--                                </label>--}}
-{{--                                <label for="2xl">2xl--}}
-{{--                                    <input type="radio" id="2xl">--}}
-{{--                                </label>--}}
-{{--                                <label for="xxl">xxl--}}
-{{--                                    <input type="radio" id="xxl">--}}
-{{--                                </label>--}}
-{{--                                <label for="3xl">3xl--}}
-{{--                                    <input type="radio" id="3xl">--}}
-{{--                                </label>--}}
-{{--                                <label for="4xl">4xl--}}
-{{--                                    <input type="radio" id="4xl">--}}
-{{--                                </label>--}}
                                 @foreach ($categories as $c)
                                     <label for="4xl">
                                         <a type="radio" href="{{url("/category",["category"=>$c->slug])}}">{{$c->size}}</a>
-{{--                                        <input type="radio" id="4xl">--}}
                                     </label>
                                 @endforeach
                             </div>
@@ -148,12 +123,9 @@
                         <div class="card-body">
                             <div class="shop__sidebar__tags">
                                 <a href="#">Product</a>
-                                <a href="#">Bags</a>
-                                <a href="#">Shoes</a>
-                                <a href="#">Fashio</a>
-                                <a href="#">Clothing</a>
-                                <a href="#">Hats</a>
-                                <a href="#">Accessories</a>
+                                @foreach ($categories as $c)
+                                    <li><a href="{{url("/category",["category"=>$c->slug])}}">{{$c->name}}</a></li>
+                                @endforeach
                             </div>
                         </div>
                     </div>

@@ -15,12 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 // Giao diện người dùng
 Route::get('/', [\App\Http\Controllers\HomeController::class,"home"]);
-Route::get('/category', [\App\Http\Controllers\HomeController::class,"categoryShop"]);
+Route::get('/category', [\App\Http\Controllers\HomeController::class,"category"]);
+Route::get('/categoryShop/{category:slug}', [\App\Http\Controllers\HomeController::class,"categoryShop"]);
+Route::get('/details/{product:slug}', [\App\Http\Controllers\HomeController::class,"shopDetails"]);
+Route::get('/cart', [\App\Http\Controllers\HomeController::class,"cartShop"]);
 Route::get('/contact', [\App\Http\Controllers\HomeController::class,"contactShop"]);
 Route::get('/about-us', [\App\Http\Controllers\HomeController::class,"aboutUs"]);
-Route::get('/cart', [\App\Http\Controllers\HomeController::class,"cartShop"]);
 Route::get('/check-out', [\App\Http\Controllers\HomeController::class,"checkOut"]);
-Route::get('/details', [\App\Http\Controllers\HomeController::class,"shopDetails"]);
 Route::get('/my-order', [\App\Http\Controllers\HomeController::class,"myOrder"]);
 Route::get('/change-password', [\App\Http\Controllers\HomeController::class,"changePassword"]);
 Route::get('/favorite-order', [\App\Http\Controllers\HomeController::class,"favoriteOrder"]);

@@ -27,52 +27,16 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__left">
-                                    <p>{{$products->total()}}</p>
+                                    <h6><span>{{$products->total()}}</span> Products found</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product12.jpg">
-                                    <span class="label">Sale</span>
-                                    <ul class="product__hover">
-                                        <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
-                                                <span>Compare</span></a>
-                                        </li>
-                                        <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>Ankle Boots</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>$98.49</h5>
-                                    <div class="product__color__select">
-                                        <label for="pc-34">
-                                            <input type="radio" id="pc-34">
-                                        </label>
-                                        <label class="active black" for="pc-35">
-                                            <input type="radio" id="pc-35">
-                                        </label>
-                                        <label class="grey" for="pc-36">
-                                            <input type="radio" id="pc-36">
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @foreach($products as $item)
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product13.jpg">
+                                <div class="product__item__pic set-bg" data-setbg="{{$item->thumbnail}}">
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
                                         <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
@@ -82,8 +46,8 @@
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6>T-shirt Contrast Pocket</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
+                                    <h6>{{$item->name}}</h6>
+                                    <a href="{{url("detail",["product"=>$item->slug])}}" class="add-cart btn">Add To Cart</a>
                                     <div class="rating">
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
@@ -91,43 +55,7 @@
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                     </div>
-                                    <h5>$49.66</h5>
-                                    <div class="product__color__select">
-                                        <label for="pc-37">
-                                            <input type="radio" id="pc-37">
-                                        </label>
-                                        <label class="active black" for="pc-38">
-                                            <input type="radio" id="pc-38">
-                                        </label>
-                                        <label class="grey" for="pc-39">
-                                            <input type="radio" id="pc-39">
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product14.jpg">
-                                    <ul class="product__hover">
-                                        <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
-                                                <span>Compare</span></a>
-                                        </li>
-                                        <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>Basic Flowing Scarf</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>$26.28</h5>
+                                    <h5>${{$item->price}}</h5>
                                     <div class="product__color__select">
                                         <label for="pc-40">
                                             <input type="radio" id="pc-40">
@@ -142,6 +70,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                     {!! $products->links("pagination::bootstrap-4") !!}
                 </div>
