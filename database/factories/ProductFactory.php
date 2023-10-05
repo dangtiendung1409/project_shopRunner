@@ -25,7 +25,11 @@ class ProductFactory extends Factory
             "color" => $this->faker->colorName,
 //            "size" => $this->faker->randomElement(['S', 'M', 'L', 'XL']),
             "price" => random_int(100,1000),
+<<<<<<< HEAD
             "thumbnail"=>"/customer/img/product/product-".random_int(1,45).".jpg",
+=======
+            "thumbnail" => "/customer/img/product/product".random_int(1,45).".jpg",
+>>>>>>> b7ef43235d820e403a57825078bc5c6593630417
             "qty" => random_int(2,50),
 //            "status" => $this->faker->randomElement([0, 1]),
             "description" => $this->faker->text(700),
