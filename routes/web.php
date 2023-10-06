@@ -26,6 +26,9 @@ Route::get('/my-order', [\App\Http\Controllers\HomeController::class,"myOrder"])
 Route::get('/change-password', [\App\Http\Controllers\HomeController::class,"changePassword"]);
 Route::get('/favorite-order', [\App\Http\Controllers\HomeController::class,"favoriteOrder"]);
 Route::get('/thank-you', [\App\Http\Controllers\HomeController::class,"ThankYou"]);
+Route::get('search-product', [\App\Http\Controllers\HomeController::class, 'search'])->name('search-product');
+
+
 
 
 

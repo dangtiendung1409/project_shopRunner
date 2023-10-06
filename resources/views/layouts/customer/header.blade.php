@@ -22,11 +22,11 @@
             <div class="col-lg-3 col-md-3">
                 <div class="header__nav__option">
                     <div class="dropdown">
-                        <div class="spacial-controls">
-                            <input type="text" id="searchInput" placeholder="Search...">
+                        <form class="spacial-controls" role="search" method="get" id="search" action="{{url('search-product')}}">
+                            <input type="text" name="key" id="searchInput" placeholder="Search...">
                             <ul id="searchResults"></ul>
-                            <i class="fas fa-search" id="searchIcon"></i>
-                        </div>
+                            <i class="fas fa-search" type="submit" id="searchIcon"></i>
+                        </form>
                         <a href="#" class="dropbtn" onclick="showDropdown()"><img src="/customer/img/icon/user.png" style="width:20px;" alt=""></a>
                         <div class="dropdown-content" id="myDropdown">
                             <div class="top-icon">

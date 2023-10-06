@@ -48,6 +48,14 @@ class HomeController
         return view("pages.customer.ThankYou");
     }
 
+    public function search(\Illuminate\Http\Request $req){
+        $product = Product::where('name','like','%'.$req->key. '%')
+                          ->orWhere('price',$req->key)
+                          ->get();
+        return view("pages.customer.search",compact('product'));
+    }
+
+
 
     // giao diện admin
     public function qlNhanVien(){
