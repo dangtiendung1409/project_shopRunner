@@ -12,21 +12,3 @@
 <script src="/customer/js/vendor/bootstrap.min.js"></script>
 <script src="/customer/js/main.js"></script>
 
-
-<script>
-    $(document).ready(function (){
-       var active = location.search;
-       $('#select-filter option[value = "'+active+'"]').attr('selected', 'selected');
-    });
-
-    $('.select-filter').change(function (){
-        var value = $(this).find(':selected').val();
-       // alert(value);
-        if(value !==0){
-            var url = value;
-            window.location.replace(url);
-        } else {
-            alert('Hãy lọc sản pẩm');
-        }
-    });
-</script>

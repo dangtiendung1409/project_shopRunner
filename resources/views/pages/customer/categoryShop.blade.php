@@ -25,31 +25,6 @@
                 <div class="col-lg-9">
                     <div class="shop__product__option">
                         <div class="row">
-
-                            <div class="list col-md-5">
-                                <div class="form-group">
-{{--                                    <label  for="exampleFromControlSelect1"></label>--}}
-                                    <select class="select-filter col-4" id="select-filter">
-                                        <option value="0">   Sort By   </option>
-                                        <option value="?kytu=asc">Ký Tự A-Z</option>
-                                        <option value="?kytu=desc">Ký Tự Z-A</option>
-                                        <option value="?gia=asc">Giá Tăng Dần</option>
-                                        <option value="?gia=desc">Giá Giảm Dần</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-{{--                            <div class="col-lg-4 col-md-5">--}}
-{{--                                <div class="filter__sort">--}}
-{{--                                    <span>Sort By</span>--}}
-{{--                                    <select>--}}
-{{--                                        <option value="0">Default</option>--}}
-{{--                                        <option value="0">Default</option>--}}
-{{--                                    </select>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__left">
                                     <h6><span>{{$products->total()}}</span> Products found</h6>
