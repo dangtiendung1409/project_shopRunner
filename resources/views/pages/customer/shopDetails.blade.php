@@ -20,67 +20,62 @@
     <!--================Single Product Area =================-->
     <div class="product_image_area">
         <div class="container">
+
             <div class="row s_product_inner">
                 <div class="col-lg-6">
                     <div class="s_Product_carousel">
                         <div class="single-prd-item">
-                            <img class="img-fluid" src="{{$product->thumbnail}}" alt="">
+                            <img class="img-fluid"
+                                 src="{{$product->thumbnail}}" alt="">
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-5 offset-lg-1">
-                    <form action="{{url("/cartShop",["product"=>$product->id])}}" method="get">
-                        <div class="s_product_text">
-                            <h3 style=" margin-left: -8px; font-size:25px;">{{$product -> name}}</h3>
-                            <h2>${{$product -> price}}</h2>
-                            <ul class="list">
-                                <li><a class="active" href="#"><span>Category</span> : {{$product->Category->name}}</a></li>
-                                <li><a href="#"><span>Available</span> : {{$product -> qty}}</a></li>
-                                <li><a href="#"><span>Sold</span> : {{$product ->Orders ->count()}}</a></li>
-
-                            </ul>
-
-                            <p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for
-                                something that can make your interior look awesome, and at the same time give you the pleasant warm feeling
-                                during the winter.
-                            </p>
-                            <div class="flex rY0UiC j9be9C">
-                                <div class="flex flex-column">
-                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
-                                        <h3 class="oN9nMU">Color :</h3>
-                                        <div class="flex items-center bR6mEk">
-                                            <button class="product-variation" aria-label="ĐEN" aria-disabled="false">đen</button>
-                                            <button class="product-variation" aria-label="xám" aria-disabled="false">xám</button>
-                                            <button class="product-variation" aria-label="kem" aria-disabled="false">kem</button>
-                                        </div>
-                                    </section>
-                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
-                                        <h3 class="oN9nMU">Size :</h3>
-                                        <div class="flex items-center bR6mEk">
-                                            <button class="product-variation" aria-label="S" aria-disabled="false">S</button>
-                                            <button class="product-variation" aria-label="M" aria-disabled="false">M</button>
-                                            <button class="product-variation" aria-label="L" aria-disabled="false">L</button>
-                                            <button class="product-variation" aria-label="XL" aria-disabled="false">XL</button>
-                                        </div>
-                                    </section>
-                                </div>
-                            </div>
-
-                            <div class="product__details__quantity">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="0">
+                    <div class="s_product_text">
+                        <h3 style=" margin-left: -8px; font-size:25px;">{{$product -> name}}</h3>
+                        <h2>${{$product -> price}}</h2>
+                        <ul class="list">
+                            <li><a class="active" href="#"><span>Category</span> : {{$product->Category->name}}</a></li>
+                            <li><a href="#"><span>Qty</span> : {{$product->qty}}</a></li>
+                            <li><a href="#"><span>Sold</span> : {{$product->Orders->count()}}</a></li>
+                        </ul>
+                        <p>{{$product->description}}</p>
+                        <div class="flex rY0UiC j9be9C">
+                            <div class="flex flex-column">
+                                <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
+                                    <h3 class="oN9nMU">Color :</h3>
+                                    <div class="flex items-center bR6mEk">
+                                        <button class="product-variation" aria-label="ĐEN" aria-disabled="false">đen</button>
+                                        <button class="product-variation" aria-label="xám" aria-disabled="false">xám</button>
+                                        <button class="product-variation" aria-label="kem" aria-disabled="false">kem</button>
                                     </div>
+                                </section>
+                                <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
+                                    <h3 class="oN9nMU">Size :</h3>
+                                    <div class="flex items-center bR6mEk">
+                                        <button class="product-variation" aria-label="S" aria-disabled="false">S</button>
+                                        <button class="product-variation" aria-label="M" aria-disabled="false">M</button>
+                                        <button class="product-variation" aria-label="L" aria-disabled="false">L</button>
+                                        <button class="product-variation" aria-label="XL" aria-disabled="false">XL</button>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+
+                        <div class="product__details__quantity">
+                            <div class="quantity">
+                                <div class="pro-qty">
+                                    <input type="text" value="0">
                                 </div>
                             </div>
-                            <a href="#" class="primary-btn">ADD TO CART</a>
-    {{--                        <div id="toast"></div>--}}
-    {{--                        <div>--}}
-    {{--                            <div onclick="showSuccessToast();" class="btn--success primary-btn">ADD TO CART</div>--}}
-    {{--                        </div>--}}
                         </div>
-                    </form>
+                        <a href="#" class="primary-btn">ADD TO CART</a>
+{{--                        <div id="toast"></div>--}}
+{{--                        <div>--}}
+{{--                            <div onclick="showSuccessToast();" class="btn--success primary-btn">ADD TO CART</div>--}}
+{{--                        </div>--}}
+                    </div>
                 </div>
             </div>
         </div>
