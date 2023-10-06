@@ -8,7 +8,7 @@
                     <div class="breadcrumb__text">
                         <h4>Shop</h4>
                         <div class="breadcrumb__links">
-                            <a href="./index.html">Home</a>
+                            <a href="{{url("/")}}">Home</a>
                             <span>Shop</span>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="product__item__text">
                                         <h6 >{{$item->name}}</h6>
-                                        <a href="{{url("/detail",["product"=>$item->slug])}}" class="add-cart btn-danger">Add To Cart</a>
+                                        <a href="{{url("/details",["product"=>$item->slug])}}" class="add-cart btn">Add To Cart</a>
                                         <div class="rating">
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star-o"></i>
