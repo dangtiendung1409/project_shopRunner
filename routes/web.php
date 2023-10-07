@@ -30,11 +30,6 @@ Route::get('search-product', [\App\Http\Controllers\HomeController::class, 'sear
 
 
 
-Route::get('/price',[\App\Http\Controllers\HomeController::class,'all_products'])->name('all.products');
-Route::get('/search-product',[\App\Http\Controllers\HomeController::class,'search_products'])->name('search.products');
-Route::get('/sort-by',[\App\Http\Controllers\HomeController::class,'sort_by'])->name('sort.by');
-
-
 
 
 

@@ -17,7 +17,7 @@ class HomeController
         $products = Product::orderBy("created_at", "desc")->paginate(12);
         return view("pages.customer.categoryShop", compact("products"));
     }
-    public function category(Category $category,Request $request){
+    public function category(Category $category){
         $products = Product::where("category_id", $category-> id)
             ->orderBy("created_at", "desc")->paginate(12);
         return view("pages.customer.category", compact("products"))->render();
