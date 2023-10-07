@@ -22,18 +22,18 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-heading">
-                        <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
-                    </div>
-                    <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
-                        <div class="card-body">
-                            <div class="shop__sidebar__price">
-                                @foreach ($categories as $c)
-                                    <li><a href="{{url("/category",["category"=>$c->slug])}}">{{$c->price}}</a></li>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
+{{--                    <div class="card-heading">--}}
+{{--                        <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>--}}
+{{--                    </div>--}}
+{{--                    <div id="collapseThree" class="collapse show" data-parent="#accordionExample">--}}
+{{--                        <div class="card-body">--}}
+{{--                            <div class="shop__sidebar__price">--}}
+{{--                                @foreach ($categories as $c)--}}
+{{--                                    <li><a href="{{url("/category",["category"=>$c->slug])}}">{{$c->name}}</a></li>--}}
+{{--                                @endforeach--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
                 <div class="card">
                     <div class="card-heading">
