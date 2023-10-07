@@ -252,52 +252,11 @@
                                         commodo
                                     </p>
                                 </div>
-                                <div class="review_item">
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <h4>Blake Ruiz</h4>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                        commodo
-                                    </p>
-                                </div>
-                                <div class="review_item">
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <h4>Blake Ruiz</h4>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                        commodo
-                                    </p>
-                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="review_box">
                                 <h4>Add a Review</h4>
-                                <p>Your Rating:</p>
-                                <ul class="list">
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                </ul>
-                                <p>Outstanding</p>
                                 <form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -319,8 +278,29 @@
                                             <textarea class="form-control" name="message" id="message" rows="1" placeholder="Review" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea></textarea>
                                         </div>
                                     </div>
+
                                     <div class="col-md-12 text-right">
+
+{{--                                        <div class="personal-rating">--}}
+{{--                                            <div class="rate">--}}
+{{--                                                <h6>Your Rating</h6>--}}
+{{--                                                    <input type="radio" id="star5" name="rating" value="5">--}}
+{{--                                                    <label for="star5" title="text"> 5 stars</label>--}}
+{{--                                                    <input type="radio" id="star4" name="rating" value="4">--}}
+{{--                                                    <label for="star4" title="text"> 4 stars</label>--}}
+{{--                                                    <input type="radio" id="star3" name="rating" value="3">--}}
+{{--                                                    <label for="star3" title="text"> 3 stars</label>--}}
+{{--                                                    <input type="radio" id="star2" name="rating" value="2">--}}
+{{--                                                    <label for="star2" title="text"> 2 stars</label>--}}
+{{--                                                    <input type="radio" id="star1" name="rating" value="1">--}}
+{{--                                                    <label for="star1" title="text"> 1 stars</label>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div id="rateYo"></div>--}}
+
                                         <button type="submit" value="submit" class="primary-btn">Submit Now</button>
+                                        <hr>
+                                        <div id="rateYo"></div>
                                     </div>
                                 </form>
                             </div>
@@ -413,8 +393,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
                     <div class="product__item sale">
-                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product43.jpg
-">
+                        <div class="product__item__pic set-bg" data-setbg="/customer/img/product/product43.jpg">
                             <span class="label">Sale</span>
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
@@ -485,70 +464,4 @@
         </div>
     </section>
     <!-- Related Section End -->
-    <script>
-        // Toast function
-        function toast({ title = "", message = "", type = "info", duration = 3000 }) {
-            const main = document.getElementById("toast");
-            if (main) {
-                const toast = document.createElement("div");
-
-                // Auto remove toast
-                const autoRemoveId = setTimeout(function () {
-                    main.removeChild(toast);
-                }, duration + 1000);
-
-                // Remove toast when clicked
-                toast.onclick = function (e) {
-                    if (e.target.closest(".toast__close")) {
-                        main.removeChild(toast);
-                        clearTimeout(autoRemoveId);
-                    }
-                };
-
-                const icons = {
-                    success: "fas fa-check-circle",
-                    info: "fas fa-info-circle",
-                    warning: "fas fa-exclamation-circle",
-                    error: "fas fa-exclamation-circle"
-                };
-                const icon = icons[type];
-                const delay = (duration / 1000).toFixed(2);
-
-                toast.classList.add("toast", `toast--${type}`);
-                toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
-
-                toast.innerHTML = `
-                      <div class="toast__icon">
-                          <i class="${icon}"></i>
-                      </div>
-                      <div class="toast__body">
-                          <h3 class="toast__title">${title}</h3>
-                          <p class="toast__msg">${message}</p>
-                      </div>
-                      <div class="toast__close">
-                          <i class="fas fa-times"></i>
-                      </div>
-                  `;
-                main.appendChild(toast);
-            }
-        }
-
-        function showSuccessToast() {
-            toast({
-                title: "Thành công!",
-                message: "Bạn đã đăng ký thành công tài khoản.",
-                type: "success",
-                duration: 5000
-            });
-        }
-
-        // function showErrorToast() {
-        //     toast({
-        //         title: "Thất bại!",
-        //         message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
-        //         type: "error",
-        //         duration: 5000
-        //     });
-        // }
-    </script>
 @endsection
