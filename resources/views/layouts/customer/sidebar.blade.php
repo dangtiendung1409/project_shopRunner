@@ -28,11 +28,9 @@
                     <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="shop__sidebar__price">
-                                <ul>
-                                    @foreach ($categories as $c)
-                                        <li><a href="{{url("/category",["category"=>$c->price])}}">${{$c->price}} - ${{$c->price + $c->price}}</a></li>
-                                    @endforeach
-                                </ul>
+                                @foreach ($categories as $c)
+                                    <li><a href="{{url("/category",["category"=>$c->slug])}}">{{$c->price}}</a></li>
+                                @endforeach
                             </div>
                         </div>
                     </div>
