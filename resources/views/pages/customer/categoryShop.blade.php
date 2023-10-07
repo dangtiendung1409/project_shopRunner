@@ -72,7 +72,34 @@
                             </div>
                         @endforeach
                     </div>
-                    {!! $products->links("pagination::bootstrap-5") !!}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product__pagination">
+                                @if ($products->lastPage() > 1)
+                                    @if ($products->currentPage() > 3)
+                                        <a href="{{ $products->url(1) }}">1</a>
+                                        @if ($products->currentPage() > 4)
+                                            <span>...</span>
+                                        @endif
+                                    @endif
+                                    @for ($i = max(1, $products->currentPage() - 2); $i <= min($products->lastPage(), $products->currentPage() + 2); $i++)
+                                        @if ($i == $products->currentPage())
+                                            <a class="active" href="{{ $products->url($i) }}">{{ $i }}</a>
+                                        @else
+                                            <a href="{{ $products->url($i) }}">{{ $i }}</a>
+                                        @endif
+                                    @endfor
+                                    @if ($products->currentPage() < $products->lastPage() - 2)
+                                        @if ($products->currentPage() < $products->lastPage() - 3)
+                                            <span>...</span>
+                                        @endif
+                                        <a href="{{ $products->url($products->lastPage()) }}">{{ $products->lastPage() }}</a>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

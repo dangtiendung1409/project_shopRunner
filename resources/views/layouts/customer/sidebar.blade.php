@@ -29,9 +29,12 @@
                         <div class="card-body">
                             <div class="shop__sidebar__price">
                                 <ul>
-                                    @foreach ($categories as $c)
-                                        <li><a href="{{url("/category",["category"=>$c->price])}}">${{$c->price}} - ${{$c->price + $c->price}}</a></li>
-                                    @endforeach
+                                    <li><a href="#">$0.00 - $50.00</a></li>
+                                    <li><a href="#">$50.00 - $100.00</a></li>
+                                    <li><a href="#">$100.00 - $150.00</a></li>
+                                    <li><a href="#">$150.00 - $200.00</a></li>
+                                    <li><a href="#">$200.00 - $250.00</a></li>
+                                    <li><a href="#">250.00+</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -44,17 +47,30 @@
                     <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="shop__sidebar__size">
-{{--                                <label for="xs">xs--}}
-{{--                                    <input type="radio" id="xs">--}}
-{{--                                </label>--}}
-{{--                                <label for="sm">s--}}
-{{--                                    <input type="radio" id="sm">--}}
-{{--                                </label>--}}
-                                @foreach ($categories as $c)
-                                    <label for="4xl">
-                                        <a type="radio" href="{{url("/category",["category"=>$c->size])}}">{{$c->size}}</a>
-                                    </label>
-                                @endforeach
+                                <label for="xs">xs
+                                    <input type="radio" id="xs">
+                                </label>
+                                <label for="sm">s
+                                    <input type="radio" id="sm">
+                                </label>
+                                <label for="md">m
+                                    <input type="radio" id="md">
+                                </label>
+                                <label for="xl">xl
+                                    <input type="radio" id="xl">
+                                </label>
+                                <label for="2xl">2xl
+                                    <input type="radio" id="2xl">
+                                </label>
+                                <label for="xxl">xxl
+                                    <input type="radio" id="xxl">
+                                </label>
+                                <label for="3xl">3xl
+                                    <input type="radio" id="3xl">
+                                </label>
+                                <label for="4xl">4xl
+                                    <input type="radio" id="4xl">
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -99,15 +115,18 @@
                 </div>
                 <div class="card">
                     <div class="card-heading">
-                        <a data-toggle="collapse" data-target="#collapseSix">Tags</a>
+                        <a data-toggle="collapse" data-target="#collapseSix">Material</a>
                     </div>
                     <div id="collapseSix" class="collapse show" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="shop__sidebar__tags">
                                 <a href="#">Product</a>
-                                @foreach ($categories as $c)
-                                    <li><a href="{{url("/category",["category"=>$c->slug])}}">{{$c->name}}</a></li>
-                                @endforeach
+                                <a href="#">Bags</a>
+                                <a href="#">Shoes</a>
+                                <a href="#">Fashio</a>
+                                <a href="#">Clothing</a>
+                                <a href="#">Hats</a>
+                                <a href="#">Accessories</a>
                             </div>
                         </div>
                     </div>
