@@ -32,30 +32,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="slider-area">
-                        <div class="row">
-                            <div class="col-md-5 mb-3">
-                                <div class="middle">
-                                    <div id="multi_range">
-                                        <span id="left_value">25</span><span> ~ </span><span id="right_value">75</span>
-                                    </div>
-                                    <div class="multi-range-slider my-2">
-                                        <input type="range" id="input_left" class="range_slider" min="0.00" max="100.00" value="25.00" onmousemove="left_slider(this.value)">
-                                        <input type="range" id="input_right" class="range_slider" min="0.00" max="100" value="75.00" onmousemove="right_slider(this.value)">
-                                        <div class="slider">
-                                            <div class="track"></div>
-                                            <div class="range"></div>
-                                            <div class="thumb left"></div>
-                                            <div class="thumb right"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    @if($products->count() >=1)
                     <div class="row">
                         @foreach($products as $item)
                             <div class="col-lg-4 col-md-6 col-sm-6">
@@ -96,7 +72,6 @@
                             </div>
                         @endforeach
                     </div>
-
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="product__pagination">
@@ -124,9 +99,9 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-            @endif
         </div>
     </section>
     <!-- Shop Section End -->
