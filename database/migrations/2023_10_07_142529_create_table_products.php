@@ -23,11 +23,11 @@ return new class extends Migration
 //            $table->string("status");
             $table->longText("description")->nullable();
             $table->unsignedBigInteger("category_id");
-            $table->unsignedBigInteger('brand_id')->default(0);
-            $table->unsignedBigInteger("review_id")->default(0);
+//            $table->unsignedBigInteger('brand_id')->default(0);
+//            $table->unsignedBigInteger("review_id")->default(0);
             $table->foreign("category_id")->references("id")->on("categories");
-            $table->foreign("brand_id")->references("id")->on("brands");
-            $table->foreign("review_id")->references("id")->on("reviews");
+//            $table->foreign("brand_id")->references("id")->on("brands");
+//            $table->foreign("review_id")->references("id")->on("reviews");
             $table->timestamps();
         });
     }

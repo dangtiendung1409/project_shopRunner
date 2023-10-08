@@ -50,7 +50,7 @@
 {{--                                </label>--}}
                                 @foreach ($categories as $c)
                                     <label for="4xl">
-                                        <a type="radio" href="{{url("/category",["category"=>$c->size])}}">{{$c->size}}</a>
+                                        <a type="radio" href="{{url("/category")}}">{{$c->size}}</a>
                                     </label>
                                 @endforeach
                             </div>
