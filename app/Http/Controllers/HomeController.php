@@ -39,20 +39,25 @@ class HomeController
             )
             ->distinct()
             ->get();
+        $relate = Product::where("category_id", $product->category_id)
+            ->where("id", "!=", $product->id)
+            ->where("qty", ">" ,0)
+            ->orderBy("created_at", "desc")
+            ->limit(4)
+            ->get();
 
-        return view("pages.customer.shopDetails", compact("product", "variants"));
+        return view("pages.customer.shopDetails", compact("product", "variants", "relate"));
     }
 
-
+    public function cartShop(){
+        return view("pages.customer.cartShop");
+    }
 
     public function contactShop(){
        return view("pages.customer.contactShop");
     }
     public function aboutUs(){
        return view("pages.customer.aboutUs");
-    }
-    public function cartShop(){
-        return view("pages.customer.cartShop");
     }
     public function checkOut(){
         return view("pages.customer.checkOut");
