@@ -41,35 +41,39 @@
                             <li><a href="#"><span>Sold</span> : {{$product->Orders->count()}}</a></li>
                         </ul>
                         <p>{{$product->description}}</p>
-                        <div class="flex rY0UiC j9be9C">
-                            <div class="flex flex-column">
-                                <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
-                                    <h3 class="oN9nMU">Color :</h3>
-                                    <div class="flex items-center bR6mEk">
-                                        <button class="product-variation" aria-label="ĐEN" aria-disabled="false">đen</button>
-                                        <button class="product-variation" aria-label="xám" aria-disabled="false">xám</button>
-                                        <button class="product-variation" aria-label="kem" aria-disabled="false">kem</button>
-                                    </div>
-                                </section>
-                                <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
-                                    <h3 class="oN9nMU">Size :</h3>
-                                    <div class="flex items-center bR6mEk">
-                                        <button class="product-variation" aria-label="S" aria-disabled="false">S</button>
-                                        <button class="product-variation" aria-label="M" aria-disabled="false">M</button>
-                                        <button class="product-variation" aria-label="L" aria-disabled="false">L</button>
-                                        <button class="product-variation" aria-label="XL" aria-disabled="false">XL</button>
-                                    </div>
-                                </section>
-                                <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
-                                    <h3 class="oN9nMU">Material :</h3>
-                                    <div class="flex items-center bR6mEk">
-                                        <button class="product-variation" aria-label="ĐEN" aria-disabled="false">bla</button>
-                                        <button class="product-variation" aria-label="xám" aria-disabled="false">blas</button>
-                                        <button class="product-variation" aria-label="kem" aria-disabled="false">kem</button>
-                                    </div>
-                                </section>
+
+                            <div class="flex rY0UiC j9be9C">
+                                <div class="flex flex-column">
+                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
+                                        <h3 class="oN9nMU">Color :</h3>
+                                        <div class="flex items-center bR6mEk">
+                                            @foreach($variants as $variant)
+                                            <button class="product-variation" aria-label="{{ $variant->color_name }}" aria-disabled="false">{{ $variant->color_name }}</button>
+                                            @endforeach
+                                        </div>
+                                    </section>
+                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
+                                        <h3 class="oN9nMU">Size :</h3>
+                                        <div class="flex items-center bR6mEk">
+                                            @foreach($variants as $variant)
+                                            <button class="product-variation" aria-label="{{ $variant->size_name }}" aria-disabled="false">{{ $variant->size_name }}</button>
+                                            @endforeach
+                                        </div>
+                                    </section>
+                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
+                                        <h3 class="oN9nMU">Material :</h3>
+                                        <div class="flex items-center bR6mEk">
+                                            @foreach($variants as $variant)
+                                            <button class="product-variation" aria-label="{{ $variant->material_name }}" aria-disabled="false">{{ $variant->material_name }}</button>
+                                            @endforeach
+                                        </div>
+                                    </section>
+                                </div>
                             </div>
-                        </div>
+
+
+
+
 
 
                         <div class="product__details__quantity">
