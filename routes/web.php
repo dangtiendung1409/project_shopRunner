@@ -33,19 +33,21 @@ Route::get('search-product', [\App\Http\Controllers\HomeController::class, 'sear
 
 
 
-// giao diện admin
-Route::get('/admin-quan-ly-nhan-vien', [\App\Http\Controllers\HomeController::class,"qlNhanVien"]);
-Route::get('/admin-quan-ly-khach-hang', [\App\Http\Controllers\HomeController::class,"qlKhachHang"]);
-Route::get('/admin-quan-ly-đon-hang', [\App\Http\Controllers\HomeController::class,"qlDonHang"]);
-Route::get('/admin-quan-ly-san-pham', [\App\Http\Controllers\HomeController::class,"qlSanPham"]);
-Route::get('/admin-quan-ly-thong-tin-khuyen-mai', [\App\Http\Controllers\HomeController::class,"qlThongTinKhuyenMai"]);
-
+// giao diện quantri
+Route::get('/admin-quan-ly-nhan-vien', [\App\Http\Controllers\adminController::class,"qlNhanVien"]);
+Route::get('/admin-quan-ly-đon-hang', [\App\Http\Controllers\adminController::class,"qlDonHang"]);
+Route::get('/admin-quan-ly-san-pham', [\App\Http\Controllers\adminController::class,"qlSanPham"]);
+Route::get('/admin-add-nhan-vien', [\App\Http\Controllers\adminController::class,"addNhanVien"]);
+Route::get('/admin-add-san-pham', [\App\Http\Controllers\adminController::class,"addSanPham"]);
+Route::get('/admin-quan-ly-thong-tin-khuyen-mai', [\App\Http\Controllers\adminController::class,"qlThongTinKhuyenMai"]);
+Route::get('/admin-add-thong-tin-khuyen-mai', [\App\Http\Controllers\adminController::class,"addThongTinKhuyenMai"]);
 
 // giao diện nhân viên
-Route::get('/nhan-vien-quan-ly-khach-hang', [\App\Http\Controllers\HomeController::class,"QuanLyKhachHang"]);
-Route::get('/nhan-vien-quan-ly-đon-hang', [\App\Http\Controllers\HomeController::class,"QuanLyDonHang"]);
-Route::get('/nhan-vien-quan-ly-san-pham', [\App\Http\Controllers\HomeController::class,"QuanLySanPham"]);
-Route::get('/nhan-vien-quan-ly-thong-tin-khuyen-mai', [\App\Http\Controllers\HomeController::class,"QuanLyThongTinKhuyenMai"]);
+Route::get('/nhan-vien-add-san-pham', [\App\Http\Controllers\NhanVienController::class,"AddSanPham"]);
+Route::get('/nhan-vien-quan-ly-đon-hang', [\App\Http\Controllers\NhanVienController::class,"QuanLyDonHang"]);
+Route::get('/nhan-vien-quan-ly-san-pham', [\App\Http\Controllers\NhanVienController::class,"QuanLySanPham"]);
+Route::get('/nhan-vien-quan-ly-thong-tin-khuyen-mai', [\App\Http\Controllers\NhanVienController::class,"QuanLyThongTinKhuyenMai"]);
+Route::get('/nhan-vien-add-thong-tin-khuyen-mai', [\App\Http\Controllers\NhanVienController::class,"AddThongTinKhuyenMai"]);
 
 // login dành cho nhân viên và admin
 Route::get('/login-quan-tri', [\App\Http\Controllers\HomeController::class,"loginQuanTri"]);
