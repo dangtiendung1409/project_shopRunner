@@ -336,7 +336,7 @@
             @foreach($relate as $item)
                 <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
                     <div class="product__item sale">
-                        <div class="product__item__pic set-bg" data-setbg="{{$item->thumnail}}">
+                        <div class="product__item__pic set-bg" data-setbg="{{asset($item->thumnail)}}">
                             <span class="label">Sale</span>
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
