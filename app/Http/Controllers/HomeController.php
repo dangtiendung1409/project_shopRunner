@@ -22,9 +22,13 @@ class HomeController
             ->orderBy("created_at", "desc")->paginate(12);
         return view("pages.customer.category", compact("products"))->render();
     }
-    public function details(Product $product){
-        return view("pages.customer.shopDetails",compact("product"));
+    public function details(Product $product)
+    {
+        $products = Product::all(); // Hoặc lấy dữ liệu sản phẩm từ cơ sở dữ liệu.
+
+        return view("pages.customer.shopDetails", compact("product", "products"));
     }
+
     public function contactShop(){
        return view("pages.customer.contactShop");
     }

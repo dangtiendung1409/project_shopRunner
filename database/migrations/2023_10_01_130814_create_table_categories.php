@@ -15,10 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("name", 150)->unique();
             $table->string("slug")->unique();
-            $table->string("size")->nullable();
-            $table->string("color")->nullable();
-            $table->string("tags")->nullable();
-            $table->unsignedDecimal("price",14,2)->default(0.00);
+
             $table->timestamps();
         });
     }

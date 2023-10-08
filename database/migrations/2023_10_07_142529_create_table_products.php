@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->string("slug")->unique();
-            $table->string("color");
-//            $table->integer("size");
+
             $table->unsignedDecimal("price",14,2);
             $table->string("thumbnail")->nullable();
             $table->unsignedSmallInteger("qty")->default(0);

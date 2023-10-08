@@ -60,8 +60,17 @@
                                         <button class="product-variation" aria-label="XL" aria-disabled="false">XL</button>
                                     </div>
                                 </section>
+                                <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
+                                    <h3 class="oN9nMU">Material :</h3>
+                                    <div class="flex items-center bR6mEk">
+                                        <button class="product-variation" aria-label="ĐEN" aria-disabled="false">bla</button>
+                                        <button class="product-variation" aria-label="xám" aria-disabled="false">blas</button>
+                                        <button class="product-variation" aria-label="kem" aria-disabled="false">kem</button>
+                                    </div>
+                                </section>
                             </div>
                         </div>
+
 
                         <div class="product__details__quantity">
                             <div class="quantity">
