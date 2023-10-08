@@ -15,7 +15,7 @@ class SizeFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->randomElement(['S', 'M', 'L', 'XL']), // Định nghĩa cách tạo giá trị cho trường 'name'
+            'name' => $this->faker->randomElement(['S', 'M', 'L', 'XL','XS']), // Định nghĩa cách tạo giá trị cho trường 'name'
         ];
     }
 }

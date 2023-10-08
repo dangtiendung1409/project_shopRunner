@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductFilter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController
 {
@@ -24,10 +25,25 @@ class HomeController
     }
     public function details(Product $product)
     {
-        $products = Product::all(); // Hoặc lấy dữ liệu sản phẩm từ cơ sở dữ liệu.
+        // Lấy danh sách các biến thể của sản phẩm cụ thể với thông tin từ các bảng colors, sizes, và materials
+        $variants = DB::table('product_variants')
+            ->where('product_id', $product->id)
+            ->join('colors', 'product_variants.color_id', '=', 'colors.id')
+            ->join('sizes', 'product_variants.size_id', '=', 'sizes.id')
+            ->join('materials', 'product_variants.material_id', '=', 'materials.id')
+            ->select(
+                'product_variants.*',
+                'colors.name as color_name',
+                'sizes.name as size_name',
+                'materials.name as material_name'
+            )
+            ->distinct()
+            ->get();
 
-        return view("pages.customer.shopDetails", compact("product", "products"));
+        return view("pages.customer.shopDetails", compact("product", "variants"));
     }
+
+
 
     public function contactShop(){
        return view("pages.customer.contactShop");
@@ -61,38 +77,6 @@ class HomeController
         return view("pages.customer.search",compact('product'));
     }
 
-
-
-    // giao diện admin
-    public function qlNhanVien(){
-        return view("pages.admin.qlNhanVien");
-    }
-    public function qlKhachHang(){
-        return view("pages.admin.qlKhachHang");
-    }
-    public function qlDonHang(){
-        return view("pages.admin.qlDonHang");
-    }
-    public function qlSanPham(){
-        return view("pages.admin.qlSanPham");
-    }
-    public function qlThongTinKhuyenMai(){
-        return view("pages.admin.qlThongTinKhuyenMai");
-    }
-
-    //giao diện nhân viên
-    public function QuanLyKhachHang(){
-        return view("pages.nhanvien.QuanLyKhachHang");
-    }
-    public function QuanLyDonHang(){
-        return view("pages.nhanvien.QuanLyDonHang");
-    }
-    public function QuanLySanPham(){
-        return view("pages.nhanvien.QuanLySanPham");
-    }
-    public function QuanLyThongTinKhuyenMai(){
-        return view("pages.nhanvien.QuanLyThongTinKhuyenMai");
-    }
 
   // login dành cho admin và nhân viên
     public function loginQuanTri(){
