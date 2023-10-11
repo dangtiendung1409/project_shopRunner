@@ -77,9 +77,12 @@
                                 </div>
                             </div>
                         </div>
-                        @if($product->qty > 0)
-                            <button type="submit" class="primary-btn ">ADD TO CART</button>
-                        @endif
+                        <div class="add-to-cart">
+                            @if($product->qty > 0)
+                                <button type="submit" class="primary-btn">ADD TO CART</button>
+                            @endif
+                        </div>
+
                     </div>
                     </form>
                 </div>
