@@ -73,7 +73,7 @@
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" value="0">
+                                    <input type="text" value="1">
                                 </div>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                 <svg width="24" height="20" class="x0F377" id="heart-icon">
                     <path d="M19.469 1.262c-5.284-1.53-7.47 4.142-7.470 4.142S9.815-.269 4.532 1.262C-1.937 3.138.44 13.832 12 19.333c11.559-5.501 13.938-16.195 7.469-18.07z" stroke="#FF424F" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linejoin="round"></path>
                 </svg>
-                <div class="Ne7dEf">Đã thích (16)</div>
+                <div class="Ne7dEf">Đã thích (12)</div>
             </button>
         </div>
 
@@ -244,7 +244,7 @@
                         <div class="col-lg-6">
                             <div class="review_box">
                                 <h4>Add a Review</h4>
-                                <form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                                <form class="row contact_form" action="{{url("/")}}" method="post" id="contactForm" novalidate="novalidate">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="name" name="name" placeholder="Your Full name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Full name'">
