@@ -77,9 +77,9 @@
                                 </div>
                             </div>
                         </div>
-{{--                        @if($product->qty > 0)--}}
-                            <button type="submit" class="primary-btn btn">ADD TO CART</button>
-{{--                        @endif--}}
+                        @if($product->qty > 0)
+                            <button type="submit" class="primary-btn ">ADD TO CART</button>
+                        @endif
                     </div>
                     </form>
                 </div>
