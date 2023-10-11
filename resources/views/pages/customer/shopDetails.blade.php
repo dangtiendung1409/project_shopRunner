@@ -48,25 +48,27 @@
                         <p>{{$product->description}}</p>
 
                             <div class="flex rY0UiC j9be9C">
-{{--                                <div class="flex flex-column">--}}
-{{--                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">--}}
-{{--                                        <h3 class="oN9nMU">Color :</h3>--}}
-{{--                                        <div class="flex items-center bR6mEk">--}}
-{{--                                            @foreach($variants as $variant)--}}
-{{--                                            <button class="product-variation" aria-label="{{ $variant->color_name }}" aria-disabled="false">{{ $variant->color_name }}</button>--}}
-{{--                                            @endforeach--}}
-{{--                                        </div>--}}
-{{--                                    </section>--}}
-{{--                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">--}}
-{{--                                        <h3 class="oN9nMU">Size :</h3>--}}
-{{--                                        <div class="flex items-center bR6mEk">--}}
-{{--                                            @foreach($variants as $variant)--}}
-{{--                                            <button class="product-variation" aria-label="{{ $variant->size_name }}" aria-disabled="false">{{ $variant->size_name }}</button>--}}
-{{--                                            @endforeach--}}
-{{--                                        </div>--}}
-{{--                                    </section>--}}
+                                <div class="flex flex-column">
+                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
+                                        <label>Color        :</label>
+                                        <select name="category_id" class="form-control">
+                                            <option selected disabled>Color</option>
+                                            @foreach($color as $item)
+                                                <option @if($item->id) selected @endif value="{{$item->id}}">{{$item->name}}</option>
+                                            @endforeach
+                                        </select>
 
-{{--                                </div>--}}
+                                    </section>
+                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
+                                        <label>Size:</label>
+                                        <select name="category_id" class="form-control">
+                                            <option selected disabled>Color</option>
+                                            @foreach($size as $item)
+                                                <option @if($item->id) selected @endif value="{{$item->id}}">{{$item->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </section>
+                                </div>
                             </div>
                         <div class="product__details__quantity">
                             <div class="quantity">
