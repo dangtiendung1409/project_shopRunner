@@ -20,7 +20,11 @@
     <!--================Single Product Area =================-->
     <div class="product_image_area">
         <div class="container">
-
+            @if(session()->has("success"))
+                <div class="alert alert-success" role="alert">
+                    {{session("success")}}
+                </div>
+            @endif
             <div class="row s_product_inner">
                 <div class="col-lg-6">
                     <div class="s_Product_carousel">
@@ -32,6 +36,7 @@
                 </div>
 
                 <div class="col-lg-5 offset-lg-1">
+                    <form action="{{url("/cart",["product"=>$product->id])}}" method="get">
                     <div class="s_product_text">
                         <h3 style=" margin-left: -8px; font-size:25px;">{{$product -> name}}</h3>
                         <h2>${{$product -> price}}</h2>
@@ -70,8 +75,11 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">ADD TO CART</a>
+                        @if($product->qty > 0)
+                            <button type="submit" class="primary-btn btn">ADD TO CART</button>
+                        @endif
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -237,25 +245,31 @@
                         <div class="col-lg-6">
                             <div class="review_box">
                                 <h4>Add a Review</h4>
-                                <form class="row contact_form" action="{{url("/")}}" method="post" id="contactForm" novalidate="novalidate">
+                                <form class="row contact_form" action="{{url("/details")}}" method="post" id="contactForm" novalidate="novalidate">
+                                    @csrf
+
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Full name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Full name'">
+                                            <input type="text" class="form-control" id="name" name="name"  placeholder="Your Full name"
+                                                   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Full name'">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
+                                            <input type="email" class="form-control" id="email" name="email"  placeholder="Email Address"
+                                                   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="number" name="number" placeholder="Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number'">
+                                            <input type="text" class="form-control" id="number" name="number"  placeholder="Phone Number"
+                                                   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number'">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <textarea class="form-control" name="message" id="message" rows="1" placeholder="Review" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea></textarea>
+                                            <textarea class="form-control" name="message" id="message" rows="1" placeholder="Review"
+                                                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12 text-right">
