@@ -48,25 +48,25 @@
                         <p>{{$product->description}}</p>
 
                             <div class="flex rY0UiC j9be9C">
-                                <div class="flex flex-column">
-                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
-                                        <h3 class="oN9nMU">Color :</h3>
-                                        <div class="flex items-center bR6mEk">
-                                            @foreach($variants as $variant)
-                                            <button class="product-variation" aria-label="{{ $variant->color_name }}" aria-disabled="false">{{ $variant->color_name }}</button>
-                                            @endforeach
-                                        </div>
-                                    </section>
-                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
-                                        <h3 class="oN9nMU">Size :</h3>
-                                        <div class="flex items-center bR6mEk">
-                                            @foreach($variants as $variant)
-                                            <button class="product-variation" aria-label="{{ $variant->size_name }}" aria-disabled="false">{{ $variant->size_name }}</button>
-                                            @endforeach
-                                        </div>
-                                    </section>
+{{--                                <div class="flex flex-column">--}}
+{{--                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">--}}
+{{--                                        <h3 class="oN9nMU">Color :</h3>--}}
+{{--                                        <div class="flex items-center bR6mEk">--}}
+{{--                                            @foreach($variants as $variant)--}}
+{{--                                            <button class="product-variation" aria-label="{{ $variant->color_name }}" aria-disabled="false">{{ $variant->color_name }}</button>--}}
+{{--                                            @endforeach--}}
+{{--                                        </div>--}}
+{{--                                    </section>--}}
+{{--                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">--}}
+{{--                                        <h3 class="oN9nMU">Size :</h3>--}}
+{{--                                        <div class="flex items-center bR6mEk">--}}
+{{--                                            @foreach($variants as $variant)--}}
+{{--                                            <button class="product-variation" aria-label="{{ $variant->size_name }}" aria-disabled="false">{{ $variant->size_name }}</button>--}}
+{{--                                            @endforeach--}}
+{{--                                        </div>--}}
+{{--                                    </section>--}}
 
-                                </div>
+{{--                                </div>--}}
                             </div>
                         <div class="product__details__quantity">
                             <div class="quantity">
@@ -75,9 +75,9 @@
                                 </div>
                             </div>
                         </div>
-                        @if($product->qty > 0)
+{{--                        @if($product->qty > 0)--}}
                             <button type="submit" class="primary-btn btn">ADD TO CART</button>
-                        @endif
+{{--                        @endif--}}
                     </div>
                     </form>
                 </div>
