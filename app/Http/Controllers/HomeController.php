@@ -6,6 +6,13 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductFilter;
 use Illuminate\Http\Request;
+use App\Models\Color;
+use App\Models\Size;
+use App\Models\Material;
+use App\Pipelines\ProductFilterPipeline;
+
+
+
 use Illuminate\Support\Facades\DB;
 
 class HomeController
@@ -14,14 +21,24 @@ class HomeController
     public function home(){
         return view("pages.customer.home");
     }
-    public function categoryShop(){
-        $products = Product::orderBy("created_at", "desc")->paginate(12);
-        return view("pages.customer.categoryShop", compact("products"));
+    public function categoryShop(Request $request){
+        $colors = Color::all();
+        $sizes = Size::all();
+        $materials = Material::all();
+
+        $query = Product::orderBy("created_at", "desc");
+        $products = $query->paginate(12);
+        return view("pages.customer.categoryShop", compact("products", "colors", "sizes", "materials"));
     }
+
+
     public function category(Category $category){
         $products = Product::where("category_id", $category-> id)
             ->orderBy("created_at", "desc")->paginate(12);
-        return view("pages.customer.category", compact("products"))->render();
+        $colors = Color::all();
+        $sizes = Size::all();
+        $materials = Material::all();
+        return view("pages.customer.category", compact("products" ,"colors", "sizes", "materials"))->render();
     }
     public function details(Product $product)
     {

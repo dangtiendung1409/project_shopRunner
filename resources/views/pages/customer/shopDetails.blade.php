@@ -60,14 +60,7 @@
                                             @endforeach
                                         </div>
                                     </section>
-                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
-                                        <h3 class="oN9nMU">Material :</h3>
-                                        <div class="flex items-center bR6mEk">
-                                            @foreach($variants as $variant)
-                                            <button class="product-variation" aria-label="{{ $variant->material_name }}" aria-disabled="false">{{ $variant->material_name }}</button>
-                                            @endforeach
-                                        </div>
-                                    </section>
+
                                 </div>
                             </div>
                         <div class="product__details__quantity">
