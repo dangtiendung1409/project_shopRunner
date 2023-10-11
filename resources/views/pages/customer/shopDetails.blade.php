@@ -70,12 +70,6 @@
                                     </section>
                                 </div>
                             </div>
-
-
-
-
-
-
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
@@ -84,10 +78,6 @@
                             </div>
                         </div>
                         <a href="#" class="primary-btn">ADD TO CART</a>
-{{--                        <div id="toast"></div>--}}
-{{--                        <div>--}}
-{{--                            <div onclick="showSuccessToast();" class="btn--success primary-btn">ADD TO CART</div>--}}
-{{--                        </div>--}}
                     </div>
                 </div>
             </div>
@@ -129,23 +119,7 @@
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <p>Beryl Cook is one of Britain’s most talented and amusing artists .Beryl’s pictures feature women of all shapes
-                        and sizes enjoying themselves .Born between the two world wars, Beryl Cook eventually left Kendrick School in
-                        Reading at the age of 15, where she went to secretarial school and then into an insurance office. After moving to
-                        London and then Hampton, she eventually married her next door neighbour from Reading, John Cook. He was an
-                        officer in the Merchant Navy and after he left the sea in 1956, they bought a pub for a year before John took a
-                        job in Southern Rhodesia with a motor company. Beryl bought their young son a box of watercolours, and when
-                        showing him how to use it, she decided that she herself quite enjoyed painting. John subsequently bought her a
-                        child’s painting set for her birthday and it was with this that she produced her first significant work, a
-                        half-length portrait of a dark-skinned lady with a vacant expression and large drooping breasts. It was aptly
-                        named ‘Hangover’ by Beryl’s husband and
-                    </p>
-                    <p>It is often frustrating to attempt to plan meals that are designed for one. Despite this fact, we are seeing
-                        more and more recipe books and Internet websites that are dedicated to the act of cooking for one. Divorce and
-                        the death of spouses or grown children leaving for college are all reasons that someone accustomed to cooking for
-                        more than one would suddenly need to learn how to adjust all the cooking practices utilized before into a
-                        streamlined plan of cooking that is more efficient for one person creating less
-                    </p>
+                    <p>{{$product->description}}</p>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div class="table-responsive">
@@ -291,26 +265,7 @@
                                             <textarea class="form-control" name="message" id="message" rows="1" placeholder="Review" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea></textarea>
                                         </div>
                                     </div>
-
                                     <div class="col-md-12 text-right">
-
-{{--                                        <div class="personal-rating">--}}
-{{--                                            <div class="rate">--}}
-{{--                                                <h6>Your Rating</h6>--}}
-{{--                                                    <input type="radio" id="star5" name="rating" value="5">--}}
-{{--                                                    <label for="star5" title="text"> 5 stars</label>--}}
-{{--                                                    <input type="radio" id="star4" name="rating" value="4">--}}
-{{--                                                    <label for="star4" title="text"> 4 stars</label>--}}
-{{--                                                    <input type="radio" id="star3" name="rating" value="3">--}}
-{{--                                                    <label for="star3" title="text"> 3 stars</label>--}}
-{{--                                                    <input type="radio" id="star2" name="rating" value="2">--}}
-{{--                                                    <label for="star2" title="text"> 2 stars</label>--}}
-{{--                                                    <input type="radio" id="star1" name="rating" value="1">--}}
-{{--                                                    <label for="star1" title="text"> 1 stars</label>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div id="rateYo"></div>--}}
-
                                         <button type="submit" value="submit" class="primary-btn">Submit Now</button>
                                         <hr>
                                         <div id="rateYo"></div>
@@ -336,7 +291,7 @@
             @foreach($relate as $item)
                 <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
                     <div class="product__item sale">
-                        <div class="product__item__pic set-bg" data-setbg="{{asset($item->thumnail)}}">
+                        <div class="product__item__pic set-bg" data-setbg="{{$item->thumbnail}}">
                             <span class="label">Sale</span>
                             <ul class="product__hover">
                                 <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
@@ -346,7 +301,7 @@
                         </div>
                         <div class="product__item__text">
                             <h6>{{$item->name}}</h6>
-                            <a href="#" class="add-cart">+ Add To Cart</a>
+                            <a href="{{url("/details",["product"=>$item->slug])}}" class="add-cart">+ Add To Cart</a>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>

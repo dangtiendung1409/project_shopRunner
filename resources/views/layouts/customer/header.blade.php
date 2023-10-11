@@ -36,7 +36,6 @@
                             <a href="{{url("/login-user")}}"><i class="fa-solid fa-right-to-bracket"></i>Exit</a>
                         </div>
                         <a href="{{url("/cart")}}"><img src="/customer/img/icon/cart.png" alt=""></a>
-
                     </div>
                 </div>
             </div>
