@@ -31,13 +31,14 @@
                             <div class="shop__sidebar__price">
                                 <ul>
                                     <li><a href="#">$0.00 - $50.00</a></li>
-                                    <li><a href="#">$50.00 - $100.00</a></li>
-                                    <li><a href="#">$100.00 - $150.00</a></li>
+                                    <li><a href="#" >$50.00 - $100.00</a></li>
+                                    <li><a href="#" >$100.00 - $150.00</a></li>
                                     <li><a href="#">$150.00 - $200.00</a></li>
-                                    <li><a href="#">$200.00 - $250.00</a></li>
-                                    <li><a href="#">250.00+</a></li>
+                                    <li><a href="#" >$200.00 - $250.00</a></li>
+                                    <li><a href="#">$250.00+</a></li>
                                 </ul>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -48,30 +49,11 @@
                     <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="shop__sidebar__size">
-                                <label for="xs">xs
-                                    <input type="radio" id="xs">
-                                </label>
-                                <label for="sm">s
-                                    <input type="radio" id="sm">
-                                </label>
-                                <label for="md">m
-                                    <input type="radio" id="md">
-                                </label>
-                                <label for="xl">xl
-                                    <input type="radio" id="xl">
-                                </label>
-                                <label for="2xl">2xl
-                                    <input type="radio" id="2xl">
-                                </label>
-                                <label for="xxl">xxl
-                                    <input type="radio" id="xxl">
-                                </label>
-                                <label for="3xl">3xl
-                                    <input type="radio" id="3xl">
-                                </label>
-                                <label for="4xl">4xl
-                                    <input type="radio" id="4xl">
-                                </label>
+                                @foreach ($sizes as $size)
+                                    <label for="{{ $size->name }}">
+                                        <input type="checkbox" id="{{ $size->name }}"> {{ $size->name }}
+                                    </label>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -83,33 +65,12 @@
                     <div id="collapseFive" class="collapse show" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="shop__sidebar__color">
-                                <label class="c-1" for="sp-1">
-                                    <input type="radio" id="sp-1">
-                                </label>
-                                <label class="c-2" for="sp-2">
-                                    <input type="radio" id="sp-2">
-                                </label>
-                                <label class="c-3" for="sp-3">
-                                    <input type="radio" id="sp-3">
-                                </label>
-                                <label class="c-4" for="sp-4">
-                                    <input type="radio" id="sp-4">
-                                </label>
-                                <label class="c-5" for="sp-5">
-                                    <input type="radio" id="sp-5">
-                                </label>
-                                <label class="c-6" for="sp-6">
-                                    <input type="radio" id="sp-6">
-                                </label>
-                                <label class="c-7" for="sp-7">
-                                    <input type="radio" id="sp-7">
-                                </label>
-                                <label class="c-8" for="sp-8">
-                                    <input type="radio" id="sp-8">
-                                </label>
-                                <label class="c-9" for="sp-9">
-                                    <input type="radio" id="sp-9">
-                                </label>
+                                @foreach ($colors as $color)
+                                    <label class="c-{{ $color->id }}" for="sp-{{ $color->id }}">
+                                        <input type="checkbox" id="sp-{{ $color->id }}">
+                                        <span style="display: none;">{{ $color->name }}</span>
+                                    </label>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -121,19 +82,13 @@
                     <div id="collapseSix" class="collapse show" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="shop__sidebar__tags">
-                                <a href="#">Product</a>
-                                <a href="#">Bags</a>
-                                <a href="#">Shoes</a>
-                                <a href="#">Fashio</a>
-                                <a href="#">Clothing</a>
-                                <a href="#">Hats</a>
-                                <a href="#">Accessories</a>
+                                @foreach ($materials as $material)
+                                    <a href="#">{{ $material->name }}</a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
-
-
 
             </div>
         </div>
