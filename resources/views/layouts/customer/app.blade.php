@@ -24,7 +24,7 @@
 </section>
 
 @include("layouts.customer.footer")
-
+@include("layouts.customer.icon")
 @yield("before_js")
 @include("layouts.customer.script")
 @yield("after_js")

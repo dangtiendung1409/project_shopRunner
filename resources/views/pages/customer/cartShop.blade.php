@@ -36,7 +36,7 @@
                             </tr>
                             </thead>
                             <tbody>
-{{--                        @foreach($cart)--}}
+
                             <tr>
                                 <td class="product__cart__item">
                                     <div class="product__cart__item__pic">
@@ -57,7 +57,7 @@
                                 <td class="cart__price">$ 30.00</td>
                                 <td class="cart__close"><i class="fa fa-close"></i></td>
                             </tr>
-                        @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -86,9 +86,10 @@
                         <h6>Cart total</h6>
                         <ul>
                             <li>Subtotal <span>$ 169.50</span></li>
+                            <li>VAT <span>10%</span></li>
                             <li>Total <span>$ 169.50</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">Proceed to checkout</a>
+                        <a style="padding: 14px 60px;" href="#" class="site-btn">Proceed to checkout</a>
                     </div>
                 </div>
             </div>

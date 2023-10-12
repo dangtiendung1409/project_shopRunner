@@ -1632,7 +1632,7 @@ ol {
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
-    top:17px;
+
 }
 .primary-btn:before {
     position: absolute;
@@ -1814,14 +1814,36 @@ button:focus {
     cursor: pointer;
     border-radius: 5px;
     font-size: 14px;
-    transition: background-color 0.3s ease;
+
 
 }
 
+/* Định dạng cho các nút active */
+.product-variation.active {
+    background-color: #ff5732; /* Màu nền khi active */
+    color: #fff; /* Màu chữ khi active */
+}
+
+/* Định dạng cho nút khi hover */
 .product-variation:hover {
-    border-color: #FF9900;
-    color :#FF9900;
+    background-color: #ff5732; /* Màu nền khi hover */
+    color: #f0f0f0; /* Màu chữ khi hover */
+
 }
+
+/* Định dạng cho các nút color-variation active */
+.color-variation.active {
+    background-color: #ff5732;
+    color: #fff;
+}
+
+/* Định dạng cho các nút size-variation active */
+.size-variation.active {
+    background-color: #ff5732;
+    color: #fff;
+}
+
+
 
 
 .product_description_area {

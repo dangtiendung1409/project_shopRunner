@@ -9,7 +9,7 @@
                         <h4>Shop</h4>
                         <div class="breadcrumb__links">
                             <a href="/">Product</a>
-                            <span>Faded SkyBlu Denim Jeans</span>
+                            <span>{{$product -> name}}</span>
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,6 @@
     <!--================Single Product Area =================-->
     <div class="product_image_area">
         <div class="container">
-
             <div class="row s_product_inner">
                 <div class="col-lg-6">
                     <div class="s_Product_carousel">
@@ -41,14 +40,13 @@
                             <li><a href="#"><span>Sold</span> : {{$product->Orders->count()}}</a></li>
                         </ul>
                         <p>{{$product->description}}</p>
-
                             <div class="flex rY0UiC j9be9C">
                                 <div class="flex flex-column">
                                     <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
                                         <h3 class="oN9nMU">Color :</h3>
                                         <div class="flex items-center bR6mEk">
                                             @foreach($variants as $variant)
-                                            <button class="product-variation" aria-label="{{ $variant->color_name }}" aria-disabled="false">{{ $variant->color_name }}</button>
+                                            <button class="product-variation color-variation" aria-label="{{ $variant->color_name }}" aria-disabled="false">{{ $variant->color_name }}</button>
                                             @endforeach
                                         </div>
                                     </section>
@@ -56,21 +54,20 @@
                                         <h3 class="oN9nMU">Size :</h3>
                                         <div class="flex items-center bR6mEk">
                                             @foreach($variants as $variant)
-                                            <button class="product-variation" aria-label="{{ $variant->size_name }}" aria-disabled="false">{{ $variant->size_name }}</button>
+                                            <button class="product-variation size-variation" aria-label="{{ $variant->size_name }}" aria-disabled="false">{{ $variant->size_name }}</button>
                                             @endforeach
                                         </div>
                                     </section>
-
                                 </div>
                             </div>
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" value="0">
+                                    <input type="text" value="1">
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">ADD TO CART</a>
+                        <button type="submit" class="site-btn">ADD TO CART</button>
                     </div>
                 </div>
             </div>
@@ -99,7 +96,7 @@
         <div class="container">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
+                        <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
@@ -259,7 +256,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 text-right">
-                                        <button type="submit" value="submit" class="primary-btn">Submit Now</button>
+                                        <button type="submit" value="submit" class="site-btn">Submit Now</button>
                                         <hr>
                                         <div id="rateYo"></div>
                                     </div>
@@ -321,5 +318,83 @@
             </div>
         </div>
     </section>
+    <script>
+        const colorVariationButtons = document.querySelectorAll(".color-variation");
+        const sizeVariationButtons = document.querySelectorAll(".size-variation");
+        const colorAvailability = @json($colorAvailability); // Chuyển dữ liệu PHP thành JSON
+        const sizeAvailability = @json($sizeAvailability);
+
+        let selectedColor = null;
+        let selectedSize = null;
+
+        colorVariationButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const newSelectedColor = button.getAttribute("aria-label");
+
+                if (newSelectedColor === selectedColor) {
+                    // Nếu bạn bấm lại cùng màu sắc, thì bỏ chọn nó
+                    selectedColor = null;
+                } else {
+                    selectedColor = newSelectedColor;
+                }
+
+                updateButtonStyles();
+            });
+        });
+
+        sizeVariationButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const newSelectedSize = button.getAttribute("aria-label");
+
+                if (newSelectedSize === selectedSize) {
+                    // Nếu bạn bấm lại cùng kích thước, thì bỏ chọn nó
+                    selectedSize = null;
+                } else {
+                    selectedSize = newSelectedSize;
+                }
+
+                updateButtonStyles();
+            });
+        });
+
+        function updateButtonStyles() {
+            colorVariationButtons.forEach(button => {
+                const color = button.getAttribute("aria-label");
+
+                if (color === selectedColor) {
+                    button.classList.add("active");
+                } else {
+                    button.classList.remove("active");
+                }
+
+                if (selectedSize && !sizeAvailability[selectedSize].includes(color)) {
+                    button.disabled = true;
+                } else {
+                    button.disabled = false;
+                }
+            });
+
+            sizeVariationButtons.forEach(button => {
+                const size = button.getAttribute("aria-label");
+
+                if (size === selectedSize) {
+                    button.classList.add("active");
+                } else {
+                    button.classList.remove("active");
+                }
+
+                if (selectedColor && !colorAvailability[selectedColor].includes(size)) {
+                    button.disabled = true;
+                } else {
+                    button.disabled = false;
+                }
+            });
+        }
+    </script>
+
+
+
+
+
     <!-- Related Section End -->
 @endsection

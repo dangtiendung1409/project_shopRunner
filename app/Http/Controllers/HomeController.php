@@ -56,6 +56,17 @@ class HomeController
             )
             ->distinct()
             ->get();
+        $colorAvailability = [];
+        $sizeAvailability = [];
+
+        // Lặp qua các biến thể và cập nhật trạng thái của màu và kích thước
+        foreach ($variants as $variant) {
+            $color = $variant->color_name;
+            $size = $variant->size_name;
+
+            $colorAvailability[$color][] = $size;
+            $sizeAvailability[$size][] = $color;
+        }
         $relate = Product::where("category_id", $product->category_id)
             ->where("id", "!=", $product->id)
             ->where("qty", ">" ,0)
@@ -63,7 +74,7 @@ class HomeController
             ->limit(4)
             ->get();
 
-        return view("pages.customer.shopDetails", compact("product", "variants", "relate"));
+        return view("pages.customer.shopDetails", compact("product", "variants", "relate","colorAvailability","sizeAvailability"));
     }
 
     public function cartShop(){

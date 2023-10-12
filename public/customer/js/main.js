@@ -251,7 +251,9 @@ heartButton.addEventListener('click', function () {
 
     });
 
+
 })(jQuery);
+
 
 
 
