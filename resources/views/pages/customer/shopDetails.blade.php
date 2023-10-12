@@ -51,7 +51,7 @@
                                 <div class="flex flex-column">
                                     <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
                                         <label>Color        :</label>
-                                        <select name="category_id" class="form-control">
+                                        <select name="" class="form-control">
                                             <option selected disabled>Color</option>
                                             @foreach($color as $item)
                                                 <option @if($item->id) selected @endif value="{{$item->id}}">{{$item->name}}</option>
@@ -61,7 +61,7 @@
                                     </section>
                                     <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
                                         <label>Size:</label>
-                                        <select name="category_id" class="form-control">
+                                        <select name="" class="form-control">
                                             <option selected disabled>Color</option>
                                             @foreach($size as $item)
                                                 <option @if($item->id) selected @endif value="{{$item->id}}">{{$item->name}}</option>
