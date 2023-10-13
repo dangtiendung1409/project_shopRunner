@@ -9,7 +9,7 @@
                         <h4>Shop</h4>
                         <div class="breadcrumb__links">
                             <a href="/">Product</a>
-                            <span>{{$product -> name}}</span>
+                            <span>{{$product->name}}</span>
                         </div>
                     </div>
                 </div>
@@ -20,33 +20,49 @@
     <!--================Single Product Area =================-->
     <div class="product_image_area">
         <div class="container">
+            @if(session()->has("success"))
+                <div class="alert alert-success" role="alert">
+                    {{ session("success") }}
+                </div>
+            @endif
+
+            @if(session()->has("error"))
+                <div class="alert alert-danger" role="alert">
+                    {{ session("error") }}
+                </div>
+            @endif
             <div class="row s_product_inner">
                 <div class="col-lg-6">
                     <div class="s_Product_carousel">
                         <div class="single-prd-item">
-                            <img class="img-fluid"
-                                 src="{{$product->thumbnail}}" alt="">
+                            <img class="img-fluid" src="{{$product->thumbnail}}" alt="">
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-5 offset-lg-1">
-                    <div class="s_product_text">
-                        <h3 style=" margin-left: -8px; font-size:25px;">{{$product -> name}}</h3>
-                        <h2>${{$product -> price}}</h2>
-                        <ul class="list">
-                            <li><a class="active" href="#"><span>Category</span> : {{$product->Category->name}}</a></li>
-                            <li><a href="#"><span>Qty</span> : {{$product->qty}}</a></li>
-                            <li><a href="#"><span>Sold</span> : {{$product->Orders->count()}}</a></li>
-                        </ul>
-                        <p>{{$product->description}}</p>
+                    <form action="{{ url("/add-to-cart", ["product" => $product, "color" => $selectedColor, "size" => $selectedSize]) }}" method="get">
+                        @csrf
+                        <div class="s_product_text">
+                            <h3 style="margin-left: -8px; font-size:25px;">{{$product->name}}</h3>
+                            <h2>${{$product->price}}</h2>
+                            <input type="hidden" name="color" value="" id="selectedColor">
+                            <input type="hidden" name="size" value="" id="selectedSize">
+                            <ul class="list">
+                                <li><a class="active" href="#"><span>Category</span> : {{$product->Category->name}}</a></li>
+                                <li><a href="#"><span>Qty</span> : {{$product->qty}}</a></li>
+                                <li><a href="#"><span>Sold</span> : {{$product->Orders->count()}}</a></li>
+                            </ul>
+                            <p>{{$product->description}}</p>
+
                             <div class="flex rY0UiC j9be9C">
                                 <div class="flex flex-column">
                                     <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
                                         <h3 class="oN9nMU">Color :</h3>
                                         <div class="flex items-center bR6mEk">
                                             @foreach($variants as $variant)
-                                            <button class="product-variation color-variation" aria-label="{{ $variant->color_name }}" aria-disabled="false">{{ $variant->color_name }}</button>
+                                                <button class="product-variation color-variation" aria-label="{{ $variant->color_name }}" aria-disabled="false" name="color" value="{{ $variant->color_name }}">{{ $variant->color_name }}</button>
+
                                             @endforeach
                                         </div>
                                     </section>
@@ -54,24 +70,33 @@
                                         <h3 class="oN9nMU">Size :</h3>
                                         <div class="flex items-center bR6mEk">
                                             @foreach($variants as $variant)
-                                            <button class="product-variation size-variation" aria-label="{{ $variant->size_name }}" aria-disabled="false">{{ $variant->size_name }}</button>
+                                                <button class="product-variation size-variation" aria-label="{{ $variant->size_name }}" aria-disabled="false" name="size" value="{{ $variant->size_name }}">{{ $variant->size_name }}</button>
                                             @endforeach
                                         </div>
                                     </section>
                                 </div>
+
+                                <!-- Trường ẩn để lưu màu sắc -->
+                                <input type="hidden" name="color" id="colorInput">
+                                <!-- Trường ẩn để lưu kích thước -->
+                                <input type="hidden" name="size" id="sizeInput">
                             </div>
-                        <div class="product__details__quantity">
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
+                            <div class="product__details__quantity">
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <input name="buy_qty" type="text" value="1">
+                                    </div>
                                 </div>
                             </div>
+                            @if($product->qty > 0)
+                                <button type="submit" class="site-btn">ADD TO CART</button>
+                            @endif
                         </div>
-                        <button type="submit" class="site-btn">ADD TO CART</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
         <div class="share">
             <p>Share:</p>
             <div class="foorter-right__iconpro">
@@ -402,7 +427,65 @@
             });
         }
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const colorVariations = document.querySelectorAll('.color-variation');
+            const sizeVariations = document.querySelectorAll('.size-variation');
 
+            colorVariations.forEach(color => {
+                color.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    // Thực hiện hành động mong muốn khi nhấp vào nút màu
+                    // Ví dụ:
+                    console.log('Color:', color.textContent);
+                });
+            });
+
+            sizeVariations.forEach(size => {
+                size.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    // Thực hiện hành động mong muốn khi nhấp vào nút kích thước
+                    // Ví dụ:
+                    console.log('Size:', size.textContent);
+                });
+            });
+        });
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const colorVariations = document.querySelectorAll('.color-variation');
+            const sizeVariations = document.querySelectorAll('.size-variation');
+
+            colorVariations.forEach(color => {
+                color.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const colorValue = color.textContent;
+
+                    // Gán giá trị màu sắc cho trường ẩn
+                    document.getElementById('colorInput').value = colorValue;
+
+                    // Thực hiện hành động mong muốn khi nhấp vào nút màu
+                    // Ví dụ:
+                    console.log('Color:', colorValue);
+                });
+            });
+
+            sizeVariations.forEach(size => {
+                size.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const sizeValue = size.textContent;
+
+                    // Gán giá trị kích thước cho trường ẩn
+                    document.getElementById('sizeInput').value = sizeValue;
+
+                    // Thực hiện hành động mong muốn khi nhấp vào nút kích thước
+                    // Ví dụ:
+                    console.log('Size:', sizeValue);
+                });
+            });
+        });
+    </script>
 
 @stop()
 @section("before_css")

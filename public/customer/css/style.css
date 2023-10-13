@@ -450,7 +450,7 @@ ol {
 	font-size: 11px;
 	position: absolute;
 	left: 5px;
-	top: 8px;
+	/*top: 8px;*/
 }
 
 .header__nav__option a:last-child {
@@ -1926,6 +1926,19 @@ button:focus {
     display: inline-block;
     vertical-align: middle; /* Để căn chỉnh đúng hàng với nút ADD TO CART và icon heart */
     margin-right: 6px;
+}
+.btn-update {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    width: 120px;
+}
+
+.btn-update:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+    width: 120px;
 }
 
 .pro-qty {

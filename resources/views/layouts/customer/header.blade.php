@@ -35,7 +35,10 @@
                             <a href="{{url("my-order")}}"><i class="fa-brands fa-shopify"></i>My order</a>
                             <a href="{{url("/login-user")}}"><i class="fa-solid fa-right-to-bracket"></i>Exit</a>
                         </div>
-                        <a href="{{url("/cart")}}"><img src="/customer/img/icon/cart.png" alt=""></a>
+                        <a href="{{url("/cart")}}">
+                            <img src="/customer/img/icon/cart.png" alt="">
+                            <span>{{session()->has("cartShop")?count(session("cartShop")):0}}</span>
+                        </a>
                     </div>
                 </div>
             </div>
