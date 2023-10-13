@@ -18,9 +18,14 @@ use Illuminate\Support\Facades\DB;
 class HomeController
 {
     // giao diện khách hàng
-    public function home(){
-        return view("pages.customer.home");
+    public function home(Request $request){
+
+        $products = Product::all();
+
+        return view("pages.customer.home",compact("products"));
     }
+
+
     public function categoryShop(Request $request){
         $colors = Color::all();
         $sizes = Size::all();
