@@ -44,7 +44,7 @@
                                         <tr>
                                             <td class="product__cart__item">
                                                 <div class="product__cart__item__pic">
-                                                    <img src="{{ $item->thumbnail }}" width="100" height="100" alt="">
+                                                    <img src="{{ $item->thumbnail }}" width="100" height="200" alt="">
                                                 </div>
                                                 <div class="product__cart__item__text">
                                                     <h6>{{ $item->name }}</h6>

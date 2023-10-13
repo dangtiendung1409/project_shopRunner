@@ -19,6 +19,13 @@ Route::get('/category', [\App\Http\Controllers\HomeController::class,"categorySh
 Route::get('/category/{category:slug}', [\App\Http\Controllers\HomeController::class,"category"]);
 Route::get('/details/{product:slug}', [\App\Http\Controllers\HomeController::class,"details"]);
 Route::get('/add-to-cart/{product}', [\App\Http\Controllers\HomeController::class,"addToCart"]);
+
+// reviews
+Route::get('/details/{product:slug}', [\App\Http\Controllers\ReviewProduct::class, "listView"]);
+Route::get('/create', [\App\Http\Controllers\ReviewProduct::class,"create"]);
+Route::post('/create', [\App\Http\Controllers\ReviewProduct::class,"store"]);
+
+
 Route::get('/delete-from-cart/{product}', [\App\Http\Controllers\HomeController::class, "deleteFromCart"]);
 Route::post('/update-cart/{product}', [\App\Http\Controllers\HomeController::class, "updateCart"]);
 Route::get('/clear-cart', [\App\Http\Controllers\HomeController::class, "clearCart"]);

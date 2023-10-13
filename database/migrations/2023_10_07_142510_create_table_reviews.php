@@ -13,11 +13,16 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->string("email")->unique();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('product_id');
+            $table->enum("rating", range(1,5));
             $table->longText("message");
-            $table->unsignedTinyInteger("rating")->nullable(false)->unsigned()->min(1)->max(5);
+//            $table->enum("status", ["visible", "hidden"])->default("hidden");
             $table->timestamps();
+
+
+            $table->foreign("order_id")->references("id")->on("orders");
+            $table->foreign("product_id")->references("id")->on("products");
         });
     }
 

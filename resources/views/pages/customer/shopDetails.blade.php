@@ -293,7 +293,6 @@
                                             </div>
                                         </form>
                                         <button type="submit" value="submit" class="site-btn">Submit Now</button>
-
                                     </div>
                                 </form>
                             </div>
@@ -354,6 +353,54 @@
             </div>
         </div>
     </section>
+
+@stop()
+@section("before_css")
+    <style>
+        .rate{
+            color: #fbd600;
+            font-size: 30px;
+        }
+        #rating_start, #product_id{
+            height: 40px;
+            width: 60px;
+        }
+        .rate-base-layer
+        {
+            color: #aaa;
+        }
+        .rate-hover-layer
+        {
+            color: orange;
+        }
+
+        .rate-base-layer span, .rate-base-layer span
+        {
+            opacity: 0.5;
+        }
+        hr
+        {
+            border: 1px solid #ccc;
+        }
+    </style>
+@stop()
+@section("before_js")
+    {{--rating--}}
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js" charset="utf-8"></script>
+    <script>
+        $(document).ready(function(){
+            var options = {
+                max_value: 5,
+                step_size: 1,
+                initial_value: 3,
+            }
+            $(".rate").rate(options).on("click", function() {
+                var ratingValue = $(this).rate("getValue");  // Get the clicked rating value
+                $("#rating_start").val(ratingValue);  // Update the input value
+            });
+
+        });
+    </script>
     <script>
         const colorVariationButtons = document.querySelectorAll(".color-variation");
         const sizeVariationButtons = document.querySelectorAll(".size-variation");
@@ -484,53 +531,6 @@
                     console.log('Size:', sizeValue);
                 });
             });
-        });
-    </script>
-
-@stop()
-@section("before_css")
-    <style>
-        .rate{
-            color: #fbd600;
-            font-size: 30px;
-        }
-        #rating_start, #product_id{
-            height: 40px;
-            width: 60px;
-        }
-        .rate-base-layer
-        {
-            color: #aaa;
-        }
-        .rate-hover-layer
-        {
-            color: orange;
-        }
-
-        .rate-base-layer span, .rate-base-layer span
-        {
-            opacity: 0.5;
-        }
-        hr
-        {
-            border: 1px solid #ccc;
-        }
-    </style>
-@stop()
-@section("before_js")
-    {{--rating--}}
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js" charset="utf-8"></script>
-    <script>
-        $(document).ready(function(){
-            var options = {
-                max_value: 6,
-                step_size: 0.5,
-                initial_value: 3,
-            }
-            $(".rate").rate().on("rate.set", function (e, data){
-                $("rating_start").val(data.rating);
-            });
-
         });
     </script>
     <!-- Related Section End -->
