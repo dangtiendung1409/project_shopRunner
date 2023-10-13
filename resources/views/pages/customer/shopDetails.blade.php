@@ -75,6 +75,11 @@
                                         </div>
                                     </section>
                                 </div>
+
+                                <!-- Trường ẩn để lưu màu sắc -->
+                                <input type="hidden" name="color" id="colorInput">
+                                <!-- Trường ẩn để lưu kích thước -->
+                                <input type="hidden" name="size" id="sizeInput">
                             </div>
                             <div class="product__details__quantity">
                                 <div class="quantity">
@@ -437,18 +442,36 @@
 
     </script>
     <script>
-        const colorButtons = document.querySelectorAll('.color-variation');
-        const sizeButtons = document.querySelectorAll('.size-variation');
+        document.addEventListener('DOMContentLoaded', function() {
+            const colorVariations = document.querySelectorAll('.color-variation');
+            const sizeVariations = document.querySelectorAll('.size-variation');
 
-        colorButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                document.getElementById('selectedColor').value = this.value;
+            colorVariations.forEach(color => {
+                color.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const colorValue = color.textContent;
+
+                    // Gán giá trị màu sắc cho trường ẩn
+                    document.getElementById('colorInput').value = colorValue;
+
+                    // Thực hiện hành động mong muốn khi nhấp vào nút màu
+                    // Ví dụ:
+                    console.log('Color:', colorValue);
+                });
             });
-        });
 
-        sizeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                document.getElementById('selectedSize').value = this.value;
+            sizeVariations.forEach(size => {
+                size.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const sizeValue = size.textContent;
+
+                    // Gán giá trị kích thước cho trường ẩn
+                    document.getElementById('sizeInput').value = sizeValue;
+
+                    // Thực hiện hành động mong muốn khi nhấp vào nút kích thước
+                    // Ví dụ:
+                    console.log('Size:', sizeValue);
+                });
             });
         });
     </script>

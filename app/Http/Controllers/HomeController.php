@@ -90,17 +90,17 @@ class HomeController
 
     public function addToCart(Product $product, Request $request){
         $buy_qty = $request->get("buy_qty");
-        $selectedColor = $request->get("color");
-        $selectedSize = $request->get("size");
+        $size = $request->get("size");
+        $color = $request->get("color");
 
+
+        if (empty($size) || empty($color)) {
+            return redirect()->back()->withInput()->with("error", "Vui lòng chọn kích thước và màu sắc trước khi thêm vào giỏ hàng.");
+        }
         $cartShop = session()->has("cartShop") ? session("cartShop") : [];
-//        if (empty($selectedColor) || empty($selectedSize)) {
-//            return redirect()->back()->with("error", "Vui lòng chọn màu sắc và kích thước.");
-//        }
-
 
         foreach ($cartShop as $item) {
-            if ($item->id == $product->id && $item->color == $selectedColor && $item->size == $selectedSize) {
+            if ($item->id == $product->id && $item->color == $color && $item->size == $size) {
                 $item->buy_qty += $buy_qty;
                 session(["cartShop" => $cartShop]);
                 return redirect()->back()->with("success", "Đã cập nhật số lượng trong giỏ hàng.");
@@ -109,8 +109,8 @@ class HomeController
 
         // Tạo một mục sản phẩm mới với màu và kích thước được chọn
         $product->buy_qty = $buy_qty;
-        $product->color = $selectedColor;
-        $product->size = $selectedSize;
+        $product->color = $color;
+        $product->size = $size;
         $cartShop[] = $product;
         session(["cartShop" => $cartShop]);
 
