@@ -41,20 +41,18 @@
                                 <tbody>
                                 @if ($cartShop)
                                     @foreach ($cartShop as $item)
-
                                         <tr>
                                             <td class="product__cart__item">
                                                 <div class="product__cart__item__pic">
-                                                    <img src="{{$item->thumbnail}}" width="100" height="100" alt="">
+                                                    <img src="{{ $item->thumbnail }}" width="100" height="100" alt="">
                                                 </div>
                                                 <div class="product__cart__item__text">
-                                                    <h6>{{$item->name}}</h6>
-                                                    <p>Color: red</p>
-                                                    <p>Size: X</p>
-
+                                                    <h6>{{ $item->name }}</h6>
+                                                    <p>Color: {{ $item->color }}</p>
+                                                    <p>Size: {{ $item->size }}</p>
                                                 </div>
                                             </td>
-                                            <td class="cart__price">${{$item->price}}</td>
+                                            <td class="cart__price">${{ $item->price }}</td>
                                             <td class="quantity__item">
                                                 <div class="quantity">
                                                     <form action="{{ url("/update-cart", ["product" => $item->id]) }}" method="post">
@@ -62,21 +60,21 @@
                                                         <div class="pro-qty">
                                                             <input type="text" name="buy_qty" value="{{ $item->buy_qty }}">
                                                         </div>
-                                                        @if($item->buy_qty > $item->qty)
+                                                        @if ($item->buy_qty > $item->qty)
                                                             <p class="text-danger">Sản phẩm đã hết hàng</p>
                                                         @endif
                                                         <button type="submit" class="btn btn-update">Cập nhật</button>
                                                     </form>
                                                 </div>
                                             </td>
-                                            <td class="cart__price">${{$item->price * $item->buy_qty}}</td>
+                                            <td class="cart__price">${{ $item->price * $item->buy_qty }}</td>
                                             <td class="cart__close">
                                                 <a href="/delete-from-cart/{{ $item->id }}"><i class="fa fa-close"></i></a>
                                             </td>
-
                                         </tr>
                                     @endforeach
                                 @endif
+
                                 </tbody>
                             </table>
                         </div>

@@ -47,7 +47,7 @@ class HomeController
     }
     public function details(Product $product)
     {
-        // Lấy danh sách các biến thể của sản phẩm cụ thể với thông tin từ các bảng colors, sizes, và materials
+        // Lấy danh sách các biến thể của sản phẩm
         $variants = DB::table('product_variants')
             ->where('product_id', $product->id)
             ->join('colors', 'product_variants.color_id', '=', 'colors.id')
@@ -61,10 +61,10 @@ class HomeController
             )
             ->distinct()
             ->get();
+
         $colorAvailability = [];
         $sizeAvailability = [];
 
-        // Lặp qua các biến thể và cập nhật trạng thái của màu và kích thước
         foreach ($variants as $variant) {
             $color = $variant->color_name;
             $size = $variant->size_name;
@@ -72,33 +72,55 @@ class HomeController
             $colorAvailability[$color][] = $size;
             $sizeAvailability[$size][] = $color;
         }
+
+        // Duyệt các biến thể và lấy thông tin màu và kích thước đã chọn (nếu có)
+        $selectedColor = request('color');
+        $selectedSize = request('size');
+
         $relate = Product::where("category_id", $product->category_id)
             ->where("id", "!=", $product->id)
-            ->where("qty", ">" ,0)
+            ->where("qty", ">", 0)
             ->orderBy("created_at", "desc")
             ->limit(4)
             ->get();
 
-        return view("pages.customer.shopDetails", compact("product", "variants", "relate","colorAvailability","sizeAvailability"));
+        return view("pages.customer.shopDetails", compact("product", "variants", "relate", "colorAvailability", "sizeAvailability", "selectedColor", "selectedSize"));
     }
+
 
     public function addToCart(Product $product, Request $request){
         $buy_qty = $request->get("buy_qty");
-        $cartShop = session()->has("cartShop")?session("cartShop"):[];
-        foreach ($cartShop as $item){
-            if($item->id == $product->id){
-                $item->buy_qty = $item->buy_qty + $buy_qty;
-                session(["cartShop"=>$cartShop]);
-                return redirect()->back()->with("success","Đã thêm sản phẩm vào giỏ hàng");
+        $selectedColor = $request->get("color");
+        $selectedSize = $request->get("size");
+
+        $cartShop = session()->has("cartShop") ? session("cartShop") : [];
+//        if (empty($selectedColor) || empty($selectedSize)) {
+//            return redirect()->back()->with("error", "Vui lòng chọn màu sắc và kích thước.");
+//        }
+
+
+        foreach ($cartShop as $item) {
+            if ($item->id == $product->id && $item->color == $selectedColor && $item->size == $selectedSize) {
+                $item->buy_qty += $buy_qty;
+                session(["cartShop" => $cartShop]);
+                return redirect()->back()->with("success", "Đã cập nhật số lượng trong giỏ hàng.");
             }
         }
+
+        // Tạo một mục sản phẩm mới với màu và kích thước được chọn
         $product->buy_qty = $buy_qty;
+        $product->color = $selectedColor;
+        $product->size = $selectedSize;
         $cartShop[] = $product;
-        session(["cartShop"=>$cartShop]);
-        return redirect()->back()->with("success","Đã thêm sản phẩm vào giỏ hàng");
+        session(["cartShop" => $cartShop]);
+
+        return redirect()->back()->with("success", "Đã thêm sản phẩm vào giỏ hàng.");
     }
+
     public function cartShop()
     {
+
+
         $cartShop = session()->has("cartShop")?session("cartShop"):[];
         $subtotal = 0;
         $can_checkout = true;

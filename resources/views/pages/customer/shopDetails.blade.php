@@ -41,10 +41,13 @@
                 </div>
 
                 <div class="col-lg-5 offset-lg-1">
-                    <form action="{{url("/add-to-cart",["shopDetails"=>$product->id])}}" method="get">
+                    <form action="{{ url("/add-to-cart", ["product" => $product, "color" => $selectedColor, "size" => $selectedSize]) }}" method="get">
+                        @csrf
                         <div class="s_product_text">
                             <h3 style="margin-left: -8px; font-size:25px;">{{$product->name}}</h3>
                             <h2>${{$product->price}}</h2>
+                            <input type="hidden" name="color" value="" id="selectedColor">
+                            <input type="hidden" name="size" value="" id="selectedSize">
                             <ul class="list">
                                 <li><a class="active" href="#"><span>Category</span> : {{$product->Category->name}}</a></li>
                                 <li><a href="#"><span>Qty</span> : {{$product->qty}}</a></li>
@@ -59,6 +62,7 @@
                                         <div class="flex items-center bR6mEk">
                                             @foreach($variants as $variant)
                                                 <button class="product-variation color-variation" aria-label="{{ $variant->color_name }}" aria-disabled="false" name="color" value="{{ $variant->color_name }}">{{ $variant->color_name }}</button>
+
                                             @endforeach
                                         </div>
                                     </section>
@@ -432,6 +436,23 @@
         });
 
     </script>
+    <script>
+        const colorButtons = document.querySelectorAll('.color-variation');
+        const sizeButtons = document.querySelectorAll('.size-variation');
+
+        colorButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                document.getElementById('selectedColor').value = this.value;
+            });
+        });
+
+        sizeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                document.getElementById('selectedSize').value = this.value;
+            });
+        });
+    </script>
+
 
 
 
