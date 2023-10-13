@@ -234,8 +234,9 @@
                         <div class="col-lg-6">
                             <div class="review_box">
                                 <h4>Add a Review</h4>
+                                <hr>
                                 <form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
-                                    <div class="col-md-12">
+                                   <div class="col-md-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="name" name="name" placeholder="Your Full name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Full name'">
                                         </div>
@@ -255,10 +256,19 @@
                                             <textarea class="form-control" name="message" id="message" rows="1" placeholder="Review" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea></textarea>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="col-md-12 text-right">
-                                        <button type="submit" value="submit" class="site-btn">Submit Now</button>
                                         <hr>
-                                        <div id="rateYo"></div>
+                                        {{--                                        rating--}}
+                                        <div class="rate" data-rate-value= ></div>
+                                        <form action="" method="POST" class="form-inline" role="form">
+                                            <div class="form-group row">
+                                                <input type="hidden" class="form-control" name="rating_start" id="rating_start">
+                                                <input type="hidden" class="form-control" id="product_id" name="product_id" value="{{$product->id}}">
+                                            </div>
+                                        </form>
+                                        <button type="submit" value="submit" class="site-btn">Submit Now</button>
+
                                     </div>
                                 </form>
                             </div>
@@ -268,6 +278,7 @@
             </div>
         </div>
     </section>
+
     <!--================End Product Description Area =================-->
     <!-- Related Section Begin -->
     <section class="related spad">
@@ -393,8 +404,51 @@
     </script>
 
 
+@stop()
+@section("before_css")
+    <style>
+        .rate{
+            color: #fbd600;
+            font-size: 30px;
+        }
+        #rating_start, #product_id{
+            height: 40px;
+            width: 60px;
+        }
+        .rate-base-layer
+        {
+            color: #aaa;
+        }
+        .rate-hover-layer
+        {
+            color: orange;
+        }
 
+        .rate-base-layer span, .rate-base-layer span
+        {
+            opacity: 0.5;
+        }
+        hr
+        {
+            border: 1px solid #ccc;
+        }
+    </style>
+@stop()
+@section("before_js")
+    {{--rating--}}
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js" charset="utf-8"></script>
+    <script>
+        $(document).ready(function(){
+            var options = {
+                max_value: 6,
+                step_size: 0.5,
+                initial_value: 3,
+            }
+            $(".rate").rate().on("rate.set", function (e, data){
+                $("rating_start").val(data.rating);
+            });
 
-
+        });
+    </script>
     <!-- Related Section End -->
-@endsection
+@stop()
