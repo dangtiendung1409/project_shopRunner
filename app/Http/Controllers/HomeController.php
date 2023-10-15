@@ -87,15 +87,13 @@ class HomeController
 
         return view("pages.customer.shopDetails", compact("product", "variants", "relate", "colorAvailability", "sizeAvailability", "selectedColor", "selectedSize", "reviews"));
     }
-    public function store(){
-        return view("pages.customer.shopDetails");
-    }
-    public function create(Request $request){
-        $products = Product::create([
+
+    public function store(Request $request){
+        $reviews = Review::details([
             "full_name"=>$request->get("full_name"),
             "message"=>$request->get("message"),
         ]);
-        $products->save();
+        $reviews->save();
         return redirect('/details/{product:slug}');
     }
 
