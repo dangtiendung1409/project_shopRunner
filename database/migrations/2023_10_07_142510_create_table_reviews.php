@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('product_id');
+//            $table->unsignedBigInteger('user_id');
+//            $table->unsignedBigInteger('product_id');
 //            $table->enum("rating", range(1,5));
+            $table->string("full_name");
             $table->longText("message");
             $table->timestamps();
 
