@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductFilter;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Models\Color;
 use App\Models\Size;
@@ -19,9 +20,7 @@ class HomeController
 {
     // giao diện khách hàng
     public function home(Request $request){
-
         $products = Product::all();
-
         return view("pages.customer.home",compact("products"));
     }
 
@@ -77,6 +76,8 @@ class HomeController
         $selectedColor = request('color');
         $selectedSize = request('size');
 
+        $reviews = Review::all();
+
         $relate = Product::where("category_id", $product->category_id)
             ->where("id", "!=", $product->id)
             ->where("qty", ">", 0)
@@ -84,9 +85,19 @@ class HomeController
             ->limit(4)
             ->get();
 
-        return view("pages.customer.shopDetails", compact("product", "variants", "relate", "colorAvailability", "sizeAvailability", "selectedColor", "selectedSize"));
+        return view("pages.customer.shopDetails", compact("product", "variants", "relate", "colorAvailability", "sizeAvailability", "selectedColor", "selectedSize", "reviews"));
     }
-
+    public function store(){
+        return view("pages.customer.shopDetails");
+    }
+    public function create(Request $request){
+        $products = Product::create([
+            "full_name"=>$request->get("full_name"),
+            "message"=>$request->get("message"),
+        ]);
+        $products->save();
+        return redirect('/details/{product:slug}');
+    }
 
     public function addToCart(Product $product, Request $request){
         $buy_qty = $request->get("buy_qty");

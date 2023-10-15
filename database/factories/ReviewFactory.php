@@ -19,7 +19,7 @@ class ReviewFactory extends Factory
         return [
             "user_id" =>random_int(1, 10),
             "product_id" =>random_int(1, 10),
-
+            "message" => $this->faker->text
         ];
     }
 }

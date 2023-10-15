@@ -238,10 +238,12 @@
                                 </div>
                             </div>
                             <div class="review_list">
+
+                                @foreach($reviews as $review)
                                 <div class="review_item">
                                     <div class="media">
                                         <div class="media-body">
-                                            <h4>Blake Ruiz</h4>
+                                            <h4>{{$review -> name}}</h4>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -249,36 +251,25 @@
                                             <i class="fa fa-star"></i>
                                         </div>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                        commodo
-                                    </p>
+                                    <p>{{$reviews -> message}}</p>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="review_box">
                                 <h4>Add a Review</h4>
                                 <hr>
-                                <form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                                <form class="row contact_form" action="{{url("/details")}}" method="post" id="contactForm" novalidate="novalidate">
+                                 @csrf
                                    <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Full name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Full name'">
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Full name">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="number" name="number" placeholder="Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number'">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <textarea class="form-control" name="message" id="message" rows="1" placeholder="Review" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea></textarea>
+                                            <textarea class="form-control" name="message" id="message" rows="1" placeholder="Review"></textarea>
                                         </div>
                                     </div>
                                     <hr>

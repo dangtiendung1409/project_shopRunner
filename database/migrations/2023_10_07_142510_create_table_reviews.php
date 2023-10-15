@@ -15,11 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
-            $table->enum("rating", range(1,5));
+//            $table->enum("rating", range(1,5));
             $table->longText("message");
-//            $table->enum("status", ["visible", "hidden"])->default("hidden");
             $table->timestamps();
-
 
             $table->foreign("order_id")->references("id")->on("orders");
             $table->foreign("product_id")->references("id")->on("products");

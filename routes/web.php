@@ -18,6 +18,7 @@ Route::get('/', [\App\Http\Controllers\HomeController::class,"home"]);
 Route::get('/category', [\App\Http\Controllers\HomeController::class,"categoryShop"]);
 Route::get('/category/{category:slug}', [\App\Http\Controllers\HomeController::class,"category"]);
 Route::get('/details/{product:slug}', [\App\Http\Controllers\HomeController::class,"details"]);
+Route::post('/detail/{product:slug}', [\App\Http\Controllers\HomeController::class,"store"]);
 Route::get('/add-to-cart/{product}', [\App\Http\Controllers\HomeController::class,"addToCart"]);
 
 Route::get('/delete-from-cart/{product}', [\App\Http\Controllers\HomeController::class, "deleteFromCart"]);
