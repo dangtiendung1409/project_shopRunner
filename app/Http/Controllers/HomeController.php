@@ -76,7 +76,7 @@ class HomeController
         $selectedColor = request('color');
         $selectedSize = request('size');
 
-        $reviews = Review::all();
+        $reviews = Review::orderBy("id", "desc")->paginate(10);
 
         $relate = Product::where("category_id", $product->category_id)
             ->where("id", "!=", $product->id)
@@ -128,8 +128,6 @@ class HomeController
 
     public function cartShop()
     {
-
-
         $cartShop = session()->has("cartShop")?session("cartShop"):[];
         $subtotal = 0;
         $can_checkout = true;

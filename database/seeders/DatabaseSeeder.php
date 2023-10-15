@@ -21,21 +21,24 @@ class DatabaseSeeder extends Seeder
     {
 
 
-//         \App\Models\User::factory(10)->create();
+         \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
 
-//        \App\Models\Brands::factory(10)->create();
-//        \App\Models\Category::factory(10)->create();
-//        \App\Models\Product::factory(592)->create();
+         \App\Models\Review::factory(10)->create();
 
 
-//     \App\Models\Color::factory(5)->create();
-//        \App\Models\Material::factory(5)->create();
-//      \App\Models\Size::factory(5)->create();
+        \App\Models\Brands::factory(10)->create();
+        \App\Models\Category::factory(10)->create();
+        \App\Models\Product::factory(592)->create();
+
+
+     \App\Models\Color::factory(5)->create();
+        \App\Models\Material::factory(5)->create();
+      \App\Models\Size::factory(5)->create();
 
 //        $products = DB::table('products')->get();
 //
