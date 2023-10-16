@@ -87,7 +87,6 @@
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="continue__btn update__btn">
                                     <a href="/clear-cart"><i class="fa fa-spinner"></i> Clear Cart</a>
-
                                 </div>
                             </div>
                         </div>
@@ -101,7 +100,7 @@
                                 <li>VAT <span>10%</span></li>
                                 <li>Total <span>${{$total}}</span></li>
                             </ul>
-                        <a style="padding: 14px 60px;" href="#" class="site-btn">Proceed to checkout</a>
+                        <a style="padding: 14px 60px;" href="{{url("/check-out")}}" class="site-btn btn @if(!$can_checkout)disabled @endif">Proceed to checkout</a>
                     </div>
                 </div>
             </div>

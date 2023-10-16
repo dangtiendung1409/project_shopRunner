@@ -23,35 +23,31 @@
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
-                <form action="#">
+                <form action="{{url("/check-out")}}">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
-
                             <h6 class="checkout__title">Billing Details</h6>
-
                             <div class="checkout__input">
                                 <p>Full Name<span>*</span></p>
-                                <input type="text" placeholder="" class="checkout__input__add">
-
-                            </div>
-                            <div class="checkout__input">
-                                <p>Address<span>*</span></p>
-                                <input type="text" placeholder="Street Address" class="checkout__input__add">
-
+                                <input type="text" placeholder="Full Name" name="full_name" value="{{old("full_name")}}" class="checkout__input__add">
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-                                        <p>Phone<span>*</span></p>
-                                        <input type="text">
+                                        <p>Email<span>*</span></p>
+                                        <input type="text" placeholder="Email" name="email" value="{{old("email")}}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-                                        <p>Email<span>*</span></p>
-                                        <input type="text">
+                                        <p>Phone<span>*</span></p>
+                                        <input type="text" placeholder="Phone" name="phone" value="{{old("phone")}}">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Address<span>*</span></p>
+                                <input type="text" placeholder="Street Address" name="address" value="{{old("address")}}" class="checkout__input__add">
                             </div>
                             <div class="checkout__input__checkbox">
                                 <p>Shipping method<span>*</span></p>

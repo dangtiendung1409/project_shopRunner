@@ -260,7 +260,7 @@
                             <div class="review_box">
                                 <h4>Add a Review</h4>
                                 <hr>
-                                <form class="row contact_form" action="{{url("/details")}}" method="post" id="contactForm" novalidate="novalidate">
+                                <form class="row contact_form" action="{{url("/details/{product:slug}")}}" method="post" id="contactForm" novalidate="novalidate">
                                  @csrf
                                    <div class="col-md-12">
                                         <div class="form-group">
