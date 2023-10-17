@@ -105,12 +105,18 @@
                 <a href="https://www.messenger.com/"><img style="height: 27px;" src="https://dongphucphuongthao.vn/wp-content/themes/mayphuongthao/assets/images/icon/tc3.png" alt="" /></a>
                 <a href="https://vi-vn.facebook.com/"><img style="height: 27px;" src="https://dongphucphuongthao.vn/wp-content/themes/mayphuongthao/assets/images/icon/tc5.png" alt="" /></a>
             </div>
-            <button class="IYjGwk" tabindex="0">
-                <svg width="24" height="20" class="x0F377" id="heart-icon">
-                    <path d="M19.469 1.262c-5.284-1.53-7.47 4.142-7.470 4.142S9.815-.269 4.532 1.262C-1.937 3.138.44 13.832 12 19.333c11.559-5.501 13.938-16.195 7.469-18.07z" stroke="#FF424F" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linejoin="round"></path>
-                </svg>
-                <div class="Ne7dEf">Đã thích (16)</div>
-            </button>
+            <form action="{{ url('/add-to-favorite') }}" method="GET">
+                @csrf
+                <input type="hidden" name="name" value="{{ $product->name }}">
+                <input type="hidden" name="price" value="{{ $product->price }}">
+                <input type="hidden" name="thumbnail" value="{{ $product->thumbnail }}">
+                <button type="submit" class="IYjGwk" tabindex="0">
+                    <svg width="24" height="20" class="x0F377" id="heart-icon">
+                        <path d="M19.469 1.262c-5.284-1.53-7.47 4.142-7.470 4.142S9.815-.269 4.532 1.262C-1.937 3.138.44 13.832 12 19.333c11.559-5.501 13.938-16.195 7.469-18.07z" stroke="#FF424F" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linejoin="round"></path>
+                    </svg>
+                    <div class="Ne7dEf">Đã thích (16)</div>
+                </button>
+            </form>
         </div>
 
 
@@ -238,6 +244,10 @@
                                 </div>
                             </div>
                             <div class="review_list">
+<?php
+            $reviews = \App\Models\Review::all();
+    ?>
+
 
 
                                 <div class="review_item">
