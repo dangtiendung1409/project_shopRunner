@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\favoriteOrder;
 use App\Models\Product;
 use App\Mail\OrderMail;
 use App\Events\CreateNewOrder;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Models\Color;
 use App\Models\Size;
@@ -78,6 +80,7 @@ class HomeController
         $selectedColor = request('color');
         $selectedSize = request('size');
 
+        $review = Review::all();
         $relate = Product::where("category_id", $product->category_id)
             ->where("id", "!=", $product->id)
             ->where("qty", ">", 0)
@@ -264,8 +267,63 @@ class HomeController
     public function changePassword(){
         return view("pages.customer.changePassword");
     }
-    public function favoriteOrder(){
-        return view("pages.customer.favoriteOrder");
+    public function addToFavorite(Request $request)
+    {
+        // Lấy dữ liệu từ request
+        $name = $request->input('name');
+        $price = $request->input('price');
+        $thumbnail = $request->input('thumbnail');
+
+        // Kiểm tra xem sản phẩm đã tồn tại trong danh sách yêu thích hay chưa
+        $existingProduct = FavoriteOrder::where('name', $name)->first();
+        if ($existingProduct) {
+            // Sản phẩm đã tồn tại, xử lý tùy ý (ví dụ: hiển thị thông báo lỗi)
+            return redirect()->back()->with('error', 'Sản phẩm đã có trong danh sách yêu thích');
+        }
+
+        // Tạo đối tượng FavoriteOrder
+        $favoriteOrder = new FavoriteOrder();
+        $favoriteOrder->name = $name;
+        $favoriteOrder->price = $price;
+        $favoriteOrder->thumbnail = $thumbnail;
+
+        // Lưu đối tượng vào cơ sở dữ liệu
+        $favoriteOrder->save();
+
+        // Chuyển hướng người dùng đến trang "Favorite Order"
+        return redirect()->back()->with('success', 'Thêm sản phẩm vào danh sách yêu thích thành công');
+    }
+    public function removeFavorite(Request $request)
+    {
+        $productId = $request->query('product_id');
+        $favoriteOrder = FavoriteOrder::find($productId);
+
+        if (!$favoriteOrder) {
+            return redirect()->back();
+        }
+
+        $favoriteOrder->delete();
+
+        // Chuyển hướng người dùng đến trang "Favorite Order" với thông báo thành công
+        return redirect()->back()->with('success', 'Removed from favorite orders successfully.');
+    }
+    public function clearFavorite()
+    {
+        // Xóa toàn bộ sản phẩm trong danh sách yêu thích (favoriteOrder)
+
+        FavoriteOrder::truncate(); // Xóa toàn bộ dữ liệu trong bảng FavoriteProduct
+
+        // Redirect hoặc trả về phản hồi thích hợp
+        return redirect()->back()->with('success', 'Xóa toàn bộ yêu thích thành công');
+    }
+
+    public function favoriteOrder()
+    {
+        // Lấy danh sách các sản phẩm yêu thích từ cơ sở dữ liệu
+        $favoriteProducts = FavoriteOrder::all();
+
+        // Truyền danh sách sản phẩm yêu thích đến view "favoriteOrder"
+        return view("pages.customer.favoriteOrder", compact('favoriteProducts'));
     }
     public function ThankYou(){
         return view("pages.customer.ThankYou");

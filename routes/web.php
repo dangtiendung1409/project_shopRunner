@@ -43,6 +43,9 @@ Route::post('/payment', [\App\Http\Controllers\PaymentController::class,"create"
 // user : account , trạng thái dơn hàng , danh sách sản phẩm yêu thích
 Route::get('/my-order', [\App\Http\Controllers\HomeController::class,"myOrder"]);
 Route::get('/change-password', [\App\Http\Controllers\HomeController::class,"changePassword"]);
+Route::get('/add-to-favorite', [\App\Http\Controllers\HomeController::class,"addToFavorite"]);
+Route::get('/remove-favorite', [\App\Http\Controllers\HomeController::class, "removeFavorite"]);
+Route::get('/clear-favorite', [\App\Http\Controllers\HomeController::class, "clearFavorite"]);
 Route::get('/favorite-order', [\App\Http\Controllers\HomeController::class,"favoriteOrder"]);
 
 // thank you
