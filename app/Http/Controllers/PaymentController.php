@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class PaymentController
 {
@@ -78,20 +79,22 @@ class PaymentController
                 "qty" => $item->buy_qty,
                 "price" => $item->price
             ]);
-
-
         }
         // clear cart
-        session()->forget("cartShop");
+//        session()->forget("cartShop");
+        Session::forget("cartShop");
+
+//        dd(session("cartShop"));
         event(new CreateNewOrder($order));
 
-
+        session(['cost_id' => $request->id]);
+        session(['url_prev' => url()->previous()]);
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = "http://127.0.0.1:8000/thank-you";
         $vnp_TmnCode = "WTG0QB2D";//Mã website tại VNPAY
         $vnp_HashSecret = "AFHLMUZCPSSNPAEMTJEATMDONUXJUWKD"; //Chuỗi bí mật
 
-        $vnp_TxnRef = rand(00,9999); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        $vnp_TxnRef = rand(00, 9999); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo = 'Noi dung thanh toan';
         $vnp_OrderType = 'billpayment';
         $vnp_Amount = 20000 * 100;
@@ -174,19 +177,26 @@ class PaymentController
         }
 
         $vnp_Url = $vnp_Url . "?" . $query;
+
         if (isset($vnp_HashSecret)) {
             $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);//
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
-        $returnData = array('code' => '00'
-        , 'message' => 'success'
-        , 'data' => $vnp_Url);
-        if (isset($_POST['redirect'])) {
-            header('Location: ' . $vnp_Url);
-            die();
-        } else {
-            echo json_encode($returnData);
-        }
+        return redirect($vnp_Url);
     }
+
+    public function return(Request $request)
+    {
+        $url = session('url_prev','/');
+        if($request->vnp_ResponseCode == "00") {
+            $this->apSer->thanhtoanonline(session('cost_id'));
+            return redirect($url)->with('success' ,'Đã thanh toán phí dịch vụ');
+        }
+        session()->forget('url_prev');
+        return redirect($url)->with('errors' ,'Lỗi trong quá trình thanh toán phí dịch vụ');
+    }
+
+
 }
+
 

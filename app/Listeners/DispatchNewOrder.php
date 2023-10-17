@@ -28,5 +28,6 @@ class DispatchNewOrder
 //            ->cc("mail nhan vien")
             ->bcc("dungdtth2209011@fpt.edu.vn")
             ->send(new OrderMail($order));
+      //  dd(session("cartShop"));
     }
 }
