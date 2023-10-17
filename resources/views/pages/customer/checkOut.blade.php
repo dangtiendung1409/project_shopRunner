@@ -31,10 +31,30 @@
 
                             <div class="checkout__input">
                                 <p>Full Name<span>*</span></p>
-                                <input name="full_name" value="{{old("full_name")}}" type="text">
+                                <input name="full_name" value="{{old("full_name")}}" type="text" placeholder="Full Name">
                                 @error("full_name")
                                 <p class="text-danger"><i>{{$message}}</i></p>
                                 @enderror
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Email<span>*</span></p>
+                                        <input value="{{old("email")}}" name="email" type="email" placeholder="Email">
+                                        @error("email")
+                                        <p class="text-danger"><i>{{$message}}</i></p>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Telephone<span>*</span></p>
+                                        <input value="{{old("tel")}}" name="tel" type="tel" placeholder="Telephone">
+                                        @error("tel")
+                                        <p class="text-danger"><i>{{$message}}</i></p>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
@@ -42,26 +62,6 @@
                                 @error("address")
                                 <p class="text-danger"><i>{{$message}}</i></p>
                                 @enderror
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Telephone<span>*</span></p>
-                                        <input value="{{old("tel")}}" name="tel" type="tel">
-                                        @error("tel")
-                                        <p class="text-danger"><i>{{$message}}</i></p>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Email<span>*</span></p>
-                                        <input value="{{old("email")}}" name="email" type="email">
-                                        @error("email")
-                                        <p class="text-danger"><i>{{$message}}</i></p>
-                                        @enderror
-                                    </div>
-                                </div>
                             </div>
                             <div class="checkout__input__checkbox">
                                 <p>Shipping method<span>*</span></p>
