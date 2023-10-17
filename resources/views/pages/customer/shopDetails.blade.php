@@ -239,11 +239,11 @@
                             </div>
                             <div class="review_list">
 
-                                @foreach($reviews as $review)
+
                                 <div class="review_item">
                                     <div class="media">
                                         <div class="media-body">
-                                            <h4>{{$review -> name}}</h4>
+                                            <h4>bla bla</h4>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -251,9 +251,8 @@
                                             <i class="fa fa-star"></i>
                                         </div>
                                     </div>
-                                    <p>{{$reviews -> message}}</p>
+                                    <p>ânsa</p>
                                 </div>
-                                @endforeach
                             </div>
                         </div>
                         <div class="col-lg-6">

@@ -136,7 +136,7 @@ class HomeController
         $cartShop = array_filter($cartShop, function ($item) use ($product) {
             return $item->id != $product->id;
         });
-        session()->put("cartShop", $cartShop);
+        session(["cartShop" => $cartShop]);
         return redirect()->back()->with("success", "Đã xóa sản phẩm khỏi giỏ hàng");
 
 
@@ -268,6 +268,7 @@ class HomeController
         return view("pages.customer.favoriteOrder");
     }
     public function ThankYou(){
+//        dd(session("cartShop"));
         return view("pages.customer.ThankYou");
     }
 

@@ -36,7 +36,7 @@ Route::get('/cart', [\App\Http\Controllers\HomeController::class,"cartShop"]);
 // check out
 Route::get('/check-out', [\App\Http\Controllers\HomeController::class,"checkOut"]);
 Route::post('/payment', [\App\Http\Controllers\PaymentController::class,"create"]);
-//Route::get('/return-vnpay',[\App\Http\Controllers\PaymentController::class,"return"]);
+Route::get('/return-vnpay',[\App\Http\Controllers\PaymentController::class,"return"]);
 
 //Route::post('/check-out', [\App\Http\Controllers\HomeController::class,"placeOrder"]);
 
