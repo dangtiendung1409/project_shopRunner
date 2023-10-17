@@ -78,6 +78,7 @@ class HomeController
         $selectedColor = request('color');
         $selectedSize = request('size');
 
+        $reviews = \App\Models\Review::all();
         $relate = Product::where("category_id", $product->category_id)
             ->where("id", "!=", $product->id)
             ->where("qty", ">", 0)
@@ -85,7 +86,7 @@ class HomeController
             ->limit(4)
             ->get();
 
-        return view("pages.customer.shopDetails", compact("product", "variants", "relate", "colorAvailability", "sizeAvailability", "selectedColor", "selectedSize"));
+        return view("pages.customer.shopDetails", compact("product", "variants", "relate", "colorAvailability", "sizeAvailability", "selectedColor", "selectedSize", "reviews"));
     }
 
 

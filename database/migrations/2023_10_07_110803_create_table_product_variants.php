@@ -21,7 +21,6 @@ return new class extends Migration
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('color_id')->references('id')->on('colors');
             $table->foreign('size_id')->references('id')->on('sizes');
-            $table->foreign('material_id')->references('id')->on('materials');
         });
     }
 
