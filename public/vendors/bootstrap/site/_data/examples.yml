@@ -5,7 +5,7 @@
       description: "Simple one-page template for photo galleries, portfolios, and more."
     - name: Pricing
       description: "Example pricing page built with Cards and featuring a custom header and footer."
-    - name: Checkout
+    - name: CheckoutController
       description: "Custom checkout form showing our form components and their validation features."
     - name: Product
       description: "Lean product-focused marketing page with extensive grid and image work."

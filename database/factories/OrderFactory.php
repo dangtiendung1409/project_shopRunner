@@ -24,7 +24,6 @@ class OrderFactory extends Factory
             "grand_total" => 0,
             "shipping_method" => "Express",
             "payment_method" => "COD",
-            "note" =>  $this->faker->text,
             "status" => random_int(0,3)
         ];
     }

@@ -14,28 +14,54 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Giao diện người dùng
+
 Route::get('/', [\App\Http\Controllers\HomeController::class,"home"]);
+Route::get('/contact', [\App\Http\Controllers\HomeController::class,"contactShop"]);
+Route::get('/about-us', [\App\Http\Controllers\HomeController::class,"aboutUs"]);
+
+// category
 Route::get('/category', [\App\Http\Controllers\HomeController::class,"categoryShop"]);
 Route::get('/category/{category:slug}', [\App\Http\Controllers\HomeController::class,"category"]);
+
+// details
 Route::get('/details/{product:slug}', [\App\Http\Controllers\HomeController::class,"details"]);
+
+// cart
 Route::get('/add-to-cart/{product}', [\App\Http\Controllers\HomeController::class,"addToCart"]);
 Route::get('/delete-from-cart/{product}', [\App\Http\Controllers\HomeController::class, "deleteFromCart"]);
 Route::post('/update-cart/{product}', [\App\Http\Controllers\HomeController::class, "updateCart"]);
 Route::get('/clear-cart', [\App\Http\Controllers\HomeController::class, "clearCart"]);
 Route::get('/cart', [\App\Http\Controllers\HomeController::class,"cartShop"]);
-Route::get('/contact', [\App\Http\Controllers\HomeController::class,"contactShop"]);
-Route::get('/about-us', [\App\Http\Controllers\HomeController::class,"aboutUs"]);
+
+// check out
 Route::get('/check-out', [\App\Http\Controllers\HomeController::class,"checkOut"]);
+Route::post('/payment', [\App\Http\Controllers\PaymentController::class,"create"]);
+//Route::get('/return-vnpay',[\App\Http\Controllers\PaymentController::class,"return"]);
+
+//Route::post('/check-out', [\App\Http\Controllers\HomeController::class,"placeOrder"]);
+
+// user : account , trạng thái dơn hàng , danh sách sản phẩm yêu thích
 Route::get('/my-order', [\App\Http\Controllers\HomeController::class,"myOrder"]);
 Route::get('/change-password', [\App\Http\Controllers\HomeController::class,"changePassword"]);
 Route::get('/favorite-order', [\App\Http\Controllers\HomeController::class,"favoriteOrder"]);
+
+// thank you
 Route::get('/thank-you', [\App\Http\Controllers\HomeController::class,"ThankYou"]);
+
+// search product
 Route::get('search-product', [\App\Http\Controllers\HomeController::class, 'search'])->name('search-product');
-//Route::get('/products/filter', [\App\Http\Controllers\HomeController::class, 'filter'])->name('products.filter');
+
+// thanh toán vnpay
+Route::post('/vnpay_payment', [\App\Http\Controllers\CheckoutController::class,"vnpay_payment"]);
 
 
+//  login
 
+// login dành cho nhân viên và admin
+Route::get('/login-quan-tri', [\App\Http\Controllers\HomeController::class,"loginQuanTri"]);
 
+// login dành cho người dùng
+Route::get('/login-user', [\App\Http\Controllers\HomeController::class,"loginUser"]);
 
 
 
@@ -56,8 +82,4 @@ Route::get('/nhan-vien-quan-ly-san-pham', [\App\Http\Controllers\NhanVienControl
 Route::get('/nhan-vien-quan-ly-thong-tin-khuyen-mai', [\App\Http\Controllers\NhanVienController::class,"QuanLyThongTinKhuyenMai"]);
 Route::get('/nhan-vien-add-thong-tin-khuyen-mai', [\App\Http\Controllers\NhanVienController::class,"AddThongTinKhuyenMai"]);
 
-// login dành cho nhân viên và admin
-Route::get('/login-quan-tri', [\App\Http\Controllers\HomeController::class,"loginQuanTri"]);
 
-// login dành cho người dùng
-Route::get('/login-user', [\App\Http\Controllers\HomeController::class,"loginUser"]);

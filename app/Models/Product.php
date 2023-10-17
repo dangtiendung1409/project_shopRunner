@@ -17,7 +17,6 @@ class Product extends Model
         "price",
         "thumbnail",
         "qty",
-//        "status",
         "description",
         "category_id"
     ];
@@ -39,6 +38,19 @@ class Product extends Model
             ->sum('quantity');
 
         return $totalQuantity;
+    }
+    public function getColorIdByName($colorName)
+    {
+        // Tìm id của màu dựa trên tên
+        $color = Color::where('name', $colorName)->first();
+        return $color ? $color->id : null;
+    }
+
+    public function getSizeIdByName($sizeName)
+    {
+        // Tìm id của kích thước dựa trên tên
+        $size = Size::where('name', $sizeName)->first();
+        return $size ? $size->id : null;
     }
 
 

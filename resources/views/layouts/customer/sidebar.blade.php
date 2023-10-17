@@ -75,21 +75,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-heading">
-                        <a data-toggle="collapse" data-target="#collapseSix">Material</a>
-                    </div>
-                    <div id="collapseSix" class="collapse show" data-parent="#accordionExample">
-                        <div class="card-body">
-                            <div class="shop__sidebar__tags">
-                                @foreach ($materials as $material)
-                                    <a href="#">{{ $material->name }}</a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>

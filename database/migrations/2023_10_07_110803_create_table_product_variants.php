@@ -15,7 +15,6 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('color_id');
             $table->unsignedBigInteger('size_id');
-            $table->unsignedBigInteger('material_id');
             $table->integer('quantity');
 
 

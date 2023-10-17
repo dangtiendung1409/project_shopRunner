@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\ProductFilter;
+use App\Mail\OrderMail;
+use App\Events\CreateNewOrder;
 use Illuminate\Http\Request;
 use App\Models\Color;
 use App\Models\Size;
-use App\Models\Material;
-use App\Pipelines\ProductFilterPipeline;
-
+use App\Models\Order;
 
 
 use Illuminate\Support\Facades\DB;
@@ -24,16 +23,20 @@ class HomeController
 
         return view("pages.customer.home",compact("products"));
     }
-
+    public function search(\Illuminate\Http\Request $req){
+        $product = Product::where('name','like','%'.$req->key. '%')
+            ->orWhere('price',$req->key)
+            ->get();
+        return view("pages.customer.search",compact('product'));
+    }
 
     public function categoryShop(Request $request){
         $colors = Color::all();
         $sizes = Size::all();
-        $materials = Material::all();
 
         $query = Product::orderBy("created_at", "desc");
         $products = $query->paginate(12);
-        return view("pages.customer.categoryShop", compact("products", "colors", "sizes", "materials"));
+        return view("pages.customer.categoryShop", compact("products", "colors", "sizes"));
     }
 
 
@@ -42,8 +45,8 @@ class HomeController
             ->orderBy("created_at", "desc")->paginate(12);
         $colors = Color::all();
         $sizes = Size::all();
-        $materials = Material::all();
-        return view("pages.customer.category", compact("products" ,"colors", "sizes", "materials"))->render();
+
+        return view("pages.customer.category", compact("products" ,"colors", "sizes"))->render();
     }
     public function details(Product $product)
     {
@@ -52,12 +55,10 @@ class HomeController
             ->where('product_id', $product->id)
             ->join('colors', 'product_variants.color_id', '=', 'colors.id')
             ->join('sizes', 'product_variants.size_id', '=', 'sizes.id')
-            ->join('materials', 'product_variants.material_id', '=', 'materials.id')
             ->select(
                 'product_variants.*',
                 'colors.name as color_name',
                 'sizes.name as size_name',
-                'materials.name as material_name'
             )
             ->distinct()
             ->get();
@@ -119,8 +120,6 @@ class HomeController
 
     public function cartShop()
     {
-
-
         $cartShop = session()->has("cartShop")?session("cartShop"):[];
         $subtotal = 0;
         $can_checkout = true;
@@ -161,15 +160,103 @@ class HomeController
         session()->forget("cartShop");
         return redirect()->back()->with("success", "Đã xóa tất cả sản phẩm khỏi giỏ hàng");
     }
+    public function checkOut(){
+        $cartShop = session()->has("cartShop")?session("cartShop"):[];
+        $subtotal = 0;
+        $can_checkout = true;
+        foreach ($cartShop as $item){
+            $subtotal += $item->price * $item->buy_qty;
+            if($item->buy_qty > $item->qty)
+                $can_checkout = false;
+        }
+        $total = $subtotal*1.1; // vat: 10%
+        if(count($cartShop)==0 || !$can_checkout){
+            return redirect()->to("cart");
+        }
+        return view("pages.customer.checkOut",compact("cartShop","subtotal","total"));
+    }
+//    public function placeOrder(Request $request){
+//        $request->validate([
+//            "full_name"=>"required|min:6",
+//            "address"=>"required",
+//            "tel"=> "required|min:9|max:11",
+//            "email"=>"required",
+//            "shipping_method"=>"required",
+//            "payment_method"=>"required"
+//        ],[
+//            "required"=>"Vui lòng nhập thông tin."
+//        ]);
+//        // calculate
+//        $cartShop = session()->has("cartShop")?session("cartShop"):[];
+//        $subtotal = 0;
+//        $product = new Product;
+//        foreach ($cartShop as $item){
+//            $subtotal += $item->price * $item->buy_qty;
+//        }
+//        $total = $subtotal*1.1; // vat: 10%
+//        $order = Order::create([
+//            "grand_total"=>$total,
+//            "full_name"=>$request->get("full_name"),
+//            "email"=>$request->get("email"),
+//            "tel"=>$request->get("tel"),
+//            "address"=>$request->get("address"),
+//            "shipping_method"=>$request->get("shipping_method"),
+//            "payment_method"=>$request->get("payment_method")
+//        ]);
+//        foreach ($cartShop as $item) {
+//            // Lấy ID của màu và kích thước từ tên
+//            $colorId = $product->getColorIdByName($item->color);
+//            $sizeId = $product->getSizeIdByName($item->size);
+//
+//            // Lấy biến thể sản phẩm dựa trên màu (color) và kích thước (size)
+//            $variant = DB::table("product_variants")
+//                ->where('product_id', $item->id)
+//                ->where('color_id', $colorId)
+//                ->where('size_id', $sizeId)
+//                ->first();
+//
+//            if ($variant) {
+//                // Cập nhật số lượng biến thể (variants) đã chọn
+//                DB::table("product_variants")
+//                    ->where('product_id', $item->id)
+//                    ->where('color_id', $colorId)
+//                    ->where('size_id', $sizeId)
+//                    ->decrement('quantity', $item->buy_qty);
+//
+//                // Cập nhật số lượng tổng của sản phẩm (tổng của các biến thể)
+//                $totalQuantity = DB::table("product_variants")
+//                    ->where('product_id', $item->id)
+//                    ->sum('quantity');
+//
+//                DB::table("products")
+//                    ->where('id', $item->id)
+//                    ->update(['qty' => $totalQuantity]);
+//            }
+//
+//            // Lưu thông tin đặt hàng vào bảng order_products
+//            DB::table("order_products")->insert([
+//                "order_id" => $order->id,
+//                "product_id" => $item->id,
+//                "color" => $item->color,
+//                "size" => $item->size,
+//                "qty" => $item->buy_qty,
+//                "price" => $item->price
+//            ]);
+//
+//
+//    }
+//        // clear cart
+//        session()->forget("cartShop");
+//        event(new CreateNewOrder($order));
+//
+//        return redirect()->to("/vnpay_payment");
+//    }
 
     public function contactShop(){
        return view("pages.customer.contactShop");
     }
     public function aboutUs(){
        return view("pages.customer.aboutUs");
-    }
-    public function checkOut(){
-        return view("pages.customer.checkOut");
     }
     public function myOrder(){
         return view("pages.customer.myOrder");
@@ -184,12 +271,6 @@ class HomeController
         return view("pages.customer.ThankYou");
     }
 
-    public function search(\Illuminate\Http\Request $req){
-        $product = Product::where('name','like','%'.$req->key. '%')
-                          ->orWhere('price',$req->key)
-                          ->get();
-        return view("pages.customer.search",compact('product'));
-    }
 
 
   // login dành cho admin và nhân viên

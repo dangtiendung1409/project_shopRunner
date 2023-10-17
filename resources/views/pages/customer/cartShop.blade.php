@@ -101,7 +101,7 @@
                                 <li>VAT <span>10%</span></li>
                                 <li>Total <span>${{$total}}</span></li>
                             </ul>
-                        <a style="padding: 14px 60px;" href="#" class="site-btn">Proceed to checkout</a>
+                        <a style="padding: 14px 60px;" href="{{url('/check-out')}}" class="site-btn @if(!$can_checkout)disabled @endif">Proceed to checkout</a>
                     </div>
                 </div>
             </div>
