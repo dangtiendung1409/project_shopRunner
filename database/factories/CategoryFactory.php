@@ -19,7 +19,6 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         $name  = $this->faker->unique()->colorName;
-        $tag  = $this->faker->unique()->name;
         return [
             "name" => $name,
             "slug" => Str::slug($name),
