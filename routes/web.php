@@ -25,6 +25,8 @@ Route::get('/category/{category:slug}', [\App\Http\Controllers\HomeController::c
 
 // details
 Route::get('/details/{product:slug}', [\App\Http\Controllers\HomeController::class,"details"]);
+Route::post('/create', [\App\Http\Controllers\HomeController::class,"create"]);
+
 
 // cart
 Route::get('/add-to-cart/{product}', [\App\Http\Controllers\HomeController::class,"addToCart"]);
