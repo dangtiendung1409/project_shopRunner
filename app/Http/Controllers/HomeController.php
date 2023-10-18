@@ -57,6 +57,16 @@ class HomeController
         return view("pages.customer.shopDetails", compact("product",  "relate"));
     }
 
+//    public function create(){
+//        return view("pages.customer.shopDetails");
+//    }
+//    public function store(Request $request){
+//        Product::create([
+//            "full_name" =>$request->get("name"),
+//            "message"=>$request->get("message"),
+//        ]);
+//        redirect()->to("");
+//    }
 
     public function addToCart(Product $product, Request $request){
         $buy_qty = $request->get("buy_qty");
