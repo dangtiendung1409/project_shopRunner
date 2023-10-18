@@ -48,8 +48,6 @@
                                                 </div>
                                                 <div class="product__cart__item__text">
                                                     <h6>{{ $item->name }}</h6>
-                                                    <p>Color: {{ $item->color }}</p>
-                                                    <p>Size: {{ $item->size }}</p>
                                                 </div>
                                             </td>
                                             <td class="cart__price">${{ $item->price }}</td>

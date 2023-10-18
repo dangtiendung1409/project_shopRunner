@@ -44,33 +44,35 @@
                 </div>
                 <div class="card">
                     <div class="card-heading">
-                        <a data-toggle="collapse" data-target="#collapseFour">Size</a>
+                        <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
                     </div>
-                    <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
+                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
                         <div class="card-body">
-                            <div class="shop__sidebar__size">
-                                @foreach ($sizes as $size)
-                                    <label for="{{ $size->name }}">
-                                        <input type="checkbox" id="{{ $size->name }}"> {{ $size->name }}
-                                    </label>
-                                @endforeach
+                            <div class="shop__sidebar__brand">
+                                <ul>
+                                    <li><a href="#">Louis Vuitton</a></li>
+                                    <li><a href="#">Chanel</a></li>
+                                    <li><a href="#">Hermes</a></li>
+                                    <li><a href="#">Gucci</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-heading">
-                        <a data-toggle="collapse" data-target="#collapseFive">Colors</a>
+                        <a data-toggle="collapse" data-target="#collapseSix">Tags</a>
                     </div>
-                    <div id="collapseFive" class="collapse show" data-parent="#accordionExample">
+                    <div id="collapseSix" class="collapse show" data-parent="#accordionExample">
                         <div class="card-body">
-                            <div class="shop__sidebar__color">
-                                @foreach ($colors as $color)
-                                    <label class="c-{{ $color->id }}" for="sp-{{ $color->id }}">
-                                        <input type="checkbox" id="sp-{{ $color->id }}">
-                                        <span style="display: none;">{{ $color->name }}</span>
-                                    </label>
-                                @endforeach
+                            <div class="shop__sidebar__tags">
+                                <a href="#">Product</a>
+                                <a href="#">Bags</a>
+                                <a href="#">Shoes</a>
+                                <a href="#">Fashio</a>
+                                <a href="#">Clothing</a>
+                                <a href="#">Hats</a>
+                                <a href="#">Accessories</a>
                             </div>
                         </div>
                     </div>

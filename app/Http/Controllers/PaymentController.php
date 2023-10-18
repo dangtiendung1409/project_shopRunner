@@ -14,78 +14,45 @@ class PaymentController
     public function create(Request $request)
     {
         $request->validate([
-            "full_name" => "required|min:6",
-            "address" => "required",
-            "tel" => "required|min:9|max:11",
-            "email" => "required",
-            "shipping_method" => "required",
-            "payment_method" => "required"
-        ], [
-            "required" => "Vui lòng nhập thông tin."
+            "full_name"=>"required|min:6",
+            "address"=>"required",
+            "tel"=> "required|min:9|max:11",
+            "email"=>"required",
+            "shipping_method"=>"required",
+            "payment_method"=>"required"
+        ],[
+            "required"=>"Vui lòng nhập thông tin."
         ]);
         // calculate
-        $cartShop = session()->has("cartShop") ? session("cartShop") : [];
+        $cartShop = session()->has("cartShop")?session("cartShop"):[];
         $subtotal = 0;
-        $product = new Product;
-        foreach ($cartShop as $item) {
+        foreach ($cartShop as $item){
             $subtotal += $item->price * $item->buy_qty;
         }
-        $total = $subtotal * 1.1; // vat: 10%
+        $total = $subtotal*1.1; // vat: 10%
         $order = Order::create([
-            "grand_total" => $total,
-            "full_name" => $request->get("full_name"),
-            "email" => $request->get("email"),
-            "tel" => $request->get("tel"),
-            "address" => $request->get("address"),
-            "shipping_method" => $request->get("shipping_method"),
-            "payment_method" => $request->get("payment_method")
+            "grand_total"=>$total,
+            "full_name"=>$request->get("full_name"),
+            "email"=>$request->get("email"),
+            "tel"=>$request->get("tel"),
+            "address"=>$request->get("address"),
+            "shipping_method"=>$request->get("shipping_method"),
+            "payment_method"=>$request->get("payment_method")
         ]);
-        foreach ($cartShop as $item) {
-            // Lấy ID của màu và kích thước từ tên
-            $colorId = $product->getColorIdByName($item->color);
-            $sizeId = $product->getSizeIdByName($item->size);
-
-            // Lấy biến thể sản phẩm dựa trên màu (color) và kích thước (size)
-            $variant = DB::table("product_variants")
-                ->where('product_id', $item->id)
-                ->where('color_id', $colorId)
-                ->where('size_id', $sizeId)
-                ->first();
-
-            if ($variant) {
-                // Cập nhật số lượng biến thể (variants) đã chọn
-                DB::table("product_variants")
-                    ->where('product_id', $item->id)
-                    ->where('color_id', $colorId)
-                    ->where('size_id', $sizeId)
-                    ->decrement('quantity', $item->buy_qty);
-
-                // Cập nhật số lượng tổng của sản phẩm (tổng của các biến thể)
-                $totalQuantity = DB::table("product_variants")
-                    ->where('product_id', $item->id)
-                    ->sum('quantity');
-
-                DB::table("products")
-                    ->where('id', $item->id)
-                    ->update(['qty' => $totalQuantity]);
-            }
-
-            // Lưu thông tin đặt hàng vào bảng order_products
+        foreach ($cartShop as $item){
             DB::table("order_products")->insert([
-                "order_id" => $order->id,
-                "product_id" => $item->id,
-                "color" => $item->color,
-                "size" => $item->size,
-                "qty" => $item->buy_qty,
-                "price" => $item->price
+                "order_id"=>$order->id,
+                "product_id"=>$item->id,
+                "qty"=>$item->buy_qty,
+                "price"=>$item->price
             ]);
+            $product = Product::find($item->id);
+            $product->update(["qty"=>$product->qty- $item->buy_qty]);
         }
         // clear cart
-//        session()->forget("cartShop");
-        Session::forget("cartShop");
-
-//        dd(session("cartShop"));
+        session()->forget("cartShop");
         event(new CreateNewOrder($order));
+
 
         session(['cost_id' => $request->id]);
         session(['url_prev' => url()->previous()]);

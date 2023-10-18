@@ -21,41 +21,17 @@ class DatabaseSeeder extends Seeder
     {
 
 
-//         \App\Models\User::factory(10)->create();
+         \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
 
-//        \App\Models\Brands::factory(10)->create();
-//        \App\Models\Category::factory(10)->create();
-//        \App\Models\Product::factory(592)->create();
+        \App\Models\Brands::factory(10)->create();
+        \App\Models\Category::factory(10)->create();
+        \App\Models\Product::factory(592)->create();
 
-//
-//     \App\Models\Color::factory(5)->create();
-//      \App\Models\Size::factory(5)->create();
-
-//        $products = DB::table('products')->get();
-//
-//        // Lặp qua danh sách sản phẩm và tạo ngẫu nhiên từ 1 đến 4 biến thể cho mỗi sản phẩm
-//        foreach ($products as $product) {
-//            $variantCount = random_int(2, 3);
-//
-//           for ($i = 0; $i < $variantCount; $i++) {
-//               $color = DB::table('colors')->inRandomOrder()->first();
-//               $size = DB::table('sizes')->inRandomOrder()->first();
-//                $quantity = random_int(1, 20);
-//
-//                // Thêm biến thể vào bảng product_variants
-//                DB::table('product_variants')->insert([
-//                    'product_id' => $product->id,
-//                    'color_id' => $color->id,
-//                    'size_id' => $size->id,
-//                    'quantity' => $quantity,
-//                ]);
-//            }
-//        }
 
        \App\Models\Order::factory(10)->create();
 
@@ -70,8 +46,6 @@ class DatabaseSeeder extends Seeder
                    DB::table("order_products") -> insert([
                        "product_id" =>$item->id,
                        "order_id" =>$order->id,
-                        "color"=>$item->name,
-                        "size"=>$item->name,
                        "qty" => $qty,
                        "price" => $item -> price,
                    ]);
@@ -80,13 +54,6 @@ class DatabaseSeeder extends Seeder
                $order ->save();
          }
 
-//       //  update  lại tổng số lượng mỗi 1 sản phẩm bảng product = tổng biến thể của 1 sản phẩm cộng lại của bảng product_variants
-//        $products = Product::all();
-//
-//        foreach ($products as $product) {
-//            $totalQuantity = $product->calculateTotalQuantity();
-//            $product->update(['qty' => $totalQuantity]);
-//        }
     }
 }
 

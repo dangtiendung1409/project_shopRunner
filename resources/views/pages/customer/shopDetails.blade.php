@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="col-lg-5 offset-lg-1">
-                    <form action="{{ url("/add-to-cart", ["product" => $product, "color" => $selectedColor, "size" => $selectedSize]) }}" method="get">
+                    <form action="{{ url("/add-to-cart", ["product"=>$product->id])}}" method="get">
                         @csrf
                         <div class="s_product_text">
                             <h3 style="margin-left: -8px; font-size:25px;">{{$product->name}}</h3>
@@ -54,33 +54,6 @@
                                 <li><a href="#"><span>Sold</span> : {{$product->Orders->count()}}</a></li>
                             </ul>
                             <p>{{$product->description}}</p>
-
-                            <div class="flex rY0UiC j9be9C">
-                                <div class="flex flex-column">
-                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
-                                        <h3 class="oN9nMU">Color :</h3>
-                                        <div class="flex items-center bR6mEk">
-                                            @foreach($variants as $variant)
-                                                <button class="product-variation color-variation" aria-label="{{ $variant->color_name }}" aria-disabled="false" name="color" value="{{ $variant->color_name }}">{{ $variant->color_name }}</button>
-
-                                            @endforeach
-                                        </div>
-                                    </section>
-                                    <section class="flex items-center" style="margin-bottom: 8px; align-items: baseline;">
-                                        <h3 class="oN9nMU">Size :</h3>
-                                        <div class="flex items-center bR6mEk">
-                                            @foreach($variants as $variant)
-                                                <button class="product-variation size-variation" aria-label="{{ $variant->size_name }}" aria-disabled="false" name="size" value="{{ $variant->size_name }}">{{ $variant->size_name }}</button>
-                                            @endforeach
-                                        </div>
-                                    </section>
-                                </div>
-
-                                <!-- Trường ẩn để lưu màu sắc -->
-                                <input type="hidden" name="color" id="colorInput">
-                                <!-- Trường ẩn để lưu kích thước -->
-                                <input type="hidden" name="size" id="sizeInput">
-                            </div>
                             <div class="product__details__quantity">
                                 <div class="quantity">
                                     <div class="pro-qty">
@@ -244,11 +217,6 @@
                                 </div>
                             </div>
                             <div class="review_list">
-<?php
-            $reviews = \App\Models\Review::all();
-    ?>
-
-
 
                                 <div class="review_item">
                                     <div class="media">
@@ -402,137 +370,6 @@
 
         });
     </script>
-    <script>
-        const colorVariationButtons = document.querySelectorAll(".color-variation");
-        const sizeVariationButtons = document.querySelectorAll(".size-variation");
-        const colorAvailability = @json($colorAvailability); // Chuyển dữ liệu PHP thành JSON
-        const sizeAvailability = @json($sizeAvailability);
 
-        let selectedColor = null;
-        let selectedSize = null;
-
-        colorVariationButtons.forEach(button => {
-            button.addEventListener("click", () => {
-                const newSelectedColor = button.getAttribute("aria-label");
-
-                if (newSelectedColor === selectedColor) {
-                    // Nếu bạn bấm lại cùng màu sắc, thì bỏ chọn nó
-                    selectedColor = null;
-                } else {
-                    selectedColor = newSelectedColor;
-                }
-
-                updateButtonStyles();
-            });
-        });
-
-        sizeVariationButtons.forEach(button => {
-            button.addEventListener("click", () => {
-                const newSelectedSize = button.getAttribute("aria-label");
-
-                if (newSelectedSize === selectedSize) {
-                    // Nếu bạn bấm lại cùng kích thước, thì bỏ chọn nó
-                    selectedSize = null;
-                } else {
-                    selectedSize = newSelectedSize;
-                }
-
-                updateButtonStyles();
-            });
-        });
-
-        function updateButtonStyles() {
-            colorVariationButtons.forEach(button => {
-                const color = button.getAttribute("aria-label");
-
-                if (color === selectedColor) {
-                    button.classList.add("active");
-                } else {
-                    button.classList.remove("active");
-                }
-
-                if (selectedSize && !sizeAvailability[selectedSize].includes(color)) {
-                    button.disabled = true;
-                } else {
-                    button.disabled = false;
-                }
-            });
-
-            sizeVariationButtons.forEach(button => {
-                const size = button.getAttribute("aria-label");
-
-                if (size === selectedSize) {
-                    button.classList.add("active");
-                } else {
-                    button.classList.remove("active");
-                }
-
-                if (selectedColor && !colorAvailability[selectedColor].includes(size)) {
-                    button.disabled = true;
-                } else {
-                    button.disabled = false;
-                }
-            });
-        }
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const colorVariations = document.querySelectorAll('.color-variation');
-            const sizeVariations = document.querySelectorAll('.size-variation');
-
-            colorVariations.forEach(color => {
-                color.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    // Thực hiện hành động mong muốn khi nhấp vào nút màu
-                    // Ví dụ:
-                    console.log('Color:', color.textContent);
-                });
-            });
-
-            sizeVariations.forEach(size => {
-                size.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    // Thực hiện hành động mong muốn khi nhấp vào nút kích thước
-                    // Ví dụ:
-                    console.log('Size:', size.textContent);
-                });
-            });
-        });
-
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const colorVariations = document.querySelectorAll('.color-variation');
-            const sizeVariations = document.querySelectorAll('.size-variation');
-
-            colorVariations.forEach(color => {
-                color.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const colorValue = color.textContent;
-
-                    // Gán giá trị màu sắc cho trường ẩn
-                    document.getElementById('colorInput').value = colorValue;
-
-                    // Thực hiện hành động mong muốn khi nhấp vào nút màu
-                    // Ví dụ:
-                    console.log('Color:', colorValue);
-                });
-            });
-
-            sizeVariations.forEach(size => {
-                size.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const sizeValue = size.textContent;
-
-                    // Gán giá trị kích thước cho trường ẩn
-                    document.getElementById('sizeInput').value = sizeValue;
-
-                    // Thực hiện hành động mong muốn khi nhấp vào nút kích thước
-                    // Ví dụ:
-                    console.log('Size:', sizeValue);
-                });
-            });
-        });
-    </script>
     <!-- Related Section End -->
 @stop()
