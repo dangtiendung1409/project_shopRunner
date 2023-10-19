@@ -93,6 +93,7 @@ class NhanVienProductController extends Controller
                 "slug"=> Str::slug($request->get("name")),
                 "thumbnail"=>$thumbnail,
                 "price"=>$request->get("price"),
+                "qty"=>$request->get("qty"),
                 "category_id"=>$request->get("category_id"),
                 "description"=>$request->get("description"),
             ]);
