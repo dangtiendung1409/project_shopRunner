@@ -5,7 +5,7 @@
 @include("NhanVien.layouts.head")
 </head>
 
-<body  class="app sidebar-mini rtl">
+<body onload="time()"  class="app sidebar-mini rtl">
 <!-- Navbar-->
 @include("NhanVien.layouts.nav")
 

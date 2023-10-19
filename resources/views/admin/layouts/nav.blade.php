@@ -6,7 +6,7 @@
 
 
         <!-- User Menu-->
-        <li><a class="app-nav__item" href="/index.html"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+        <li><a style="background: #c6defd;" class="app-nav__item" href="/index.html"><i style="color: rgb(22 22 72)" class='bx bx-log-out bx-rotate-180'></i> </a>
 
         </li>
     </ul>

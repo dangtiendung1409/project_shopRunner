@@ -6,16 +6,16 @@ use Illuminate\Http\Request;
 
 class NhanVienController extends Controller
 {
-    public function AddSanPham(){
-        return view("NhanVien.pages.addSanPham");
-    }
+
     //
     public function QuanLyDonHang(){
         return view("NhanVien.pages.qlDonHang");
     }
 
-    public function QuanLySanPham(){
-        return view("NhanVien.pages.qlSanPham");
+
+
+    public function QuanLyKhachHang(){
+        return view("NhanVien.pages.qlKhachHang");
     }
 
     public function QuanLyThongTinKhuyenMai(){

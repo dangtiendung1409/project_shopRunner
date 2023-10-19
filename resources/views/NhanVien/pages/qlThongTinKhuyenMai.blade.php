@@ -13,11 +13,11 @@
         </div>
         <hr>
         <ul class="app-menu">
-            <li><a class="app-menu__item haha" href="phan-mem-ban-hang.html"><i class='app-menu__icon bx bx-cart-alt'></i>
-                    <span class="app-menu__label">POS Bán Hàng</span></a></li>
             <li ><a class="app-menu__item" href="{{url("nhan-vien-quan-ly-san-pham")}}"><i
                         class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
             </li>
+            <li><a class="app-menu__item" href="{{url("nhan-vien-quan-ly-khach-hang")}}"><i class="fa-solid fa-users"></i><span style="margin-left: 21px"
+                                                                                          class="app-menu__label">Quản lý khách hàng</span></a></li>
             <li ><a class="app-menu__item" href="{{url("nhan-vien-quan-ly-đon-hang")}}"><i class='app-menu__icon bx bx-task'></i><span
                         class="app-menu__label">Quản lý đơn hàng</span></a></li>
             <li style=" background: #c6defd; border-radius: .375rem;"><a style="color: rgb(22 22 72)" class="app-menu__item" href="{{url("nhan-vien-quan-ly-thong-tin-khuyen-mai")}}"><i class='app-menu__icon bx bx-user-voice'></i><span
@@ -49,17 +49,21 @@
                             </div>
 
                         </div>
-                        <table class="table table-hover table-bordered" id="sampleTable">
+                        <table  class="table table-hover table-bordered" id="sampleTable">
                             <thead>
                             <tr>
                                 <th width="10"><input type="checkbox" id="all"></th>
-                                <th>ID</th>
+                                <th width="30px">ID</th>
                                 <th>Tên chương trình khuyến mãi</th>
                                 <th>Giảm giá</th>
-                                <th>Trạng thái</th>
+                                <th width="100px">Trạng thái</th>
+                                <th>Áp dụng cho</th>
+                                <th>Thông tin</th>
                                 <th>Ngày bắt đầu </th>
                                 <th>Ngày kết thúc</th>
-                                <th>Hành Động</th>
+                                <th width="70px">Tính năng</th>
+                                <th width="70px">Hành Động</th>
+
                             </tr>
                             </thead>
                             <tbody>
@@ -69,9 +73,11 @@
                                 <td>Giảm giá 40% cho Giày</td>
                                 <td>400.000vnđ</td>
                                 <td><span class="badge bg-success">Ngừng áp dụng</span></td>
+                                <td>Sản Phẩm</td>
+                                <td>Áo</td>
                                 <td>15-07-2021 17:00:00</td>
                                 <td>15-07-2021 18:00:00</td>
-
+                                <td><button> áp dụng</button></td>
                                 <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                             onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                     </button>
@@ -82,13 +88,15 @@
                             </tr>
                             <tr>
                                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>02</td>
+                                <td>01</td>
                                 <td>Giảm giá 40% cho Giày</td>
                                 <td>400.000vnđ</td>
                                 <td><span class="badge bg-success">Ngừng áp dụng</span></td>
+                                <td>Sản Phẩm</td>
+                                <td>Áo</td>
                                 <td>15-07-2021 17:00:00</td>
                                 <td>15-07-2021 18:00:00</td>
-
+                                <td><button> áp dụng</button></td>
                                 <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                             onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                     </button>
@@ -99,13 +107,15 @@
                             </tr>
                             <tr>
                                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>03</td>
+                                <td>01</td>
                                 <td>Giảm giá 40% cho Giày</td>
                                 <td>400.000vnđ</td>
                                 <td><span class="badge bg-success">Ngừng áp dụng</span></td>
+                                <td>Sản Phẩm</td>
+                                <td>Áo</td>
                                 <td>15-07-2021 17:00:00</td>
                                 <td>15-07-2021 18:00:00</td>
-
+                                <td><button> áp dụng</button></td>
                                 <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                             onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                     </button>
@@ -116,13 +126,15 @@
                             </tr>
                             <tr>
                                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>04</td>
+                                <td>01</td>
                                 <td>Giảm giá 40% cho Giày</td>
                                 <td>400.000vnđ</td>
                                 <td><span class="badge bg-success">Ngừng áp dụng</span></td>
+                                <td>Sản Phẩm</td>
+                                <td>Áo</td>
                                 <td>15-07-2021 17:00:00</td>
                                 <td>15-07-2021 18:00:00</td>
-
+                                <td><button> áp dụng</button></td>
                                 <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                             onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                     </button>
@@ -133,13 +145,15 @@
                             </tr>
                             <tr>
                                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>05</td>
+                                <td>01</td>
                                 <td>Giảm giá 40% cho Giày</td>
                                 <td>400.000vnđ</td>
                                 <td><span class="badge bg-success">Ngừng áp dụng</span></td>
+                                <td>Sản Phẩm</td>
+                                <td>Áo</td>
                                 <td>15-07-2021 17:00:00</td>
                                 <td>15-07-2021 18:00:00</td>
-
+                                <td><button> áp dụng</button></td>
                                 <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                             onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                     </button>
@@ -150,13 +164,15 @@
                             </tr>
                             <tr>
                                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>06</td>
+                                <td>01</td>
                                 <td>Giảm giá 40% cho Giày</td>
                                 <td>400.000vnđ</td>
                                 <td><span class="badge bg-success">Ngừng áp dụng</span></td>
+                                <td>Sản Phẩm</td>
+                                <td>Áo</td>
                                 <td>15-07-2021 17:00:00</td>
                                 <td>15-07-2021 18:00:00</td>
-
+                                <td><button> áp dụng</button></td>
                                 <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                             onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                     </button>
@@ -167,13 +183,15 @@
                             </tr>
                             <tr>
                                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>07</td>
+                                <td>01</td>
                                 <td>Giảm giá 40% cho Giày</td>
                                 <td>400.000vnđ</td>
                                 <td><span class="badge bg-success">Ngừng áp dụng</span></td>
+                                <td>Sản Phẩm</td>
+                                <td>Áo</td>
                                 <td>15-07-2021 17:00:00</td>
                                 <td>15-07-2021 18:00:00</td>
-
+                                <td><button> áp dụng</button></td>
                                 <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                             onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                     </button>
@@ -184,13 +202,15 @@
                             </tr>
                             <tr>
                                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>08</td>
+                                <td>01</td>
                                 <td>Giảm giá 40% cho Giày</td>
                                 <td>400.000vnđ</td>
                                 <td><span class="badge bg-success">Ngừng áp dụng</span></td>
+                                <td>Sản Phẩm</td>
+                                <td>Áo</td>
                                 <td>15-07-2021 17:00:00</td>
                                 <td>15-07-2021 18:00:00</td>
-
+                                <td><button> áp dụng</button></td>
                                 <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                             onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                     </button>
@@ -201,13 +221,15 @@
                             </tr>
                             <tr>
                                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>09</td>
+                                <td>01</td>
                                 <td>Giảm giá 40% cho Giày</td>
                                 <td>400.000vnđ</td>
                                 <td><span class="badge bg-success">Ngừng áp dụng</span></td>
+                                <td>Sản Phẩm</td>
+                                <td>Áo</td>
                                 <td>15-07-2021 17:00:00</td>
                                 <td>15-07-2021 18:00:00</td>
-
+                                <td><button> áp dụng</button></td>
                                 <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                             onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                     </button>
@@ -298,5 +320,14 @@
     <!--
     MODAL
     -->
+    <style>
+        table {
+            width: 100%;
+            table-layout: fixed;
+        }
+
+
+
+    </style>
     @include("admin.layouts.scripts")
 @endsection

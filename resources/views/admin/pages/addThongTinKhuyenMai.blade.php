@@ -13,11 +13,9 @@
         </div>
         <hr>
         <ul class="app-menu">
-            <li><a class="app-menu__item haha" href="phan-mem-ban-hang.html"><i class='app-menu__icon bx bx-cart-alt'></i>
-                    <span class="app-menu__label">POS Bán Hàng</span></a></li>
             <li ><a  class="app-menu__item active" href="{{url("admin-quan-ly-nhan-vien")}}"><i class='app-menu__icon bx bx-id-card'></i>
                     <span class="app-menu__label">Quản lý nhân viên</span></a></li>
-            <li ><a class="app-menu__item" href="{{url("admin-quan-ly-san-pham")}}"><i
+            <li ><a class="app-menu__item" href="{{url("admin-quan-ly-khach-hang")}}"><i
                         class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
             </li>
             <li ><a class="app-menu__item" href="{{url("admin-quan-ly-đon-hang")}}"><i class='app-menu__icon bx bx-task'></i><span
