@@ -105,3 +105,6 @@ Route::get('/nhan-vien-quan-ly-khach-hang', [\App\Http\Controllers\NhanVienContr
 Route::get('/nhan-vien-quan-ly-thong-tin-khuyen-mai', [\App\Http\Controllers\NhanVienController::class,"QuanLyThongTinKhuyenMai"]);
 Route::get('/nhan-vien-add-thong-tin-khuyen-mai', [\App\Http\Controllers\NhanVienController::class,"AddThongTinKhuyenMai"]);
 
+// rating
+Route::get('/admin-rating', [\App\Http\Controllers\RatingController::class,"ratings"]);
+

@@ -17,9 +17,10 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
-//            "user_id" =>random_int(1, 10),
-//            "product_id" =>random_int(1, 10),
-            "full_name" =>  $this->faker->name,
+            "user_id" =>random_int(1, 10),
+            "product_id" =>random_int(1, 10),
+            "rating" =>random_int(1, 5),
+//            "full_name" =>  $this->faker->name,
             "message" => $this->faker->text
         ];
     }
