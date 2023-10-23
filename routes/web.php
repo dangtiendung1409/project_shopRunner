@@ -37,8 +37,11 @@ Route::get('/cart', [\App\Http\Controllers\HomeController::class,"cartShop"]);
 
 // check out
 Route::get('/check-out', [\App\Http\Controllers\HomeController::class,"checkOut"]);
-Route::post('/payment', [\App\Http\Controllers\PaymentController::class,"create"]);
-Route::get('/return-vnpay',[\App\Http\Controllers\PaymentController::class,"return"]);
+Route::post('/check-out', [\App\Http\Controllers\HomeController::class,"placeOrder"]);
+Route::get('/paypal-success/{order}', [\App\Http\Controllers\HomeController::class,"paypalSuccess"]);
+Route::get('/paypal-cancel/{order}', [\App\Http\Controllers\HomeController::class,"paypalCancel"]);
+//Route::post('/payment', [\App\Http\Controllers\PaymentController::class,"create"]);
+//Route::get('/return-vnpay',[\App\Http\Controllers\PaymentController::class,"return"]);
 
 //Route::post('/check-out', [\App\Http\Controllers\HomeController::class,"placeOrder"]);
 
@@ -51,13 +54,11 @@ Route::get('/clear-favorite', [\App\Http\Controllers\HomeController::class, "cle
 Route::get('/favorite-order', [\App\Http\Controllers\HomeController::class,"favoriteOrder"]);
 
 // thank you
-Route::get('/thank-you', [\App\Http\Controllers\HomeController::class,"ThankYou"]);
+Route::get('/thank-you/{order}', [\App\Http\Controllers\HomeController::class,"ThankYou"]);
 
 // search product
 Route::get('search-product', [\App\Http\Controllers\HomeController::class, 'search'])->name('search-product');
 
-// thanh toán vnpay
-Route::post('/vnpay_payment', [\App\Http\Controllers\CheckoutController::class,"vnpay_payment"]);
 
 
 //  login

@@ -23,7 +23,7 @@
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
-                <form action="{{url("/payment")}}" method="post">
+                <form action="{{url("/check-out")}}" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
@@ -103,19 +103,16 @@
                                     </label>
                                 </div>
                                 <div class="checkout__input__checkbox">
-                                    <label for="Vnpay">
-                                        Vnpay
-                                        <input name="payment_method"  @if(old("payment_method")== "Vnpay") checked @endif  value="Vnpay" type="radio" id="Vnpay">
+                                    <label for="paypal">
+                                        Paypal
+                                        <input name="payment_method"  @if(old("payment_method")== "Paypal") checked @endif  value="Paypal" type="radio" id="paypal">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
                                 @error("payment_method")
                                 <p class="text-danger"><i>{{$message}}</i></p>
                                 @enderror
-{{--                                <form action="{{url('/payment')}}" method="POST">--}}
-{{--                                    @csrf--}}
-                                <button name="redirect" type="submit" class="site-btn">PLACE ORDER</button>
-{{--                                </form>--}}
+                                <button  type="submit" class="site-btn">PLACE ORDER</button>
                             </div>
                         </div>
                     </div>

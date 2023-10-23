@@ -46,11 +46,16 @@
                         <div class="s_product_text">
                             <h3 style="margin-left: -8px; font-size:25px;">{{$product->name}}</h3>
                             <h2>${{$product->price}}</h2>
-                            <input type="hidden" name="color" value="" id="selectedColor">
-                            <input type="hidden" name="size" value="" id="selectedSize">
+
                             <ul class="list">
                                 <li><a class="active" href="#"><span>Category</span> : {{$product->Category->name}}</a></li>
-                                <li><a href="#"><span>Qty</span> : {{$product->qty}}</a></li>
+                                <li><a>Availability </a>
+                                    @if($product->qty > 0)
+                                        <span style="margin-left: 25px" class="text-success">: In Stock</span>
+                                    @else
+                                        <span style="margin-left: 25px" class="text-danger">: Out of Stock</span>
+                                    @endif
+                                </li>
                                 <li><a href="#"><span>Sold</span> : {{$product->Orders->count()}}</a></li>
                             </ul>
                             <p>{{$product->description}}</p>
