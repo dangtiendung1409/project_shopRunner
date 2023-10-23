@@ -26,10 +26,12 @@
                     <div class="details_item">
                         <h4>Order Info</h4>
                         <ul class="list">
-                            <li><a href="#"><span>Order number</span> : 60235</a></li>
-                            <li><a href="#"><span>Date</span> : 05/10/2023</a></li>
-                            <li><a href="#"><span>Total</span> : $ 300</a></li>
-                            <li><a href="#"><span>Payment method</span> : COD</a></li>
+                            <li><a href="#"><span>Order number</span>: {{$order->id}}</a></li>
+                            <li><a href="#"><span>Date</span>: {{ $order->created_at->format('d/m/Y') }}</a></li>
+                            @foreach($order->Products as $item)
+                            <li><a href="#"><span>Total</span>: ${{$item->pivot->qty*$item->pivot->price}}</a></li>
+                            @endforeach
+                            <li><a href="#"><span>Payment method</span>: {{ $order->payment_method }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -37,9 +39,9 @@
                     <div class="details_item">
                         <h4>Customer Information</h4>
                         <ul class="list">
-                            <li><a href="#"><span>Full Name</span>Dang Tien Dung</a></li>
-                            <li><a href="#"><span>Telephone</span>02399382982</a></li>
-                            <li><a href="#"><span>Email</span>dung@gmail.com</a></li>
+                            <li><a href="#"><span>Full Name</span>: {{ $order->full_name}}</a></li>
+                            <li><a href="#"><span>Telephone</span>: {{ $order->tel}}</a></li>
+                            <li><a href="#"><span>Email</span>: {{ $order->payment_method }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -47,8 +49,8 @@
                     <div class="details_item">
                         <h4>Shipping</h4>
                         <ul class="list">
-                            <li><a href="#"><span>Shipping method</span>: Express </a></li>
-                            <li><a href="#"><span>Address</span>: so 8 ton that thuyet</a></li>
+                            <li><a href="#"><span>Shipping method</span>: {{ $order->shipping_method }}</a></li>
+                            <li><a href="#"><span>Address</span>: {{ $order->address }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -59,83 +61,32 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">Product</th>
-                            <th scope="col">Quantity</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Qty</th>
                             <th scope="col">Total</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                <p>Pixelstore fresh Blackberry</p>
-                            </td>
-                            <td>
-                                <h5>x 02</h5>
-                            </td>
-                            <td>
-                                <p>$720.00</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Pixelstore fresh Blackberry</p>
-                            </td>
-                            <td>
-                                <h5>x 02</h5>
-                            </td>
-                            <td>
-                                <p>$720.00</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Pixelstore fresh Blackberry</p>
-                            </td>
-                            <td>
-                                <h5>x 02</h5>
-                            </td>
-                            <td>
-                                <p>$720.00</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h4>Subtotal</h4>
-                            </td>
-                            <td>
-                                <h5></h5>
-                            </td>
-                            <td>
-                                <p>$2160.00</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h4>VAT</h4>
-                            </td>
-                            <td>
-                                <h5></h5>
-                            </td>
-                            <td>
-                                <p>10%</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h4>Total</h4>
-                            </td>
-                            <td>
-                                <h5></h5>
-                            </td>
-                            <td>
-                                <p>$2210.00</p>
-                            </td>
-                        </tr>
+                        @foreach($order->Products as $item)
+                            <tr>
+                                <td>{{$item->id}}</td>
+                                <td><img src="{{$item->thumbnail}}" width="120"/></td>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->pivot->price}}</td>
+                                <td>{{$item->pivot->qty}}</td>
+                                <td>${{$item->pivot->qty*$item->pivot->price}}</td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
-            <button style="margin-top: 30px;" type="submit" class="site-btn">Continue shopping</button>
+            @if($order->payment_method == "Paypal" && !$order->is_paid)
+                <a href="#" class="btn btn-warning">Thanh toán lại</a>
+            @endif
         </div>
 
     </section>
