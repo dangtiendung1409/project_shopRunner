@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger("user_id")->nullable();
             $table->unsignedBigInteger("product_id");
             $table->integer("rating");
-//            $table->string("full_name");
             $table->longText("message");
+            $table->tinyInteger("status")->nullable();
             $table->timestamps();
 
             $table->foreign("user_id")->references("id")->on("users");

@@ -81,19 +81,19 @@
                                     <td>{{$rating['message']}}</td>
                                     <td>{{$rating['rating']}}</td>
 
-                                    <td style="display:flex;">
-                                        @if($rating['status']==1)
-                                            <a class="updateRatingStatus" id="rating-{{$rating['id']}}"
-                                               rating_id="{{$rating['id']}}" href="javacript:void(0)">
-                                                <i class="fas fa-toggle-on" aria-hidden="true" status="Active"></i>
-                                            </a>
-                                        @else
-                                            <a class="updateRatingStatus" id="rating-{{$rating['id']}}"
-                                               rating_id="{{$rating['id']}}" href="javacript:void(0)">
-                                                <i class="fas fa-toggle-off" aria-hidden="true" status="Inactive"></i>
-                                            </a>
-                                        @endif
-                                    </td>
+{{--                                    <td style="display:flex;">--}}
+{{--                                        @if($rating['status']==1)--}}
+{{--                                            <a class="updateRatingStatus" id="rating-{{$rating['id']}}"--}}
+{{--                                               rating_id="{{$rating['id']}}" href="javacript:void(0)">--}}
+{{--                                                <i class="fas fa-toggle-on" aria-hidden="true" status="Active"></i>--}}
+{{--                                            </a>--}}
+{{--                                        @else--}}
+{{--                                            <a class="updateRatingStatus" id="rating-{{$rating['id']}}"--}}
+{{--                                               rating_id="{{$rating['id']}}" href="javacript:void(0)">--}}
+{{--                                                <i class="fas fa-toggle-off" aria-hidden="true" status="Inactive"></i>--}}
+{{--                                            </a>--}}
+{{--                                        @endif--}}
+{{--                                    </td>--}}
                                 </tr>
                             @endforeach
                             </tbody>
@@ -195,9 +195,9 @@
                     data: {status:status, rating_id:rating_id},
                     susscess: function(resp){
                         if(resp['status']==0){
-                            $("#rating"+rating_id).html("<i class='fas fa-toggle-on' aria-hidden='true' status='Active'></i>");
-                        } else if(resp['status']==0){
-                            $("#rating"+rating_id).html("<i class='fas fa-toggle-off' aria-hidden='true' status='Inactive'></i>");
+                            $("#rating-"+rating_id).html("<i class='fas fa-toggle-on' aria-hidden='true' status='Active'></i>");
+                        } else if(resp['status']==1){
+                            $("#rating-"+rating_id).html("<i class='fas fa-toggle-off' aria-hidden='true' status='Inactive'></i>");
                         }
                     }, error: function(){
                         alert("Error");

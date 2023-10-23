@@ -20,8 +20,8 @@ class ReviewFactory extends Factory
             "user_id" =>random_int(1, 10),
             "product_id" =>random_int(1, 10),
             "rating" =>random_int(1, 5),
-//            "full_name" =>  $this->faker->name,
-            "message" => $this->faker->text
+            "message" => $this->faker->text,
+//            "status" => $this->faker->ti
         ];
     }
 }

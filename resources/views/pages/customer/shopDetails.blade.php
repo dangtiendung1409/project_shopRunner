@@ -231,7 +231,7 @@
 
                             </div>
                             <div class="review_list">
-{{--                                @if(count($ratings)>1)--}}
+                                @if(count($ratings)>1)
                                     @foreach($ratings as $rating)
                                 <div class="review_item">
                                     <div class="media">
@@ -250,7 +250,7 @@
                                     <hr>
                                 </div>
                                     @endforeach
-{{--                                @endif--}}
+                                @endif
                             </div>
                         </div>
                         <div class="col-lg-6">
