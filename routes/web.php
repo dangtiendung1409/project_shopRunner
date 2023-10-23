@@ -25,7 +25,8 @@ Route::get('/category/{category:slug}', [\App\Http\Controllers\HomeController::c
 
 // details
 Route::get('/details/{product:slug}', [\App\Http\Controllers\HomeController::class,"details"]);
-Route::post('/create', [\App\Http\Controllers\HomeController::class,"create"]);
+// add rating/reviews
+Route::match(['GET', 'POST'],'/add-rating', [\App\Http\Controllers\RatingController::class,"addRating"]);
 
 
 // cart

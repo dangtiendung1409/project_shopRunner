@@ -62,7 +62,7 @@
                             <tr>
                                 <th width="10"><input type="checkbox" id="all"></th>
                                 <th>ID</th>
-{{--                                <th>Product Name</th>--}}
+                                <th>Product Name</th>
 {{--                                <th>Ảnh</th>--}}
                                 <th>User Email</th>
                                 <th>Message</th>
@@ -75,23 +75,24 @@
                                 <tr>
                                     <td width="10"><input type="checkbox" name="check1" value="1"></td>
                                     <td>{{$rating['id']}}</td>
-{{--                                    <td>{{$rating['product']}}</td>--}}
+                                    <td>{{$rating['product']['name']}}</td>
 {{--                                    ['product_name']--}}
                                     <td>{{$rating['user']['email']}}</td>
                                     <td>{{$rating['message']}}</td>
                                     <td>{{$rating['rating']}}</td>
 
                                     <td style="display:flex;">
-{{--                                        <form action="{{url("admin-delete-đon-hang",['orders'=>$item->id])}}" method="POST">--}}
-{{--                                            @csrf--}}
-{{--                                            @method("DELETE")--}}
-{{--                                            <button onclick="return confirm('Chắc chắn muốn xoá sản phẩm: {{$item->name}}')" class="btn btn-primary btn-sm trash" type="submit"--}}
-{{--                                            ><i class="fas fa-trash-alt"></i>--}}
-{{--                                            </button>--}}
-{{--                                        </form>--}}
-{{--                                        <button style="margin-left: 5px" class="btn btn-primary btn-sm edit" type="button" title="Sửa"  data-toggle="modal"--}}
-{{--                                                data-target="#ModalUP"><a href="{{url("admin-edit-đon-hang",['orders'=>$item->id])}}"><i class="fas fa-edit"></i></a></button>--}}
-
+                                        @if($rating['status']==1)
+                                            <a class="updateRatingStatus" id="rating-{{$rating['id']}}"
+                                               rating_id="{{$rating['id']}}" href="javacript:void(0)">
+                                                <i class="fas fa-toggle-on" aria-hidden="true" status="Active"></i>
+                                            </a>
+                                        @else
+                                            <a class="updateRatingStatus" id="rating-{{$rating['id']}}"
+                                               rating_id="{{$rating['id']}}" href="javacript:void(0)">
+                                                <i class="fas fa-toggle-off" aria-hidden="true" status="Inactive"></i>
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -178,4 +179,30 @@
     MODAL
     -->
     @include("admin.layouts.scripts")
-@endsection
+@stop
+    @section("before_js")
+        <script>
+            $(document).on("click", ".updateRatingStatus", function(){
+                var status = $(this).children("i").attr("status");
+                var rating_id = $(this).attr("rating_id");
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
+                    },
+                    type: 'post',
+                    url: '/admin/update-rating-status',
+                    data: {status:status, rating_id:rating_id},
+                    susscess: function(resp){
+                        if(resp['status']==0){
+                            $("#rating"+rating_id).html("<i class='fas fa-toggle-on' aria-hidden='true' status='Active'></i>");
+                        } else if(resp['status']==0){
+                            $("#rating"+rating_id).html("<i class='fas fa-toggle-off' aria-hidden='true' status='Inactive'></i>");
+                        }
+                    }, error: function(){
+                        alert("Error");
+                    }
+                });
+            });
+        </script>
+    @stop
