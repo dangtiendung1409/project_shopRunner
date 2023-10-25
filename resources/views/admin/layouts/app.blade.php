@@ -20,5 +20,5 @@ MODAL
 
 
 </body>
-
+@yield("before_js")
 </html>

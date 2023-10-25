@@ -25,7 +25,8 @@ Route::get('/category/{category:slug}', [\App\Http\Controllers\HomeController::c
 
 // details
 Route::get('/details/{product:slug}', [\App\Http\Controllers\HomeController::class,"details"]);
-Route::post('/create', [\App\Http\Controllers\HomeController::class,"create"]);
+// add rating/reviews
+Route::match(['GET', 'POST'],'/add-rating', [\App\Http\Controllers\RatingController::class,"addRating"]);
 
 
 // cart
@@ -105,4 +106,7 @@ Route::delete('/nhan-vien-delete-đon-hang/{order}', [\App\Http\Controllers\Nhan
 Route::get('/nhan-vien-quan-ly-khach-hang', [\App\Http\Controllers\NhanVienController::class,"QuanLyKhachHang"]);
 Route::get('/nhan-vien-quan-ly-thong-tin-khuyen-mai', [\App\Http\Controllers\NhanVienController::class,"QuanLyThongTinKhuyenMai"]);
 Route::get('/nhan-vien-add-thong-tin-khuyen-mai', [\App\Http\Controllers\NhanVienController::class,"AddThongTinKhuyenMai"]);
+
+// rating
+Route::get('/admin-rating', [\App\Http\Controllers\RatingController::class,"ratings"]);
 
