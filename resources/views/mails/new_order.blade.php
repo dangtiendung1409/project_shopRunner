@@ -4,12 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Confirmation</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         body {
             font-family: Arial, sans-serif;
         }
+
+        .row-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .col-md-4 {
+            width: calc(33.33% - 2px); /* Adjust width as needed, considering the 20px gap */
+            background-color: white; /* Set the background color to white */
+            border: 1px solid #ddd; /* Add a 1px solid border with #ddd color */
+            border-radius: 5px; /* Add a 5px border radius for rounded corners */
+            text-align: center;
+            padding: 20px 0 20px 0;
+        }
+
+
 
         .container {
             width: 80%;
@@ -25,9 +41,7 @@
             margin-bottom: 20px;
         }
 
-        .order-details {
-            margin-bottom: 20px;
-        }
+
 
         .order-details table {
             width: 100%;
@@ -44,9 +58,7 @@
             background-color: #f2f2f2;
         }
 
-        .order-summary {
-            margin-bottom: 20px;
-        }
+
 
         .order-summary table {
             width: 100%;
@@ -63,17 +75,12 @@
             background-color: #f2f2f2;
         }
 
-        .continue-shopping {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+
+
         body{margin-top:20px;
         }
 
-        .order-list {
-            width: 100%;
-            border-collapse: collapse;
-        }
+
 
         .order-list th, .order-list td {
             border: 1px solid black;
@@ -87,18 +94,25 @@
 
         .cart__total {
             background:white;
-            padding: 35px 40px 40px;
-            width: 370px;
-            margin-left: 66%;
+            padding: 3px 40px 40px;
+            width: 30%;
             border: 1px solid  #ddd;
+            margin-left: 20px;
         }
+        .cart__total h4 {
+            font-size: 23px;
+            border-bottom: 1px solid #ddd;
+            padding: 1px 0 20px 20px;
 
+        }
 
 
 
         .cart__total ul {
             margin-bottom: 5px;
+            padding-left: 1px
         }
+
 
         .cart__total ul li {
             list-style: none;
@@ -112,8 +126,76 @@
 
         .cart__total ul li span {
             font-weight: 700;
-            color: #e53637;
+            /*color: #e53637;*/
             float: right;
+        }
+
+        .Order{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .Order_list{
+            width: 60%;
+            background-color: white;
+            justify-content: space-between;
+            border: 1px solid #ddd;
+
+
+        }
+        .Order_list h4{
+            font-size: 23px;
+            border-bottom: 1px solid  #ddd;
+            padding: 3px 0 20px 20px;
+        }
+
+
+        .Order_list_product {
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+
+
+        .Order_list_product1 {
+            flex: 2;
+            max-width: 30%; /* Điều chỉnh max-width theo cần thiết */
+            word-wrap: break-word;
+            margin-left: 30px;
+            width:300px;
+
+        }
+        .Order_list_product1 h5{
+            font-size: 18px;
+            font-weight: normal; /* Loại bỏ kiểu in đậm */
+
+        }
+
+        .Order_list_product p{
+
+            padding: 17px 5px 0 0;
+            text-align: right; /* Canh giá trị giá bên phải */
+
+        }
+        .Order_list_product {
+            display: flex;
+        }
+
+        .Order_list_product img {
+            margin-right: 10px;
+        }
+
+        .Order_list_product1 {
+            flex-grow: 1;
+        }
+
+        .quantity, .total {
+            margin-left: auto;
+        }
+        .cart__total ul li.vat {
+            border-bottom: 1px solid #ddd;
         }
 
 
@@ -128,7 +210,7 @@
             within two minutes, please check your spam folder to see if the email was routed there.</p>
         <p><span style="margin-right: 5px;"><i class="fa-regular fa-clock"></i></span><strong>Time Placed</strong>: 16/10/2023 16:12 CEST</p>
     </div>
-    <div class="row">
+    <div class="row-container">
         <div class="col-md-4 mb-4">
             <div class="card">
                 <i class="fas fa-map-marked-alt fa-3x mx-auto mt-3"></i>
@@ -137,7 +219,6 @@
                     <p class="card-text">456 Business Avenue</p>
                     <p class="card-text">City, Country</p>
                     <p class="card-text">Phone: +987654321</p>
-
                 </div>
             </div>
         </div>
@@ -166,20 +247,39 @@
             </div>
         </div>
     </div>
-    <h4>Order List</h4>
 
+    <div class="Order">
 
+        <div class="Order_list">
 
-    <div class="cart__total">
-        <h4>Order Summary</h4>
-        <ul>
-            <li>Subtotal <span>$ 169.50</span></li>
-            <li>VAT <span>10%</span></li>
-            <li>Total <span>$ 189.50</span></li>
-        </ul>
+            <h4>Order List</h4>
+
+            <div class="Order_list_product" >
+                <div class="Order_list_product1">
+
+                    <h5>adidas forum</h5>
+                </div>
+                <div class="quantity">
+                    <p>Qty: 1</p>
+                </div>
+                <div class="total">
+                    <p>$19</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cart__total">
+            <h4>Order Summary</h4>
+
+            <ul>
+                <li>Subtotal <span>$189.50</span></li>
+                <li class="vat">VAT <span>10%</span></li>
+                <li>Total <span>$189.50</span></li>
+            </ul>
+        </div>
 
     </div>
-
 
 </div>
 
