@@ -57,6 +57,14 @@
                                     @endif
                                 </li>
                                 <li><a href="#"><span>Sold</span> : {{$product->Orders->count()}}</a></li>
+                                <hr>
+{{--                                <div>--}}
+{{--                                    @php--}}
+{{--                                    $star = 1;--}}
+{{--                                    while ($star<=$avgStarRating) {  @endphp--}}
+{{--                                    <span>&#9733;</span>--}}
+{{--                                    @php       $star++;                }@endphp {{$avgRating}}--}}
+{{--                                </div>--}}
                             </ul>
                             <p>{{$product->description}}</p>
                             <div class="product__details__quantity">
@@ -220,30 +228,53 @@
                                         </ul>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="review_list">
-
+                                @if(count($ratings)>1)
+                                    @foreach($ratings as $rating)
                                 <div class="review_item">
                                     <div class="media">
                                         <div class="media-body">
-                                            <h4>bla bla</h4>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
+                                            @php
+                                                $count=1;
+                                                while ($count<= $rating['rating']){ @endphp
+                                                    <span>&#9733;</span>
+                                                @php $count++; } @endphp
+                                            <h4>By {{$rating['user']['name']}}</h4>
+                                            <h4>{{$rating->message}}</h4>
+                                            <h4>{{ date("d-m-Y H:i:s", strtotime($rating->created_at))}}</h4>
                                         </div>
                                     </div>
-                                    <p>ânsa</p>
+                                    <p>{{$rating->message}}</p>
+                                    <hr>
                                 </div>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="review_box">
                                 <h4>Add a Review</h4>
                                 <hr>
-                                <form class="row contact_form" action="{{url("/details/{product:slug}")}}" method="post" id="contactForm" novalidate="novalidate">
-                                 @csrf
+                                <form class="row contact_form" name="ratingForm" id="ratingForm contactForm"
+                                      action="{{url("/add-rating")}}" method="post" novalidate="novalidate">
+                                    @csrf
+                                    {{--        rating--}}
+                                    <input type="hidden" class="form-control" id="product_id" name="product_id" value="{{$product->id}}">
+                                    <div class="rate">
+                                        <input type="radio" id="star5" name="rating" value="5" />
+                                        <label for="star5">5 stars</label>
+                                        <input type="radio" id="star4" name="rating" value="4" />
+                                        <label for="star4">4 stars</label>
+                                        <input type="radio" id="star3" name="rating" value="3" />
+                                        <label for="star3">3 stars</label>
+                                        <input type="radio" id="star2" name="rating" value="2" />
+                                        <label for="star2">2 stars</label>
+                                        <input type="radio" id="star1" name="rating" value="1" />
+                                        <label for="star1">1 star</label>
+                                    </div>
+
                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="name" name="name" placeholder="Your Full name">
@@ -257,16 +288,8 @@
                                     <hr>
                                     <div class="col-md-12 text-right">
                                         <hr>
-                                        {{--                                        rating--}}
-                                        <div class="rate" data-rate-value= ></div>
-                                        <form action="" method="POST" class="form-inline" role="form">
-                                            <div class="form-group row">
-                                                <input type="hidden" class="form-control" name="rating_start" id="rating_start">
-                                                <input type="hidden" class="form-control" id="product_id" name="product_id" value="{{$product->id}}">
-                                            </div>
-                                        </form>
-                                        <button type="submit" value="submit" class="site-btn">Submit Now</button>
 
+                                        <button type="submit" value="submit" class="site-btn">Submit Now</button>
                                     </div>
                                 </form>
                             </div>
@@ -331,50 +354,43 @@
 @stop()
 @section("before_css")
     <style>
-        .rate{
-            color: #fbd600;
-            font-size: 30px;
+        .rate {
+            float: left;
+            height: 46px;
+            padding: 0 10px;
         }
-        #rating_start, #product_id{
-            height: 40px;
-            width: 60px;
+        .rate:not(:checked) > input {
+            position:absolute;
+            top:-9999px;
         }
-        .rate-base-layer
-        {
-            color: #aaa;
+        .rate:not(:checked) > label {
+            float:right;
+            width:1em;
+            overflow:hidden;
+            white-space:nowrap;
+            cursor:pointer;
+            font-size:30px;
+            color:#ccc;
         }
-        .rate-hover-layer
-        {
-            color: orange;
+        .rate:not(:checked) > label:before {
+            content: '★ ';
+        }
+        .rate > input:checked ~ label {
+            color: #ffc700;
+        }
+        .rate:not(:checked) > label:hover,
+        .rate:not(:checked) > label:hover ~ label {
+            color: #deb217;
+        }
+        .rate > input:checked + label:hover,
+        .rate > input:checked + label:hover ~ label,
+        .rate > input:checked ~ label:hover,
+        .rate > input:checked ~ label:hover ~ label,
+        .rate > label:hover ~ input:checked ~ label {
+            color: #c59b08;
         }
 
-        .rate-base-layer span, .rate-base-layer span
-        {
-            opacity: 0.5;
-        }
-        hr
-        {
-            border: 1px solid #ccc;
-        }
     </style>
 @stop()
 @section("before_js")
-    {{--rating--}}
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js" charset="utf-8"></script>
-    <script>
-        $(document).ready(function(){
-            var options = {
-                max_value: 5,
-                step_size: 1,
-                initial_value: 3,
-            }
-            $(".rate").rate(options).on("click", function() {
-                var ratingValue = $(this).rate("getValue");  // Get the clicked rating value
-                $("#rating_start").val(ratingValue);  // Update the input value
-            });
-
-        });
-    </script>
-
-    <!-- Related Section End -->
 @stop()
