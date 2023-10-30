@@ -29,11 +29,22 @@
                         </form>
                         <a href="#" class="dropbtn" onclick="showDropdown()"><img src="/customer/img/icon/user.png" style="width:20px;" alt=""></a>
                         <div class="dropdown-content" id="myDropdown">
+                            @auth()
                             <div class="top-icon">
-                                <p style="font-weight:600; font-size: 16px; font-family: 'Nunito Sans', 'sans-serif';">Hi Đặng Tiến Dũng</p>
+                                <a href="#"><i class="fa fa-user"></i> {{auth()->user()->name}}</a>
                             </div>
+
                             <a href="{{url("my-order")}}"><i class="fa-brands fa-shopify"></i>My order</a>
-                            <a href="{{url("/login-user")}}"><i class="fa-solid fa-right-to-bracket"></i>Exit</a>
+                            <form id="form-logout" action="{{route("logout")}}" method="post">
+                                @csrf
+                            </form>
+                            <a href="javascript:void(0);" onclick="$('#form-logout').submit();">
+                                <i class="fa fa-align-right"></i>Logout</a>
+                            @endauth
+                                @guest()
+                                    <a href="{{route("login")}}"><i class="fa fa-user"></i>Login</a>
+                                    <a href="{{url("register")}}"><i class="fa fa-user"></i>Register</a>
+                                @endguest
                         </div>
                         <a href="{{url("/cart")}}">
                             <img src="/customer/img/icon/cart.png" alt="">

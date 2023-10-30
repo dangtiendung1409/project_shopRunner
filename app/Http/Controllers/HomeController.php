@@ -17,6 +17,11 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class HomeController
 {
+    public function __construct()
+    {
+//        $this->middleware("auth");
+    }
+
     // giao diện khách hàng
     public function home(Request $request){
 

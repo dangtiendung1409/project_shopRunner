@@ -13,9 +13,6 @@ class adminController extends Controller
     public function qlNhanVien(){
         return view("admin.pages.qlNhanVien");
     }
-    //
-
-  
 
     public function addNhanVien(){
         return view("admin.pages.addNhanVien");
