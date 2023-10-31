@@ -7,6 +7,12 @@
     <!-- Map End -->
 
     <!-- Contact Section Begin -->
+    @if(session()->has("success"))
+        <div class="alert alert-success" role="alert">
+            {{ session("success") }}
+        </div>
+    @endif
+
     <section class="contact spad">
         <div class="container">
             <div class="row">
@@ -32,16 +38,17 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="contact__form">
-                        <form action="#">
+                        <form action="{{ url('contact') }}" method="post">
+                            @csrf
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Name">
+                                    <input type="text" name="name" placeholder="Name">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Email">
+                                    <input type="text" name="email" placeholder="Email">
                                 </div>
                                 <div class="col-lg-12">
-                                    <textarea placeholder="Message"></textarea>
+                                    <textarea name="contact_message" placeholder="Message"></textarea>
                                     <button type="submit" class="site-btn">Send Message</button>
                                 </div>
                             </div>

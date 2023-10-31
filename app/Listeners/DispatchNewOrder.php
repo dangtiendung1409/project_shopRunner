@@ -26,7 +26,7 @@ class DispatchNewOrder
         $order = $event->order;
         Mail::to($order->email)
 //            ->cc("mail nhan vien")
-            ->bcc("dungdtth2209011@fpt.edu.vn")
+            ->bcc("minhtnth2209037@fpt.edu.vn")
             ->send(new OrderMail($order));
       //  dd(session("cartShop"));
     }

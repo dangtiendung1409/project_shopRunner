@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendContactEmail;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\favoriteOrder;
 use App\Models\Product;
 use App\Mail\OrderMail;
@@ -13,6 +15,7 @@ use App\Models\Order;
 
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class HomeController
@@ -227,8 +230,42 @@ class HomeController
         return redirect()->to("thank-you/$order->id");
     }
 
-    public function contactShop(){
-       return view("pages.customer.contactShop");
+    public function contactShop(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            // Xử lý khi request là phương thức POST
+
+            // Validate the form data
+            $validatedData = $request->validate([
+                'name' => 'required',
+                'email' => 'required|email',
+                'contact_message' => 'required',
+            ]);
+
+            // Create a new contact message
+            $contact = new Contact();
+            $contact->name = $validatedData['name'];
+            $contact->email = $validatedData['email'];
+            $contact->message = $validatedData['contact_message']; // Thay $validatedData['message'] bằng $validatedData['contact_message']
+            $contact->save();
+
+            // Gửi email
+            $name = $validatedData['name'];
+            $email = $validatedData['email'];
+            $contact_message = $validatedData['contact_message'];
+
+
+            Mail::to('dungdtth2209011@fpt.edu.vn')
+                ->send(new SendContactEmail($name, $email, $contact_message));
+
+            // Redirect back with a success message
+            return redirect()->back()->with('success', 'Your message has been sent successfully!');
+        } elseif ($request->isMethod('get')) {
+            // Xử lý khi request là phương thức GET
+
+            // Hiển thị trang liên hệ
+            return view('pages.customer.contactShop');
+        }
     }
     public function aboutUs(){
        return view("pages.customer.aboutUs");

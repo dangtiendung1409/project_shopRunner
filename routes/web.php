@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 // Giao diện người dùng
 Auth::routes();
 Route::get('/', [\App\Http\Controllers\HomeController::class,"home"]);
-Route::get('/contact', [\App\Http\Controllers\HomeController::class,"contactShop"]);
+Route::match(['get', 'post'], '/contact', [\App\Http\Controllers\HomeController::class, 'contactShop']);
 Route::get('/about-us', [\App\Http\Controllers\HomeController::class,"aboutUs"]);
 
 // search product
