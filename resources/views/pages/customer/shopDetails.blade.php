@@ -57,14 +57,7 @@
                                     @endif
                                 </li>
                                 <li><a href="#"><span>Sold</span> : {{$product->Orders->count()}}</a></li>
-                                <hr>
-{{--                                <div>--}}
-{{--                                    @php--}}
-{{--                                    $star = 1;--}}
-{{--                                    while ($star<=$avgStarRating) {  @endphp--}}
-{{--                                    <span>&#9733;</span>--}}
-{{--                                    @php       $star++;                }@endphp {{$avgRating}}--}}
-{{--                                </div>--}}
+
                             </ul>
                             <p>{{$product->description}}</p>
                             <div class="product__details__quantity">
@@ -100,7 +93,7 @@
                     <svg width="24" height="20" class="x0F377" id="heart-icon">
                         <path d="M19.469 1.262c-5.284-1.53-7.47 4.142-7.470 4.142S9.815-.269 4.532 1.262C-1.937 3.138.44 13.832 12 19.333c11.559-5.501 13.938-16.195 7.469-18.07z" stroke="#FF424F" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linejoin="round"></path>
                     </svg>
-                    <div class="Ne7dEf">Đã thích (16)</div>
+                    <div class="Ne7dEf">Yêu thích</div>
                 </button>
             </form>
         </div>
@@ -231,26 +224,26 @@
 
                             </div>
                             <div class="review_list">
-{{--                                @if(count($ratings)>1)--}}
-{{--                                    @foreach($ratings as $rating)--}}
-{{--                                <div class="review_item">--}}
-{{--                                    <div class="media">--}}
-{{--                                        <div class="media-body">--}}
-{{--                                            @php--}}
-{{--                                                $count=1;--}}
-{{--                                                while ($count<= $rating['rating']){ @endphp--}}
-{{--                                                    <span>&#9733;</span>--}}
-{{--                                                @php $count++; } @endphp--}}
-{{--                                            <h4>By {{$rating['user']['name']}}</h4>--}}
-{{--                                            <h4>{{$rating->message}}</h4>--}}
-{{--                                            <h4>{{ date("d-m-Y H:i:s", strtotime($rating->created_at))}}</h4>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <p>{{$rating->message}}</p>--}}
-{{--                                    <hr>--}}
-{{--                                </div>--}}
-{{--                                    @endforeach--}}
-{{--                                @endif--}}
+                                @php $ratings = \App\Models\Review::all(); @endphp
+                                @if(count($ratings)>1)
+                                    @foreach($ratings as $rating)
+                                <div class="review_item">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h4>{{$rating['user']['name']}}</h4>
+                                            @php
+                                                $count=1;
+                                                while ($count<= $rating['rating']){ @endphp
+                                                    <span style="color: #ffc700">&#9733;</span>
+                                                @php $count++; } @endphp
+                                            <h4>{{ date("d-m-Y H:i:s", strtotime($rating->created_at))}}</h4>
+                                            <h4>{{$rating->message}}</h4>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -274,21 +267,13 @@
                                         <input type="radio" id="star1" name="rating" value="1" />
                                         <label for="star1">1 star</label>
                                     </div>
-
-                                   <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Full name">
-                                        </div>
-                                    </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <textarea class="form-control" name="message" id="message" rows="1" placeholder="Review"></textarea>
                                         </div>
                                     </div>
-                                    <hr>
                                     <div class="col-md-12 text-right">
                                         <hr>
-
                                         <button type="submit" value="submit" class="site-btn">Submit Now</button>
                                     </div>
                                 </form>
