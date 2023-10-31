@@ -231,26 +231,26 @@
 
                             </div>
                             <div class="review_list">
-                                @if(count($ratings)>1)
-                                    @foreach($ratings as $rating)
-                                <div class="review_item">
-                                    <div class="media">
-                                        <div class="media-body">
-                                            @php
-                                                $count=1;
-                                                while ($count<= $rating['rating']){ @endphp
-                                                    <span>&#9733;</span>
-                                                @php $count++; } @endphp
-                                            <h4>By {{$rating['user']['name']}}</h4>
-                                            <h4>{{$rating->message}}</h4>
-                                            <h4>{{ date("d-m-Y H:i:s", strtotime($rating->created_at))}}</h4>
-                                        </div>
-                                    </div>
-                                    <p>{{$rating->message}}</p>
-                                    <hr>
-                                </div>
-                                    @endforeach
-                                @endif
+{{--                                @if(count($ratings)>1)--}}
+{{--                                    @foreach($ratings as $rating)--}}
+{{--                                <div class="review_item">--}}
+{{--                                    <div class="media">--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            @php--}}
+{{--                                                $count=1;--}}
+{{--                                                while ($count<= $rating['rating']){ @endphp--}}
+{{--                                                    <span>&#9733;</span>--}}
+{{--                                                @php $count++; } @endphp--}}
+{{--                                            <h4>By {{$rating['user']['name']}}</h4>--}}
+{{--                                            <h4>{{$rating->message}}</h4>--}}
+{{--                                            <h4>{{ date("d-m-Y H:i:s", strtotime($rating->created_at))}}</h4>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <p>{{$rating->message}}</p>--}}
+{{--                                    <hr>--}}
+{{--                                </div>--}}
+{{--                                    @endforeach--}}
+{{--                                @endif--}}
                             </div>
                         </div>
                         <div class="col-lg-6">

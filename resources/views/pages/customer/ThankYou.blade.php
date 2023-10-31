@@ -45,7 +45,7 @@
                         <ul class="list">
                             <li><a href="#"><span>Full Name</span>: {{ $order->full_name}}</a></li>
                             <li><a href="#"><span>Telephone</span>: {{ $order->tel}}</a></li>
-                            <li><a href="#"><span>Email</span>: {{ $order->payment_method }}</a></li>
+                            <li><a href="#"><span>Email</span>: {{ $order->email }}</a></li>
                         </ul>
                     </div>
                 </div>

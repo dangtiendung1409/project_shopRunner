@@ -43,4 +43,7 @@ class adminController extends Controller
     public function qlKhachHang(){
         return view("admin.pages.qlKhachHang");
     }
+    public function baoCaoDoanhThu(){
+        return view("admin.pages.baoCaoDoanhThu");
+    }
 }

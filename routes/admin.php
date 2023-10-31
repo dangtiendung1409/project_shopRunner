@@ -16,6 +16,7 @@ Route::get('/admin-add-nhan-vien', [\App\Http\Controllers\adminController::class
 
 Route::get('/admin-quan-ly-thong-tin-khuyen-mai', [\App\Http\Controllers\adminController::class,"qlThongTinKhuyenMai"]);
 Route::get('/admin-add-thong-tin-khuyen-mai', [\App\Http\Controllers\adminController::class,"addThongTinKhuyenMai"]);
+Route::get('/admin-bao-cao-doanh-thu', [\App\Http\Controllers\adminController::class,"baoCaoDoanhThu"]);
 
 // giao diện nhân viên
 Route::get('/nhan-vien-add-san-pham', [\App\Http\Controllers\NhanVienProductController::class,"AddSanPham"]);
