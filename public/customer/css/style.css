@@ -503,7 +503,7 @@ ol {
 .top-icon {
     display: flex;
     align-items: center;
-    padding: 10px 10px 7px;
+    padding: 10px 3px 2px;
     position: relative;
     border-bottom: 1px solid #a7a9b0;
     margin-bottom: 20px;
