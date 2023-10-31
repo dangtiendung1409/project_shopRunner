@@ -156,22 +156,26 @@ class HomeController
         ],[
             "required"=>"Vui lòng nhập thông tin."
         ]);
+
         // calculate
-        $cartShop = session()->has("cartShop")?session("cartShop"):[];
+        $cartShop = session()->has("cartShop") ? session("cartShop") : [];
         $subtotal = 0;
         foreach ($cartShop as $item){
             $subtotal += $item->price * $item->buy_qty;
         }
-        $total = $subtotal*1.1; // vat: 10%
+        $total = $subtotal * 1.1; // vat: 10%
+
+        // Tạo đơn hàng mới và lưu vào cơ sở dữ liệu
         $order = Order::create([
-            "grand_total"=>$total,
-            "full_name"=>$request->get("full_name"),
-            "email"=>$request->get("email"),
-            "tel"=>$request->get("tel"),
-            "address"=>$request->get("address"),
-            "shipping_method"=>$request->get("shipping_method"),
-            "payment_method"=>$request->get("payment_method")
+            "grand_total" => $total,
+            "full_name" => $request->get("full_name"),
+            "email" =>$request->get("email"), // Sử dụng giá trị "email" ở đây
+            "tel" => $request->get("tel"),
+            "address" => $request->get("address"),
+            "shipping_method" => $request->get("shipping_method"),
+            "payment_method" => $request->get("payment_method")
         ]);
+
         foreach ($cartShop as $item){
             DB::table("order_products")->insert([
                 "order_id"=>$order->id,
@@ -182,9 +186,11 @@ class HomeController
             $product = Product::find($item->id);
             $product->update(["qty"=>$product->qty- $item->buy_qty]);
         }
-        // clear cart
-        session()->forget("cartShop");
-        event(new CreateNewOrder($order));
+        if ($order->payment_method === 'COD') {
+            // Nếu là "COD", xóa toàn bộ sản phẩm khỏi giỏ hàng
+            session()->forget("cartShop");
+            event(new CreateNewOrder($order));
+        }
 
         // thanh toan paypal
         if($order->payment_method == "Paypal"){
@@ -340,13 +346,19 @@ class HomeController
     }
 
     public function paypalSuccess(Order $order){
+        // Đầu tiên, kiểm tra xem payment_method có phải là "COD" không
+
+        // Cập nhật trạng thái đơn hàng và làm bất kỳ công việc khác liên quan đến thanh toán ở đây.
+        session()->forget("cartShop");
+        event(new CreateNewOrder($order));
         $order->update([
-            "is_paid"=>true,
-            "status"=> Order::CONFIRMED
-        ]);// cập nhật trạng thái đã trả tiền
+            "is_paid" => true,
+            "status" => Order::CONFIRMED
+        ]);
 
         return redirect()->to("thank-you/$order->id");
     }
+
     public function paypalCancel(Order $order){
         return redirect()->to("thank-you/$order->id");
     }

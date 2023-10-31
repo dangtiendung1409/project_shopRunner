@@ -13,14 +13,12 @@
         </div>
         <hr>
         <ul class="app-menu">
-            <li><a class="app-menu__item haha" href="phan-mem-ban-hang.html"><i class='app-menu__icon bx bx-cart-alt'></i>
-                    <span class="app-menu__label">POS Bán Hàng</span></a></li>
+
             <li ><a  class="app-menu__item active" href="{{url("admin/admin-quan-ly-nhan-vien")}}"><i class='app-menu__icon bx bx-id-card'></i>
                     <span class="app-menu__label">Quản lý nhân viên</span></a></li>
-            <li style=" background: #c6defd; border-radius: .375rem;"><a style="color: rgb(22 22 72)" class="app-menu__item" href="{{url("admin/admin-quan-ly-khach-hang")}}"><i class="fa-solid fa-users"></i><span style="margin-left: 21px"
+            <li ><a  class="app-menu__item" href="{{url("admin/admin-quan-ly-khach-hang")}}"><i class="fa-solid fa-users"></i><span style="margin-left: 21px"
                                                                                                                                                                                                                      class="app-menu__label">Quản lý khách hàng</span></a></li>
-            <li><a class="app-menu__item" href="#"><i class='app-menu__icon bx bx-user-voice'></i><span
-                        class="app-menu__label">Quản lý khách hàng</span></a></li>
+
             <li><a class="app-menu__item" href="{{url("admin/admin-quan-ly-san-pham")}}"><i
                         class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
             </li>
@@ -55,6 +53,51 @@
                                         class="fas fa-trash-alt"></i> Xóa tất cả </a>
                             </div>
                         </div>
+
+                        <form style="display: flex" action="{{url("admin/admin-quan-ly-đon-hang")}}" method="get">
+                            <div class="input-group input-group-sm mr-2" style="width: 150px; margin-left: 5px;">
+                                <input  type="text" name="grand_total" class="form-control" placeholder="Grand Total">
+                            </div>
+
+                            <div class="input-group input-group-sm mr-2" style="width: 150px;">
+                                <input  type="text" name="shipping_method" class="form-control" placeholder="Shipping Method">
+                            </div>
+
+                            <div class="input-group input-group-sm mr-2" style="width: 150px;">
+                                <input  type="text" name="payment_method" class="form-control" placeholder="Payment Method">
+                            </div>
+
+                            <div class="input-group input-group-sm mr-2" style="width: 150px; margin-left: 5px;">
+                                <select style="height: 45px;" name="paid" class="form-control">
+                                    <option >Select piad</option>
+                                    <option value="1">Đã thanh toán</option>
+                                    <option value="0">Chưa thanh toán</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group input-group-sm mr-2" style="width: 150px; margin-left: 5px;">
+                                <select style="height: 45px;" name="status" class="form-control">
+                                    <option value="0" >select status</option>
+                                    <option value="pending" >Chờ xác nhận</option>
+                                    <option value="confirmed" >Đã xác nhận</option>
+                                    <option value="shipping" >Đang giao hàng</option>
+                                    <option value="shipped">Đã giao hàng</option>
+                                    <option value="complete" >Hoàn thành</option>
+                                    <option value="cancel" >Huỷ</option>
+                                </select>
+
+                            </div>
+
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input  value="{{app("request")->input("search")}}" type="text" name="search" class="form-control float-right" placeholder="Search">
+
+                                <button style="height: 45px; margin-left: 3px;"  type="submit" class="btn btn-default">
+                                    <i   class="fas fa-search"></i>
+                                </button>
+
+                            </div>
+                        </form>
+
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
                             <tr>
@@ -83,7 +126,7 @@
                                 <td>{!! $item->getPaid() !!}</td>
                                 <td>{!! $item->getStatus() !!}</td>
                                 <td style="display:flex;">
-                                <form action="{{url("admin-delete-đon-hang",['orders'=>$item->id])}}" method="POST">
+                                <form action="{{url("admin/admin-delete-đon-hang",['orders'=>$item->id])}}" method="POST">
                                     @csrf
                                     @method("DELETE")
                                     <button onclick="return confirm('Chắc chắn muốn xoá sản phẩm: {{$item->name}}')" class="btn btn-primary btn-sm trash" type="submit"
@@ -91,7 +134,7 @@
                                     </button>
                                 </form>
                                 <button style="margin-left: 5px" class="btn btn-primary btn-sm edit" type="button" title="Sửa"  data-toggle="modal"
-                                        data-target="#ModalUP"><a href="{{url("admin-edit-đon-hang",['orders'=>$item->id])}}"><i class="fas fa-edit"></i></a></button>
+                                        data-target="#ModalUP"><a href="{{url("admin/admin-edit-đon-hang",['orders'=>$item->id])}}"><i class="fas fa-edit"></i></a></button>
 
                                 </td>
                             </tr>

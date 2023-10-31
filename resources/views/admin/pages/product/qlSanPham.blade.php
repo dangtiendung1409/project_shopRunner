@@ -13,22 +13,17 @@
         </div>
         <hr>
         <ul class="app-menu">
-            <li><a class="app-menu__item haha" href="phan-mem-ban-hang.html"><i class='app-menu__icon bx bx-cart-alt'></i>
-                    <span class="app-menu__label">POS Bán Hàng</span></a></li>
             <li ><a  class="app-menu__item active" href="{{url("admin/admin-quan-ly-nhan-vien")}}"><i class='app-menu__icon bx bx-id-card'></i>
                     <span class="app-menu__label">Quản lý nhân viên</span></a></li>
-            <li style=" background: #c6defd; border-radius: .375rem;"><a style="color: rgb(22 22 72)" class="app-menu__item" href="{{url("admin/admin-quan-ly-khach-hang")}}"><i class="fa-solid fa-users"></i><span style="margin-left: 21px"
-                                                                                                                                                                                                                     class="app-menu__label">Quản lý khách hàng</span></a></li>
-            <li><a class="app-menu__item" href="#"><i class='app-menu__icon bx bx-user-voice'></i><span
-                        class="app-menu__label">Quản lý khách hàng</span></a></li>
-            <li><a class="app-menu__item" href="{{url("admin/admin-quan-ly-san-pham")}}"><i
+            <li><a class="app-menu__item" href="{{url("admin/admin-quan-ly-khach-hang")}}"><i class="fa-solid fa-users"></i><span style="margin-left: 21px"
+                                                                                                                            class="app-menu__label">Quản lý khách hàng</span></a></li>
+            <li style=" background: #c6defd; border-radius: .375rem;"><a  style="color: rgb(22 22 72)" class="app-menu__item" href="{{url("admin/admin-quan-ly-san-pham")}}"><i
                         class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
             </li>
-            <li style=" background: #c6defd; border-radius: .375rem;"><a style="color: rgb(22 22 72)" class="app-menu__item" href="{{url("admin/admin-quan-ly-đon-hang")}}"><i class='app-menu__icon bx bx-task'></i><span
+            <li ><a class="app-menu__item" href="{{url("admin/admin-quan-ly-đon-hang")}}"><i class='app-menu__icon bx bx-task'></i><span
                         class="app-menu__label">Quản lý đơn hàng</span></a></li>
             <li><a class="app-menu__item" href="{{url("admin/admin-quan-ly-thong-tin-khuyen-mai")}}"><i class='app-menu__icon bx bx-user-voice'></i><span
                         class="app-menu__label">Quản lý thông tin khuyến mãi</span></a></li>
-
 
         </ul>
     </aside>
@@ -47,7 +42,7 @@
                         <div class="row element-button">
                             <div class="col-sm-2">
 
-                                <a class="btn btn-add btn-sm" href="{{url("admin-add-san-pham")}}" title="Thêm"><i class="fas fa-plus"></i>
+                                <a class="btn btn-add btn-sm" href="{{url("admin/admin-add-san-pham")}}" title="Thêm"><i class="fas fa-plus"></i>
                                     Tạo mới sản phẩm</a>
                             </div>
 
@@ -60,6 +55,34 @@
                                         class="fas fa-trash-alt"></i> Xóa tất cả </a>
                             </div>
                         </div>
+
+                        <form style="display: flex" action="{{url("admin/admin-quan-ly-san-pham")}}" method="get">
+                            <div class="input-group input-group-sm mr-2" style="width: 150px; margin-left: 5px;">
+                                <select value="{{app("request")->input("category_id")}}" style="height: 45px;" name="category_id" class="form-control">
+                                    <option value="0">Filter by category</option>
+                                    @foreach($categories as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="input-group input-group-sm mr-2" style="width: 100px; float:left">
+                                <input value="{{app("request")->input("price_from")}}" class="form-control" type="number" name="price_from" placeholder="Price from"/>
+                            </div>
+                            <div class="input-group input-group-sm mr-2" style="width: 100px; float:left">
+                                <input value="{{app("request")->input("price_to")}}" class="form-control" type="number" name="price_to" placeholder="Price to"/>
+                            </div>
+
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input  value="{{app("request")->input("search")}}" type="text" name="search" class="form-control float-right" placeholder="Search">
+
+                                <button style="height: 45px; margin-left: 3px;"  type="submit" class="btn btn-default">
+                                    <i   class="fas fa-search"></i>
+                                </button>
+
+                            </div>
+                        </form>
+
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
                             <tr>
@@ -85,7 +108,7 @@
                                 <td>{{$item->price}}</td>
                                 <td>{{$item->Category->name}}</td>
                                 <td style="display: flex">
-                                    <form action="{{url("admin-delete-san-pham",['products'=>$item->id])}}" method="POST">
+                                    <form action="{{url("admin/admin-delete-san-pham",['products'=>$item->id])}}" method="POST">
                                         @csrf
                                         @method("DELETE")
                                         <button onclick="return confirm('Chắc chắn muốn xoá sản phẩm: {{$item->name}}')" class="btn btn-primary btn-sm trash" type="submit"
@@ -93,7 +116,7 @@
                                         </button>
                                     </form>
                                     <button style="margin-left: 5px" class="btn btn-primary btn-sm edit" type="button" title="Sửa"  data-toggle="modal"
-                                            data-target="#ModalUP"><a href="{{url("admin-edit-san-pham",['products'=>$item->id])}}"><i class="fas fa-edit"></i></a></button>
+                                            data-target="#ModalUP"><a href="{{url("admin/admin-edit-san-pham",['products'=>$item->id])}}"><i class="fas fa-edit"></i></a></button>
 
                                 </td>
                             </tr>

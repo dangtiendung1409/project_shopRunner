@@ -15,6 +15,7 @@ class Order extends Model
         "full_name",
         "tel",
         "address",
+        "email",
         "grand_total",
         "shipping_method",
         "payment_method",
@@ -50,4 +51,80 @@ class Order extends Model
             case self::CANCEL: return "<span class='text-danger'>Huỷ</span>";
         }
     }
+
+    public function scopeSearch($query,$request){
+        if($request->has("search")&& $request->get("search") != ""){
+            $search = $request->get("search");
+            $query->where("name","like","%$search%")
+                ->orWhere("description","like","%$search%");
+        }
+        return $query;
+    }
+
+    public function scopeFilterByGrandTotal($query, $request)
+    {
+        if ($request->has("grand_total") && $request->get("grand_total") != 0) {
+            $grand_total = $request->get("grand_total");
+            $query->where("grand_total", ">=", $grand_total);
+        }
+        return $query;
+    }
+
+    public function scopeFilterByShippingMethod($query, $request)
+    {
+        if ($request->has("shipping_method") && $request->get("shipping_method") != "") {
+            $shipping_method = $request->get("shipping_method");
+            $query->where("shipping_method", "like", "%$shipping_method%");
+        }
+        return $query;
+    }
+
+    public function scopeFilterByPaymentMethod($query, $request)
+    {
+        if ($request->has("payment_method") && $request->get("payment_method") != "") {
+            $payment_method = $request->get("payment_method");
+            $query->where("payment_method", "like", "%$payment_method%");
+        }
+        return $query;
+    }
+
+    public function scopeFilterByPaid($query, $request)
+    {
+        if ($request->has("paid") && $request->get("paid") !== "") {
+            $paid = $request->get("paid");
+            $query->where("is_paid", $paid);
+        }
+        return $query;
+    }
+
+
+
+    public function scopeFilterByStatus($query, $request)
+    {
+        if ($request->has("status") && $request->get("status") != "") {
+            $status = $request->get("status");
+
+            // Sử dụng một mảng chứa tên trạng thái và số tương ứng
+            $statusMapping = [
+                "pending" => self::PENDING,
+                "confirmed" => self::CONFIRMED,
+                "shipping" => self::SHIPPING,
+                "shipped" => self::SHIPPED,
+                "complete" => self::COMPLETE,
+                "cancel"  => self::CANCEL,
+            ];
+
+            // Kiểm tra xem $status có tồn tại trong $statusMapping không
+            if (array_key_exists($status, $statusMapping)) {
+                $statusValue = $statusMapping[$status];
+                $query->where("status", $statusValue);
+            } else {
+                // Nếu $status không khớp với bất kỳ tên trạng thái nào, bạn có thể xử lý tùy ý, ví dụ: không thực hiện lọc hoặc thông báo lỗi.
+                // Ví dụ: return $query;
+            }
+        }
+
+        return $query;
+    }
+
 }

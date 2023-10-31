@@ -10,12 +10,22 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    public function qlSanPham(){
+    public function qlSanPham(Request $request){
 //        $products = Product::onlyTrashed()->orderBy("id","desc")->paginate(20);
 //        $products = Product::withTrashed()->orderBy("id","desc")->paginate(20);
-        $products = Product::orderBy("id","desc")->paginate(20);
+        $search = $request->get("search");
+        $category_id = $request->get("category_id");
+        $price_from = $request->get("price_from");
+        $price_to = $request->get("price_to");
+        $rate = $request->get("rate");
+        $qty_from = $request->get("qty_from");
+        $qty_to = $request->get("qty_to");
+        $products = Product::Search($request)->FilterCategory($request)->FromPrice($request)->ToPrice($request)->orderBy("id","desc")->paginate(20);
+        // Scope search
+        $categories = Category::all();
         return view("admin.pages.product.qlSanPham",[
-            "products"=>$products
+            "products"=>$products,
+            'categories'=>$categories
         ]);
     }
 
@@ -58,7 +68,7 @@ class ProductController extends Controller
             ]);
 
 
-            return redirect()->to("/admin-quan-ly-san-pham")->with("success", "Thêm sản phẩm thành công");
+            return redirect()->to("admin/admin-quan-ly-san-pham")->with("success", "Thêm sản phẩm thành công");
         } catch (\Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }
@@ -97,7 +107,7 @@ class ProductController extends Controller
                 "category_id"=>$request->get("category_id"),
                 "description"=>$request->get("description"),
             ]);
-            return redirect()->to("/admin-quan-ly-san-pham")->with("success","Successfully");
+            return redirect()->to("admin/admin-quan-ly-san-pham")->with("success","Successfully");
         }catch (\Exception $e){
             return redirect()->back()->withErrors($e->getMessage());
         }
@@ -107,7 +117,7 @@ class ProductController extends Controller
         try {
             $product->delete();
 
-            return redirect()->to("/admin-quan-ly-san-pham")->with("success", "Xóa sản phẩm thành công");
+            return redirect()->to("admin/admin-quan-ly-san-pham")->with("success", "Xóa sản phẩm thành công");
         } catch (\Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }

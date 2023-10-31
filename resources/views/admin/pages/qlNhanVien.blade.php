@@ -45,7 +45,7 @@
                         <div class="row element-button">
                             <div class="col-sm-2">
 
-                                <a class="btn btn-add btn-sm" href="{{url("admin-add-nhan-vien")}}" title="Thêm"><i class="fas fa-plus"></i>
+                                <a class="btn btn-add btn-sm" href="{{url("admin/admin-add-nhan-vien")}}" title="Thêm"><i class="fas fa-plus"></i>
                                     Tạo mới nhân viên</a>
                             </div>
 

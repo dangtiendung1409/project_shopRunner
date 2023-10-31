@@ -20,7 +20,11 @@
 
     <section class="order_details section_gap">
         <div class="container">
-            <h3 style="margin-top: 80px" class="title_confirmation">Thank you. Your order has been received.</h3>
+            @if($order->payment_method == "Paypal" && !$order->is_paid)
+                <h3 style="margin-top: 80px; color: #e0a800" class="title_confirmation">Please pay again</h3>
+            @else
+                <h3 style="margin-top: 80px;" class="title_confirmation">Thank you. Your order has been received.</h3>
+            @endif
             <div class="row order_d_inner">
                 <div class="col-lg-4">
                     <div class="details_item">
@@ -29,7 +33,7 @@
                             <li><a href="#"><span>Order number</span>: {{$order->id}}</a></li>
                             <li><a href="#"><span>Date</span>: {{ $order->created_at->format('d/m/Y') }}</a></li>
                             @foreach($order->Products as $item)
-                            <li><a href="#"><span>Total</span>: ${{$item->pivot->qty*$item->pivot->price}}</a></li>
+                                <li><a href="#"><span>Total</span>: ${{$item->pivot->qty*$item->pivot->price}}</a></li>
                             @endforeach
                             <li><a href="#"><span>Payment method</span>: {{ $order->payment_method }}</a></li>
                         </ul>
@@ -85,7 +89,7 @@
                 </div>
             </div>
             @if($order->payment_method == "Paypal" && !$order->is_paid)
-                <a href="#" class="btn btn-warning">Thanh toán lại</a>
+                <a style="float: right; margin-top: 10px;" href="{{url('/check-out')}}" class="btn btn-warning">Thanh toán lại</a>
             @endif
         </div>
 

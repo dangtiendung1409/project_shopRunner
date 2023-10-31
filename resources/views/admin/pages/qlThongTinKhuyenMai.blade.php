@@ -46,7 +46,7 @@
 
                             <div class="col-sm-2">
 
-                                <a class="btn btn-add btn-sm" href="{{url("admin-add-thong-tin-khuyen-mai")}}" title="Thêm"><i class="fas fa-plus"></i>
+                                <a class="btn btn-add btn-sm" href="{{url("admin/admin-add-thong-tin-khuyen-mai")}}" title="Thêm"><i class="fas fa-plus"></i>
                                     Thêm khuyến mãi mới</a>
                             </div>
 

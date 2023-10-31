@@ -4,20 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Color;
-use App\Models\Material;
+
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
-    public function qlDonHang(){
-        $orders = Order::orderBy("id","desc")->paginate(20);
-        return view("admin.pages.Order.qlDonHang",["orders"=>$orders]);
+    public function qlDonHang(Request $request){
+        $grand_total = $request->get("grand_total");
+        $shipping_method = $request->get("shipping_method");
+        $payment_method = $request->get("payment_method");
+        $paid = $request->get("paid");
+        $status = $request->get("rate");
+
+        $orders = Order::Search($request)->FilterByGrandTotal($request)->FilterByShippingMethod($request)->FilterByStatus($request)->FilterByPaymentMethod($request)->FilterByPaid($request)->orderBy("id","desc")->paginate(20);
+        $categories = Category::all();
+        return view("admin.pages.Order.qlDonHang",["orders"=>$orders
+            ,            'categories'=>$categories
+
+        ]);
     }
 
     public function editDonHang(Order $order){
@@ -47,7 +55,7 @@ class OrderController extends Controller
 
 
 
-            return redirect()->to("/admin-quan-ly-đon-hang")->with("success","Successfully");
+            return redirect()->to("admin/admin-quan-ly-đon-hang")->with("success","Successfully");
         }catch (\Exception $e){
             return redirect()->back()->withErrors($e->getMessage());
         }
@@ -57,7 +65,7 @@ class OrderController extends Controller
         try {
             DB::table('order_products')->where('order_id', $order->id)->delete();
             $order->delete();
-            return redirect()->to("/nhan-vien-delete-đon-hang")->with("success","Successfully");
+            return redirect()->to("admin/admin-quan-ly-đon-hang")->with("success","Successfully");
         }catch (\Exception $e){
             return redirect()->back()->withErrors($e->getMessage());
         }
