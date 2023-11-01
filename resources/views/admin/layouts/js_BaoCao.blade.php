@@ -1,3 +1,5 @@
+<!-- Essential javascripts for application to work-->
+<script src="admin/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="admin/js/plugins/chart.js"></script>
 <script type="text/javascript">
     var data = {
