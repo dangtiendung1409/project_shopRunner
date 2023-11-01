@@ -1927,6 +1927,7 @@ button:focus {
     vertical-align: middle; /* Để căn chỉnh đúng hàng với nút ADD TO CART và icon heart */
     margin-right: 6px;
 }
+
 .btn-update {
     color: #fff;
     background-color: #007bff;

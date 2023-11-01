@@ -77,6 +77,8 @@
                             @if($product->qty > 0)
                                 <button type="submit" class="site-btn">ADD TO CART</button>
                             @endif
+                            <div class="error-message" style="color: red;"></div>
+
                         </div>
                     </form>
                 </div>
@@ -350,6 +352,24 @@
             </div>
         </div>
     </section>
+    <script>
+        // Lấy số lượng sản phẩm trong kho từ biến PHP
+        var productQtyInStock = <?php echo $product->qty; ?>;
+
+        // Lắng nghe sự kiện khi người dùng nhấn nút "ADD TO CART"
+        document.querySelector('.site-btn').addEventListener('click', function(event) {
+            var inputQty = parseInt(document.querySelector('input[name="buy_qty"]').value);
+            var errorMessage = document.querySelector('.error-message');
+
+            // Kiểm tra số lượng nhập vào
+            if (inputQty > productQtyInStock) {
+                errorMessage.textContent = 'Số lượng nhập vào lớn hơn số lượng hàng trong kho.';
+                event.preventDefault(); // Ngăn chặn việc thêm vào giỏ hàng
+            } else {
+                errorMessage.textContent = ''; // Xóa thông báo lỗi nếu số lượng hợp lệ
+            }
+        });
+    </script>
 
 @stop()
 @section("before_css")
@@ -394,3 +414,4 @@
 @stop()
 @section("before_js")
 @stop()
+
