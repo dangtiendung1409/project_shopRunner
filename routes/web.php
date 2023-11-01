@@ -30,6 +30,12 @@ Route::get('/category/{category:slug}', [\App\Http\Controllers\HomeController::c
 Route::get('/details/{product:slug}', [\App\Http\Controllers\HomeController::class,"details"]);
 Route::post('/create', [\App\Http\Controllers\HomeController::class,"create"]);
 
+// add rating/reviews
+Route::match(['GET', 'POST'],'/add-rating', [\App\Http\Controllers\RatingController::class,"addRating"]);
+
+// rating
+Route::get('/admin-rating', [\App\Http\Controllers\RatingController::class,"ratings"]);
+
 Route::middleware("auth")->group(function (){
 // cart
 Route::get('/add-to-cart/{product}', [\App\Http\Controllers\HomeController::class,"addToCart"]);
@@ -54,6 +60,7 @@ Route::get('/favorite-order', [\App\Http\Controllers\HomeController::class,"favo
 
 // thank you
 Route::get('/thank-you/{order}', [\App\Http\Controllers\HomeController::class,"ThankYou"]);
+
 
 });
 

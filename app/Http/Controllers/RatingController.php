@@ -46,8 +46,8 @@ class RatingController extends Controller
             $rating->message = $data['message'];
             $rating->rating = $data['rating'];
             $rating->save();
-            $message = " Thanks for rating this product!!";
-            Session::flash('error', $message);
+            $message = "Thanks for rating this product!!";
+            Session::flash('success', $message);
             return redirect()->back();
         }
     }
