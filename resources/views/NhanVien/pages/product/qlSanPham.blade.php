@@ -13,14 +13,14 @@
         </div>
         <hr>
         <ul class="app-menu">
-            <li style=" background: #c6defd; border-radius: .375rem;"><a  style="color: rgb(22 22 72)" class="app-menu__item" href="{{url("nhan-vien-quan-ly-san-pham")}}"><i
+            <li style=" background: #c6defd; border-radius: .375rem;"><a  style="color: rgb(22 22 72)" class="app-menu__item" href="{{url("employee/nhan-vien-quan-ly-san-pham")}}"><i
                         class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
             </li>
-            <li><a class="app-menu__item" href="{{url("nhan-vien-quan-ly-khach-hang")}}"><i class="fa-solid fa-users"></i><span style="margin-left: 21px"
+            <li><a class="app-menu__item" href="{{url("employee/nhan-vien-quan-ly-khach-hang")}}"><i class="fa-solid fa-users"></i><span style="margin-left: 21px"
                                                                                           class="app-menu__label">Quản lý khách hàng</span></a></li>
-            <li ><a class="app-menu__item" href="{{url("nhan-vien-quan-ly-đon-hang")}}"><i class='app-menu__icon bx bx-task'></i><span
+            <li ><a class="app-menu__item" href="{{url("employee/nhan-vien-quan-ly-đon-hang")}}"><i class='app-menu__icon bx bx-task'></i><span
                         class="app-menu__label">Quản lý đơn hàng</span></a></li>
-            <li><a class="app-menu__item" href="{{url("nhan-vien-quan-ly-thong-tin-khuyen-mai")}}"><i class='app-menu__icon bx bx-user-voice'></i><span
+            <li><a class="app-menu__item" href="{{url("employee/nhan-vien-quan-ly-thong-tin-khuyen-mai")}}"><i class='app-menu__icon bx bx-user-voice'></i><span
                         class="app-menu__label">Quản lý thông tin khuyến mãi</span></a></li>
 
         </ul>

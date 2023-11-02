@@ -5,9 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\Color;
-use App\Models\Size;
-use App\Models\Material;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -27,6 +25,17 @@ class DatabaseSeeder extends Seeder
             'password'=> bcrypt("12345678"),
             "role"=>"ADMIN"
         ]);
+        \App\Models\User::factory(10)->create([
+            'role' => 'EMPLOYEE',
+        ]);
+
+        // Lấy và lưu mật khẩu mặc định của tài khoản nhân viên
+        $employees = \App\Models\User::where('role', 'EMPLOYEE')->get();
+        foreach ($employees as $employee) {
+            // Lưu mật khẩu mặc định vào cơ sở dữ liệu
+            $employee->password = Hash::make('12345678');
+            $employee->save();
+        }
 
         \App\Models\User::factory(10)->create();
         \App\Models\Brands::factory(10)->create();

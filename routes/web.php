@@ -74,3 +74,6 @@ Route::get('/thank-you/{order}', [\App\Http\Controllers\HomeController::class,"T
 Route::middleware(["auth","is_admin"])->prefix("admin")->group(function () {
     include_once "admin.php";
 });
+Route::middleware(["auth","is_employee"])->prefix("employee")->group(function () {
+    include_once "employee.php";
+});

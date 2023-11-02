@@ -226,27 +226,27 @@
 
                             </div>
                             <div class="review_list">
-                                @php $ratings = \App\Models\Review::all(); @endphp
-                                @if(count($ratings)>1)
-                                    @foreach($ratings as $rating)
-                                <div class="review_item">
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <h4>{{$rating['user']['name']}}</h4>
-                                            @php
-                                                $count=1;
-                                                while ($count<= $rating['rating']){ @endphp
-                                                    <span style="color: #ffc700">&#9733;</span>
-                                            @php $count++; } @endphp
-                                            <h4>{{ date("d-m-Y H:i:s", strtotime($rating->created_at))}}</h4>
-                                            <br>
-                                            <h4>{{$rating->message}}</h4>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                </div>
-                                    @endforeach
-                                @endif
+{{--                                @php $ratings = \App\Models\Review::all(); @endphp--}}
+{{--                                @if(count($ratings)>1)--}}
+{{--                                    @foreach($ratings as $rating)--}}
+{{--                                <div class="review_item">--}}
+{{--                                    <div class="media">--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <h4>{{$rating['user']['name']}}</h4>--}}
+{{--                                            @php--}}
+{{--                                                $count=1;--}}
+{{--                                                while ($count<= $rating['rating']){ @endphp--}}
+{{--                                                    <span style="color: #ffc700">&#9733;</span>--}}
+{{--                                            @php $count++; } @endphp--}}
+{{--                                            <h4>{{ date("d-m-Y H:i:s", strtotime($rating->created_at))}}</h4>--}}
+{{--                                            <br>--}}
+{{--                                            <h4>{{$rating->message}}</h4>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <hr>--}}
+{{--                                </div>--}}
+{{--                                    @endforeach--}}
+{{--                                @endif--}}
                             </div>
                         </div>
                         <div class="col-lg-6">

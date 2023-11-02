@@ -63,7 +63,7 @@ class HomeController
     }
     public function details(Product $product)
     {
-        $ratings = Review::with('user')->where('product_id')->orderBy('id', 'desc')->get()->toArray(); // where('status', 1)
+//        $ratings = Review::with('user')->where('product_id')->orderBy('id', 'desc')->get()->toArray(); // where('status', 1)
 //        $ratingSum = Review::where('product_id')->sum('rating'); // where('status', 1)
 //        $ratingCount = Review::where('product_id')->count();
 //        $avgRating = round($ratingSum/$ratingCount,2);
@@ -76,7 +76,7 @@ class HomeController
             ->limit(4)
             ->get();
 
-        return view("pages.customer.shopDetails", compact("product",  "relate", "ratings")); //, "ratings"
+        return view("pages.customer.shopDetails", compact("product",  "relate")); //, "ratings"
     }
 
     public function addToCart(Product $product, Request $request){
