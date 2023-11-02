@@ -237,8 +237,9 @@
                                                 $count=1;
                                                 while ($count<= $rating['rating']){ @endphp
                                                     <span style="color: #ffc700">&#9733;</span>
-                                                @php $count++; } @endphp
+                                            @php $count++; } @endphp
                                             <h4>{{ date("d-m-Y H:i:s", strtotime($rating->created_at))}}</h4>
+                                            <br>
                                             <h4>{{$rating->message}}</h4>
                                         </div>
                                     </div>

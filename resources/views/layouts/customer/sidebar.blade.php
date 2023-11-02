@@ -30,12 +30,12 @@
                         <div class="card-body">
                             <div class="shop__sidebar__price">
                                 <ul>
-                                    <li><a href="#">$0.00 - $50.00</a></li>
-                                    <li><a href="#" >$50.00 - $100.00</a></li>
-                                    <li><a href="#" >$100.00 - $150.00</a></li>
-                                    <li><a href="#">$150.00 - $200.00</a></li>
-                                    <li><a href="#" >$200.00 - $250.00</a></li>
-                                    <li><a href="#">$250.00+</a></li>
+                                    <li><a href="/category?price=1">$0.00 - $50.00</a></li>
+                                    <li><a href="?price=2" >$50.00 - $100.00</a></li>
+                                    <li><a href="?price=3" >$100.00 - $150.00</a></li>
+                                    <li><a href="?price=4">$150.00 - $200.00</a></li>
+                                    <li><a href="?price=5" >$200.00 - $250.00</a></li>
+                                    <li><a href="?price=6">$250.00+</a></li>
                                 </ul>
                             </div>
 
