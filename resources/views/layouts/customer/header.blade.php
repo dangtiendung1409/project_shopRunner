@@ -43,7 +43,7 @@
                             @endauth
                                 @guest()
                                     <a href="{{route("login")}}"><i class="fa-solid fa-right-to-bracket"></i>Login</a>
-                                    <a href="{{url("register")}}"><i class="fa fa-user"></i>Register</a>
+                                    <a href="{{route("login")}}"><i class="fa fa-user"></i>Register</a>
                                 @endguest
                         </div>
                         <a href="{{url("/cart")}}">
