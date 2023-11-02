@@ -50,6 +50,7 @@ class RatingController extends Controller
             Session::flash('success', $message);
             return redirect()->back();
         }
+
     }
 
 }
