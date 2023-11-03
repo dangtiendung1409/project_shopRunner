@@ -40,9 +40,8 @@ class HomeController
     }
 
     public function categoryShop(Request $request){
-
         $query = Product::orderBy("created_at", "desc");
-//        $products = Product::orderBy("id", "desc")->paginate(12);
+
         if ($request ->price ){
 //            dd($request->price);
             $price = $request->price;
