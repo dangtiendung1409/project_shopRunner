@@ -73,56 +73,7 @@
                     </div>
                     <button type="submit" class="btn"> {{ __('Login') }}</button>
                     <div class="create-account">
-                        <p>Create A New Account? <a style="color: blue;" href="#" class="register-link">Sign Up</a></p>
-                    </div>
-                </form>
-            </div>
-            <div class="form-box register">
-                <form method="POST" action="{{ route('register') }}">
-                    @csrf
-                    <h2 style="color: blue;">Sign Up</h2>
-
-                    <div class="input-box">
-                        <span class="icon"><i class='bx bxs-user'></i></span>
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                        <label >Name</label>
-                        @error('name')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><i class='bx bxs-envelope'></i></span>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                        <label >Email</label>
-                        @error('email')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><i class='bx bxs-lock-alt' ></i></span>
-                        <input  id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                        <label >Password</label>
-                        @error('password')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><i class='bx bxs-lock-alt' ></i></span>
-                        <input  id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                        <label>Confirm Password</label>
-                    </div>
-                    <div class="remember-password">
-                        <label for=""><input type="checkbox">I agree with this statment</label>
-                    </div>
-                    <button class="btn"> {{ __('Register') }}</button>
-                    <div class="create-account">
-                        <p>Already Have An Account? <a style="color: blue;" href="#" class="login-link">Sign In</a></p>
+                        <p>Create A New Account? <a style="color: blue;" href="{{route("register")}}" class="register-link">Sign Up</a></p>
                     </div>
                 </form>
             </div>
