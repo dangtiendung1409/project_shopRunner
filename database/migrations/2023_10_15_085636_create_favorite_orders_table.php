@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('favorite_orders', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedBigInteger("user_id")->nullable();
             $table->decimal('price', 8, 2);
             $table->string('thumbnail');
             $table->timestamps();
+            $table->foreign("user_id")->references("id")->on("users");
         });
     }
 

@@ -91,11 +91,17 @@
                 <input type="hidden" name="name" value="{{ $product->name }}">
                 <input type="hidden" name="price" value="{{ $product->price }}">
                 <input type="hidden" name="thumbnail" value="{{ $product->thumbnail }}">
-                <button type="submit" class="IYjGwk" tabindex="0">
-                    <svg width="24" height="20" class="x0F377" id="heart-icon">
-                        <path d="M19.469 1.262c-5.284-1.53-7.47 4.142-7.470 4.142S9.815-.269 4.532 1.262C-1.937 3.138.44 13.832 12 19.333c11.559-5.501 13.938-16.195 7.469-18.07z" stroke="#FF424F" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linejoin="round"></path>
-                    </svg>
-                    <div class="Ne7dEf">Yêu thích</div>
+                <button type="submit" class="IYjGwk" tabindex="0" id="favorite-button">
+                    @if (Auth::check() && Auth::user()->hasFavorite($product->name))
+                        <svg width="24" height="20" class="x0F377 favorite" id="heart-icon">
+                            <i style="color: red; float: left; margin-right: 10px; margin-top: 15px" class="fa-solid fa-heart fa-xl"></i>
+                        </svg>
+                    @else
+                        <svg width="24" height="20" class="x0F377 not-favorite" id="heart-icon">
+                            <i style="color: red; float: left; margin-right: 10px; margin-top: 15px" class="fa-regular fa-heart fa-xl"></i>
+                        </svg>
+                    @endif
+                    <div style="margin-top: 15px; font-size: 16px" class="Ne7dEf">Favorite({{ $favoriteCount }})</div>
                 </button>
             </form>
         </div>

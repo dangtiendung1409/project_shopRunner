@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
@@ -90,8 +91,9 @@ class HomeController
             ->orderBy("created_at", "desc")
             ->limit(4)
             ->get();
+        $favoriteCount = FavoriteOrder::where('name', $product->name)->count();
 
-        return view("pages.customer.shopDetails", compact("product",  "relate" , "ratings")); //, "ratings" , "ratingSum"
+        return view("pages.customer.shopDetails", compact("product",  "relate" , "ratings", "favoriteCount")); //, "ratings" , "ratingSum"
     }
 
     public function addToCart(Product $product, Request $request){
@@ -307,28 +309,35 @@ class HomeController
     public function addToFavorite(Request $request)
     {
         // Lấy dữ liệu từ request
+        $user = Auth::user(); // Đảm bảo người dùng đã đăng nhập
+
         $name = $request->input('name');
         $price = $request->input('price');
         $thumbnail = $request->input('thumbnail');
 
-        // Kiểm tra xem sản phẩm đã tồn tại trong danh sách yêu thích hay chưa
-        $existingProduct = FavoriteOrder::where('name', $name)->first();
-        if ($existingProduct) {
-            // Sản phẩm đã tồn tại, xử lý tùy ý (ví dụ: hiển thị thông báo lỗi)
-            return redirect()->back()->with('error', 'Sản phẩm đã có trong danh sách yêu thích');
+        // Kiểm tra xem sản phẩm đã tồn tại trong danh sách yêu thích của người dùng hay chưa
+        $existingFavorite = FavoriteOrder::where('user_id', $user->id)
+            ->where('name', $name)
+            ->first();
+
+        if ($existingFavorite) {
+            // Sản phẩm đã tồn tại trong danh sách yêu thích, bạn có thể xóa sản phẩm khỏi danh sách yêu thích ở đây
+            $existingFavorite->delete();
+
+            return redirect()->back()->with('success', 'Xóa sản phẩm khỏi danh sách yêu thích thành công');
         }
 
-        // Tạo đối tượng FavoriteOrder
+        // Nếu sản phẩm chưa tồn tại trong danh sách yêu thích, thêm nó vào cơ sở dữ liệu
         $favoriteOrder = new FavoriteOrder();
+        $favoriteOrder->user_id = $user->id;
         $favoriteOrder->name = $name;
         $favoriteOrder->price = $price;
         $favoriteOrder->thumbnail = $thumbnail;
-
-        // Lưu đối tượng vào cơ sở dữ liệu
         $favoriteOrder->save();
 
-        // Chuyển hướng người dùng đến trang "Favorite Order"
         return redirect()->back()->with('success', 'Thêm sản phẩm vào danh sách yêu thích thành công');
+        return response()->json(['favorite' => true]); // Nếu sản phẩm đã được yêu thích
+
     }
     public function removeFavorite(Request $request)
     {
@@ -357,7 +366,7 @@ class HomeController
     public function favoriteOrder()
     {
         // Lấy danh sách các sản phẩm yêu thích từ cơ sở dữ liệu
-        $favoriteProducts = FavoriteOrder::all();
+        $favoriteProducts = FavoriteOrder::where('user_id', auth()->user()->id)->get();
 
         // Truyền danh sách sản phẩm yêu thích đến view "favoriteOrder"
         return view("pages.customer.favoriteOrder", compact('favoriteProducts'));

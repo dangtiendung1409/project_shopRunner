@@ -8,10 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class favoriteOrder extends Model
 {
     use HasFactory;
+
     protected $table = 'favorite_orders';
+
     protected $fillable = [
         'name',
+        "user_id",
         'price',
-        'thumbnail'
+        'thumbnail',
+
+
     ];
+
 }
