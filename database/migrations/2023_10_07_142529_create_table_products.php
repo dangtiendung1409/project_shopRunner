@@ -20,9 +20,9 @@ return new class extends Migration
             $table->unsignedSmallInteger("qty")->default(0);
             $table->longText("description")->nullable();
             $table->unsignedBigInteger("category_id");
-            $table->unsignedBigInteger("brand_id");
+//            $table->unsignedBigInteger("brand_id");
             $table->foreign("category_id")->references("id")->on("categories");
-            $table->foreign("brand_id")->references("id")->on("brands");
+//            $table->foreign("brand_id")->references("id")->on("brands");
             $table->timestamps();
         });
     }
