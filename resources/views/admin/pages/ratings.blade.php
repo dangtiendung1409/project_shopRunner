@@ -65,6 +65,7 @@
                                 <th>Product Name</th>
 {{--                                <th>Ảnh</th>--}}
                                 <th>User Email</th>
+                                <th>User</th>
                                 <th>Message</th>
                                 <th>Ratings</th>
                             </tr>
@@ -76,8 +77,8 @@
                                     <td width="10"><input type="checkbox" name="check1" value="1"></td>
                                     <td>{{$rating['id']}}</td>
                                     <td>{{$rating['product']['name']}}</td>
-{{--                                    ['product_name']--}}
                                     <td>{{$rating['user']['email']}}</td>
+                                    <td>{{$rating['user']['name']}}</td>
                                     <td>{{$rating['message']}}</td>
                                     <td>{{$rating['rating']}}</td>
 

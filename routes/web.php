@@ -32,7 +32,6 @@ Route::post('/create', [\App\Http\Controllers\HomeController::class,"create"]);
 
 // add rating/reviews
 Route::match(['GET', 'POST'],'/add-rating', [\App\Http\Controllers\RatingController::class,"addRating"]);
-
 // rating
 Route::get('/admin-rating', [\App\Http\Controllers\RatingController::class,"ratings"]);
 

@@ -41,17 +41,31 @@ class HomeController
 
     public function categoryShop(Request $request){
 
-        $query = Product::orderBy("created_at", "desc");
-        $products = $query->paginate(12);
-//        if ($request ->price ){
-//            $price = $request->price;
-//            switch ($price){
-//                case '1':
-//                    $products->where('price', '<', 50);
-//                    break;
-//            }
-//        }
-        return view("pages.customer.categoryShop", compact("products"));
+        $query = Product::orderBy("created_at", "desc")->paginate(12);
+        $products = Product::orderBy("id", "desc")->paginate(12);
+//        $products = $query->paginate(12);
+        if ($request ->price ){
+//            dd($request->price);
+            $price = $request->price;
+            switch ($price){
+                case '1':
+                    $products->where('price', '<' , 20);
+                    break;
+                case '2':
+                    $products->whereBetween('price',[20, 40]);
+                    break;
+                case '3':
+                    $products->whereBetween('price',[40, 60]);
+                    break;
+                case '4':
+                    $products->whereBetween('price',[60, 80]);
+                    break;
+                case '5':
+                    $products->where('price',[80, 100]);
+                    break;
+            }
+        }
+        return view("pages.customer.categoryShop", compact("query","products"));
     }
 
 
@@ -63,8 +77,9 @@ class HomeController
     }
     public function details(Product $product)
     {
-//        $ratings = Review::with('user')->where('product_id')->orderBy('id', 'desc')->get()->toArray(); // where('status', 1)
-//        $ratingSum = Review::where('product_id')->sum('rating'); // where('status', 1)
+        $ratings = Review::all();
+//        $ratings = Review::with('user')->where('product_id', $product->id)->orderBy('id', 'desc')->get()->toArray(); // where('status', 1)
+//        $ratingSum = Review::where('product_id')->where('status', 1)->sum('rating'); // where('status', 1)
 //        $ratingCount = Review::where('product_id')->count();
 //        $avgRating = round($ratingSum/$ratingCount,2);
 //        $avgStarRating = round($ratingSum/$ratingCount);
@@ -76,7 +91,7 @@ class HomeController
             ->limit(4)
             ->get();
 
-        return view("pages.customer.shopDetails", compact("product",  "relate")); //, "ratings"
+        return view("pages.customer.shopDetails", compact("product",  "relate" , "ratings")); //, "ratings" , "ratingSum"
     }
 
     public function addToCart(Product $product, Request $request){
