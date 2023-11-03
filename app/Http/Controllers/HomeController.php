@@ -41,31 +41,32 @@ class HomeController
 
     public function categoryShop(Request $request){
 
-        $query = Product::orderBy("created_at", "desc")->paginate(12);
-        $products = Product::orderBy("id", "desc")->paginate(12);
-//        $products = $query->paginate(12);
+        $query = Product::orderBy("created_at", "desc");
+//        $products = Product::orderBy("id", "desc")->paginate(12);
         if ($request ->price ){
 //            dd($request->price);
             $price = $request->price;
             switch ($price){
                 case '1':
-                    $products->where('price', '<' , 20);
+                    $query->where('price', '<' , 20);
                     break;
                 case '2':
-                    $products->whereBetween('price',[20, 40]);
+                    $query->whereBetween('price',[20, 40]);
                     break;
                 case '3':
-                    $products->whereBetween('price',[40, 60]);
+                    $query->whereBetween('price',[40, 60]);
                     break;
                 case '4':
-                    $products->whereBetween('price',[60, 80]);
+                    $query->whereBetween('price',[60, 80]);
                     break;
                 case '5':
-                    $products->where('price',[80, 100]);
+                    $query->where('price', '<', 80);
                     break;
             }
         }
-        return view("pages.customer.categoryShop", compact("query","products"));
+        $products = $query->paginate(12);
+
+        return view("pages.customer.categoryShop", compact("products"));
     }
 
 
