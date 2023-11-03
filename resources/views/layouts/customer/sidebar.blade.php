@@ -40,23 +40,30 @@
                         </div>
                     </div>
                 </div>
+                <form action="shop">
                 <div class="card">
                     <div class="card-heading">
                         <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
                     </div>
                     <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
                         <div class="card-body">
-                            <div class="shop__sidebar__brand">
-                                <ul>
-                                    <li><a href="#">Louis Vuitton</a></li>
-                                    <li><a href="#">Chanel</a></li>
-                                    <li><a href="#">Hermes</a></li>
-                                    <li><a href="#">Gucci</a></li>
-                                </ul>
-                            </div>
+{{--                            <div class="shop__sidebar__brand">--}}
+{{--                                @php $brands = \App\Models\Brands::all(); @endphp--}}
+{{--                                    @foreach($brands as $brand)--}}
+{{--                                        <div class="bc-item">--}}
+{{--                                            <label for="bc-{{$brand->id}}">{{$brands->name}}</label>--}}
+{{--                                            <input type="checkbox"--}}
+{{--                                                   {{(request("brand")[$brand->id] ?? '') == 'on' ? 'checked' : ''}}--}}
+{{--                                                   id="bc-{{$brand->id}}"--}}
+{{--                                                   name="brand[{{$brand->id}}]" onchange="this.form.submit()">--}}
+{{--                                            <span class="checkmark"></span>--}}
+{{--                                        </div>--}}
+{{--                                    @endforeach--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
+                </form>
                 <div class="card">
                     <div class="card-heading">
                         <a data-toggle="collapse" data-target="#collapseSix">Tags</a>
@@ -64,13 +71,10 @@
                     <div id="collapseSix" class="collapse show" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="shop__sidebar__tags">
-                                <a href="#">Product</a>
-                                <a href="#">Bags</a>
-                                <a href="#">Shoes</a>
-                                <a href="#">Fashio</a>
-                                <a href="#">Clothing</a>
-                                <a href="#">Hats</a>
-                                <a href="#">Accessories</a>
+                                <a href="/category?category=Bags">Bags</a>
+                                <a href="/category?category=Hats">Hats</a>
+                                <a href="/category?category=Shoes">Shoes</a>
+                                <a href="/category?category=Clothing">Clothing</a>
                             </div>
                         </div>
                     </div>
