@@ -46,20 +46,20 @@ class HomeController
 //            dd($request->price);
             $price = $request->price;
             switch ($price){
-                case '1':
+                case 1:
                     $query->where('price', '<' , 20);
                     break;
-                case '2':
+                case 2:
                     $query->whereBetween('price',[20, 40]);
                     break;
-                case '3':
+                case 3:
                     $query->whereBetween('price',[40, 60]);
                     break;
-                case '4':
+                case 4:
                     $query->whereBetween('price',[60, 80]);
                     break;
-                case '5':
-                    $query->where('price', '<', 80);
+                case 5:
+                    $query->where('price', '>', 80);
                     break;
             }
         }
