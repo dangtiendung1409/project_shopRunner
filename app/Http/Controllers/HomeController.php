@@ -314,6 +314,9 @@ class HomeController
         $name = $request->input('name');
         $price = $request->input('price');
         $thumbnail = $request->input('thumbnail');
+        $productId = $request->input('product_id');
+        $categoryId = $request->input('category_id');
+
 
         // Kiểm tra xem sản phẩm đã tồn tại trong danh sách yêu thích của người dùng hay chưa
         $existingFavorite = FavoriteOrder::where('user_id', $user->id)
@@ -330,6 +333,8 @@ class HomeController
         // Nếu sản phẩm chưa tồn tại trong danh sách yêu thích, thêm nó vào cơ sở dữ liệu
         $favoriteOrder = new FavoriteOrder();
         $favoriteOrder->user_id = $user->id;
+        $favoriteOrder->product_id = $productId;
+        $favoriteOrder->category_id = $categoryId;
         $favoriteOrder->name = $name;
         $favoriteOrder->price = $price;
         $favoriteOrder->thumbnail = $thumbnail;
@@ -370,6 +375,13 @@ class HomeController
 
         // Truyền danh sách sản phẩm yêu thích đến view "favoriteOrder"
         return view("pages.customer.favoriteOrder", compact('favoriteProducts'));
+    }
+    public function Profile()
+    {
+        return view("pages.customer.profile");
+    }
+    public function EditProfile(){
+        return view("pages.customer.editprofile");
     }
     public function ThankYou(Order $order){
 //        dd(session("cartShop"));

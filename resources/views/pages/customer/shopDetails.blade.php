@@ -88,6 +88,8 @@
             </div>
             <form action="{{ url('/add-to-favorite') }}" method="GET">
                 @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <input type="hidden" name="category_id" value="{{ $product->category_id }}">
                 <input type="hidden" name="name" value="{{ $product->name }}">
                 <input type="hidden" name="price" value="{{ $product->price }}">
                 <input type="hidden" name="thumbnail" value="{{ $product->thumbnail }}">
@@ -104,6 +106,7 @@
                     <div style="margin-top: 15px; font-size: 16px" class="Ne7dEf">Favorite({{ $favoriteCount }})</div>
                 </button>
             </form>
+
         </div>
 
 
