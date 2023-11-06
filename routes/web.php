@@ -56,6 +56,9 @@ Route::get('/add-to-favorite', [\App\Http\Controllers\HomeController::class,"add
 Route::get('/remove-favorite', [\App\Http\Controllers\HomeController::class, "removeFavorite"]);
 Route::get('/clear-favorite', [\App\Http\Controllers\HomeController::class, "clearFavorite"]);
 Route::get('/favorite-order', [\App\Http\Controllers\HomeController::class,"favoriteOrder"]);
+Route::get('/profile', [\App\Http\Controllers\HomeController::class,"Profile"]);
+Route::get('/edit-profile', [\App\Http\Controllers\HomeController::class,"EditProfile"]);
+
 
 // thank you
 Route::get('/thank-you/{order}', [\App\Http\Controllers\HomeController::class,"ThankYou"]);

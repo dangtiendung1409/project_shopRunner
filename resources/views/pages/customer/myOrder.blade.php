@@ -39,6 +39,12 @@
                         <li >favorite product</li>
                     </a>
                 </div>
+                <div class="menu">
+                    <i class="fa-solid fa-user"></i>
+                    <a href="{{ url("profile") }}">
+                        <li >Profile</li>
+                    </a>
+                </div>
             </ul>
         </div>
 

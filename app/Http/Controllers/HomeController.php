@@ -381,7 +381,7 @@ class HomeController
         return view("pages.customer.profile");
     }
     public function EditProfile(){
-        return view("pages.customer.editprofile");
+        return view("pages.customer.edit-profile");
     }
     public function ThankYou(Order $order){
 //        dd(session("cartShop"));

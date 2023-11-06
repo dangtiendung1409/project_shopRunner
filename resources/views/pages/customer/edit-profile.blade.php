@@ -29,9 +29,9 @@
                     </a>
                 </div>
                 <div class="menu">
-                    <i style="color: #ff5722;" class="fa-solid fa-lock"></i>
+                    <i  class="fa-solid fa-lock"></i>
                     <a href="{{url("change-password")}}">
-                        <li style="color: #ff5722;">Change password</li>
+                        <li >Change password</li>
                     </a>
                 </div>
                 <div class="menu">
@@ -41,35 +41,76 @@
                     </a>
                 </div>
                 <div class="menu">
-                    <i class="fa-solid fa-user"></i>
+                    <i style="color: #ff5722;" class="fa-solid fa-user"></i>
                     <a href="{{ url("profile") }}">
-                        <li >Profile</li>
+                        <li style="color: #ff5722;">Profile</li>
                     </a>
                 </div>
             </ul>
         </div>
 
-        <div  class="content">
+        <div class="content">
             <div style="border-bottom: 1px solid #DDE1EF;" class="content-top">
-                <p style="color: black">Change password (For account security, please do not share your password with others)</p>
+                <p style="color: black">Profile</p>
             </div>
             <form class="form1">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email </label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Confirm password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-                <button style="background-color:#ff5722; " type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div>
+                <div class="row">
+                    <div class="form-group col-md-5">
+                        <label class="control-label">Name</label>
+                        <input type="text" name="name" value="" class="form-control" placeholder="Enter Name" required>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="exampleInputPassword1">Email</label>
+                        <input type="email" value="" name="email" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label>Telephone</label>
+                        <input type="tel" value="" name="tel" class="form-control" placeholder="Telephone">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label>Address</label>
+                        <input type="text" value="" name="qty" class="form-control" placeholder="Address">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label>Birthdate</label>
+                        <input type="date" value="" name="birthdate" class="form-control" placeholder="Ngày sinh">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label class="control-label">Gender</label>
+                        <div class="form-check">
+                            <input type="radio" name="gender" value="male" class="form-check-input" id="male">
+                            <label class="form-check-label" for="male">Male</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="gender" value="female" class="form-check-input" id="female">
+                            <label class="form-check-label" for="female">Female</label>
+                        </div>
 
+                        <!-- Thêm các tùy chọn khác nếu cần -->
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label class="control-label">Avatar</label>
+                        <input type="file" name="thumbnail" class="form-control-file" id="employeeImage" accept="image/*">
+                        <button class="btn btn-delete-image" type="button" id="deleteImage" style="display: none;"><i class="fas fa-times"></i></button>
+                        <div id="imageContainer" class="mt-2" style="display: none;">
+                            <img src="" id="previewImage" width="100" height="100">
+                        </div>
+                    </div>
+                </div>
+                <button style="background-color: #ff5722; margin-left: 900px" type="submit" class="btn btn-primary">
+                    <a style="color: white" href="#">Submit</a>
+                </button>
+            </form>
+
+
+        </div>
+
+    <style>
+        .form-group{
+            margin-left: 55px;
+        }
+
+
+    </style>
 @endsection
 

@@ -29,9 +29,9 @@
                     </a>
                 </div>
                 <div class="menu">
-                    <i style="color: #ff5722;" class="fa-solid fa-lock"></i>
+                    <i  class="fa-solid fa-lock"></i>
                     <a href="{{url("change-password")}}">
-                        <li style="color: #ff5722;">Change password</li>
+                        <li >Change password</li>
                     </a>
                 </div>
                 <div class="menu">
@@ -41,35 +41,91 @@
                     </a>
                 </div>
                 <div class="menu">
-                    <i class="fa-solid fa-user"></i>
+                    <i style="color: #ff5722;" class="fa-solid fa-user"></i>
                     <a href="{{ url("profile") }}">
-                        <li >Profile</li>
+                        <li style="color: #ff5722;">Profile</li>
                     </a>
                 </div>
             </ul>
         </div>
 
-        <div  class="content">
+        <div class="content">
             <div style="border-bottom: 1px solid #DDE1EF;" class="content-top">
-                <p style="color: black">Change password (For account security, please do not share your password with others)</p>
+                <p style="color: black">Profile</p>
             </div>
-            <form class="form1">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email </label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <form class="form2">
+                <div class="my-profile-item">
+                    <h3 class="my-profile-item-title">Full name</h3>
+                    <div class="my-profile-item-info">Nhat Minh</div>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+
+                <div class="my-profile-item">
+                    <h3 class="my-profile-item-title">Email</h3>
+                    <div class="my-profile-item-info">minh******@gmail.com</div>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Confirm password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+
+                <div class="my-profile-item">
+                    <h3 class="my-profile-item-title">Telephone</h3>
+                    <div class="my-profile-item-info" style="color: #9e9e9e">Please enter your telephone</div>
                 </div>
-                <button style="background-color:#ff5722; " type="submit" class="btn btn-primary">Submit</button>
+
+                <div class="my-profile-item">
+                    <h3 class="my-profile-item-title">Address</h3>
+                    <div class="my-profile-item-info" style="color: #9e9e9e">Please enter your address</div>
+                </div>
+
+                <div class="my-profile-item">
+                    <h3 class="my-profile-item-title">Birthdate</h3>
+                    <div class="my-profile-item-info" style="color: #9e9e9e">Please enter your birthdate</div>
+                </div>
+                <div class="my-profile-item">
+                    <h3 class="my-profile-item-title">Gender</h3>
+                    <div class="my-profile-item-info" style="color: #9e9e9e">Please enter your gender</div>
+                </div>
+
+                <button style="background-color: #ff5722;" type="edit" class="btn btn-primary">
+                    <a style="color: white" href="{{url("edit-profile")}}">Edit profile</a>
+                </button>
+
             </form>
+
         </div>
-    </div>
+<style>
+    .my-profile-item-title {
+        color: #424242;
+        font-size: 13px;
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
+    .my-profile-item-info {
+        color: #212121;
+        font-size: 14px;
+        padding-top: 7px;
+    }
+    .my-profile-item {
+        width: 300px;
+        display: inline-block;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+        padding-right: 10px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        vertical-align: top;
+        margin-bottom: 40px;
+    }
+    .form2{
+        padding: 30px 30px;
+    }
+    .form2 button{
+        width: 300px;
+        height: 60px;
+        /* margin-left: 350px; */
+    }
+</style
+
 
 @endsection
 
