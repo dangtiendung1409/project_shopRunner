@@ -36,6 +36,10 @@
                                 <li><a href="#"><span>Total</span>: ${{$item->pivot->qty*$item->pivot->price}}</a></li>
                             @endforeach
                             <li><a href="#"><span>Payment method</span>: {{ $order->payment_method }}</a></li>
+                            @if ($order->getStatus() != '<span class="text-danger">Huỷ</span>')
+                                <li><a href="#"><span>Status</span>: {!! $order->getStatus() !!}</a></li>
+                            @endif
+
                         </ul>
                     </div>
                 </div>
