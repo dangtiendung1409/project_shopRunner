@@ -181,34 +181,43 @@ class HomeController
             "required"=>"Vui lòng nhập thông tin."
         ]);
 
+
+        $user = Auth::user(); // Truy cập thông tin người dùng đã đăng nhập
+
+        if (!$user) {
+            // Người dùng chưa đăng nhập, thực hiện xử lý tương ứng hoặc thông báo lỗi.
+            return redirect()->back()->with('error', 'Bạn cần đăng nhập để đặt hàng.');
+        }
+
         // calculate
         $cartShop = session()->has("cartShop") ? session("cartShop") : [];
         $subtotal = 0;
-        foreach ($cartShop as $item){
+        foreach ($cartShop as $item) {
             $subtotal += $item->price * $item->buy_qty;
         }
         $total = $subtotal * 1.1; // vat: 10%
 
         // Tạo đơn hàng mới và lưu vào cơ sở dữ liệu
         $order = Order::create([
+            "user_id" => $user->id, // Lưu user_id của người dùng đã đăng nhập
             "grand_total" => $total,
             "full_name" => $request->get("full_name"),
-            "email" =>$request->get("email"), // Sử dụng giá trị "email" ở đây
+            "email" => $request->get("email"),
             "tel" => $request->get("tel"),
             "address" => $request->get("address"),
             "shipping_method" => $request->get("shipping_method"),
             "payment_method" => $request->get("payment_method")
         ]);
 
-        foreach ($cartShop as $item){
+        foreach ($cartShop as $item) {
             DB::table("order_products")->insert([
-                "order_id"=>$order->id,
-                "product_id"=>$item->id,
-                "qty"=>$item->buy_qty,
-                "price"=>$item->price
+                "order_id" => $order->id,
+                "product_id" => $item->id,
+                "qty" => $item->buy_qty,
+                "price" => $item->price
             ]);
             $product = Product::find($item->id);
-            $product->update(["qty"=>$product->qty- $item->buy_qty]);
+            $product->update(["qty" => $product->qty - $item->buy_qty]);
         }
         if ($order->payment_method === 'COD') {
             // Nếu là "COD", xóa toàn bộ sản phẩm khỏi giỏ hàng

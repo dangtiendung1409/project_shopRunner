@@ -16,7 +16,9 @@
 
 
 <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
-<script type="text/javascript">$('#sampleTable').DataTable();</script>
+<script type="text/javascript">
+    $('#sampleTable').DataTable();
+</script>
 
 <script>
     oTable = $('#sampleTable').dataTable();

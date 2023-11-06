@@ -18,10 +18,10 @@
         <div class="item">
             <h2 class="logo"></h2>
             <div class="text-item">
-                <h2 style="color:blue;">Welcome! <br><span>
+                <h2 style="color:#ff5732;">Welcome! <br><span>
                     To Shop Runner
                 </span></h2>
-                <p style="color: blue;">School uniforms are not only beautiful features but also memories of school days</p>
+                <p style="color: #ff5732;">Running is not just exercise, but also a journey of self-discovery</p>
                 <div class="social-icon">
                     <a  href="#"><i class='bx bxl-facebook'></i></a>
                     <a href="#"><i class='bx bxl-twitter'></i></a>
@@ -36,7 +36,7 @@
             <div class="form-box login">
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
-                    <h2 style="color: blue;">Sign Up</h2>
+                    <h2 style="color: #ff5732;">Sign Up</h2>
 
                     <div class="input-box">
                         <span class="icon"><i class='bx bxs-user'></i></span>
@@ -76,9 +76,9 @@
                     <div class="remember-password">
                         <label for=""><input type="checkbox">I agree with this statment</label>
                     </div>
-                    <button class="btn"> {{ __('Register') }}</button>
+                    <button style="background-color:#ff5732;" class="btn"> {{ __('Register') }}</button>
                     <div class="create-account">
-                        <p>Already Have An Account? <a style="color: blue;" href="{{route("login")}}" class="login-link">Sign In</a></p>
+                        <p>Already Have An Account? <a style="color: #ff5732;" href="{{route("login")}}" class="login-link">Sign In</a></p>
                     </div>
                 </form>
             </div>

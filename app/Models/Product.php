@@ -61,5 +61,9 @@ class Product extends Model
         }
         return $query;
     }
+    public function scopeOutOfStock($query)
+    {
+        return $query->where('qty', 0);
+    }
 
 }

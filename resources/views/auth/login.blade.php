@@ -18,10 +18,10 @@
         <div class="item">
             <h2 class="logo"></h2>
             <div class="text-item">
-                <h2 style="color:blue;">Welcome! <br><span>
+                <h2 style="color:#ff5732;">Welcome! <br><span>
                     To Shop Runner
                 </span></h2>
-                <p style="color: blue;">School uniforms are not only beautiful features but also memories of school days</p>
+                <p style="color: #ff5732;">Running is not just exercise, but also a journey of self-discovery</p>
                 <div class="social-icon">
                     <a  href="#"><i class='bx bxl-facebook'></i></a>
                     <a href="#"><i class='bx bxl-twitter'></i></a>
@@ -35,7 +35,7 @@
             <div class="form-box login">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-                    <h2 style="color: blue;">Sign In</h2>
+                    <h2 style="color: #ff5732;">Sign In</h2>
                     <div class="input-box">
 
                         <span class="icon"><i class='bx bxs-envelope'></i></span>
@@ -71,9 +71,9 @@
                         </a>
                         @endif
                     </div>
-                    <button type="submit" class="btn"> {{ __('Login') }}</button>
+                    <button style="background-color:#ff5732;" type="submit" class="btn"> {{ __('Login') }}</button>
                     <div class="create-account">
-                        <p>Create A New Account? <a style="color: blue;" href="{{route("register")}}" class="register-link">Sign Up</a></p>
+                        <p>Create A New Account? <a style="color: #ff5732;" href="{{route("register")}}" class="register-link">Sign Up</a></p>
                     </div>
                 </form>
             </div>

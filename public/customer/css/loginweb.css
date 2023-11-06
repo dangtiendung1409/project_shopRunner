@@ -141,7 +141,7 @@ body{
     margin-left: 10px;
     cursor: pointer;
     transition: .5s ease;
-    color: blue;
+    color: #ff5732;
 
 }
 .social-icon a:hover i{

@@ -31,7 +31,7 @@
 
                             <div class="checkout__input">
                                 <p>Full Name<span>*</span></p>
-                                <input name="full_name" value="{{old("full_name")}}" type="text" placeholder="Full Name">
+                                <input name="full_name" value="{{auth()?auth()->user()->name:old("full_name")}}" type="text" placeholder="Full Name">
                                 @error("full_name")
                                 <p class="text-danger"><i>{{$message}}</i></p>
                                 @enderror

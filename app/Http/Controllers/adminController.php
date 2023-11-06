@@ -137,7 +137,5 @@ class adminController extends Controller
         return view("admin.pages.qlKhachHang", compact("user"));
     }
 
-    public function baoCaoDoanhThu(){
-        return view("admin.pages.baoCaoDoanhThu");
-    }
+
 }

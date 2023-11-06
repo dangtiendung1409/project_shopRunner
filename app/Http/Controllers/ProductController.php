@@ -20,7 +20,12 @@ class ProductController extends Controller
         $rate = $request->get("rate");
         $qty_from = $request->get("qty_from");
         $qty_to = $request->get("qty_to");
-        $products = Product::Search($request)->FilterCategory($request)->FromPrice($request)->ToPrice($request)->orderBy("id","desc")->paginate(20);
+        $products = Product::Search($request)
+            ->FilterCategory($request)
+            ->FromPrice($request)
+            ->ToPrice($request)
+            ->orderBy("id","desc")
+            ->paginate(2000);
         // Scope search
         $categories = Category::all();
         return view("admin.pages.product.qlSanPham",[
