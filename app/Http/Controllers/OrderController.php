@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\Category;
 
 use App\Models\Order;
@@ -28,46 +29,55 @@ class OrderController extends Controller
         ]);
     }
 
-    public function editDonHang(Order $order){
-        return view("admin.pages.Order.editDonHang", compact('order'));
+    public function detail(Order $order){
+        return view("admin.pages.Order.detail", compact('order'));
     }
 
-    public function update(Order $order,Request $request){
-        $request->validate([
-            "full_name"=>"required|min:6",
-            "grand_total"=>"required|numeric|min:0",
-            "status"=>"required|numeric|min:0|max:5",
-            "tel"=>"required|min:9|max:11",
-        ]);
-        try {
+
+    public function updateOrderStatus(Order $order){
+        $currentStatus = $order->status;
+        $currentPaymentMethod = $order->payment_method;
+        // Kiểm tra trạng thái hiện tại và cập nhật trạng thái mới dựa trên điều kiện
+        if ($currentStatus === Order::PENDING) {
+            $newStatus = Order::CONFIRMED;
+        } elseif ($currentStatus === Order::CONFIRMED) {
+            $newStatus = Order::SHIPPING;
+        } elseif ($currentStatus === Order::SHIPPING) {
+            $newStatus = Order::SHIPPED;
+        } elseif ($currentStatus === Order::SHIPPED) {
+            $newStatus = Order::COMPLETE;
+        } else {
+            // Trạng thái hiện tại không phù hợp với việc cập nhật
+            // Bạn có thể xử lý tùy ý ở đây, ví dụ thông báo lỗi hoặc không thay đổi trạng thái.
+            // Ví dụ: return redirect()->back()->with('error', 'Không thể cập nhật trạng thái cho đơn hàng này.');
+            return redirect()->to("admin/admin-quan-ly-đon-hang");
+        }
+
+        if ($currentPaymentMethod === 'COD' && $newStatus === Order::COMPLETE) {
             $order->update([
-                'user_id' => $request->get('user_id'),
-                'full_name' => $request->get('full_name'),
-                'tel' => $request->get('tel'),
-                'address' => $request->get('address'),
-                'grand_total' => $request->get('grand_total'),
-                'shipping_method' => $request->get('shipping_method'),
-                'payment_method' => $request->get('payment_method'),
-                'status' => $request->get('status'),
-                'note' => $request->get('note'),
-                'is_paid' => $request->get('is_paid'),
+                "is_paid" => true,
+                "status" => $newStatus
             ]);
-
-
-
-            return redirect()->to("admin/admin-quan-ly-đon-hang")->with("success","Successfully");
-        }catch (\Exception $e){
-            return redirect()->back()->withErrors($e->getMessage());
+        } else {
+            $order->update([
+                "status" => $newStatus
+            ]);
         }
+        return redirect()->to("admin/admin-quan-ly-đon-hang");
     }
 
-    public function delete(Order $order){
-        try {
-            DB::table('order_products')->where('order_id', $order->id)->delete();
-            $order->delete();
-            return redirect()->to("admin/admin-quan-ly-đon-hang")->with("success","Successfully");
-        }catch (\Exception $e){
-            return redirect()->back()->withErrors($e->getMessage());
-        }
+    public function updateOrderStatusCancel(Order $order){
+
+
+        $newStatus = Order::CANCEL;
+
+
+        $order->update([
+            "is_paid" => false,
+            "status" => $newStatus
+        ]);
+
+        return redirect()->to("admin/admin-quan-ly-đon-hang");
     }
+
 }

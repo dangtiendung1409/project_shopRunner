@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     public function qlSanPham(Request $request){
-//        $products = Product::onlyTrashed()->orderBy("id","desc")->paginate(20);
+        $products = Product::onlyTrashed()->orderBy("id","desc")->paginate(20);
 //        $products = Product::withTrashed()->orderBy("id","desc")->paginate(20);
         $search = $request->get("search");
         $category_id = $request->get("category_id");

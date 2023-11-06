@@ -15,7 +15,7 @@
             <li><a class="app-menu__item active" href="{{url("admin/admin-quan-ly-nhan-vien")}}"><i class='app-menu__icon bx bx-id-card'></i>
                     <span class="app-menu__label">Quản lý nhân viên</span></a></li>
             <li style=" background: #c6defd; border-radius: .375rem;"><a style="color: rgb(22 22 72)" class="app-menu__item" href="{{url("admin/admin-quan-ly-khach-hang")}}"><i class="fa-solid fa-users"></i><span style="margin-left: 21px"
-                                                                                          class="app-menu__label">Quản lý khách hàng</span></a></li>
+                                                                                                                                                                                                                     class="app-menu__label">Quản lý khách hàng</span></a></li>
             <li><a class="app-menu__item" href="{{url("admin/admin-quan-ly-san-pham")}}"><i
                         class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
             </li>
@@ -49,72 +49,30 @@
                             <thead>
                             <tr>
                                 <th width="10"><input type="checkbox" id="all"></th>
-                                <th width="150">Họ và tên</th>
-                                <th >Ảnh thẻ</th>
-                                <th width="200">Email</th>
-                                <th >Giới tính</th>
-                                <th >SĐT</th>
+
+                                <th width="20">ID </th>
+                                <th>Full name</th>
+                                <th width="250px" >Email</th>
+                                <th >Thumbnail</th>
+                                <th>Address</th>
+                                <th>Telephone</th>
 
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>Tạ Quang Long</td>
-                                <td><img width="100"  class="img-card-person" src="admin/images/hay.jpg" alt=""></td>
-                                <td>QuangLong@gmail.com </td>
-                                <td>Nam</td>
-                                <td>0926737168</td>
+                            @foreach($user as $item)
+                                <tr>
+                                    <td width="10"><input type="checkbox" name="check1" value="1"></td>
 
-                            </tr>
-                            <tr>
-                                <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>Tạ Quang Long</td>
-                                <td><img class="img-card-person" src="admin/images/hay.jpg" alt=""></td>
-                                <td>QuangLong@gmail.com </td>
-                                <td>Nam</td>
-                                <td>0926737168</td>
-                            </tr>
-                            <tr>
-                                <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>Tạ Quang Long</td>
-                                <td><img class="img-card-person" src="admin/images/hay.jpg" alt=""></td>
-                                <td>QuangLong@gmail.com </td>
-                                <td>Nam</td>
-                                <td>0926737168</td>
-                            </tr>
-                            <tr>
-                                <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>Tạ Quang Long</td>
-                                <td><img class="img-card-person" src="admin/images/hay.jpg" alt=""></td>
-                                <td>QuangLong@gmail.com </td>
-                                <td>Nam</td>
-                                <td>0926737168</td>
-                            </tr>
-                            <tr>
-                                <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>Tạ Quang Long</td>
-                                <td><img class="img-card-person" src="admin/images/hay.jpg" alt=""></td>
-                                <td>QuangLong@gmail.com </td>
-                                <td>Nam</td>
-                                <td>0926737168</td>
-                            </tr>
-                            <tr>
-                                <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>Tạ Quang Long</td>
-                                <td><img class="img-card-person" src="admin/images/hay.jpg" alt=""></td>
-                                <td>QuangLong@gmail.com </td>
-                                <td>Nam</td>
-                                <td>0926737168</td>
-                            </tr>
-                            <tr>
-                                <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>Tạ Quang Long</td>
-                                <td><img class="img-card-person" src="admin/images/hay.jpg" alt=""></td>
-                                <td>QuangLong@gmail.com </td>
-                                <td>Nam</td>
-                                <td>0926737168</td>
-                            </tr>
+                                    <td>{{$item->id}}</td>
+                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->email}}</td>
+                                    <td><img class="img-card-person" src="{{$item->thumbnail}}" alt=""></td>
+                                    <td>{{$item->address}}</td>
+                                    <td>{{$item->tel}}</td>
+
+                                </tr>
+                            @endforeach
 
                             </tbody>
                         </table>

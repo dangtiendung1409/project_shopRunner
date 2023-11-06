@@ -390,7 +390,6 @@ class HomeController
 
     public function paypalSuccess(Order $order){
         // Đầu tiên, kiểm tra xem payment_method có phải là "COD" không
-
         // Cập nhật trạng thái đơn hàng và làm bất kỳ công việc khác liên quan đến thanh toán ở đây.
         session()->forget("cartShop");
         event(new CreateNewOrder($order));
@@ -403,10 +402,14 @@ class HomeController
     }
 
     public function paypalCancel(Order $order){
+        $order->update([
+            "status" => Order::CANCEL
+        ]);
         return redirect()->to("thank-you/$order->id");
     }
 
-  // login dành cho admin và nhân viên
+
+    // login dành cho admin và nhân viên
     public function loginQuanTri(){
         return view("pages.login.loginQuanTri");
     }
