@@ -56,12 +56,12 @@
             <form class="form2">
                 <div class="my-profile-item">
                     <h3 class="my-profile-item-title">Full name</h3>
-                    <div class="my-profile-item-info">Nhat Minh</div>
+                    <div class="my-profile-item-info">{{auth()->user()->name}}</div>
                 </div>
 
                 <div class="my-profile-item">
                     <h3 class="my-profile-item-title">Email</h3>
-                    <div class="my-profile-item-info">minh******@gmail.com</div>
+                    <div class="my-profile-item-info"> {{ substr(auth()->user()->email, 0, 4) . str_repeat('*', strlen(auth()->user()->email) - 4) }}</div>
                 </div>
 
                 <div class="my-profile-item">

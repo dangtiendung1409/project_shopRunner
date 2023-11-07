@@ -37,9 +37,15 @@
                         <div class="single-prd-item">
                             <img class="img-fluid" src="{{$product->thumbnail}}" alt="">
                         </div>
+                        <div class="item owl-carousel">
+                            <img src="customer/img/shop-details/thumb-1.jpg" alt="">
+                            <img src="customer/img/shop-details/thumb-2.jpg" alt="">
+                            <img src="customer/img/shop-details/thumb-3.jpg" alt="">
+                            <img src="customer/img/shop-details/thumb-4.jpg" alt="">
+                        </div>
+
                     </div>
                 </div>
-
                 <div class="col-lg-5 offset-lg-1">
                     <form action="{{ url("/add-to-cart", ["product"=>$product->id])}}" method="get">
                         @csrf
@@ -405,6 +411,20 @@
         }
 
     </style>
+    <style>
+        .item {
+            display: flex;
+        }
+
+        .item img {
+            margin-right: 25px;
+        }
+        .item img:last-child {
+            margin-right: 0;
+        }
+    </style>
+
+
 @stop()
 @section("before_js")
 @stop()
