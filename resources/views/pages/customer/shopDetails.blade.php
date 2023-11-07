@@ -37,7 +37,7 @@
                         <div class="single-prd-item">
                             <img class="img-fluid" src="{{$product->thumbnail}}" alt="">
                         </div>
-                        <div class="item owl-carousel">
+                        <div class="item">
                             <img src="customer/img/shop-details/thumb-1.jpg" alt="">
                             <img src="customer/img/shop-details/thumb-2.jpg" alt="">
                             <img src="customer/img/shop-details/thumb-3.jpg" alt="">
