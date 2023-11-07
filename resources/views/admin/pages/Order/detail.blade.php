@@ -103,17 +103,23 @@
                     <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;"><a
                             href="admin/admin-quan-ly-đon-hang">Back</a></button>
 
+                @elseif($order->status === 2 || $order->status === 3)
+                    <form method="post" action="{{ route('update_order_status', ['order' => $order->id]) }}">
+                        @csrf
+                        <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Xác nhận</button>
+                    </form>
                 @else
-                <form method="post" action="{{ route('update_order_status', ['order' => $order->id]) }}">
-                    @csrf
-                    <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Xác nhận</button>
-                </form>
+                    <form method="post" action="{{ route('update_order_status', ['order' => $order->id]) }}">
+                        @csrf
+                        <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Xác nhận</button>
+                    </form>
 
-                <form method="post" action="{{ route('update_order_status_cancel', ['order' => $order->id]) }}">
-                    @csrf
-                    <button type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
-                </form>
+                    <form method="post" action="{{ route('update_order_status_cancel', ['order' => $order->id]) }}">
+                        @csrf
+                        <button type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
+                    </form>
                 @endif
+
             </div>
 
         </section>
