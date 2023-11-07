@@ -2,6 +2,21 @@
 @section("main")
 
     <div class="contain1">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
         <div class="title">
             <div class="title-top">
@@ -53,21 +68,28 @@
             <div style="border-bottom: 1px solid #DDE1EF;" class="content-top">
                 <p style="color: black">Change password (For account security, please do not share your password with others)</p>
             </div>
-            <form class="form1">
+            <form class="form1" method="POST" action="{{ route('change-password-new') }}">
+                @csrf <!-- Thêm token CSRF protection -->
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email </label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="current_password" class="form-label">Current password</label>
+                    <input type="password" name="current_password" class="form-control" id="current_password" required>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="new_password" class="form-label">New password</label>
+                    <input type="password" name="new_password" class="form-control" id="new_password" required>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Confirm password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="new_password_confirmation" class="form-label">Confirm password</label>
+                    <input type="password" name="new_password_confirmation" class="form-control" id="new_password_confirmation" required>
                 </div>
-                <button style="background-color:#ff5722; " type="submit" class="btn btn-primary">Submit</button>
+                @if (Route::has('password.request'))
+                    <a href="{{ route('password.request') }}">
+                        {{ __('Forget Password?') }}
+                    </a>
+                @endif
+                <button style="background-color: #ff5722;" type="submit" class="btn btn-primary">Submit</button>
             </form>
+
         </div>
     </div>
 

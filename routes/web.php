@@ -51,7 +51,9 @@ Route::get('/paypal-cancel/{order}', [\App\Http\Controllers\HomeController::clas
 
 // user : account , trạng thái dơn hàng , danh sách sản phẩm yêu thích
 Route::get('/my-order', [\App\Http\Controllers\HomeController::class,"myOrder"]);
-Route::get('/change-password', [\App\Http\Controllers\HomeController::class,"changePassword"]);
+Route::get('/change-password', [\App\Http\Controllers\HomeController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password-new', [\App\Http\Controllers\HomeController::class,"updatePassword"])->name('change-password-new');
+
 Route::get('/add-to-favorite', [\App\Http\Controllers\HomeController::class,"addToFavorite"]);
 Route::get('/remove-favorite', [\App\Http\Controllers\HomeController::class, "removeFavorite"]);
 Route::get('/clear-favorite', [\App\Http\Controllers\HomeController::class, "clearFavorite"]);
@@ -65,12 +67,6 @@ Route::get('/thank-you/{order}', [\App\Http\Controllers\HomeController::class,"T
 
 
 });
-
-//// login dành cho nhân viên và admin
-//Route::get('/login-quan-tri', [\App\Http\Controllers\HomeController::class,"loginQuanTri"]);
-//
-//// login dành cho người dùng
-//Route::get('/login-user', [\App\Http\Controllers\HomeController::class,"loginUser"]);
 
 
 Route::middleware(["auth","is_admin"])->prefix("admin")->group(function () {

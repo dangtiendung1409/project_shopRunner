@@ -12,6 +12,7 @@ use App\Events\CreateNewOrder;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use Illuminate\Support\Facades\Hash;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -315,6 +316,29 @@ class HomeController
     public function changePassword(){
         return view("pages.customer.changePassword");
     }
+
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|confirmed|min:8',
+        ]);
+
+        $user = auth()->user();
+
+        if (!Hash::check($request->input('current_password'), $user->password)) {
+            return back()->withErrors(['current_password' => 'The current password is incorrect.']);
+        }
+
+        $user->update([
+            'password' => Hash::make($request->input('new_password')),
+        ]);
+
+        return redirect()->route('change-password')->with('success', 'Password updated successfully.');
+
+    }
+
     public function addToFavorite(Request $request)
     {
         // Lấy dữ liệu từ request
@@ -417,13 +441,4 @@ class HomeController
         return redirect()->to("thank-you/$order->id");
     }
 
-
-    // login dành cho admin và nhân viên
-    public function loginQuanTri(){
-        return view("pages.login.loginQuanTri");
-    }
-    // login dành cho người dùng
-    public function loginUser(){
-        return view("pages.loginUser.loginUser");
-    }
 }
