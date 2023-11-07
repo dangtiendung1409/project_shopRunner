@@ -31,21 +31,24 @@
                     {{ session("error") }}
                 </div>
             @endif
-            <div class="row s_product_inner">
-                <div class="col-lg-6">
-                    <div class="s_Product_carousel">
-                        <div class="single-prd-item">
-                            <img class="img-fluid" src="{{$product->thumbnail}}" alt="">
+                <div class="row s_product_inner">
+                    <div class="col-lg-6">
+                        <div class="s_Product_carousel">
+                            <div class="single-prd-item">
+                                <img class="img-fluid" id="largeImage" src="{{$product->thumbnail}}" alt="">
+                            </div>
+                            <div class="item">
+                                <img data-imgbigurl="customer/img/shop-details/product-details-1.jpg"
+                                     src="customer/img/shop-details/thumb-1.jpg" alt="">
+                                <img data-imgbigurl="customer/img/shop-details/product-details-2.jpg"
+                                     src="customer/img/shop-details/thumb-2.jpg" alt="">
+                                <img data-imgbigurl="customer/img/shop-details/product-details-3.jpg"
+                                     src="customer/img/shop-details/thumb-3.jpg" alt="">
+                                <img data-imgbigurl="customer/img/shop-details/product-details-4.jpg"
+                                     src="customer/img/shop-details/thumb-4.jpg" alt="">
+                            </div>
                         </div>
-                        <div class="item">
-                            <img src="customer/img/shop-details/thumb-1.jpg" alt="">
-                            <img src="customer/img/shop-details/thumb-2.jpg" alt="">
-                            <img src="customer/img/shop-details/thumb-3.jpg" alt="">
-                            <img src="customer/img/shop-details/thumb-4.jpg" alt="">
-                        </div>
-
                     </div>
-                </div>
                 <div class="col-lg-5 offset-lg-1">
                     <form action="{{ url("/add-to-cart", ["product"=>$product->id])}}" method="get">
                         @csrf
@@ -423,6 +426,28 @@
             margin-right: 0;
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lấy danh sách các ảnh thumb
+            const thumbImages = document.querySelectorAll('.item img');
+
+            // Lấy ảnh lớn
+            const largeImage = document.getElementById('largeImage'); // Sử dụng id "largeImage"
+
+            // Thêm sự kiện click cho từng ảnh thumb
+            thumbImages.forEach(function(thumb) {
+                thumb.addEventListener('click', function() {
+                    // Lấy đường dẫn của ảnh lớn từ thuộc tính data-imgbigurl của ảnh thumb
+                    const imgBigUrl = thumb.getAttribute('data-imgbigurl');
+
+                    // Cập nhật ảnh lớn
+                    largeImage.setAttribute('src', imgBigUrl);
+                });
+            });
+        });
+
+
+    </script>
 
 
 @stop()
