@@ -15,12 +15,17 @@ class Employee
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // neu chua login -> login
-        if(!auth()->check())
+        // Kiểm tra xem người dùng đã đăng nhập hay chưa
+        if (!auth()->check()) {
             return redirect()->route("login");
-        // neu login roi ma ko phai admin -> 404
-        if(auth()->user()->role != "EMPLOYEE")
-            return abort(404);
-        return $next($request);
+        }
+
+        // Kiểm tra xem người dùng có quyền "Admin" hoặc "EMPLOYEE" hay không
+        $user = auth()->user();
+        if ($user->role == "ADMIN" || $user->role == "EMPLOYEE") {
+            return $next($request); // Cho phép truy cập cả trang "Admin" và "Employee"
+        }
+        return abort(404);
     }
+
 }

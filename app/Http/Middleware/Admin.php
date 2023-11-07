@@ -15,12 +15,13 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // neu chua login -> login
+
         if(!auth()->check())
             return redirect()->route("login");
         // neu login roi ma ko phai admin -> 404
         if(auth()->user()->role != "ADMIN")
             return abort(404);
         return $next($request);
+
     }
 }
