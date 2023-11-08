@@ -37,16 +37,10 @@ class DatabaseSeeder extends Seeder
             $employee->save();
         }
 
-//        \App\Models\User::factory(5)->create();
         \App\Models\Brands::factory(10)->create();
         \App\Models\Category::factory(10)->create();
         \App\Models\Product::factory(500)->create();
-//        \App\Models\Order::factory(5)->create();
-//        \App\Models\History::factory(5)->create();
 
-
-
-//        \App\Models\Order::factory(10)->create();
 
         $orders = Order::all(); //select * from orders
         foreach ($orders as $order){

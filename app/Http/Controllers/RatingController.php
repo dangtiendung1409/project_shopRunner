@@ -19,7 +19,6 @@ class RatingController extends Controller
     }
     public function review(Product $product){
         $ratings = Review::all();
-
         return view("pages.customer.rating", compact("ratings", "product"));
     }
     public function addRating(Request $request){

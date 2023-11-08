@@ -31,7 +31,7 @@ Route::get('/details/{product:slug}', [\App\Http\Controllers\HomeController::cla
 Route::post('/create', [\App\Http\Controllers\HomeController::class,"create"]);
 
 // add rating/reviews
-Route::get('/review', [\App\Http\Controllers\HomeController::class,"review"]);
+Route::get('/review/{product:slug}', [\App\Http\Controllers\RatingController::class,"review"]);
 Route::match(['GET', 'POST'],'/add-rating', [\App\Http\Controllers\RatingController::class,"addRating"]);
 // rating
 Route::get('/admin-rating', [\App\Http\Controllers\RatingController::class,"ratings"]);
