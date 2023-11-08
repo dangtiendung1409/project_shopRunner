@@ -42,9 +42,12 @@ class HomeController
     }
 
     public function categoryShop(Request $request){
-        $query = Product::orderBy("created_at", "desc");
+//        $search = $request->get("search");
+//        $price_from = $request->get("price_from");
+//        $price_to = $request->get("price_to");
+        $query = Product::Search($request)->FromPrice($request)->ToPrice($request)->orderBy("created_at", "desc");
 
-        if ($request ->price ){
+        if ($request ->price){
 //            dd($request->price);
             $price = $request->price;
             switch ($price){

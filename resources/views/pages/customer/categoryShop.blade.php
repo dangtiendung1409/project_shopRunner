@@ -32,6 +32,25 @@
                             </div>
                         </div>
                     </div>
+                    <form style="display: flex" action="{{url("/category/")}}" method="get">
+                        <div class="input-group input-group-sm mr-2" style="width: 150px; margin-left: 5px;">
+                            <input  type="number" name="price_from" class="form-control" placeholder="Price from">
+                        </div>
+
+                        <div class="input-group input-group-sm mr-2" style="width: 150px;">
+                            <input  type="number" name="price_to" class="form-control" placeholder="Price to">
+                        </div>
+
+
+                        <div class="input-group input-group-sm" style="width: 150px;float:left">
+                            <input value="{{app("request")->input("search")}}" type="text" name="search" class="form-control float-right" placeholder="Search">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     <div class="row">
                         @foreach($products as $item)
                             <div class="col-lg-4 col-md-6 col-sm-6">

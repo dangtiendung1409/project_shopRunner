@@ -32,6 +32,25 @@
                             </div>
                         </div>
                     </div>
+                    <form style="display: flex" action="{{url("/category/")}}" method="get">
+                        <div class="input-group input-group-sm mr-2" style="width: 150px; margin-left: 5px;">
+                            <input  type="number" name="price_from" class="form-control" placeholder="Price from">
+                        </div>
+
+                        <div class="input-group input-group-sm mr-2" style="width: 150px;">
+                            <input  type="number" name="price_to" class="form-control" placeholder="Price to">
+                        </div>
+
+
+                        <div class="input-group input-group-sm" style="width: 150px;float:left">
+                            <input value="{{app("request")->input("search")}}" type="text" name="search" class="form-control float-right" placeholder="Search">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     <div class="row">
                         @foreach($products as $item)
                             <div class="col-lg-4 col-md-6 col-sm-6">
@@ -76,17 +95,30 @@
                         <div class="col-lg-12">
                             <div class="product__pagination">
                                 @if ($products->lastPage() > 1)
-                                    @for ($i = 1; $i <= $products->lastPage(); $i++)
+                                    @if ($products->currentPage() > 3)
+                                        <a href="{{ $products->url(1) }}">1</a>
+                                        @if ($products->currentPage() > 4)
+                                            <span>...</span>
+                                        @endif
+                                    @endif
+                                    @for ($i = max(1, $products->currentPage() - 2); $i <= min($products->lastPage(), $products->currentPage() + 2); $i++)
                                         @if ($i == $products->currentPage())
                                             <a class="active" href="{{ $products->url($i) }}">{{ $i }}</a>
                                         @else
                                             <a href="{{ $products->url($i) }}">{{ $i }}</a>
                                         @endif
                                     @endfor
+                                    @if ($products->currentPage() < $products->lastPage() - 2)
+                                        @if ($products->currentPage() < $products->lastPage() - 3)
+                                            <span>...</span>
+                                        @endif
+                                        <a href="{{ $products->url($products->lastPage()) }}">{{ $products->lastPage() }}</a>
+                                    @endif
                                 @endif
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

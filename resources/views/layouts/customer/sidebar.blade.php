@@ -47,7 +47,14 @@
                     </div>
                     <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
                         <div class="card-body">
-{{--                            <div class="shop__sidebar__brand">--}}
+
+                            <div class="shop__sidebar__brand">
+                                <ul>
+                                    <li><a href="#">Louis Vuitton</a></li>
+                                    <li><a href="#">Chanel</a></li>
+                                    <li><a href="#">Hermes</a></li>
+                                    <li><a href="#">Gucci</a></li>
+                                </ul>
 {{--                                @php $brands = \App\Models\Brands::all(); @endphp--}}
 {{--                                    @foreach($brands as $brand)--}}
 {{--                                        <div class="bc-item">--}}
@@ -59,7 +66,7 @@
 {{--                                            <span class="checkmark"></span>--}}
 {{--                                        </div>--}}
 {{--                                    @endforeach--}}
-{{--                            </div>--}}
+                            </div>
                         </div>
                     </div>
                 </div>
