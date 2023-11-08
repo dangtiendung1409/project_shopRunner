@@ -271,7 +271,7 @@
                                 <form class="row contact_form" name="ratingForm" id="ratingForm contactForm"
                                       action="{{url("/add-rating")}}" method="post" novalidate="novalidate">
                                     @csrf
-                                    {{--        rating--}}
+                                            rating
                                     <input type="hidden" class="form-control" id="product_id" name="product_id" value="{{$product->id}}">
                                     <div class="rate">
                                         <input type="radio" id="star5" name="rating" value="5" />

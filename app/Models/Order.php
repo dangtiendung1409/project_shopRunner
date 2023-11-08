@@ -33,6 +33,9 @@ class Order extends Model
     public function Products(){
         return $this->belongsToMany(Product::class,"order_products")->withPivot(["qty","price"]);
     }
+    public function User(){
+        return $this->hasMany(User::class);
+    }
     public static function getTotalCancelledOrders() {
         return Order::where('status', Order::CANCEL)->count();
     }

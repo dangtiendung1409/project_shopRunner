@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Session;
@@ -16,7 +17,11 @@ class RatingController extends Controller
 //        dd($ratings);
         return view("admin.pages.ratings", compact("ratings"));
     }
+    public function review(Product $product){
+        $ratings = Review::all();
 
+        return view("pages.customer.rating", compact("ratings", "product"));
+    }
     public function addRating(Request $request){
         if ($request->isMethod('post')){
             $data = $request->all();

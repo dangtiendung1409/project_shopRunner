@@ -83,12 +83,6 @@ class HomeController
     public function details(Product $product)
     {
         $ratings = Review::all();
-//        $ratings = Review::with('user')->where('product_id', $product->id)->orderBy('id', 'desc')->get()->toArray(); // where('status', 1)
-//        $ratingSum = Review::where('product_id')->where('status', 1)->sum('rating'); // where('status', 1)
-//        $ratingCount = Review::where('product_id')->count();
-//        $avgRating = round($ratingSum/$ratingCount,2);
-//        $avgStarRating = round($ratingSum/$ratingCount);
-
         $relate = Product::where("category_id", $product->category_id)
             ->where("id", "!=", $product->id)
             ->where("qty", ">", 0)
@@ -314,7 +308,8 @@ class HomeController
        return view("pages.customer.aboutUs");
     }
     public function myOrder(){
-        return view("pages.customer.myOrder");
+        $orders = Order::orderBy("created_at", "asc")->paginate(12);
+        return view("pages.customer.myOrder", compact('orders'));
     }
     public function changePassword(){
         return view("pages.customer.changePassword");
@@ -421,7 +416,11 @@ class HomeController
     }
     public function ThankYou(Order $order){
 //        dd(session("cartShop"));
-        return view("pages.customer.ThankYou",compact("order"));
+        return view("pages.customer.thankYou",compact("order"));
+    }
+    public function History(Order $order){
+//        dd(session("cartShop"));
+        return view("pages.customer.history",compact("order"));
     }
 
     public function paypalSuccess(Order $order){

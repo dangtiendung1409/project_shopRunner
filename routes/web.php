@@ -31,6 +31,7 @@ Route::get('/details/{product:slug}', [\App\Http\Controllers\HomeController::cla
 Route::post('/create', [\App\Http\Controllers\HomeController::class,"create"]);
 
 // add rating/reviews
+Route::get('/review', [\App\Http\Controllers\HomeController::class,"review"]);
 Route::match(['GET', 'POST'],'/add-rating', [\App\Http\Controllers\RatingController::class,"addRating"]);
 // rating
 Route::get('/admin-rating', [\App\Http\Controllers\RatingController::class,"ratings"]);
@@ -64,6 +65,8 @@ Route::get('/edit-profile', [\App\Http\Controllers\HomeController::class,"EditPr
 
 // thank you
 Route::get('/thank-you/{order}', [\App\Http\Controllers\HomeController::class,"ThankYou"]);
+// history
+Route::get('/history/{order}', [\App\Http\Controllers\HomeController::class,"History"]);
 
 
 });

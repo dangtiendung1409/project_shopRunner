@@ -29,6 +29,9 @@ class Product extends Model
     public function Orders(){
         return $this->belongsToMany(Order::class, "order_products");
     }
+    public function Reviews(){
+        return $this->hasMany(Review::class);
+    }
 
     public function scopeSearch($query,$request){
         if($request->has("search")&& $request->get("search") != ""){
@@ -64,9 +67,5 @@ class Product extends Model
     public function scopeOutOfStock($query)
     {
         return $query->where('qty', 0);
-    }
-
-    public function Reviews(){
-        return $this->hasMany(Review::class);
     }
 }

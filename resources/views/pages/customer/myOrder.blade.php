@@ -36,7 +36,7 @@
                 <div class="menu">
                     <i class="fa-solid fa-heart"></i>
                     <a href="{{url("favorite-order")}}">
-                        <li >favorite product</li>
+                        <li >Favorite product</li>
                     </a>
                 </div>
                 <div class="menu">
@@ -60,25 +60,30 @@
             <table class="order-table">
                 <thead>
                 <tr>
-                    <th>Mã đơn hàng</th>
-                    <th>Ngày mua</th>
-                    <th>Địa chỉ</th>
-                    <th>Giá trị đơn hàng</th>
-                    <th>Trạng thái thanh toán</th>
-                    <th>Trạng thái vận chuyển</th>
+                    <th>Id</th>
+                    <th>Full Name </th>
+                    <th>Email</th>
+{{--                    <th>Address</th>--}}
+{{--                    <th>Payment</th>--}}
+{{--                    <th>Transport</th>--}}
+{{--                    <th>Grand Total</th>--}}
+                    <th>Order Details</th>
                 </tr>
                 </thead>
+                @foreach($orders as $order)
                 <tbody>
                 <tr>
-                    <td>001</td>
-                    <td>2023-09-25</td>
-                    <td>123 Đường ABC, Thành phố XYZ</td>
-                    <td>$100.00</td>
-                    <td>Đã thanh toán</td>
-                    <td>Đang vận chuyển</td>
+                    <td>{{$order->id}} </td>
+                    <td>{{$order->full_name}} </td>
+                    <td>{{$order->email}} </td>
+                    <td >
+                        <button style="border: 1px solid black" type="submit">    <a href="{{ url("history", ['order' => $order->id]) }}">History</a>
+                        </button>
+                    </td>
                 </tr>
                 <!-- Thêm các hàng khác tương tự cho các đơn hàng khác -->
                 </tbody>
+                @endforeach
             </table>
         </div>
     </div>
