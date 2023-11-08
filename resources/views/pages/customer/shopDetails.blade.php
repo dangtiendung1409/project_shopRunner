@@ -118,8 +118,6 @@
 
         </div>
 
-
-    </div>
     <!--================End Single Product Area =================-->
     <!--================Product Description Area =================-->
     <section class="product_description_area">
@@ -245,7 +243,7 @@
                             </div>
                             <div class="review_list">
 {{--                                @if(count($ratings)>1)--}}
-                                    @foreach($ratings as $rating)
+                                    @foreach($product->Reviews as $rating)
                                 <div class="review_item">
                                     <div class="media">
                                         <div class="media-body">

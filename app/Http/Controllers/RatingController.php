@@ -36,7 +36,7 @@ class RatingController extends Controller
 
         $ratingCount = Review::where(['user_id'=>Auth::user()->id, 'product_id'=>$data['product_id']])->count();
         if ($ratingCount>0){
-            $message = "Your rating already exists for this Product";
+            $message = "Your rating already exists for this product";
             Session::flash('error', $message);
             return redirect()->back();
         } else{
@@ -51,5 +51,4 @@ class RatingController extends Controller
             return redirect()->back();
         }
     }
-
 }

@@ -66,4 +66,7 @@ class Product extends Model
         return $query->where('qty', 0);
     }
 
+    public function Reviews(){
+        return $this->hasMany(Review::class);
+    }
 }
