@@ -25,6 +25,11 @@
             @if(count($cartShop)==0)
                 <p>Không có sản phẩm nào trong giỏ hàng</p>
             @else
+                @if(session()->has("error"))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session("error") }}
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="shopping__cart__table">

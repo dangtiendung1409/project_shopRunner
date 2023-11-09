@@ -158,6 +158,12 @@ class HomeController
         $subtotal = 0;
         $can_checkout = true;
         foreach ($cartShop as $item){
+            $product = Product::find($item->id);
+
+            if ($product->qty < $item->buy_qty) {
+                // Product is out of stock
+                return redirect()->to("cart")->with('error', 'Xin lỗi, sản phẩm ' . $product->name . ' đã hết hàng hoặc không đủ số lượng  .');
+            }
             $subtotal += $item->price * $item->buy_qty;
             if($item->buy_qty > $item->qty)
                 $can_checkout = false;
