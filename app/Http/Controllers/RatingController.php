@@ -21,10 +21,22 @@ class RatingController extends Controller
         $ratings = Review::all();
         return view("pages.customer.rating", compact("ratings", "product"));
     }
+    public function detailsRating(Request $request){
+        if (!Auth::check()){
+            $message = "Login to rate this product!!!";
+            Session::flash('error', $message);
+            return redirect()->back();
+        }
+        if (!isset($data['rating'])){
+            $message = "You need to buy the product to be able to rating";
+            Session::flash('error', $message);
+            return redirect()->back();
+        }
+    }
+
     public function addRating(Request $request){
         if ($request->isMethod('post')){
             $data = $request->all();
-//            echo "<pre>"; print_r($data); die();
         }
         if (!Auth::check()){
             $message = "Login to rate this product!!!";
@@ -33,7 +45,7 @@ class RatingController extends Controller
         }
 
         if (!isset($data['rating'])){
-            $message = "You need to rate the Product";
+            $message = "You need to rate the product";
             Session::flash('error', $message);
             return redirect()->back();
         }
