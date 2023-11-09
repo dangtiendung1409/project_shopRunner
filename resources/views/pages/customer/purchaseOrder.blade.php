@@ -94,11 +94,14 @@
                                 <td>{{$item->pivot->price}}</td>
                                 <td>{{$item->pivot->qty}}</td>
                                 <td>${{$item->pivot->qty*$item->pivot->price}}</td>
-                                <td>
-                                    <div class="col-sm-2">
-                                        <a class="btn btn-dark" href="{{url("/review",["product"=>$item->slug])}}">Review</a>
-                                    </div>
-                                </td>
+
+                                @if ($order->getStatus() == "<span class='text-success'>Hoàn thành</span>")
+                                    <td>
+                                        <div class="col-sm-2">
+                                            <a class="btn btn-dark" href="{{url("/review",["product"=>$item->slug])}}">Review</a>
+                                        </div>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>
