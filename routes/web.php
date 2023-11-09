@@ -62,7 +62,8 @@ Route::get('/clear-favorite', [\App\Http\Controllers\HomeController::class, "cle
 Route::get('/favorite-order', [\App\Http\Controllers\HomeController::class,"favoriteOrder"]);
 Route::get('/profile', [\App\Http\Controllers\HomeController::class,"Profile"]);
 Route::get('/edit-profile', [\App\Http\Controllers\HomeController::class,"EditProfile"]);
-    Route::post('/edit-profile', [\App\Http\Controllers\HomeController::class, 'updateProfile']);
+Route::post('/edit-profile', [\App\Http\Controllers\HomeController::class, 'updateProfile']);
+Route::get('/purchase', [\App\Http\Controllers\HomeController::class,"purchaseHome"]);
 
 
 // thank you

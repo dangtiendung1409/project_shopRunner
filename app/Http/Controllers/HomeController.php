@@ -312,6 +312,10 @@ class HomeController
         $orders = Order::orderBy("created_at", "asc")->paginate(12);
         return view("pages.customer.myOrder", compact('orders'));
     }
+    public function purchaseHome(){
+        $orders = Order::orderBy("created_at", "asc")->paginate(12);
+        return view("pages.customer.purchaseHome", compact('orders'));
+    }
     public function changePassword(){
         return view("pages.customer.changePassword");
     }

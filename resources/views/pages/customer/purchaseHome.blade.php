@@ -74,26 +74,26 @@
                     <th>Id</th>
                     <th>Full Name </th>
                     <th>Email</th>
-{{--                    <th>Address</th>--}}
-{{--                    <th>Payment</th>--}}
-{{--                    <th>Transport</th>--}}
-{{--                    <th>Grand Total</th>--}}
+                    {{--                    <th>Address</th>--}}
+                    {{--                    <th>Payment</th>--}}
+                    {{--                    <th>Transport</th>--}}
+                    {{--                    <th>Grand Total</th>--}}
                     <th>Order Details</th>
                 </tr>
                 </thead>
                 @foreach($orders as $order)
-                <tbody>
-                <tr>
-                    <td>{{$order->id}} </td>
-                    <td>{{$order->full_name}} </td>
-                    <td>{{$order->email}} </td>
-                    <td >
-                        <button style="border: 1px solid black" type="submit">    <a href="{{ url("purchase", ['order' => $order->id]) }}">Purchase Order</a>
-                        </button>
-                    </td>
-                </tr>
-                <!-- Thêm các hàng khác tương tự cho các đơn hàng khác -->
-                </tbody>
+                    <tbody>
+                    <tr>
+                        <td>{{$order->id}} </td>
+                        <td>{{$order->full_name}} </td>
+                        <td>{{$order->email}} </td>
+                        <td >
+                            <button style="border: 1px solid black" type="submit">    <a href="{{ url("purchase", ['order' => $order->id]) }}">Purchase Order</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- Thêm các hàng khác tương tự cho các đơn hàng khác -->
+                    </tbody>
                 @endforeach
             </table>
         </div>
