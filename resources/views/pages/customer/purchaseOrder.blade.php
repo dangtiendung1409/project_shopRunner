@@ -1,19 +1,33 @@
 @extends("layouts.customer.app")
 @section("main")
-    <section class="option">
+    <section class="breadcrumb-option">
         <div class="container">
+            <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__text">
-                        <h4>History</h4>
+                        <h4>Shop</h4>
+                        <div class="breadcrumb__links">
+                            <a href="/my-order">My Order</a>
+{{--                            <span>{{$product->name}}</span>--}}
+                        </div>
                     </div>
                 </div>
+            </div>
         </div>
     </section>
     <section class="order_details section_gap">
-        <div class="container">
-            <div class="col-sm-2">
-                <a class="btn btn-primary" href="{{url("/my-order")}}" title="Thêm">Back</a>
+        @if(session()->has("success"))
+            <div class="alert alert-success" role="alert">
+                {{ session("success") }}
             </div>
+        @endif
+
+        @if(session()->has("error"))
+            <div class="alert alert-danger" role="alert">
+                {{ session("error") }}
+            </div>
+        @endif
+        <div class="container">
             @if($order->payment_method == "Paypal" && !$order->is_paid)
                 <h3 style="margin-top: 80px; color: #e0a800" class="title_confirmation">Please pay again</h3>
             @else

@@ -65,8 +65,8 @@ Route::get('/edit-profile', [\App\Http\Controllers\HomeController::class,"EditPr
 
 // thank you
 Route::get('/thank-you/{order}', [\App\Http\Controllers\HomeController::class,"ThankYou"]);
-// history
-Route::get('/history/{order}', [\App\Http\Controllers\HomeController::class,"History"]);
+// purchase
+Route::get('/purchase/{order}', [\App\Http\Controllers\HomeController::class,"purchaseOrder"]);
 
 
 });

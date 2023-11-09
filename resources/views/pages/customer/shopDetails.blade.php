@@ -8,7 +8,7 @@
                     <div class="breadcrumb__text">
                         <h4>Shop</h4>
                         <div class="breadcrumb__links">
-                            <a href="/">Product</a>
+                            <a href="/my-order">My Order</a>
                             <span>{{$product->name}}</span>
                         </div>
                     </div>

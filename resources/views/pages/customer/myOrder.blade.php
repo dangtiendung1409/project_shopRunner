@@ -77,7 +77,7 @@
                     <td>{{$order->full_name}} </td>
                     <td>{{$order->email}} </td>
                     <td >
-                        <button style="border: 1px solid black" type="submit">    <a href="{{ url("history", ['order' => $order->id]) }}">History</a>
+                        <button style="border: 1px solid black" type="submit">    <a href="{{ url("purchase", ['order' => $order->id]) }}">Purchase Order</a>
                         </button>
                     </td>
                 </tr>

@@ -418,9 +418,8 @@ class HomeController
 //        dd(session("cartShop"));
         return view("pages.customer.thankYou",compact("order"));
     }
-    public function History(Order $order){
-//        dd(session("cartShop"));
-        return view("pages.customer.history",compact("order"));
+    public function purchaseOrder(Order $order){
+        return view("pages.customer.purchaseOrder",compact("order"));
     }
 
     public function paypalSuccess(Order $order){

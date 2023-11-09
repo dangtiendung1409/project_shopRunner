@@ -1,5 +1,39 @@
 @extends("layouts.customer.app")
 @section("main")
+
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Reviews</h4>
+                    </div>
+                    <div class="breadcrumb__links">
+                        <a href="/">Product</a>
+                        <span>{{$product->name}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="product_image_area">
+        <div class="container">
+            @if(session()->has("success"))
+                <div class="alert alert-success" role="alert">
+                    {{ session("success") }}
+                </div>
+            @endif
+
+            @if(session()->has("error"))
+                <div class="alert alert-danger" role="alert">
+                    {{ session("error") }}
+                </div>
+            @endif
+        </div>
+    </div>
+    <!--================End Single Product Area =================-->
+    <!--================Product Description Area =================-->
     <section class="product_description_area">
         <div class="container">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -9,12 +43,6 @@
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <div class="table-responsive">
-                        <table class="table">
-                        </table>
-                    </div>
-                </div>
                 <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
                     <div class="row">
                         <div class="col-lg-6">
@@ -43,10 +71,9 @@
                                         </ul>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="review_list">
-                                {{--                                @if(count($ratings)>1)--}}
+                                                                @if(count($ratings)>1)
                                 @foreach($product->Reviews as $rating)
                                     <div class="review_item">
                                         <div class="media">
@@ -65,7 +92,7 @@
                                         <hr>
                                     </div>
                                 @endforeach
-                                {{--                                @endif--}}
+                                                                @endif
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -106,7 +133,7 @@
             </div>
         </div>
     </section>
-@endsection
+@stop()
 @section("before_css")
     <style>
         .rate {
@@ -183,4 +210,5 @@
 
 
 @stop()
+
 
