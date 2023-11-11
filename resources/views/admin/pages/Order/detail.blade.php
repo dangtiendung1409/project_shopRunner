@@ -99,16 +99,26 @@
                         </table>
                     </div>
                 </div>
-                @if($order->status === 5 || $order->status === 4 )
+                @if($order->status === 5 || $order->status === 4 || $order->status === 3 )
                     <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;"><a
                             href="admin/admin-quan-ly-đon-hang">Back</a></button>
 
-                @elseif($order->status === 2 || $order->status === 3)
+                @elseif($order->status === 2 )
                     <form method="post" action="{{ route('update_order_status', ['order' => $order->id]) }}">
                         @csrf
-                        <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Xác nhận</button>
+                        <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Đã giao hàng</button>
                     </form>
-                @else
+                @elseif($order->status === 1 )
+                    <form method="post" action="{{ route('update_order_status', ['order' => $order->id]) }}">
+                        @csrf
+                        <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Giao hàng</button>
+                    </form>
+
+                    <form method="post" action="{{ route('update_order_status_cancel', ['order' => $order->id]) }}">
+                        @csrf
+                        <button type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
+                    </form>
+                @elseif($order->status === 0 )
                     <form method="post" action="{{ route('update_order_status', ['order' => $order->id]) }}">
                         @csrf
                         <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Xác nhận</button>
@@ -119,7 +129,6 @@
                         <button type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
                     </form>
                 @endif
-
             </div>
 
         </section>

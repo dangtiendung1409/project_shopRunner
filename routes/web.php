@@ -53,6 +53,9 @@ Route::get('/paypal-cancel/{order}', [\App\Http\Controllers\HomeController::clas
 
 // user : account , trạng thái dơn hàng , danh sách sản phẩm yêu thích
 Route::get('/my-order', [\App\Http\Controllers\HomeController::class,"myOrder"]);
+    Route::get('/order-detail/{order}', [\App\Http\Controllers\HomeController::class,"orderDetail"]);
+    Route::post('/update-complete/{order}', [\App\Http\Controllers\HomeController::class,"updateComplete"]);
+
 Route::get('/change-password', [\App\Http\Controllers\HomeController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password-new', [\App\Http\Controllers\HomeController::class,"updatePassword"])->name('change-password-new');
 

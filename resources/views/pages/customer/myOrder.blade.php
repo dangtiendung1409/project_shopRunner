@@ -41,19 +41,13 @@
                 <div class="menu">
                     <i class="fa-solid fa-heart"></i>
                     <a href="{{url("favorite-order")}}">
-                        <li >Favorite product</li>
+                        <li >favorite product</li>
                     </a>
                 </div>
                 <div class="menu">
                     <i class="fa-solid fa-user"></i>
                     <a href="{{ url("profile") }}">
                         <li >Profile</li>
-                    </a>
-                </div>
-                <div class="menu">
-                    <i class="fa-solid fa-user"></i>
-                    <a href="{{ url("purchase") }}">
-                        <li >Purchase Order</li>
                     </a>
                 </div>
             </ul>
@@ -65,36 +59,44 @@
                     <p style="color: black">My order </p>
                 </div>
                 <div class="content-top-title">
-                    <p style="color: black">0 order </p>
+                    <p style="color: black">{{ $orders->count() }} order </p>
                 </div>
             </div>
             <table class="order-table">
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Full Name </th>
-                    <th>Email</th>
-{{--                    <th>Address</th>--}}
-{{--                    <th>Payment</th>--}}
-{{--                    <th>Transport</th>--}}
-{{--                    <th>Grand Total</th>--}}
-                    <th>Order Details</th>
+                    <th>ID đơn hàng</th>
+                    <th>Created At</th>
+                    <th>Grand Total</th>
+                    <th>Full Name</th>
+                    <th>Shipping Method</th>
+                    <th>Payment Method</th>
+                    <th>Paid</th>
+                    <th>Status</th>
+                    <th >Action</th>
                 </tr>
                 </thead>
-                @foreach($orders as $order)
                 <tbody>
-                <tr>
-                    <td>{{$order->id}} </td>
-                    <td>{{$order->full_name}} </td>
-                    <td>{{$order->email}} </td>
-                    <td >
-                        <button style="border: 1px solid black" type="submit">    <a href="{{ url("purchase", ['order' => $order->id]) }}">Purchase Order</a>
-                        </button>
-                    </td>
-                </tr>
+                @foreach ($orders as $item)
+                    <tr>
+
+                        <td>{{$item->id}}</td>
+                        <td>{{$item->created_at}}</td>
+                        <td>{{$item->getGrandTotal()}}</td>
+                        <td>{{$item->full_name}}</td>
+                        <td>{{$item->shipping_method}}</td>
+                        <td>{{$item->payment_method}}</td>
+                        <td>{!! $item->getPaid() !!}</td>
+                        <td>{!! $item->getStatus() !!}</td>
+                        <td >
+                            <button style="border: 1px solid black" type="submit">    <a href="{{ url("order-detail", ['orders' => $item->id]) }}">Chi tiết</a>
+                            </button>
+                        </td>
+
+                    </tr>
+                @endforeach
                 <!-- Thêm các hàng khác tương tự cho các đơn hàng khác -->
                 </tbody>
-                @endforeach
             </table>
         </div>
     </div>

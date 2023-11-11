@@ -315,9 +315,19 @@ class HomeController
        return view("pages.customer.aboutUs");
     }
     public function myOrder(){
-        $orders = Order::orderBy("created_at", "asc")->paginate(12);
-        return view("pages.customer.myOrder", compact('orders'));
+        $Order = Order::where('user_id', auth()->user()->id)->get();
+        return view("pages.customer.myOrder", ['orders' => $Order]);
     }
+
+    public function orderDetail(Order $order){
+
+        return view("pages.customer.orderDetail",compact("order"));
+    }
+    public function updateComplete(Order $order){
+        $order->update([
+            "status" => Order::COMPLETE
+        ]);
+        return redirect()->to("my-order");    }
     public function purchaseHome(){
         $orders = Order::orderBy("created_at", "asc")->paginate(12);
         return view("pages.customer.purchaseHome", compact('orders'));

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
+
 use App\Models\Category;
 
 use App\Models\Order;
@@ -44,8 +45,6 @@ class OrderController extends Controller
             $newStatus = Order::SHIPPING;
         } elseif ($currentStatus === Order::SHIPPING) {
             $newStatus = Order::SHIPPED;
-        } elseif ($currentStatus === Order::SHIPPED) {
-            $newStatus = Order::COMPLETE;
         } else {
             // Trạng thái hiện tại không phù hợp với việc cập nhật
             // Bạn có thể xử lý tùy ý ở đây, ví dụ thông báo lỗi hoặc không thay đổi trạng thái.
@@ -53,7 +52,7 @@ class OrderController extends Controller
             return redirect()->to("admin/admin-quan-ly-đon-hang");
         }
 
-        if ($currentPaymentMethod === 'COD' && $newStatus === Order::COMPLETE) {
+        if ($currentPaymentMethod === 'COD' && $newStatus === Order::SHIPPED) {
             $order->update([
                 "is_paid" => true,
                 "status" => $newStatus
