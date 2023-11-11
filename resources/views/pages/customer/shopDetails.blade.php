@@ -215,17 +215,17 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="row total_rate">
-                                @foreach($avgRatings as $avgRating)
+{{--                                @foreach($avgRatings as $avgRating)--}}
                                 <div class="col-6">
                                     <div class="box_total">
                                         <h5>Overall</h5>
 {{--                                        <h4>4.0</h4>--}}
-                                        <h4>{{$avgRating->rating}}</h4>
+{{--                                        <h4>{{$avgRating->rating}}</h4>--}}
 
                                         <h6>(03 Reviews)</h6>
                                     </div>
                                 </div>
-                                @endforeach
+{{--                                @endforeach--}}
                                 <div class="col-6">
                                     <div class="rating_list">
                                         <h3>Based on 3 Reviews</h3>
