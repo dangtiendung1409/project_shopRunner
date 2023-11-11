@@ -84,6 +84,11 @@ class HomeController
     public function details(Product $product)
     {
         $ratings = Review::all();
+        $ratingSum = Review::where('product_id')->where('status', 1)->sum('rating'); // where('status', 1)
+        $ratingCount = Review::where('product_id')->count();
+//        $avgRatings = round($ratingSum/$ratingCount);
+//        $avgStarRating = round($ratingSum/$ratingCount);
+
         $relate = Product::where("category_id", $product->category_id)
             ->where("id", "!=", $product->id)
             ->where("qty", ">", 0)
@@ -92,7 +97,7 @@ class HomeController
             ->get();
         $favoriteCount = FavoriteOrder::where('name', $product->name)->count();
 
-        return view("pages.customer.shopDetails", compact("product",  "relate" , "ratings", "favoriteCount")); //, "ratings" , "ratingSum"
+        return view("pages.customer.shopDetails", compact("product",  "relate" , "ratings", "favoriteCount")); //, "ratings" , "avgRatings"
     }
 
     public function addToCart(Product $product, Request $request){
