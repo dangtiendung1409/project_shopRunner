@@ -19,7 +19,18 @@ class RatingController extends Controller
     }
     public function review(Product $product){
         $ratings = Review::all();
-        return view("pages.customer.rating", compact("ratings", "product"));
+        $ratingSum = Review::where('product_id', $product->id)->sum('rating'); // where('status', 1)
+        $ratingCount = Review::where('product_id', $product->id)->count();
+
+        if ($ratingCount > 0) {
+            $avgRating = round($ratingSum / $ratingCount, 2);
+            $avgStarRating = round($ratingSum / $ratingCount);
+        } else {
+            // If there are no reviews, set default values
+            $avgRating = 0;
+            $avgStarRating = 0;
+        }
+        return view("pages.customer.rating", compact("ratings", "product", "avgRating", "avgStarRating"));
     }
     public function detailsRating(Request $request){
         if (!Auth::check()){

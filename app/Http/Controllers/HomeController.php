@@ -101,7 +101,7 @@ class HomeController
             ->get();
         $favoriteCount = FavoriteOrder::where('name', $product->name)->count();
 
-        return view("pages.customer.shopDetails", compact("product",  "relate" , "ratings", "favoriteCount", "avgRating", "avgStarRating")); // , "avgRatings", "avgStarRating"
+        return view("pages.customer.shopDetails", compact("product",  "relate" , "ratings", "favoriteCount", "avgRating", "avgStarRating")); // , "avgRating", "avgStarRating"
     }
 
     public function addToCart(Product $product, Request $request){
