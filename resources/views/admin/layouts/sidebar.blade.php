@@ -12,16 +12,15 @@
         <li><a class="app-menu__item active" href="{{url("admin/admin-quan-ly-nhan-vien")}}"><i class='app-menu__icon bx bx-id-card'></i>
                 <span class="app-menu__label">Quản lý nhân viên</span></a></li>
 
-        <li><a class="app-menu__item" href="{{url("admin/admin-quan-ly-khach-hang")}}"><i class='fa-solid fa-users'></i>
-                <span style="margin-left: 21px" class="app-menu__label">Quản lý khách hàng</span></a>
-        </li>
-
         <li><a class="app-menu__item" href="{{url("admin/admin-quan-ly-san-pham")}}"><i class='app-menu__icon bx bx-purchase-tag-alt'></i>
                 <span class="app-menu__label">Quản lý sản phẩm</span></a>
         </li>
         <li><a class="app-menu__item" href="{{url("admin/admin-quan-ly-đon-hang")}}"><i class='app-menu__icon bx bx-task'></i><span
                     class="app-menu__label">Quản lý đơn hàng</span></a></li>
 
+        <li><a class="app-menu__item" href="{{url("admin/admin-quan-ly-khach-hang")}}"><i class='fa-solid fa-users'></i>
+                <span style="margin-left: 21px" class="app-menu__label">Quản lý khách hàng</span></a>
+        </li>
         <li><a class="app-menu__item" href="{{url("admin/admin-rating")}}"><i class='app-menu__icon bx bx-calendar-check'></i>
                 <span class="app-menu__label">Review</span></a></li>
 

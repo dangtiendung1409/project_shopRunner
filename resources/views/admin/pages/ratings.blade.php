@@ -13,13 +13,13 @@
                 <div class="tile">
                     <div class="tile-body">
 
-                        <form style="display: flex" action="{{url("admin/admin-rating")}}" method="get">
+                        <form style="display: flex" action="{{url("admin/admin-rating/")}}" method="get">
                             <div class="input-group input-group-sm mr-2" style="width: 150px; margin-left: 5px;">
-                                <input  type="text" name="user_email" class="form-control" placeholder="User Email">
+                                <input  type="text" name="user_email" value="{{old("user_email")}}" class="form-control" placeholder="User Email">
                             </div>
 
                             <div class="input-group input-group-sm mr-2" style="width: 150px;">
-                                <input  type="text" name="ratings" class="form-control" placeholder="Ratings">
+                                <input  type="number" name="rating" value="{{old("rating")}}" class="form-control" placeholder="Ratings">
                             </div>
 
                             <div class="input-group input-group-sm" style="width: 150px;">

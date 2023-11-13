@@ -25,5 +25,5 @@ Route::get('/admin-quan-ly-thong-tin-khuyen-mai', [\App\Http\Controllers\adminCo
 Route::get('/admin-add-thong-tin-khuyen-mai', [\App\Http\Controllers\adminController::class,"addThongTinKhuyenMai"]);
 
 // rating
-Route::get('/admin-rating', [\App\Http\Controllers\RatingController::class,"ratings"]);
+Route::get('/admin-rating', [\App\Http\Controllers\RatingController::class,"adminRating"]);
 
