@@ -67,6 +67,13 @@
                                 </li>
                                 <li><a href="#"><span>Sold</span> : {{$product->Orders->count()}}</a></li>
 
+                               <div>
+                                   <?php
+                                   $star = 1;
+                                   while ($star <= $avgStarRating){ ?>
+                                   <span style="color: #ffc700">&#9733;</span>
+                                       <?php $star++; } ?> ({{$avgRating}})
+                               </div>
                             </ul>
                             <p>{{$product->description}}</p>
                             <div class="product__details__quantity">
@@ -215,13 +222,10 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="row total_rate">
-{{--                                @foreach($avgRatings as $avgRating)--}}
                                 <div class="col-6">
                                     <div class="box_total">
                                         <h5>Overall</h5>
-{{--                                        <h4>4.0</h4>--}}
-{{--                                        <h4>{{$avgRating->rating}}</h4>--}}
-
+                                        <h4>{{$avgRating}}</h4>
                                         <h6>(03 Reviews)</h6>
                                     </div>
                                 </div>
@@ -246,7 +250,7 @@
 
                             </div>
                             <div class="review_list">
-{{--                                @if(count($ratings)>1)--}}
+                                @if(count($ratings)>0)
                                     @foreach($product->Reviews as $rating)
                                 <div class="review_item">
                                     <div class="media">
@@ -265,7 +269,9 @@
                                     <hr>
                                 </div>
                                     @endforeach
-{{--                                @endif--}}
+                                @else
+                                    <p>Review are not available for this product!!!</p>
+                                @endif
                             </div>
                         </div>
                         <div class="col-lg-6">

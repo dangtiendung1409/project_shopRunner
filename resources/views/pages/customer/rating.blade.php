@@ -50,7 +50,7 @@
                                 <div class="col-6">
                                     <div class="box_total">
                                         <h5>Overall</h5>
-                                        <h4>4.0</h4>
+                                        <h4>{{$avgRating}}</h4>
                                         <h6>(03 Reviews)</h6>
                                     </div>
                                 </div>
@@ -73,26 +73,28 @@
                                 </div>
                             </div>
                             <div class="review_list">
-                                                                @if(count($ratings)>1)
-                                @foreach($product->Reviews as $rating)
-                                    <div class="review_item">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <h4>{{$rating['user']['name']}}</h4>
-                                                @php
-                                                    $count=1;
-                                                    while ($count<= $rating['rating']){ @endphp
-                                                <span style="color: #ffc700">&#9733;</span>
-                                                @php $count++; } @endphp
-                                                <h4>{{ date("d-m-Y H:i:s", strtotime($rating->created_at))}}</h4>
-                                                <br>
-                                                <h4>{{$rating->message}}</h4>
+                                @if(count($ratings)>0)
+                                    @foreach($product->Reviews as $rating)
+                                        <div class="review_item">
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <h4>{{$rating['user']['name']}}</h4>
+                                                    @php
+                                                        $count=1;
+                                                        while ($count<= $rating['rating']){ @endphp
+                                                    <span style="color: #ffc700">&#9733;</span>
+                                                    @php $count++; } @endphp
+                                                    <h4>{{ date("d-m-Y H:i:s", strtotime($rating->created_at))}}</h4>
+                                                    <br>
+                                                    <h4>{{$rating->message}}</h4>
+                                                </div>
                                             </div>
+                                            <hr>
                                         </div>
-                                        <hr>
-                                    </div>
-                                @endforeach
-                                                                @endif
+                                    @endforeach
+                                @else
+                                    <p>Review are not available for this product!!!</p>
+                                @endif
                             </div>
                         </div>
                         <div class="col-lg-6">

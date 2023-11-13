@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
-
+use Illuminate\Database\Eloquent\Collection;
 class HomeController
 {
     public function __construct()
@@ -35,6 +35,7 @@ class HomeController
 
         return view("pages.customer.home",compact("products"));
     }
+
     public function search(\Illuminate\Http\Request $req){
         $product = Product::where('name','like','%'.$req->key. '%')
             ->orWhere('price',$req->key)
@@ -43,11 +44,7 @@ class HomeController
     }
 
     public function categoryShop(Request $request){
-//        $search = $request->get("search");
-//        $price_from = $request->get("price_from");
-//        $price_to = $request->get("price_to");
         $query = Product::Search($request)->FromPrice($request)->ToPrice($request)->orderBy("created_at", "desc");
-
         if ($request ->price){
 //            dd($request->price);
             $price = $request->price;
@@ -74,21 +71,28 @@ class HomeController
         return view("pages.customer.categoryShop", compact("products"));
     }
 
-
     public function category(Category $category)
     {
         $products = Product::where("category_id", $category->id)
             ->orderBy("created_at", "desc")->paginate(12);
         return view("pages.customer.category", compact("products" ))->render();
     }
+
     public function details(Product $product)
     {
+//        $ratings = Review::with("user")->where('product_id',  $product->id)->get()->toArray();
         $ratings = Review::all();
-        $ratingSum = Review::where('product_id')->where('status', 1)->sum('rating'); // where('status', 1)
-        $ratingCount = Review::where('product_id')->count();
-//        $avgRatings = round($ratingSum/$ratingCount);
-//        $avgStarRating = round($ratingSum/$ratingCount);
+        $ratingSum = Review::where('product_id', $product->id)->sum('rating'); // where('status', 1)
+        $ratingCount = Review::where('product_id', $product->id)->count();
 
+        if ($ratingCount > 0) {
+            $avgRating = round($ratingSum / $ratingCount, 2);
+            $avgStarRating = round($ratingSum / $ratingCount);
+        } else {
+            // If there are no reviews, set default values
+            $avgRating = 0;
+            $avgStarRating = 0;
+        }
         $relate = Product::where("category_id", $product->category_id)
             ->where("id", "!=", $product->id)
             ->where("qty", ">", 0)
@@ -97,7 +101,7 @@ class HomeController
             ->get();
         $favoriteCount = FavoriteOrder::where('name', $product->name)->count();
 
-        return view("pages.customer.shopDetails", compact("product",  "relate" , "ratings", "favoriteCount")); //, "ratings" , "avgRatings"
+        return view("pages.customer.shopDetails", compact("product",  "relate" , "ratings", "favoriteCount", "avgRating", "avgStarRating")); // , "avgRatings", "avgStarRating"
     }
 
     public function addToCart(Product $product, Request $request){
