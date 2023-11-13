@@ -9,7 +9,7 @@
                         <h4>Reviews</h4>
                     </div>
                     <div class="breadcrumb__links">
-                        <a href="/">Product</a>
+                        <a href="/my-order">My Order</a>
                         <span>{{$product->name}}</span>
                     </div>
                 </div>

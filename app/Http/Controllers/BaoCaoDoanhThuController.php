@@ -8,7 +8,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
-class baoCaoDoanhThuController
+class BaoCaoDoanhThuController
 {
     public function baoCaoDoanhThu() {
         // ô số liệu tổng hợp
