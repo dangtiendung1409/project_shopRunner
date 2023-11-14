@@ -333,7 +333,7 @@ class HomeController
        return view("pages.customer.aboutUs");
     }
     public function myOrder(){
-        $Order = Order::where('user_id', auth()->user()->id)->get();
+        $Order = Order::where('user_id', auth()->user()->id)->orderBy("created_at", "desc")->get();
         return view("pages.customer.myOrder", ['orders' => $Order]);
     }
 
