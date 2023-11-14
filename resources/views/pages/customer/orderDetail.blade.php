@@ -132,7 +132,11 @@
                             @csrf
                             <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Đã nhận hàng</button>
                         </form>
-
+                    @elseif($order->status === 0 )
+                        <form method="post" action="{{ url('update-order-status-cancel', ['order' => $order->id]) }}">
+                            @csrf
+                            <button type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
+                        </form>
 
                     @endif
                 </div>

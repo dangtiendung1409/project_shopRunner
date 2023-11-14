@@ -346,6 +346,20 @@ class HomeController
             "status" => Order::COMPLETE
         ]);
         return redirect()->to("my-order");    }
+
+    public function updateOrderStatusCancel(Order $order){
+
+
+        $newStatus = Order::CANCEL;
+
+
+        $order->update([
+            "status" => $newStatus
+        ]);
+
+        return redirect()->to("my-order");
+    }
+
     public function purchaseHome(){
         $orders = Order::orderBy("created_at", "asc")->paginate(12);
         return view("pages.customer.purchaseHome", compact('orders'));

@@ -53,6 +53,7 @@ Route::get('/paypal-cancel/{order}', [\App\Http\Controllers\HomeController::clas
 Route::get('/my-order', [\App\Http\Controllers\HomeController::class,"myOrder"]);
     Route::get('/order-detail/{order}', [\App\Http\Controllers\HomeController::class,"orderDetail"]);
     Route::post('/update-complete/{order}', [\App\Http\Controllers\HomeController::class,"updateComplete"]);
+    Route::post('update-order-status-cancel/{order}', [\App\Http\Controllers\HomeController::class, "updateOrderStatusCancel"])->name('update_order_status_cancel');
 
 Route::get('/change-password', [\App\Http\Controllers\HomeController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password-new', [\App\Http\Controllers\HomeController::class,"updatePassword"])->name('change-password-new');
