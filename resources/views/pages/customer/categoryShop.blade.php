@@ -34,6 +34,15 @@
                     </div>
                     <form style="display: flex" action="{{url("/category/")}}" method="get">
                         <div class="input-group input-group-sm mr-2" style="width: 150px; margin-left: 5px;">
+                        <select value="{{app("request")->input("category_id")}}" style="height: 45px;" name="category_id" class="form-control">
+                            <option value="0">Filter by category</option>
+                            @foreach($categories as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
+                        </select>
+                        </div>
+
+                        <div class="input-group input-group-sm mr-2" style="width: 150px; margin-left: 5px;">
                             <input  type="number" name="price_from" class="form-control" placeholder="Price from">
                         </div>
 
@@ -68,12 +77,18 @@
                                         <h6 >{{$item->name}}</h6>
                                         <a href="{{url("/details",["product"=>$item->slug])}}" class="add-cart">+ Add To Cart</a>
                                         <div class="rating">
+{{--                                                    <?php--}}
+{{--                                                    $star = 1;--}}
+{{--                                                while ($star <= $avgStarRating){ ?>--}}
+{{--                                                <span style="color: #ffc700">&#9733;</span>--}}
+{{--                                                    <?php $star++; } ?> ({{$avgRating}})--}}
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star-o"></i>
                                             <i class="fa fa-star-o"></i>
                                         </div>
+
                                         <h5>${{$item->price}}</h5>
                                         <div class="product__color__select">
                                             <label for="pc-40">

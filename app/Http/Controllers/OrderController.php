@@ -24,9 +24,9 @@ class OrderController extends Controller
 
         $orders = Order::Search($request)->FilterByGrandTotal($request)->FilterByShippingMethod($request)->FilterByStatus($request)->FilterByPaymentMethod($request)->FilterByPaid($request)->orderBy("id","desc")->paginate(20);
         $categories = Category::all();
-        return view("admin.pages.Order.qlDonHang",["orders"=>$orders
-            ,            'categories'=>$categories
-
+        return view("admin.pages.Order.qlDonHang",[
+            "orders"=>$orders,
+            'categories'=>$categories
         ]);
     }
 

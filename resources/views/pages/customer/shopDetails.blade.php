@@ -226,24 +226,36 @@
                                     <div class="box_total">
                                         <h5>Overall</h5>
                                         <h4>{{$avgRating}}</h4>
-                                        <h6>(03 Reviews)</h6>
+                                        <h6>({{$ratingCount}} Reviews)</h6>
                                     </div>
                                 </div>
-{{--                                @endforeach--}}
                                 <div class="col-6">
                                     <div class="rating_list">
                                         <h3>Based on 3 Reviews</h3>
                                         <ul class="list">
-                                            <li><a href="#">5 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                        class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-                                            <li><a href="#">4 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                        class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-                                            <li><a href="#">3 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                        class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-                                            <li><a href="#">2 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                        class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-                                            <li><a href="#">1 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                        class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
+                                            @php
+                                                $ratings = \App\Models\Review::all();
+                                                    $starRatings = [5 => 0, 4 => 0, 3 => 0, 2 => 0, 1 => 0];
+                                                    $productRatings = $ratings->where('product_id', $product->id);
+
+                                                    foreach ($productRatings as $rating) {
+                                                        $starRatings[$rating->rating]++;
+                                                    }
+                                            @endphp
+
+                                            @foreach($starRatings as $rating => $count)
+                                                <li>
+                                                    <a href="#"  class="filter-rating" data-rating="{{ $rating }}">
+                                                        {{$rating}} Star
+                                                        @php
+                                                            for ($i = 0; $i < $rating; $i++) {
+                                                                echo '<i class="fa fa-star"></i>';
+                                                            }
+                                                        @endphp
+                                                        {{$count}} Review{{$count != 1 ? 's' : ''}}
+                                                    </a>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -381,7 +393,6 @@
             }
         });
     </script>
-
 @stop()
 @section("before_css")
     <style>

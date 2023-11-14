@@ -34,8 +34,6 @@ Route::post('/create', [\App\Http\Controllers\HomeController::class,"create"]);
 Route::match(['GET', 'POST'],'/details-rating', [\App\Http\Controllers\RatingController::class,"detailsRating"]);
 Route::get('/review/{product:slug}', [\App\Http\Controllers\RatingController::class,"review"]);
 Route::match(['GET', 'POST'],'/add-rating', [\App\Http\Controllers\RatingController::class,"addRating"]);
-// rating
-Route::get('/admin-rating', [\App\Http\Controllers\RatingController::class,"ratings"]);
 
 Route::middleware("auth")->group(function (){
 // cart

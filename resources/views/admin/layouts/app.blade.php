@@ -8,6 +8,7 @@
 <body onload="time()"  class="app sidebar-mini rtl">
 <!-- Navbar-->
 @include("admin.layouts.nav")
+@include("admin.layouts.sidebar")
 
 
 <section>

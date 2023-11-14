@@ -11,11 +11,11 @@ use Auth;
 
 class RatingController extends Controller
 {
-    public function ratings(){
+    public function adminRating(Request $request){
 //        Seesion::put('pages', 'ratings');
         $ratings = Review::with(["user", "product"])->get()->toArray();
-//        dd($ratings);
-        return view("admin.pages.ratings", compact("ratings"));
+//        $products = Product::Search($request)->FilterByRating($request);
+        return view("admin.pages.ratings",compact("ratings"));
     }
     public function review(Product $product){
         $ratings = Review::all();
@@ -32,6 +32,8 @@ class RatingController extends Controller
         }
         return view("pages.customer.rating", compact("ratings", "product", "avgRating", "avgStarRating"));
     }
+
+
     public function detailsRating(Request $request){
         if (!Auth::check()){
             $message = "Login to rate this product!!!";
@@ -43,6 +45,25 @@ class RatingController extends Controller
             Session::flash('error', $message);
             return redirect()->back();
         }
+//        if ($request ->rating){
+//            $rating = $request->rating;
+//            switch ($rating){
+//                case 1:
+//                    $ratings->where('rating', '<' , 1);
+//                    break;
+//                case 2:
+//                    $ratings->where('rating', '<' , 2);
+//                    break;
+//                case 3:
+//                    $ratings->where('rating', '<' , 3);
+//                    break;
+//                case 4:
+//                    $ratings->where('rating', '<' , 4);
+//                    break;
+//                case 5:
+//                    $ratings->where('rating', '<' , 5);
+//                    break;
+//            }
     }
 
     public function addRating(Request $request){

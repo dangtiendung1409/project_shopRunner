@@ -43,8 +43,18 @@ class HomeController
         return view("pages.customer.search",compact('product'));
     }
 
-    public function categoryShop(Request $request){
-        $query = Product::Search($request)->FromPrice($request)->ToPrice($request)->orderBy("created_at", "desc");
+    public function categoryShop(Product $product,Request $request){
+        $query = Product::Search($request)->FilterCategory($request)->FromPrice($request)->ToPrice($request)->orderBy("created_at", "desc");
+//        $ratingSum = Review::where('product_id', $product->id)->sum('rating');
+//        $ratingCount = Review::where('product_id', $product->id)->count();
+//        if ($ratingCount > 0) {
+//            $avgRating = round($ratingSum / $ratingCount, 2);
+//            $avgStarRating = round($ratingSum / $ratingCount);
+//        } else {
+//            // If there are no reviews, set default values
+//            $avgRating = 0;
+//            $avgStarRating = 0;
+//        }
         if ($request ->price){
 //            dd($request->price);
             $price = $request->price;
@@ -67,8 +77,8 @@ class HomeController
             }
         }
         $products = $query->paginate(12);
-
-        return view("pages.customer.categoryShop", compact("products"));
+        $categories = Category::all();
+        return view("pages.customer.categoryShop", compact("products", "categories")); //, "avgRating", "avgStarRating"
     }
 
     public function category(Category $category)
@@ -78,18 +88,16 @@ class HomeController
         return view("pages.customer.category", compact("products" ))->render();
     }
 
-    public function details(Product $product)
+    public function details(Product $product, Request $request)
     {
 //        $ratings = Review::with("user")->where('product_id',  $product->id)->get()->toArray();
         $ratings = Review::all();
-        $ratingSum = Review::where('product_id', $product->id)->sum('rating'); // where('status', 1)
+        $ratingSum = Review::where('product_id', $product->id)->sum('rating');
         $ratingCount = Review::where('product_id', $product->id)->count();
-
         if ($ratingCount > 0) {
             $avgRating = round($ratingSum / $ratingCount, 2);
             $avgStarRating = round($ratingSum / $ratingCount);
         } else {
-            // If there are no reviews, set default values
             $avgRating = 0;
             $avgStarRating = 0;
         }
@@ -99,9 +107,10 @@ class HomeController
             ->orderBy("created_at", "desc")
             ->limit(4)
             ->get();
+
         $favoriteCount = FavoriteOrder::where('name', $product->name)->count();
 
-        return view("pages.customer.shopDetails", compact("product",  "relate" , "ratings", "favoriteCount", "avgRating", "avgStarRating")); // , "avgRating", "avgStarRating"
+        return view("pages.customer.shopDetails", compact("product",  "relate" , "ratings", "favoriteCount", "avgRating", "avgStarRating", "ratingCount")); // , "avgRating", "avgStarRating"
     }
 
     public function addToCart(Product $product, Request $request){
@@ -324,7 +333,7 @@ class HomeController
        return view("pages.customer.aboutUs");
     }
     public function myOrder(){
-        $Order = Order::where('user_id', auth()->user()->id)->get();
+        $Order = Order::where('user_id', auth()->user()->id)->orderBy("created_at", "desc")->get();
         return view("pages.customer.myOrder", ['orders' => $Order]);
     }
 
