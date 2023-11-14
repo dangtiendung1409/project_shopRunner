@@ -78,28 +78,28 @@
     @include("admin.layouts.scripts")
 @stop
     @section("before_js")
-        <script>
-            $(document).on("click", ".updateRatingStatus", function(){
-                var status = $(this).children("i").attr("status");
-                var rating_id = $(this).attr("rating_id");
+{{--        <script>--}}
+{{--            $(document).on("click", ".updateRatingStatus", function(){--}}
+{{--                var status = $(this).children("i").attr("status");--}}
+{{--                var rating_id = $(this).attr("rating_id");--}}
 
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
-                    },
-                    type: 'post',
-                    url: '/admin/update-rating-status',
-                    data: {status:status, rating_id:rating_id},
-                    susscess: function(resp){
-                        if(resp['status']==0){
-                            $("#rating-"+rating_id).html("<i class='fas fa-toggle-on' aria-hidden='true' status='Active'></i>");
-                        } else if(resp['status']==1){
-                            $("#rating-"+rating_id).html("<i class='fas fa-toggle-off' aria-hidden='true' status='Inactive'></i>");
-                        }
-                    }, error: function(){
-                        alert("Error");
-                    }
-                });
-            });
-        </script>
+{{--                $.ajax({--}}
+{{--                    headers: {--}}
+{{--                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")--}}
+{{--                    },--}}
+{{--                    type: 'post',--}}
+{{--                    url: '/admin/update-rating-status',--}}
+{{--                    data: {status:status, rating_id:rating_id},--}}
+{{--                    susscess: function(resp){--}}
+{{--                        if(resp['status']==0){--}}
+{{--                            $("#rating-"+rating_id).html("<i class='fas fa-toggle-on' aria-hidden='true' status='Active'></i>");--}}
+{{--                        } else if(resp['status']==1){--}}
+{{--                            $("#rating-"+rating_id).html("<i class='fas fa-toggle-off' aria-hidden='true' status='Inactive'></i>");--}}
+{{--                        }--}}
+{{--                    }, error: function(){--}}
+{{--                        alert("Error");--}}
+{{--                    }--}}
+{{--                });--}}
+{{--            });--}}
+{{--        </script>--}}
     @stop
