@@ -13,19 +13,27 @@
         </div>
         <hr>
         <ul class="app-menu">
-            <li ><a  class="app-menu__item active" href="{{url("admin/admin-quan-ly-nhan-vien")}}"><i class='app-menu__icon bx bx-id-card'></i>
+            <li><a class="app-menu__item active" href="{{url("admin/admin-quan-ly-nhan-vien")}}"><i
+                        class='app-menu__icon bx bx-id-card'></i>
                     <span class="app-menu__label">Quản lý nhân viên</span></a></li>
-            <li ><a  class="app-menu__item" href="{{url("admin/admin-quan-ly-khach-hang")}}"><i class="fa-solid fa-users"></i><span style="margin-left: 21px"
-                                                                                                                                    class="app-menu__label">Quản lý khách hàng</span></a></li>
+            <li><a class="app-menu__item" href="{{url("admin/admin-quan-ly-khach-hang")}}"><i
+                        class="fa-solid fa-users"></i><span style="margin-left: 21px"
+                                                            class="app-menu__label">Quản lý khách hàng</span></a></li>
             <li><a class="app-menu__item" href="{{url("admin/admin-quan-ly-san-pham")}}"><i
-                        class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
+                        class='app-menu__icon bx bx-purchase-tag-alt'></i><span
+                        class="app-menu__label">Quản lý sản phẩm</span></a>
             </li>
-            <li ><a  class="app-menu__item" href="{{url("admin/admin-quan-ly-đon-hang")}}"><i class='app-menu__icon bx bx-task'></i><span
+            <li><a class="app-menu__item" href="{{url("admin/admin-quan-ly-đon-hang")}}"><i
+                        class='app-menu__icon bx bx-task'></i><span
                         class="app-menu__label">Quản lý đơn hàng</span></a></li>
-            <li style=" background: #c6defd; border-radius: .375rem;"><a style="color: rgb(22 22 72)" class="app-menu__item active" href="{{url("admin/admin-bao-cao-doanh-thu")}}"><i
-                        class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
+            <li style=" background: #c6defd; border-radius: .375rem;"><a style="color: rgb(22 22 72)"
+                                                                         class="app-menu__item active"
+                                                                         href="{{url("admin/admin-bao-cao-doanh-thu")}}"><i
+                        class='app-menu__icon bx bx-pie-chart-alt-2'></i><span
+                        class="app-menu__label">Báo cáo doanh thu</span></a>
             </li>
-            <li ><a  class="app-menu__item" href="{{url("admin/admin-quan-ly-thong-tin-khuyen-mai")}}"><i class='app-menu__icon bx bx-user-voice'></i><span
+            <li><a class="app-menu__item" href="{{url("admin/admin-quan-ly-thong-tin-khuyen-mai")}}"><i
+                        class='app-menu__icon bx bx-user-voice'></i><span
                         class="app-menu__label">Quản lý thông tin khuyến mãi</span></a></li>
 
 
@@ -36,7 +44,7 @@
             <div class="col-md-12">
                 <div class="app-title">
                     <ul class="app-breadcrumb breadcrumb">
-                        <li class="breadcrumb-item"><a href="#"><b>Báo cáo doanh thu    </b></a></li>
+                        <li class="breadcrumb-item"><a href="#"><b>Báo cáo doanh thu </b></a></li>
                     </ul>
                     <div id="clock"></div>
                 </div>
@@ -52,7 +60,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
-                <div class="widget-small info coloured-icon"><i class='icon bx bxs-purchase-tag-alt fa-3x' ></i>
+                <div class="widget-small info coloured-icon"><i class='icon bx bxs-purchase-tag-alt fa-3x'></i>
                     <div class="info">
                         <h4>Tổng sản phẩm</h4>
                         <p><b>{{ $totalProducts }} sản phẩm</b></p>
@@ -68,7 +76,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
-                <div class="widget-small primary coloured-icon"><i class='icon fa-3x bx bxs-chart' ></i>
+                <div class="widget-small primary coloured-icon"><i class='icon fa-3x bx bxs-chart'></i>
                     <div class="info">
                         <h4>Tổng thu nhập</h4>
                         <p><b>${{ number_format($totalRevenue, 2) }}</b></p>
@@ -80,7 +88,7 @@
         <div class="row">
 
             <div class="col-md-6 col-lg-3">
-                <div class="widget-small warning coloured-icon"><i class='icon fa-3x bx bxs-tag-x' ></i>
+                <div class="widget-small warning coloured-icon"><i class='icon fa-3x bx bxs-tag-x'></i>
                     <div class="info">
                         <h4>Hết hàng</h4>
                         <p><b>{{ $outOfStockProductCount }} sản phẩm</b></p>
@@ -88,7 +96,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
-                <div class="widget-small danger coloured-icon"><i class='icon fa-3x bx bxs-receipt' ></i>
+                <div class="widget-small danger coloured-icon"><i class='icon fa-3x bx bxs-receipt'></i>
                     <div class="info">
                         <h4>Đơn hàng hủy</h4>
                         <p><b>{{ $totalCancelledOrders }} đơn hàng</b></p>
@@ -97,7 +105,59 @@
             </div>
         </div>
 
+        <style>
+            .input-row {
+                display: flex;
+                justify-content: space-between;
 
+            }
+
+            .input-col {
+                flex: 1;
+                margin: 0 10px;
+
+            }
+
+            .input-label {
+                margin-bottom: 10px;
+            }
+
+
+        </style>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <h3 class="tile-title">THỐNG KÊ ĐƠN HÀNG</h3>
+                    <form autocomplete="off" class="input-row">
+
+                        <div class="input-col">
+                            <p class="input-label">Từ ngày:</p>
+                            <input type="text" id="datepicker" class="form-control">
+                            <input style="margin-top: 15px" type="button" id="btn-dashboard-filter"
+                                   class="btn btn-primary btn-sm" value="Lọc kết quả">
+                        </div>
+                        <div class="input-col">
+                            <p class="input-label">Đến ngày:</p>
+                            <input type="text" id="datepicker2" class="form-control">
+                        </div>
+                        <div class="input-col">
+                            <p class="input-label">Lọc theo:</p>
+                            <select id="yearSelect" onchange="changeYear(this.value)"
+                                    class="dashboard-filter form-control">
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023" selected>2023</option>
+                            </select>
+                        </div>
+                    </form>
+                    <div class="col-md-12">
+                        <canvas id="productSoldChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- tabel -->
         <div class="row">
             <div class="col-md-12">
                 <div class="tile">
@@ -125,9 +185,9 @@
                                     <td>{{ $orderTotal['total_amount'] }}</td>
                                 </tr>
                             @endforeach
-
                             </tbody>
                         </table>
+                        {!! $orders->links("pagination::bootstrap-4") !!}
                     </div>
                 </div>
             </div>
@@ -136,45 +196,7 @@
             <div class="col-md-12">
                 <div class="tile">
                     <div>
-                        <h3 class="tile-title">SẢN PHẨM BÁN CHẠY</h3>
-                    </div>
-                    <div class="tile-body">
-                        <table class="table table-hover table-bordered" id="sampleTableHot">
-                            <thead>
-                            <tr>
-                                <th>Số lượng sản phẩm đã bán</th>
-                                <th>Mã sản phẩm</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Giá tiền</th>
-
-                                <th>Danh mục</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($bestSellingProducts as $product)
-                                <tr>
-                                    <td>{{ $product->orders_count }}</td>
-                                    <td>{{ $product->id }}</td>
-                                    <td>{{ $product->name }}</td>
-                                    <td>${{ number_format($product->price, 2) }}</td>
-
-                                    <td>{{ $product->category->name }}</td>
-                                </tr>
-                            @endforeach
-
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="tile">
-                    <div>
-                        <h3 class="tile-title">SẢN PHẨM ĐƯỢC YÊU THÍCH </h3>
+                        <h3 class="tile-title">SẢN PHẨM ĐƯỢC YÊU THÍCH NHẤT</h3>
                     </div>
                     <div class="tile-body">
                         <table class="table table-hover table-bordered" id="sampleTableFavorite">
@@ -203,6 +225,45 @@
                             @endforelse
                             </tbody>
                         </table>
+                        {!! $mostFavoriteProducts->links("pagination::bootstrap-4") !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <div>
+                        <h3 class="tile-title">SẢN PHẨM BÁN CHẠY</h3>
+                    </div>
+                    <div class="tile-body">
+                        <table class="table table-hover table-bordered" id="sampleTableFavorite">
+                            <thead>
+                            <tr>
+                                <th>Mã sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá tiền</th>
+                                <th>Số lượng đã bán</th>
+                                <th>Danh mục</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse ($bestSellingProducts as $product)
+                                <tr>
+                                    <td>{{ $product->id }}</td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>${{ number_format($product->price, 2) }}</td>
+                                    <td>{{ $product->orders_count }}</td>
+                                    <td>{{ $product->category->name }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5">Không có sản phẩm bán chạy nào.</td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
+                        {!! $bestSellingProducts->links("pagination::bootstrap-4") !!}
                     </div>
                 </div>
             </div>
@@ -242,39 +303,17 @@
                             @endforeach
                             </tbody>
                         </table>
+                        {!! $outOfStockProducts->links("pagination::bootstrap-4") !!}
                     </div>
                 </div>
             </div>
 
         </div>
-
-
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="tile">
-                    <h3 class="tile-title">DỮ LIỆU HÀNG THÁNG</h3>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="tile">
-                    <h3 class="tile-title">THỐNG KÊ DOANH SỐ</h3>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <canvas class="embed-responsive-item" id="barChartDemo"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="text-right" style="font-size: 12px">
             <p><b>Hệ thống quản lý V2.0 | Code by Trường</b></p>
         </div>
     </main>
     @include("admin.layouts.js_BaoCao")
-
 
 @endsection
 

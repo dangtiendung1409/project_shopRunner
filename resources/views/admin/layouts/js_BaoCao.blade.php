@@ -3,18 +3,111 @@
 
 <script type="text/javascript" src="admin/js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="admin/js/plugins/dataTables.bootstrap.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
 <script type="text/javascript">
-    $(document).ready(function() {
 
-        $('#sampleTableHot').DataTable();
-        $('#sampleTableFavorite').DataTable();
-        $('#sampleTableProduct').DataTable();
-        $('#sampleTableOrder').DataTable();
+    $( function() {
+        $( "#datepicker" ).datepicker({
+            prevText:"Tháng trước",
+            nextText:"Tháng sau",
+            dateFormat:"yy-mm-dd",
+            dayNamesMin: ["thứ 2","thứ 3","thứ 4","thứ 5","thứ 6","thứ 7","chủ nhật"],
+            duration: "slow"
+        });
+        $( "#datepicker2" ).datepicker({
+            prevText:"Tháng trước",
+            nextText:"Tháng sau",
+            dateFormat:"yy-mm-dd",
+            dayNamesMin: ["thứ 2","thứ 3","thứ 4","thứ 5","thứ 6","thứ 7","chủ nhật"],
+            duration: "slow"
+        });
+    } );
 
 
-    });
 </script>
 <script type="text/javascript" src="admin/js/plugins/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    let ctx = document.getElementById('productSoldChart').getContext('2d');
+    let chart;
+
+    document.getElementById('btn-dashboard-filter').addEventListener('click', function () {
+        const selectedYear = document.getElementById('yearSelect').value;
+        const startDate = document.getElementById('datepicker').value;
+        const endDate = document.getElementById('datepicker2').value;
+
+        fetchChartData(selectedYear, startDate, endDate);
+    });
+
+    function fetchChartData(year, startDate, endDate) {
+        let url = `/admin/revenue-chart?`;
+
+        if (year) {
+            url += `year=${year}`;
+        }
+
+        if (startDate && endDate) {
+            url += `&start_date=${startDate}&end_date=${endDate}`;
+        }
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (chart) {
+                    chart.data.labels = data.labels;
+
+                    // Update both datasets
+                    chart.data.datasets[0].data = data.productsSold;
+                    chart.data.datasets[1].data = data.revenue;
+
+                    chart.update();
+                } else {
+                    createChart(data); // Create chart if it doesn't exist
+                }
+            });
+    }
+
+    fetchChartData(2023, '2023-01-01', '2023-12-31'); // Fetch initial chart data for the default year
+
+    function createChart(data) {
+        chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    label: 'Sản phẩm đã bán',
+                    data: data.productsSold,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2
+                },
+                    {
+                        label: 'Doanh thu',
+                        data: data.revenue,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 2
+                    }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        stepSize: 10,
+                        max: 100,
+                        min: 0,
+                    }
+                }
+            }
+        });
+    }
+</script>
+
+</script>
+
 <script>
     oTable = $('#sampleTable').dataTable();
     $('#all').click(function (e) {
@@ -107,39 +200,7 @@
         $("#ModalUP").modal({ backdrop: false, keyboard: false })
     });
 </script>
-<script type="text/javascript">
-    var data = {
-        labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
-        datasets: [{
-            label: "Dữ liệu đầu tiên",
-            fillColor: "rgba(255, 255, 255, 0.158)",
-            strokeColor: "black",
-            pointColor: "rgb(220, 64, 59)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "green",
-            data: [20, 59, 90, 51, 56, 100, 40, 60, 78, 53, 33, 81]
-        },
-            {
-                label: "Dữ liệu kế tiếp",
-                fillColor: "rgba(255, 255, 255, 0.158)",
-                strokeColor: "rgb(220, 64, 59)",
-                pointColor: "black",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "green",
-                data: [48, 48, 49, 39, 86, 10, 50, 70, 60, 70, 75, 90]
-            }
-        ]
-    };
 
-
-    var ctxl = $("#lineChartDemo").get(0).getContext("2d");
-    var lineChart = new Chart(ctxl).Line(data);
-
-    var ctxb = $("#barChartDemo").get(0).getContext("2d");
-    var barChart = new Chart(ctxb).Bar(data);
-</script>
 <!-- Google analytics script-->
 <script type="text/javascript">
     if (document.location.hostname == 'pratikborsadiya.in') {

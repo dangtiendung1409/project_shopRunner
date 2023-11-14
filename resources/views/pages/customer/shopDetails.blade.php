@@ -41,7 +41,7 @@
                                 <img data-imgbigurl="{{$product->thumbnail}}"
                                      src="{{$product->thumbnail}}" style="width: 120px; height: 120px;" alt="">
                                 <img data-imgbigurl="customer/img/shop-details/product-details-2.jpg"
-                                     src="customer/img/shop-details/thumb-2.jpg" alt="">
+                                      src="customer/img/shop-details/thumb-2.jpg" alt="">
                                 <img data-imgbigurl="customer/img/shop-details/product-details-3.jpg"
                                      src="customer/img/shop-details/thumb-3.jpg" alt="">
                                 <img data-imgbigurl="customer/img/shop-details/product-details-4.jpg"
