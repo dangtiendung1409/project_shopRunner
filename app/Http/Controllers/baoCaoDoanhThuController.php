@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class BaoCaoDoanhThuController
+class baoCaoDoanhThuController
 {
     public function revenueChart(Request $request)
     {
@@ -139,4 +139,5 @@ class BaoCaoDoanhThuController
         ]);
     }
 }
+
 

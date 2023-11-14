@@ -26,4 +26,4 @@ Route::get('/admin-add-thong-tin-khuyen-mai', [\App\Http\Controllers\adminContro
 
 // rating
 Route::get('/admin-rating', [\App\Http\Controllers\RatingController::class,"adminRating"]);
-
+Route::get("/revenue-chart", [\App\Http\Controllers\baoCaoDoanhThuController::class, "revenueChart"]);
