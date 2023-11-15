@@ -57,6 +57,24 @@
                             <h2>${{$product->price}}</h2>
 
                             <ul class="list">
+                                <li>
+                                    <div>
+                                        <?php
+                                        if ($avgRating > 0) {
+                                            $star = 1;
+                                        while ($star <= $avgRating) {
+                                            ?>
+                                        <span style="color: #ffc700">&#9733;</span>
+                                            <?php
+                                            $star++;
+                                        }
+                                            echo "$avgRating";
+                                        } else {
+                                            echo "Not assessed yet";
+                                        }
+                                        ?>
+                                    </div>
+                                </li>
                                 <li><a class="active" href="#"><span>Category</span> : {{$product->Category->name}}</a></li>
                                 <li><a>Availability </a>
                                     @if($product->qty > 0)
@@ -67,22 +85,7 @@
                                 </li>
                                 <li><a href="#"><span>Sold</span> : {{$product->Orders->count()}}</a></li>
 
-                               <div>
-                                   <?php
-                                   if ($avgRating > 0) {
-                                       $star = 1;
-                                   while ($star <= $avgRating) {
-                                       ?>
-                                   <span style="color: #ffc700">&#9733;</span>
-                                       <?php
-                                       $star++;
-                                   }
-                                       echo " ($avgRating)";
-                                   } else {
-                                       echo "The product has not been rating";
-                                   }
-                                   ?>
-                               </div>
+
                             </ul>
                             <p>{{$product->description}}</p>
                             <div class="product__details__quantity">
