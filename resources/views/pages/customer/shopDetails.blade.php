@@ -69,10 +69,19 @@
 
                                <div>
                                    <?php
-                                   $star = 1;
-                                   while ($star <= $avgStarRating){ ?>
+                                   if ($avgRating > 0) {
+                                       $star = 1;
+                                   while ($star <= $avgRating) {
+                                       ?>
                                    <span style="color: #ffc700">&#9733;</span>
-                                       <?php $star++; } ?> ({{$avgRating}})
+                                       <?php
+                                       $star++;
+                                   }
+                                       echo " ($avgRating)";
+                                   } else {
+                                       echo "The product has not been rating";
+                                   }
+                                   ?>
                                </div>
                             </ul>
                             <p>{{$product->description}}</p>
@@ -252,7 +261,7 @@
                                                                 echo '<i class="fa fa-star"></i>';
                                                             }
                                                         @endphp
-                                                        {{$count}} Review{{$count != 1 ? 's' : ''}}
+                                                        {{$count}}
                                                     </a>
                                                 </li>
                                             @endforeach
