@@ -4,7 +4,7 @@
     <main class="app-content">
         <div class="app-title">
             <ul class="app-breadcrumb breadcrumb side">
-                <li class="breadcrumb-item active"><a href="#"><b>Danh sách đơn hàng</b></a></li>
+                <li class="breadcrumb-item active"><a href="#"><b>Danh sách đơn hàng của {{ $user->name }}</b></a></li>
             </ul>
             <div id="clock"></div>
         </div>
@@ -24,7 +24,7 @@
                             </div>
                         </div>
 
-                        <form style="display: flex" action="{{url("admin/admin-quan-ly-đon-hang")}}" method="get">
+                        <form style="display: flex" action="{{url("admin/admin-order-user/{$user->id}")}}" method="get">
                             <div class="input-group input-group-sm mr-2" style="width: 150px; margin-left: 5px;">
                                 <input  type="text" name="grand_total" class="form-control" placeholder="Grand Total">
                             </div>
@@ -74,8 +74,8 @@
                                 <th width="10"><input type="checkbox" id="all"></th>
                                 <th>ID đơn hàng</th>
                                 <th>Created At</th>
-                                <th>Grand Total</th>
                                 <th>Full Name</th>
+                                <th>Grand Total</th>
                                 <th>Shipping Method</th>
                                 <th>Payment Method</th>
                                 <th>Paid</th>
@@ -84,23 +84,23 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($orders as $item)
-                                <tr>
-                                    <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                    <td>{{$item->id}}</td>
-                                    <td>{{$item->created_at}}</td>
-                                    <td>{{$item->getGrandTotal()}}</td>
-                                    <td>{{$item->full_name}}</td>
-                                    <td>{{$item->shipping_method}}</td>
-                                    <td>{{$item->payment_method}}</td>
-                                    <td>{!! $item->getPaid() !!}</td>
-                                    <td>{!! $item->getStatus() !!}</td>
-                                    <td >
-                                        <button style="padding: 7px 7px;" class="site-btn"  type="submit">    <a href="{{ url("admin/admin-detail", ['order' => $item->id]) }}">Chi tiết</a>
-                                        </button>
-                                    </td>
-                                </tr>
-                            @endforeach
+                            @foreach($orders as $order)
+                                        <tr>
+                                            <td width="10"><input type="checkbox" name="check1" value="1"></td>
+                                            <td>{{ $order->id }}</td>
+                                            <td>{{ $order->created_at }}</td>
+                                            <td>{{$order->full_name}}</td>
+                                            <td>{{ $order->getGrandTotal() }}</td>
+                                            <td>{{ $order->shipping_method }}</td>
+                                            <td>{{ $order->payment_method }}</td>
+                                            <td>{!!$order->getPaid() !!}</td>
+                                            <td>{!!$order->getStatus() !!}</td>
+                                            <td >
+                                                <button style="padding: 7px 7px;" class="site-btn" type="submit"> <a href="{{ url("admin/admin-order-user-detail/{$order->id}")}}">Chi tiết</a>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                             </tbody>
                         </table>
                     </div>

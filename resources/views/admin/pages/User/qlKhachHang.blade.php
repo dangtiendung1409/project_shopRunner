@@ -25,6 +25,7 @@
                                 <th >Thumbnail</th>
                                 <th>Address</th>
                                 <th>Telephone</th>
+                                <th width="60">Action</th>
 
                             </tr>
                             </thead>
@@ -39,6 +40,8 @@
                                     <td><img class="img-card-person" src="{{$item->thumbnail}}" alt=""></td>
                                     <td>{{$item->address}}</td>
                                     <td>{{$item->tel}}</td>
+                                    <td>  <button  class="site-btn" type="submit"> <a href="{{url("admin/admin-order-user", ['user' => $item->id])}}">Đơn hàng</a>
+                                        </button></td>
 
                                 </tr>
                             @endforeach

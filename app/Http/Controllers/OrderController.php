@@ -22,7 +22,14 @@ class OrderController extends Controller
         $paid = $request->get("paid");
         $status = $request->get("rate");
 
-        $orders = Order::Search($request)->FilterByGrandTotal($request)->FilterByShippingMethod($request)->FilterByStatus($request)->FilterByPaymentMethod($request)->FilterByPaid($request)->orderBy("id","desc")->paginate(20);
+        $orders = Order::Search($request)
+            ->FilterByGrandTotal($request)
+            ->FilterByShippingMethod($request)
+            ->FilterByStatus($request)
+            ->FilterByPaymentMethod($request)
+            ->FilterByPaid($request)
+            ->orderBy("id","desc")
+            ->paginate(20);
         $categories = Category::all();
         return view("admin.pages.Order.qlDonHang",[
             "orders"=>$orders,
