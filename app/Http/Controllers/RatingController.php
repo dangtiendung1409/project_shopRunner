@@ -13,9 +13,11 @@ use Auth;
 class RatingController extends Controller
 {
     public function adminRating(Request $request){
-//        Seesion::put('pages', 'ratings');
-        $ratings = Review::with(["user", "product"])->get()->toArray();
-//        $products = Product::Search($request)->FilterByRating($request);
+        $ratings = Review::Search($request)
+            ->FilterByEmail($request)
+            ->FilterByRating($request)
+            ->orderBy("created_at","desc")
+            ->paginate(20);
         return view("admin.pages.ratings",compact("ratings"));
     }
     public function review(Product $product){
