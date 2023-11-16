@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -45,25 +46,6 @@ class RatingController extends Controller
             Session::flash('error', $message);
             return redirect()->back();
         }
-//        if ($request ->rating){
-//            $rating = $request->rating;
-//            switch ($rating){
-//                case 1:
-//                    $ratings->where('rating', '<' , 1);
-//                    break;
-//                case 2:
-//                    $ratings->where('rating', '<' , 2);
-//                    break;
-//                case 3:
-//                    $ratings->where('rating', '<' , 3);
-//                    break;
-//                case 4:
-//                    $ratings->where('rating', '<' , 4);
-//                    break;
-//                case 5:
-//                    $ratings->where('rating', '<' , 5);
-//                    break;
-//            }
     }
 
     public function addRating(Request $request){

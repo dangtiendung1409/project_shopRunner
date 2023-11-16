@@ -131,8 +131,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <a class="btn btn-dark" href="{{url("/my-order")}}">Back</a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-dark" href="{{url("/details",["product"=>$product->slug])}}">Shop Details</a>
                     </div>
                 </div>
             </div>

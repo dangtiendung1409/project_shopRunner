@@ -45,16 +45,16 @@ class HomeController
 
     public function categoryShop(Product $product,Request $request){
         $query = Product::Search($request)->FilterCategory($request)->FromPrice($request)->ToPrice($request)->orderBy("created_at", "desc");
-//        $ratingSum = Review::where('product_id', $product->id)->sum('rating');
-//        $ratingCount = Review::where('product_id', $product->id)->count();
-//        if ($ratingCount > 0) {
-//            $avgRating = round($ratingSum / $ratingCount, 2);
-//            $avgStarRating = round($ratingSum / $ratingCount);
-//        } else {
-//            // If there are no reviews, set default values
-//            $avgRating = 0;
-//            $avgStarRating = 0;
-//        }
+        $ratingSum = Review::where('product_id', $product->id)->sum('rating');
+        $ratingCount = Review::where('product_id', $product->id)->count();
+        if ($ratingCount > 0) {
+            $avgRating = round($ratingSum / $ratingCount, 2);
+            $avgStarRating = round($ratingSum / $ratingCount);
+        } else {
+            // If there are no reviews, set default values
+            $avgRating = 0;
+            $avgStarRating = 0;
+        }
         if ($request ->price){
 //            dd($request->price);
             $price = $request->price;
@@ -78,7 +78,7 @@ class HomeController
         }
         $products = $query->paginate(12);
         $categories = Category::all();
-        return view("pages.customer.categoryShop", compact("products", "categories")); //, "avgRating", "avgStarRating"
+        return view("pages.customer.categoryShop", compact("products", "categories", "avgRating", "avgStarRating")); //, "avgRating", "avgStarRating"
     }
 
     public function category(Category $category)
