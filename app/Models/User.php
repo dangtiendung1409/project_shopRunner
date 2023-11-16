@@ -37,6 +37,10 @@ class User extends Authenticatable
             ->where('name', $productName)
             ->exists();
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
