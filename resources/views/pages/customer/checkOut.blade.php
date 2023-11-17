@@ -8,8 +8,8 @@
                     <div class="breadcrumb__text">
                         <h4>Check Out</h4>
                         <div class="breadcrumb__links">
-                            <a href="./index.html">Home</a>
-                            <a href="./shop.html">Shop</a>
+                            <a href="{{url('/')}}">Home</a>
+                            <a href="{{url('/shop')}}">Shop</a>
                             <span>Check Out</span>
                         </div>
                     </div>
@@ -19,7 +19,7 @@
     </section>
     <!-- Breadcrumb Section End -->
 
-    <!-- CheckoutController Section Begin -->
+    <!-- Checkout Section Begin -->
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
@@ -63,14 +63,15 @@
                                 <p class="text-danger"><i>{{$message}}</i></p>
                                 @enderror
                             </div>
+                            <!-- Thêm data-shipping-cost để lưu giá vận chuyển của từng phương thức -->
                             <div class="checkout__input__checkbox">
                                 <p>Shipping method<span>*</span></p>
-                                <label for="acc">
+                                <label for="acc" data-shipping-cost="5">
                                     Express
                                     <input name="shipping_method" @if(old("shipping_method")== "Express") checked @endif value="Express" type="radio" id="acc">
                                     <span class="checkmark"></span>
                                 </label>
-                                <label for="free">
+                                <label for="free" data-shipping-cost="0">
                                     Free Shipping
                                     <input name="shipping_method" @if(old("shipping_method")== "Free_Shipping") checked @endif value="Free_Shipping" type="radio" id="free">
                                     <span class="checkmark"></span>
@@ -91,7 +92,8 @@
                                 </ul>
                                 <ul class="checkout__total__all">
                                     <li>Subtotal <span>${{$subtotal}}</span></li>
-                                    <li>VAT <span>10%</span></li>
+                                    <li>Tax(10%) <span>${{$subtotal * 0.1}}</span></li>
+                                    <li>Shipping Fee <span>$0</span></li>
                                     <li>Total <span>${{$total}}</span></li>
                                 </ul>
 
@@ -112,7 +114,7 @@
                                 @error("payment_method")
                                 <p class="text-danger"><i>{{$message}}</i></p>
                                 @enderror
-                                <button  type="submit" class="site-btn">PLACE ORDER</button>
+                                <button type="submit" class="site-btn">PLACE ORDER</button>
                             </div>
                         </div>
                     </div>
@@ -120,6 +122,58 @@
             </div>
         </div>
     </section>
-    <!-- CheckoutController Section End -->
+    <!-- Checkout Section End -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var shippingMethodInputs = document.querySelectorAll('input[name="shipping_method"]');
+            var shippingCostSpan = document.querySelector('.checkout__total__all li:nth-child(3) span');
+
+            shippingMethodInputs.forEach(function (input) {
+                input.addEventListener('change', function () {
+                    var shippingCost = input.parentElement.getAttribute('data-shipping-cost');
+                    shippingCostSpan.innerText = '$' + shippingCost;
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var shippingMethodInputs = document.querySelectorAll('input[name="shipping_method"]');
+            var shippingCostSpan = document.querySelector('.checkout__total__all li:nth-child(3) span');
+            var subtotalSpan = document.querySelector('.checkout__total__all li:nth-child(1) span');
+            var taxSpan = document.querySelector('.checkout__total__all li:nth-child(2) span');
+            var totalSpan = document.querySelector('.checkout__total__all li:nth-child(4) span');
+
+            updateTotal();
+
+            shippingMethodInputs.forEach(function (input) {
+                input.addEventListener('change', function () {
+                    updateTotal();
+                });
+            });
+
+            function updateTotal() {
+                var shippingCost = getSelectedShippingCost();
+                shippingCostSpan.innerText = '$' + shippingCost;
+
+                var subtotal = parseFloat(subtotalSpan.innerText.replace('$', ''));
+                var tax = subtotal * 0.1;
+                var total = subtotal + tax + parseFloat(shippingCost);
+
+                taxSpan.innerText = '$' + tax.toFixed(2);
+                totalSpan.innerText = '$' + total.toFixed(2);
+            }
+
+            function getSelectedShippingCost() {
+                var selectedShippingInput = document.querySelector('input[name="shipping_method"]:checked');
+                if (selectedShippingInput) {
+                    return selectedShippingInput.parentElement.getAttribute('data-shipping-cost');
+                }
+                return 0;
+            }
+        });
+    </script>
+
+
 
 @endsection

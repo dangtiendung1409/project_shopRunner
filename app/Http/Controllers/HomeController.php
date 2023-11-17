@@ -189,7 +189,7 @@ class HomeController
 
             if ($product->qty < $item->buy_qty) {
                 // Product is out of stock
-                return redirect()->to("cart")->with('error', 'Xin lỗi, sản phẩm ' . $product->name . ' đã hết hàng hoặc không đủ số lượng  .');
+                return redirect()->to("cart")->with('error', 'Sản phẩm ' . $product->name . ' đã hết hàng hoặc không đủ số lượng  .');
             }
             $subtotal += $item->price * $item->buy_qty;
             if($item->buy_qty > $item->qty)
@@ -228,7 +228,12 @@ class HomeController
         foreach ($cartShop as $item) {
             $subtotal += $item->price * $item->buy_qty;
         }
-        $total = $subtotal * 1.1; // vat: 10%
+        $shippingCost = 0;
+        if ($request->get("shipping_method") == "Express") {
+            $shippingCost = 5;
+        }
+
+        $total = $subtotal * 1.1 + $shippingCost;
 
         // Tạo đơn hàng mới và lưu vào cơ sở dữ liệu
         $order = Order::create([

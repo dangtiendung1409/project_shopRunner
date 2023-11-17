@@ -25,11 +25,7 @@
             @if(count($cartShop)==0)
                 <p>Không có sản phẩm nào trong giỏ hàng</p>
             @else
-                @if(session()->has("error"))
-                    <div class="alert alert-danger" role="alert">
-                        {{ session("error") }}
-                    </div>
-                @endif
+
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="shopping__cart__table">
@@ -55,6 +51,7 @@
                                                     <h6>{{ $item->name }}</h6>
                                                 </div>
                                             </td>
+
                                             <td class="cart__price">${{ $item->price }}</td>
                                             <td class="quantity__item">
                                                 <div class="quantity">
@@ -66,7 +63,8 @@
                                                         @if ($item->buy_qty > $item->qty)
                                                             <p class="text-danger">Sản phẩm đã hết hàng</p>
                                                         @endif
-                                                        <button type="submit" class="btn btn-update">Cập nhật</button>
+                                                        <button type="submit" class="btn btn-update update-button">Cập nhật</button>
+
                                                     </form>
                                                 </div>
                                             </td>
@@ -74,8 +72,21 @@
                                             <td class="cart__close">
                                                 <a href="/delete-from-cart/{{ $item->id }}"><i class="fa fa-close"></i></a>
                                             </td>
+
                                         </tr>
+
+                                        <!-- Display error message below the product -->
+                                        @if(session()->has("error"))
+                                            <tr>
+                                                <td colspan="5">
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ session("error") }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @endforeach
+
                                 @endif
 
                                 </tbody>
@@ -97,20 +108,37 @@
                     </div>
                     <div class="col-lg-4">
 
-                        <div class="cart__total">
+                         <div class="cart__total">
                             <h6>Cart total</h6>
-                            <ul>
+                             <ul>
                                 <li>Subtotal <span>${{$subtotal}}</span></li>
-                                <li>VAT <span>10%</span></li>
+                                 <li>Tax(10%) <span>${{$subtotal * 0.1}}</span></li>
                                 <li>Total <span>${{$total}}</span></li>
-                            </ul>
-                        <a style="padding: 14px 60px;" href="{{url('/check-out')}}" class="site-btn btn @if(!$can_checkout)disabled @endif">Proceed to checkout</a>
-                    </div>
+                             </ul>
+                         <a style="padding: 14px 60px;" href="{{url('/check-out')}}" class="site-btn btn @if(!$can_checkout)disabled @endif">Proceed to checkout</a>
+                     </div>
                 </div>
-            </div>
+                </div>
             @endif
         </div>
     </section>
     <!-- Shopping Cart Section End -->
+    <style>
+        .btn-update {
+            color: #fff;
+
+            width: 120px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-update:hover {
+            background-color: #007bff;
+            color:#fff ; /* Giữ màu chữ xanh mặc định */
+
+            width: 120px;
+        }
+    </style>
+
+
 
 @endsection

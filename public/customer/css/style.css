@@ -1928,19 +1928,19 @@ button:focus {
     margin-right: 6px;
 }
 
-.btn-update {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-    width: 120px;
-}
+/*.btn-update {*/
+/*    color: #fff;*/
+/*    background-color: #007bff;*/
 
-.btn-update:hover {
-    color: #fff;
-    background-color: #0069d9;
-    border-color: #0062cc;
-    width: 120px;
-}
+/*    width: 120px;*/
+/*}*/
+
+/*.btn-update:hover {*/
+/*    color: #fff;*/
+/*    background-color: #0069d9;*/
+/*    border-color: #0062cc;*/
+/*    width: 120px;*/
+/*}*/
 
 .pro-qty {
     display: inline-block;
