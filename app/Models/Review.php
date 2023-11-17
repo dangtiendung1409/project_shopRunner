@@ -23,21 +23,33 @@ class Review extends Model
     public function Product(){
         return $this->belongsTo(Product::class, "product_id");
     }
-    public function scopeSearch($query,$request){
-        if($request->has("search")&& $request->get("search") != ""){
-            $search = $request->get("search");
-            $query->where("name","like","%$search%")
-                ->orWhere("description","like","%$search%");
-        }
-        return $query;
+
+    // Trong model Review
+    public function scopeSearch($query, $searchTerm)
+    {
+        return $query->where('review_text', 'like', '%' . $searchTerm . '%');
     }
 
-    public function scopeFilterByRating($query, $request)
+    public function scopeSearchCustomerName($query, $customerName)
     {
-        if ($request->has("rating") && $request->get("rating") != 0) {
-            $rating = $request->get("rating");
-            $query->where("rating", ">=", $rating);
-        }
-        return $query;
+        return $query->whereHas('user', function ($q) use ($customerName) {
+            $q->where('name', 'like', '%' . $customerName . '%');
+        });
     }
+
+// Trong model Review
+    public function scopeFilterByUserEmail($query, $email)
+    {
+        return $query->whereHas('user', function ($q) use ($email) {
+            $q->where('email', $email);
+        });
+    }
+
+
+    public function scopeFilterByRating($query, $rating)
+    {
+        return $query->where('rating', $rating);
+    }
+
+
 }

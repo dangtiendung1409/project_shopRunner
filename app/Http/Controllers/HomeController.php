@@ -28,7 +28,7 @@ class HomeController
 //        $this->middleware("auth");
     }
 
-    // giao diện khách hàng
+    // home
     public function home(Request $request){
 
         $products = Product::all();
@@ -36,6 +36,7 @@ class HomeController
         return view("pages.customer.home",compact("products"));
     }
 
+   // search
     public function search(\Illuminate\Http\Request $req){
         $product = Product::where('name','like','%'.$req->key. '%')
             ->orWhere('price',$req->key)
@@ -43,6 +44,8 @@ class HomeController
         return view("pages.customer.search",compact('product'));
     }
 
+
+   // category
     public function categoryShop(Product $product,Request $request){
         $query = Product::Search($request)->FilterCategory($request)->FromPrice($request)->ToPrice($request)->orderBy("created_at", "desc");
 //        $ratingSum = Review::where('product_id', $product->id)->sum('rating');
@@ -88,6 +91,7 @@ class HomeController
         return view("pages.customer.category", compact("products" ))->render();
     }
 
+    // detials
     public function details(Product $product, Request $request)
     {
 //        $ratings = Review::with("user")->where('product_id',  $product->id)->get()->toArray();
@@ -113,6 +117,8 @@ class HomeController
         return view("pages.customer.shopDetails", compact("product",  "relate" , "ratings", "favoriteCount", "avgRating", "avgStarRating", "ratingCount")); // , "avgRating", "avgStarRating"
     }
 
+
+    // cart
     public function addToCart(Product $product, Request $request){
         $buy_qty = $request->get("buy_qty");
         $cartShop = session()->has("cartShop") ? session("cartShop") : [];
@@ -128,6 +134,7 @@ class HomeController
         session(["cartShop"=>$cartShop]);
         return redirect()->back()->with("success","Đã thêm sản phẩm vào giỏ hàng");
     }
+
 
     public function cartShop()
     {
@@ -171,6 +178,8 @@ class HomeController
         session()->forget("cartShop");
         return redirect()->back()->with("success", "Đã xóa tất cả sản phẩm khỏi giỏ hàng");
     }
+
+    // check out
     public function checkOut(){
         $cartShop = session()->has("cartShop")?session("cartShop"):[];
         $subtotal = 0;
@@ -192,6 +201,7 @@ class HomeController
         }
         return view("pages.customer.checkOut",compact("cartShop","subtotal","total"));
     }
+
     public function placeOrder(Request $request){
         $request->validate([
             "full_name"=>"required|min:6",
@@ -292,6 +302,28 @@ class HomeController
         return redirect()->to("thank-you/$order->id");
     }
 
+    // thanh toán paypal
+    public function paypalSuccess(Order $order){
+        // Đầu tiên, kiểm tra xem payment_method có phải là "COD" không
+        // Cập nhật trạng thái đơn hàng và làm bất kỳ công việc khác liên quan đến thanh toán ở đây.
+        session()->forget("cartShop");
+        event(new CreateNewOrder($order));
+        $order->update([
+            "is_paid" => true,
+            "status" => Order::CONFIRMED
+        ]);
+
+        return redirect()->to("thank-you/$order->id");
+    }
+
+    public function paypalCancel(Order $order){
+        $order->update([
+            "status" => Order::CANCEL
+        ]);
+        return redirect()->to("thank-you/$order->id");
+    }
+
+    // contact
     public function contactShop(Request $request)
     {
         if ($request->isMethod('post')) {
@@ -329,9 +361,13 @@ class HomeController
             return view('pages.customer.contactShop');
         }
     }
+    // abous us
     public function aboutUs(){
        return view("pages.customer.aboutUs");
     }
+
+
+    // user : account , trạng thái dơn hàng , danh sách sản phẩm yêu thích
     public function myOrder(){
         $Order = Order::where('user_id', auth()->user()->id)->orderBy("created_at", "desc")->get();
         return view("pages.customer.myOrder", ['orders' => $Order]);
@@ -359,7 +395,9 @@ class HomeController
 
         return redirect()->to("my-order");
     }
-
+    public function purchaseOrder(Order $order){
+        return view("pages.customer.purchaseOrder",compact("order"));
+    }
     public function purchaseHome(){
         $orders = Order::orderBy("created_at", "asc")->paginate(12);
         return view("pages.customer.purchaseHome", compact('orders'));
@@ -506,32 +544,11 @@ class HomeController
         }
     }
 
+
+    // thank you
     public function ThankYou(Order $order){
 //        dd(session("cartShop"));
         return view("pages.customer.thankYou",compact("order"));
-    }
-    public function purchaseOrder(Order $order){
-        return view("pages.customer.purchaseOrder",compact("order"));
-    }
-
-    public function paypalSuccess(Order $order){
-        // Đầu tiên, kiểm tra xem payment_method có phải là "COD" không
-        // Cập nhật trạng thái đơn hàng và làm bất kỳ công việc khác liên quan đến thanh toán ở đây.
-        session()->forget("cartShop");
-        event(new CreateNewOrder($order));
-        $order->update([
-            "is_paid" => true,
-            "status" => Order::CONFIRMED
-        ]);
-
-        return redirect()->to("thank-you/$order->id");
-    }
-
-    public function paypalCancel(Order $order){
-        $order->update([
-            "status" => Order::CANCEL
-        ]);
-        return redirect()->to("thank-you/$order->id");
     }
 
 }

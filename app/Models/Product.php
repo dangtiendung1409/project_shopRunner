@@ -29,9 +29,17 @@ class Product extends Model
     public function Orders(){
         return $this->belongsToMany(Order::class, "order_products");
     }
-    public function Reviews(){
-        return $this->hasMany(Review::class);
+    // Trong file Product.php (hoặc tương đương)
+    public function averageRating()
+    {
+        return $this->reviews()->avg('rating');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'product_id');
+    }
+
 
     public function scopeSearch($query,$request){
         if($request->has("search")&& $request->get("search") != ""){

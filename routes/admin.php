@@ -33,6 +33,7 @@ Route::get('/admin-add-thong-tin-khuyen-mai', [\App\Http\Controllers\adminContro
 
 // rating
 Route::get('/admin-rating', [\App\Http\Controllers\RatingController::class,"adminRating"]);
+Route::get('/admin-rating-details/{product_id}', [\App\Http\Controllers\RatingController::class, 'ratingDetails'])->name('admin-rating-details');
 
 // báo cáo doanh thu
 Route::get('/admin-bao-cao-doanh-thu', [\App\Http\Controllers\baoCaoDoanhThuController::class, "baoCaoDoanhThu"]);
