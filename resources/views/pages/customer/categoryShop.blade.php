@@ -43,11 +43,11 @@
                         </div>
 
                         <div class="input-group input-group-sm mr-2" style="width: 150px; margin-left: 5px;">
-                            <input  type="number" name="price_from" class="form-control" placeholder="Price from">
+                            <input  type="number" name="price_from" value="{{app("request")->input("price_from")}}" class="form-control" placeholder="Price from">
                         </div>
 
                         <div class="input-group input-group-sm mr-2" style="width: 150px;">
-                            <input  type="number" name="price_to" class="form-control" placeholder="Price to">
+                            <input  type="number" name="price_to" value="{{app("request")->input("price_to")}}" class="form-control" placeholder="Price to">
                         </div>
 
 

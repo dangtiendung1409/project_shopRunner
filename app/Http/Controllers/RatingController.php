@@ -3,87 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Review;
-use App\Models\Category;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
 use Session;
 use Auth;
 
 class RatingController extends Controller
 {
     public function adminRating(Request $request){
-        $products = Product::with('reviews')
-            ->withCount('reviews')
-            ->when($request->has("search"), function ($query) use ($request) {
-                return $query->search($request);
-            })
-            ->when($request->has("category_id"), function ($query) use ($request) {
-                return $query->filterCategory($request);
-            })
-            ->when($request->has("price_from"), function ($query) use ($request) {
-                return $query->fromPrice($request);
-            })
-            ->when($request->has("price_to"), function ($query) use ($request) {
-                return $query->toPrice($request);
-            })
-            ->when($request->has("rate"), function ($query) use ($request) {
-                $desiredRating = $request->input('rate');
-                $query->whereHas('reviews', function ($q) use ($desiredRating) {
-                    $q->select(DB::raw('AVG(rating) as avgRating'))
-                        ->groupBy('product_id')
-                        ->havingRaw('AVG(rating) = ?', [$desiredRating]);
-                });
-            })
-
-            ->get()
-            ->sortByDesc(function ($product) {
-                return $product->averageRating();
-            });
-
-        $categories = Category::all();
-
-        return view("admin.pages.ratings", compact('products', 'categories'));
+        $ratings = Review::Search($request)
+            ->FilterByEmail($request)
+            ->FilterByRating($request)
+            ->orderBy("created_at","desc")
+            ->paginate(20);
+        return view("admin.pages.ratings",compact("ratings"));
     }
-
-    public function ratingDetails($product_id, Request $request){
-        $product = Product::find($product_id);
-        $reviews = Review::where('product_id', $product_id);
-
-        $search = $request->get("search");
-        $customerName = $request->get("customer_name");
-        $starRating = $request->get("star_rating");
-        $email = $request->get("email");
-
-        if ($search) {
-            $reviews->search($search);
-        }
-
-        if ($customerName) {
-            $reviews->searchCustomerName($customerName);
-        }
-
-        if ($starRating) {
-            $reviews->filterByRating($starRating);
-        }
-        if ($email) {
-            // Lọc đánh giá dựa trên email người dùng
-            $reviews->filterByUserEmail($email);
-        }
-
-        $reviews = $reviews->paginate(20);
-
-        return view('admin.pages.ratingDetails', compact('product', 'reviews', 'product_id'));
-    }
-
-
-
-
-
-
     public function review(Product $product){
         $ratings = Review::all();
         $ratingSum = Review::where('product_id', $product->id)->sum('rating'); // where('status', 1)
@@ -112,25 +48,6 @@ class RatingController extends Controller
             Session::flash('error', $message);
             return redirect()->back();
         }
-//        if ($request ->rating){
-//            $rating = $request->rating;
-//            switch ($rating){
-//                case 1:
-//                    $ratings->where('rating', '<' , 1);
-//                    break;
-//                case 2:
-//                    $ratings->where('rating', '<' , 2);
-//                    break;
-//                case 3:
-//                    $ratings->where('rating', '<' , 3);
-//                    break;
-//                case 4:
-//                    $ratings->where('rating', '<' , 4);
-//                    break;
-//                case 5:
-//                    $ratings->where('rating', '<' , 5);
-//                    break;
-//            }
     }
 
     public function addRating(Request $request){

@@ -23,33 +23,32 @@ class Review extends Model
     public function Product(){
         return $this->belongsTo(Product::class, "product_id");
     }
-
-    // Trong model Review
-    public function scopeSearch($query, $searchTerm)
-    {
-        return $query->where('review_text', 'like', '%' . $searchTerm . '%');
+    public function scopeSearch($query,$request){
+        if($request->has("search")&& $request->get("search") != ""){
+            $search = $request->get("search");
+            $query
+            ->orWhereHas('product', function ($q) use ($search) {
+                $q->where('name', 'like', "%$search%");
+            });
+        }
+        return $query;
+    }
+    public function scopeFilterByEmail($query,$request){
+        if($request->has("user_email")&& $request->get("user_email") != ""){
+            $search = $request->get("user_email");
+            $query->orWhereHas('user', function ($q) use ($search) {
+                    $q->where('email', 'like', "%$search%");
+                });
+        }
+        return $query;
     }
 
-    public function scopeSearchCustomerName($query, $customerName)
+    public function scopeFilterByRating($query, $request)
     {
-        return $query->whereHas('user', function ($q) use ($customerName) {
-            $q->where('name', 'like', '%' . $customerName . '%');
-        });
+        if ($request->has("rating") && $request->get("rating") != 0) {
+            $rating = $request->get("rating");
+            $query->where("rating", "=", $rating);
+        }
+        return $query;
     }
-
-// Trong model Review
-    public function scopeFilterByUserEmail($query, $email)
-    {
-        return $query->whereHas('user', function ($q) use ($email) {
-            $q->where('email', $email);
-        });
-    }
-
-
-    public function scopeFilterByRating($query, $rating)
-    {
-        return $query->where('rating', $rating);
-    }
-
-
 }

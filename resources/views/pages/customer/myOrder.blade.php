@@ -65,7 +65,7 @@
             <table class="order-table">
                 <thead>
                 <tr>
-                    <th>ID đơn hàng</th>
+                    <th>ID</th>
                     <th>Created At</th>
                     <th>Grand Total</th>
                     <th>Full Name</th>

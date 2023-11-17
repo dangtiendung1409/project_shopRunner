@@ -4,44 +4,24 @@
     <main class="app-content">
         <div class="app-title">
             <ul class="app-breadcrumb breadcrumb side">
-                <li class="breadcrumb-item active"><a href="#"><b>Danh sách sản phẩm</b></a></li>
+                <li class="breadcrumb-item active"><a href="#"><b>Rating & Review</b></a></li>
             </ul>
             <div id="clock"></div>
         </div>
-        <div  class="row">
-            <div  class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
                 <div class="tile">
                     <div class="tile-body">
-                        <div class="row element-button">
-                            <div class="col-sm-2">
-                                <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
-                                        class="fas fa-print"></i> In dữ liệu</a>
-                            </div>
-                            <div class="col-sm-2">
-                                <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                                        class="fas fa-trash-alt"></i> Xóa tất cả </a>
-                            </div>
-                        </div>
 
-                        <form style="display: flex" action="{{url("admin/admin-rating")}}" method="get">
+                        <form style="display: flex" action="{{url("admin/admin-rating/")}}" method="get">
                             <div class="input-group input-group-sm mr-2" style="width: 150px; margin-left: 5px;">
-                                <select value="{{app("request")->input("category_id")}}" style="height: 45px;" name="category_id" class="form-control">
-                                    <option value="0">Filter by category</option>
-                                    @foreach($categories as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
-                                    @endforeach
-                                </select>
+                                <input  type="text" name="user_email" value="{{app("request")->input("user_email")}}" class="form-control" placeholder="User Email">
                             </div>
 
-                            <div class="input-group input-group-sm mr-2" style="width: 100px; float:left">
-                                <input value="{{app("request")->input("price_from")}}" class="form-control" type="number" name="price_from" placeholder="Price from"/>
+                            <div class="input-group input-group-sm mr-2" style="width: 150px;">
+                                <input  type="number" name="rating" value="{{app("request")->input("rating")}}" class="form-control" placeholder="Ratings">
                             </div>
-                            <div class="input-group input-group-sm mr-2" style="width: 100px; float:left">
-                                <input value="{{app("request")->input("price_to")}}" class="form-control" type="number" name="price_to" placeholder="Price to"/>
-                            </div>
-                            <div class="input-group input-group-sm mr-2" style="width: 100px; float:left">
-                                <input value="{{ app('request')->input('rate') }}" class="form-control" type="text" name="rate" placeholder="Rating"/>
-                            </div>
+
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input  value="{{app("request")->input("search")}}" type="text" name="search" class="form-control float-right" placeholder="Search">
 
@@ -51,43 +31,26 @@
 
                             </div>
                         </form>
-
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
                             <tr>
-                                <th width="10"><input type="checkbox" id="all"></th>
-                                <th>Id</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Ảnh</th>
-                                <th>Số lượng</th>
-                                <th>Giá tiền</th>
-                                <th>Danh mục</th>
-                                <th>Số sao trung bình</th>
-                                <th width="70px">Chức năng</th>
+                                <th>ID</th>
+                                <th>Product Name</th>
+                                <th>User Email</th>
+                                <th>User</th>
+                                <th>Message</th>
+                                <th>Ratings</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($products as $product)
+                            @foreach($ratings as $rating)
                                 <tr>
-                                    <td width="10">
-                                        <input type="checkbox" name="selected_products[]" value="{{ $product->id }}">
-                                    </td>
-                                    <td>{{ $product->id }}</td>
-                                    <td>{{ $product->name }}</td>
-                                    <td>
-                                        <img src="{{ $product->thumbnail }}" style="width: 100px; height: auto;" alt="">
-                                    </td>
-                                    <td>{{ $product->qty }}</td>
-                                    <td>{{ $product->price }}</td>
-                                    <td>{{ $product->category->name }}</td>
-                                    <td>{{ number_format($product->averageRating(), 1) }} </td>
-                                    <td >
-                                        <button style="padding: 8px 8px;" class="site-btn"  type="submit">
-                                            <a href="{{ route('admin-rating-details', ['product_id' => $product->id]) }}">
-                                                Review
-                                            </a>
-                                        </button>
-                                    </td>
+                                    <td>{{$rating->id}}</td>
+                                    <td>{{$rating->product->name}}</td>
+                                    <td>{{$rating->user->email}}</td>
+                                    <td>{{$rating->user->name}}</td>
+                                    <td>{{$rating->message}}</td>
+                                    <td>{{$rating->rating}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -97,29 +60,5 @@
             </div>
         </div>
     </main>
-
-    <!--
-      MODAL
-    -->
-
-    <style>
-        table {
-            width: 100%;
-            table-layout: fixed;
-        }
-
-        td {
-            overflow: hidden;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-    </style>
-    <!--
-    MODAL
-    -->
     @include("admin.layouts.scripts")
-@endsection
+@stop
