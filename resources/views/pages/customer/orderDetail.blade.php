@@ -59,7 +59,7 @@
                                     <li><a href="#"><span>Order number</span>: {{$order->id}}</a></li>
                                     <li><a href="#"><span>Date</span>: {{ $order->created_at->format('d/m/Y') }}</a></li>
                                     @foreach($order->Products as $item)
-                                        <li><a href="#"><span>Total</span>: ${{$item->pivot->qty*$item->pivot->price}}</a></li>
+                                        <li><a href="#"><span>Grand_total</span>: ${{$order->grand_total}}</a></li>
                                     @endforeach
                                     <li><a href="#"><span>Payment method</span>: {{ $order->payment_method }}</a></li>
                                     @if ($order->getStatus() != '<span class="text-danger">Huỷ</span>')
@@ -132,10 +132,12 @@
                             @csrf
                             <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Đã nhận hàng</button>
                         </form>
+
+                        <button  type="submit" class="btn btn-danger" style="float: right; margin-top: -3px;  margin-right: 10px;">Đổi trả</button>
                     @elseif($order->status === 0 )
                         <form method="post" action="{{ url('update-order-status-cancel', ['order' => $order->id]) }}">
                             @csrf
-                            <button type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
+                            <button  onclick="return confirm('Chắc chắn muốn hủy đơn hàng này')" type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
                         </form>
 
                     @endif

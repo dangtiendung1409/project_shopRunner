@@ -10,9 +10,9 @@
                             <ul class="list">
                                 <li><a href="#"><span>Order number</span>: {{$order->id}}</a></li>
                                 <li><a href="#"><span>Date</span>: {{ $order->created_at->format('d/m/Y') }}</a></li>
-                                @foreach($order->Products as $item)
-                                    <li><a href="#"><span>Total</span>: ${{$item->pivot->qty*$item->pivot->price}}</a></li>
-                                @endforeach
+
+                                <li><a href="#"><span>grand_total</span>: ${{$order->grand_total}}</a></li>
+
                                 <li><a href="#"><span>Payment method</span>: {{ $order->payment_method }}</a></li>
                                 <li><a href="#"><span>Status</span>: {!! $order->getStatus() !!}</a></li>
 
@@ -75,27 +75,27 @@
                 @elseif($order->status === 2 )
                     <form method="post" action="{{ route('update_order_status', ['order' => $order->id]) }}">
                         @csrf
-                        <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Đã giao hàng</button>
+                        <button onclick="return confirm('Chắc chắn muốn cập nhập trạng thái thành: Đã giao hàng')" type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Đã giao hàng</button>
                     </form>
                 @elseif($order->status === 1 )
                     <form method="post" action="{{ route('update_order_status', ['order' => $order->id]) }}">
                         @csrf
-                        <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Giao hàng</button>
+                        <button onclick="return confirm('Chắc chắn muốn cập nhập trạng thái thành: Đang giao hàng')" type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Giao hàng</button>
                     </form>
 
                     <form method="post" action="{{ route('update_order_status_cancel', ['order' => $order->id]) }}">
                         @csrf
-                        <button type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
+                        <button onclick="return confirm('Chắc chắn muốn hủy đơn hàng')" type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
                     </form>
                 @elseif($order->status === 0 )
                     <form method="post" action="{{ route('update_order_status', ['order' => $order->id]) }}">
                         @csrf
-                        <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Xác nhận</button>
+                        <button onclick="return confirm('Chắc chắn muốn cập nhập trạng thái thành: Đã xác nhận')" type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Xác nhận</button>
                     </form>
 
                     <form method="post" action="{{ route('update_order_status_cancel', ['order' => $order->id]) }}">
                         @csrf
-                        <button type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
+                        <button onclick="return confirm('Chắc chắn muốn hủy đơn hàng')" type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
                     </form>
                 @endif
             </div>

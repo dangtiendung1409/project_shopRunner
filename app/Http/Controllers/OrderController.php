@@ -77,11 +77,23 @@ class OrderController extends Controller
 
         $newStatus = Order::CANCEL;
 
+        // Lấy danh sách sản phẩm trong đơn hàng
+        $products = $order->products;
 
+        // Cập nhật trạng thái của đơn hàng
         $order->update([
-            "is_paid" => false,
             "status" => $newStatus
         ]);
+
+        // Cập nhật số lượng sản phẩm trong bảng product
+        foreach ($products as $product) {
+            $product->update([
+                'qty' => $product->qty + $product->pivot->qty
+                // Giả sử 'quantity' là trường chứa số lượng sản phẩm trong bảng product,
+                // 'pivot' là bảng trung gian giữa order và product, chứa thông tin thêm như số lượng trong đơn hàng
+            ]);
+        }
+
 
         return redirect()->to("admin/admin-quan-ly-đon-hang");
     }
