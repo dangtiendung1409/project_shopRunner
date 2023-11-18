@@ -27,11 +27,11 @@
                             <ul id="searchResults"></ul>
                             <i class="fas fa-search" type="submit" id="searchIcon"></i>
                         </form>
-                        <a href="#" class="dropbtn" onclick="showDropdown()"><img src="/customer/img/icon/user.png" style="width:20px;" alt=""></a>
+                        <a class="dropbtn" onclick="showDropdown()"><img src="/customer/img/icon/user.png" style="width:20px;" alt=""></a>
                         <div class="dropdown-content" id="myDropdown">
                             @auth()
                             <div class="top-icon">
-                                <a href="#"><i class="fa fa-user"></i> {{auth()->user()->name}}</a>
+                                <a href="{{url("profile")}}"><i class="fa fa-user"></i> {{auth()->user()->name}}</a>
                             </div>
 
                             <a href="{{url("my-order")}}"><i class="fa-brands fa-shopify"></i>My order</a>

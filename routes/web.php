@@ -51,6 +51,13 @@ Route::get('/paypal-cancel/{order}', [\App\Http\Controllers\HomeController::clas
 
 // user : account , trạng thái dơn hàng , danh sách sản phẩm yêu thích
 Route::get('/my-order', [\App\Http\Controllers\HomeController::class,"myOrder"]);
+    Route::get('/my-order-pending', [\App\Http\Controllers\HomeController::class,"myOrderPending"]);
+    Route::get('/my-order-confirmed', [\App\Http\Controllers\HomeController::class,"myOrderConfirmed"]);
+    Route::get('/my-order-shipping', [\App\Http\Controllers\HomeController::class,"myOrderShipping"]);
+    Route::get('/my-order-shipped', [\App\Http\Controllers\HomeController::class,"myOrderShipped"]);
+    Route::get('/my-order-complete', [\App\Http\Controllers\HomeController::class,"myOrderComplete"]);
+    Route::get('/my-order-cancel', [\App\Http\Controllers\HomeController::class,"myOrderCancel"]);
+
     Route::get('/order-detail/{order}', [\App\Http\Controllers\HomeController::class,"orderDetail"]);
     Route::post('/update-complete/{order}', [\App\Http\Controllers\HomeController::class,"updateComplete"]);
     Route::post('update-order-status-cancel/{order}', [\App\Http\Controllers\HomeController::class, "updateOrderStatusCancel"])->name('update_order_status_cancel');

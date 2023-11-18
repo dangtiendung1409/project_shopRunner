@@ -62,13 +62,13 @@
                     <p style="color: black">{{ $orders->count() }} order </p>
                 </div>
             </div>
-            <div style="border-top: 1px solid #DDE1EF;" class="content-top1 d-flex flex-wrap">
+            <div style="border-top: 1px solid #DDE1EF;"  class="content-top1 d-flex flex-wrap">
                 <div class="col-sm-2">
-                    <a style="color: #ff5722;font-weight: bold"  href="{{url("/my-order")}}" >All</a>
+                    <a style="font-weight: bold; color: #777777" href="{{url("/my-order")}}" >All</a>
                 </div>
 
                 <div class="col-sm-2">
-                    <a  style="font-weight: bold; color: #777777" href="{{url("/my-order-pending")}}"  type="button"  >Pending</a>
+                    <a  style="color: #ff5722;font-weight: bold" href="{{url("/my-order-pending")}}"  type="button"  >Pending</a>
                 </div>
 
                 <div class="col-sm-2">

@@ -64,7 +64,7 @@
             </div>
             <div style="border-top: 1px solid #DDE1EF;" class="content-top1 d-flex flex-wrap">
                 <div class="col-sm-2">
-                    <a style="color: #ff5722;font-weight: bold"  href="{{url("/my-order")}}" >All</a>
+                    <a style="font-weight: bold; color: #777777" href="{{url("/my-order")}}" >All</a>
                 </div>
 
                 <div class="col-sm-2">
@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="col-sm-2">
-                    <a style="font-weight: bold; color: #777777"   type="button" href="{{url("/my-order-confirmed")}}"  >Confirmed</a>
+                    <a style="color: #ff5722;font-weight: bold"  type="button" href="{{url("/my-order-confirmed")}}"  >Confirmed</a>
                 </div>
 
                 <div class="col-sm-2">
