@@ -6,6 +6,7 @@ use App\Models\favoriteOrder;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -67,6 +68,7 @@ class baoCaoDoanhThuController
         $totalCancelledOrders = Order::getTotalCancelledOrders();
         $outOfStockProductCount = Product::outOfStock()->count();
 
+
         // bảng sản phẩm đã hết
         $outOfStockProducts = Product::outOfStock()
             ->orderBy("id", "desc")
@@ -96,6 +98,14 @@ class baoCaoDoanhThuController
                 $mostFavoriteProductDetails[] = $productDetail;
             }
         }
+        // review
+        $productsFromReviews = Product::has('reviews')
+            ->select('products.*', DB::raw('COALESCE(AVG(reviews.rating), 0) as average_rating'))
+            ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
+            ->groupBy('products.id')
+            ->orderBy('average_rating', 'desc')
+            ->get();
+
 
         // bảng tổng đơn hàng
         $orders = Order::select('id', 'full_name', 'grand_total')
@@ -134,7 +144,8 @@ class baoCaoDoanhThuController
 
             'bestSellingProducts' => $bestSellingProducts,
             'orderTotals'=> $orderTotals,
-            'orders' => $orders
+            'orders' => $orders,
+            'productsFromReviews' => $productsFromReviews
 
         ]);
     }

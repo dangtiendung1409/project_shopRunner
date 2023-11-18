@@ -196,6 +196,49 @@
             <div class="col-md-12">
                 <div class="tile">
                     <div>
+                        <h3 class="tile-title">SẢN PHẨM ĐƯỢC CÓ SỐ SAO TRUNG BÌNH CAO NHẤT </h3>
+                    </div>
+                    <div class="tile-body">
+                        <table class="table table-hover table-bordered" id="sampleTableFavorite">
+                            <thead>
+                            <tr>
+                                <th>Mã sản phẩm</th>
+                                <th>Ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá tiền</th>
+                                <th>Danh mục</th>
+                                <th>Số sao trung bình</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse ($productsFromReviews as $product)
+                                <tr>
+                                    <td>{{ $product->id }}</td>
+                                    <td>
+                                        <img src="{{ $product->thumbnail }}" style="width: 100px; height: auto;" alt="">
+                                    </td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>${{ number_format($product->price, 2) }}</td>
+                                    <td>{{ $product->category->name }}</td>
+                                    <td>{{ number_format($product->averageRating(), 1) }} </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4">Không có sản phẩm từ các review.</td>
+                                </tr>
+                            @endforelse
+
+                            </tbody>
+                        </table>
+{{--                        {!! $mostFavoriteProducts->links("pagination::bootstrap-4") !!}--}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <div>
                         <h3 class="tile-title">SẢN PHẨM BÁN CHẠY</h3>
                     </div>
                     <div class="tile-body">

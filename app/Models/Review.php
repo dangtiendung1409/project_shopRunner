@@ -23,7 +23,8 @@ class Review extends Model
     public function Product(){
         return $this->belongsTo(Product::class, "product_id");
     }
-    // Trong model Review
+
+
     public function scopeSearch($query, $searchTerm)
     {
         return $query->where('review_text', 'like', '%' . $searchTerm . '%');

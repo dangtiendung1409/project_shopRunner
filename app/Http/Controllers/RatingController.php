@@ -69,7 +69,7 @@ class RatingController extends Controller
             $reviews->filterByRating($starRating);
         }
         if ($email) {
-            // Lọc đánh giá dựa trên email người dùng
+
             $reviews->filterByUserEmail($email);
         }
 

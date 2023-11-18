@@ -59,7 +59,6 @@
                                 <th>Id</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Ảnh</th>
-                                <th>Số lượng</th>
                                 <th>Giá tiền</th>
                                 <th>Danh mục</th>
                                 <th>Số sao trung bình</th>
@@ -77,7 +76,6 @@
                                     <td>
                                         <img src="{{ $product->thumbnail }}" style="width: 100px; height: auto;" alt="">
                                     </td>
-                                    <td>{{ $product->qty }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->category->name }}</td>
                                     <td>{{ number_format($product->averageRating(), 1) }} </td>
