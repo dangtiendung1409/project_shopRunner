@@ -57,14 +57,13 @@
                                                 <div class="quantity">
                                                     <form action="{{ url("/update-cart", ["product" => $item->id]) }}" method="post">
                                                         @csrf
-                                                        <div class="pro-qty">
-                                                            <input type="text" name="buy_qty" value="{{ $item->buy_qty }}">
+                                                        <div class="pro-qty" style="margin-top: 41px" >
+                                                            <input  type="text" name="buy_qty" value="{{ $item->buy_qty }}">
                                                         </div>
                                                         @if ($item->buy_qty > $item->qty)
                                                             <p class="text-danger">Sản phẩm đã hết hàng</p>
                                                         @endif
                                                         <button type="submit" class="btn btn-update update-button">Cập nhật</button>
-
                                                     </form>
                                                 </div>
                                             </td>
@@ -72,21 +71,19 @@
                                             <td class="cart__close">
                                                 <a href="/delete-from-cart/{{ $item->id }}"><i class="fa fa-close"></i></a>
                                             </td>
-
                                         </tr>
-
                                         <!-- Display error message below the product -->
-                                        @if(session()->has("error"))
+                                        @if(session()->has("error_".$item->id))
                                             <tr>
                                                 <td colspan="5">
                                                     <div class="alert alert-danger" role="alert">
-                                                        {{ session("error") }}
+                                                        {{ session("error_".$item->id) }}
                                                     </div>
                                                 </td>
                                             </tr>
                                         @endif
-                                    @endforeach
 
+                                    @endforeach
                                 @endif
 
                                 </tbody>
