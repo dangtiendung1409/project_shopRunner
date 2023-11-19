@@ -72,7 +72,7 @@ class baoCaoDoanhThuController
         // bảng sản phẩm đã hết
         $outOfStockProducts = Product::outOfStock()
             ->orderBy("id", "desc")
-            ->paginate(10);
+            ->paginate(5);
 
         // bảng sản phẩm bán chạy
         $bestSellingProducts = Product::withCount('orders')
@@ -104,7 +104,7 @@ class baoCaoDoanhThuController
             ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
             ->groupBy('products.id')
             ->orderBy('average_rating', 'desc')
-            ->get();
+            ->paginate(10);
 
 
         // bảng tổng đơn hàng

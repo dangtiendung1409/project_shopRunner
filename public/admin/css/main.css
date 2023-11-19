@@ -15705,6 +15705,22 @@ text-align:center;
     color: #ffffff;
     text-decoration: none;
 }
+ .input-row {
+     display: flex;
+     justify-content: space-between;
+
+ }
+
+.input-col {
+    flex: 1;
+    margin: 0 10px;
+
+}
+
+.input-label {
+    margin-bottom: 10px;
+}
+
 
 
 

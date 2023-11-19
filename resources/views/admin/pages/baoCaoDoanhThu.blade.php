@@ -67,25 +67,7 @@
             </div>
         </div>
 
-        <style>
-            .input-row {
-                display: flex;
-                justify-content: space-between;
-
-            }
-
-            .input-col {
-                flex: 1;
-                margin: 0 10px;
-
-            }
-
-            .input-label {
-                margin-bottom: 10px;
-            }
-
-
-        </style>
+        <!--thống kê -->
         <div class="row">
             <div class="col-md-12">
                 <div class="tile">
@@ -119,7 +101,7 @@
             </div>
         </div>
 
-        <!-- tabel -->
+        <!-- Tổng đơn hàng -->
         <div class="row">
             <div class="col-md-12">
                 <div class="tile">
@@ -154,6 +136,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Sản phẩm yêu thích nhất -->
         <div class="row">
             <div class="col-md-12">
                 <div class="tile">
@@ -192,6 +176,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Số sao trung bình cao nhất  -->
         <div class="row">
             <div class="col-md-12">
                 <div class="tile">
@@ -230,11 +216,13 @@
 
                             </tbody>
                         </table>
-{{--                        {!! $mostFavoriteProducts->links("pagination::bootstrap-4") !!}--}}
+                        {!! $productsFromReviews->links("pagination::bootstrap-4") !!}
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Sản phẩm bán chạy -->
         <div class="row">
             <div class="col-md-12">
                 <div class="tile">
@@ -246,6 +234,7 @@
                             <thead>
                             <tr>
                                 <th>Mã sản phẩm</th>
+                                <th>Ảnh sản phẩm</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Giá tiền</th>
                                 <th>Số lượng đã bán</th>
@@ -256,6 +245,9 @@
                             @forelse ($bestSellingProducts as $product)
                                 <tr>
                                     <td>{{ $product->id }}</td>
+                                    <td>
+                                        <img src="{{ $product->thumbnail }}" style="width: 100px; height: auto;" alt="">
+                                    </td>
                                     <td>{{ $product->name }}</td>
                                     <td>${{ number_format($product->price, 2) }}</td>
                                     <td>{{ $product->orders_count }}</td>
@@ -273,6 +265,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Sản phẩm đã hết -->
         <div class="row">
             <div class="col-md-12">
                 <div class="tile">
@@ -314,6 +308,7 @@
             </div>
 
         </div>
+
         <div class="text-right" style="font-size: 12px">
             <p><b>Hệ thống quản lý V2.0 | Code by Trường</b></p>
         </div>
