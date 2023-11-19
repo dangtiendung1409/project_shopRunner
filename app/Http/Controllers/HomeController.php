@@ -36,7 +36,7 @@ class HomeController
         return view("pages.customer.home",compact("products"));
     }
 
-   // search
+    // search
     public function search(\Illuminate\Http\Request $req){
         $product = Product::where('name','like','%'.$req->key. '%')
             ->orWhere('price',$req->key)
@@ -45,7 +45,7 @@ class HomeController
     }
 
 
-   // category
+    // category
     public function categoryShop(Product $product,Request $request){
         $query = Product::Search($request)->FilterCategory($request)->FromPrice($request)->ToPrice($request)->orderBy("created_at", "desc");
         $ratingSum = Review::where('product_id', $product->id)->sum('rating');
@@ -189,12 +189,13 @@ class HomeController
 
             if ($product->qty < $item->buy_qty) {
                 // Product is out of stock
-                return redirect()->to("cart")->with('error', 'Sản phẩm ' . $product->name . ' đã hết hàng hoặc không đủ số lượng  .');
+                return redirect()->to("cart")->with('error_'.$item->id, 'Sản phẩm đã hết hàng hoặc không đủ số lượng.');
             }
             $subtotal += $item->price * $item->buy_qty;
             if($item->buy_qty > $item->qty)
                 $can_checkout = false;
         }
+
         $total = $subtotal*1.1; // vat: 10%
         if(count($cartShop)==0 || !$can_checkout){
             return redirect()->to("cart");
@@ -368,7 +369,7 @@ class HomeController
     }
     // abous us
     public function aboutUs(){
-       return view("pages.customer.aboutUs");
+        return view("pages.customer.aboutUs");
     }
 
 
