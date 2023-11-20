@@ -73,15 +73,13 @@
                                             </td>
                                         </tr>
                                         <!-- Display error message below the product -->
-                                        @if(session()->has("error_".$item->id))
-                                            <tr>
-                                                <td colspan="5">
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ session("error_".$item->id) }}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endif
+                                        <td colspan="5">
+                                            @if(session()->has("cart_errors") && array_key_exists("error_".$item->id, session("cart_errors")))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ session("cart_errors")["error_".$item->id] }}
+                                                </div>
+                                            @endif
+                                        </td>
 
                                     @endforeach
                                 @endif

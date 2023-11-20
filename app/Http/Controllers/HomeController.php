@@ -181,27 +181,40 @@ class HomeController
 
     // check out
     public function checkOut(){
-        $cartShop = session()->has("cartShop")?session("cartShop"):[];
+        $cartShop = session()->has("cartShop") ? session("cartShop") : [];
         $subtotal = 0;
         $can_checkout = true;
-        foreach ($cartShop as $item){
+        $errorMessages = [];
+
+        foreach ($cartShop as $item) {
             $product = Product::find($item->id);
 
             if ($product->qty < $item->buy_qty) {
-                // Product is out of stock
-                return redirect()->to("cart")->with('error_'.$item->id, 'Sản phẩm đã hết hàng hoặc không đủ số lượng.');
-            }
-            $subtotal += $item->price * $item->buy_qty;
-            if($item->buy_qty > $item->qty)
+                // Sản phẩm không đủ số lượng
+                $errorMessages['error_'.$item->id] = 'Sản phẩm đã hết hàng hoặc không đủ số lượng.';
                 $can_checkout = false;
+            }
+
+            $subtotal += $item->price * $item->buy_qty;
+            if ($item->buy_qty > $item->qty) {
+                $can_checkout = false;
+            }
         }
 
-        $total = $subtotal*1.1; // vat: 10%
-        if(count($cartShop)==0 || !$can_checkout){
+        $total = $subtotal * 1.1; // VAT: 10%
+
+        if (count($cartShop) == 0 || !$can_checkout) {
+            // Nếu giỏ hàng trống hoặc có sản phẩm không đủ số lượng, chuyển hướng về giỏ hàng
+            session()->flash('cart_errors', $errorMessages);
             return redirect()->to("cart");
         }
-        return view("pages.customer.checkOut",compact("cartShop","subtotal","total"));
+
+        // Nếu mọi thứ đều ổn, tiến hành đến trang thanh toán
+        return view("pages.customer.checkOut", compact("cartShop", "subtotal", "total"));
     }
+
+
+
 
     public function placeOrder(Request $request){
         $request->validate([
