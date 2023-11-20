@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class baoCaoDoanhThuController
 {
-    public function revenueChart(Request $request)
+    function revenueChart(Request $request)
     {
         $year = $request->input('year', date('Y'));
         $monthLabels = [
@@ -20,41 +20,134 @@ class baoCaoDoanhThuController
             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
         ];
 
-        $query = Order::selectRaw('MONTH(updated_at) AS month, SUM(order_products.qty) AS products_sold, SUM(orders.grand_total) AS total_revenue')
+        $data = Order::selectRaw('MONTH(updated_at) AS month, SUM(order_products.qty) AS products_sold, SUM(orders.grand_total) AS total_revenue')
             ->join('order_products', 'orders.id', '=', 'order_products.order_id')
-            ->where('orders.status', '4') // Consider only completed orders
+            ->where('orders.status', '4')
             ->groupBy('month')
-            ->orderBy('month');
-
-        if ($request->has('year')) {
-            $query->whereYear('orders.updated_at', $year);
-        }
-
-        if ($request->has('start_date') && $request->has('end_date')) {
-            $startDate = $request->input('start_date');
-            $endDate = $request->input('end_date');
-            $query->whereBetween('orders.updated_at', [$startDate, $endDate]);
-        }
-
-        $data = $query->get();
+            ->orderBy('month')
+            ->whereYear('updated_at', $year)
+            ->get();
 
         $productsSoldByMonth = $data->pluck('products_sold', 'month')->toArray();
-        $revenueByMonth = $data->pluck('total_revenue', 'month')->toArray();
 
         $productsSold = [];
-        $revenue = [];
+
 
         foreach (range(1, 12) as $month) {
             $productsSold[] = $productsSoldByMonth[$month] ?? 0;
-            $revenue[] = $revenueByMonth[$month] ?? 0;
+
         }
 
         return response()->json([
             'labels' => $monthLabels,
             'productsSold' => $productsSold,
-            'revenue' => $revenue,
+
+
         ]);
     }
+    public function revenueChartDoanhThu(Request $request)
+    {
+        $year = $request->input('year', date('Y'));
+        $monthLabels = [
+            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+        ];
+
+        $data = Order::selectRaw('MONTH(updated_at) AS month, SUM(order_products.qty) AS products_sold, SUM(orders.grand_total) AS total_revenue')
+            ->join('order_products', 'orders.id', '=', 'order_products.order_id')
+            ->where('orders.status', '4')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->whereYear('updated_at', $year)
+            ->get();
+
+        $revenueByMonth = $data->pluck('total_revenue', 'month')->toArray();
+
+        $revenue = [];
+
+
+        foreach (range(1, 12) as $month) {
+            $revenue[] = $revenueByMonth[$month] ?? 0;
+
+        }
+
+        return response()->json([
+            'labels' => $monthLabels,
+            'revenue' => $revenue,
+
+        ]);
+    }
+
+    protected function getDateRange($startDate, $endDate) {
+        $dates = [];
+        $currentDate = strtotime($startDate);
+        $lastDate = strtotime($endDate);
+
+        while ($currentDate <= $lastDate) {
+            $dates[] = date('Y-m-d', $currentDate);
+            $currentDate = strtotime('+1 day', $currentDate);
+        }
+
+        return $dates;
+    }
+    public function revenueChartDay(Request $request)
+    {
+        $startDate = $request->input('start_date', date('Y-m-01'));
+        $endDate = $request->input('end_date', date('Y-m-t'));
+
+        $dateLabels = [];
+        $productsSoldDay = [];
+
+        $data = Order::selectRaw('DATE(updated_at) AS date, SUM(order_products.qty) AS products_sold, SUM(orders.grand_total) AS total_revenue')
+            ->join('order_products', 'orders.id', '=', 'order_products.order_id')
+            ->where('orders.status', '4')
+            ->whereBetween('updated_at', [$startDate, $endDate])
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+
+        $productsSoldByDate = $data->pluck('products_sold', 'date')->toArray();
+
+        foreach ($this->getDateRange($startDate, $endDate) as $date) {
+            $formattedDate = date('Y-m-d', strtotime($date));
+            $productsSoldDay[] = $productsSoldByDate[$formattedDate] ?? 0;
+            $dateLabels[] = date('M d', strtotime($formattedDate)); // Định dạng ngày theo mong muốn
+        }
+
+        return response()->json([
+            'labels' => $dateLabels,
+            'productsSoldDay' => $productsSoldDay,
+        ]);
+    }
+    public function revenueChartDoanhThuDay(Request $request)
+    {
+        $startDate = $request->input('start_date', date('Y-m-01'));
+        $endDate = $request->input('end_date', date('Y-m-t'));
+
+        $dateLabels = [];
+        $revenueDay = [];
+
+        $data = Order::selectRaw('DATE(updated_at) AS date, SUM(orders.grand_total) AS revenue')
+            ->where('status', '4')
+            ->whereBetween('updated_at', [$startDate, $endDate])
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+
+        $revenueByDate = $data->pluck('revenue', 'date')->toArray();
+
+        foreach ($this->getDateRange($startDate, $endDate) as $date) {
+            $formattedDate = date('Y-m-d', strtotime($date));
+            $revenueDay[] = $revenueByDate[$formattedDate] ?? 0;
+            $dateLabels[] = date('M d', strtotime($formattedDate)); // Định dạng ngày theo mong muốn
+        }
+
+        return response()->json([
+            'labels' => $dateLabels,
+            'revenueDay' => $revenueDay,
+        ]);
+    }
+
 
 
     public function baoCaoDoanhThu() {

@@ -69,24 +69,13 @@
 
         <!--thống kê -->
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="tile">
-                    <h3 class="tile-title">THỐNG KÊ ĐƠN HÀNG</h3>
+                    <h3 class="tile-title">THỐNG KÊ DOANH SỐ THEO NĂM</h3>
                     <form autocomplete="off" class="input-row">
-
-                        <div class="input-col">
-                            <p class="input-label">Từ ngày:</p>
-                            <input type="text" id="datepicker" class="form-control">
-                            <input style="margin-top: 15px" type="button" id="btn-dashboard-filter"
-                                   class="btn btn-primary btn-sm" value="Lọc kết quả">
-                        </div>
-                        <div class="input-col">
-                            <p class="input-label">Đến ngày:</p>
-                            <input type="text" id="datepicker2" class="form-control">
-                        </div>
                         <div class="input-col">
                             <p class="input-label">Lọc theo:</p>
-                            <select id="yearSelect" onchange="changeYear(this.value)"
+                            <select id="yearSelect1" onchange="changeYearProductSold(this.value)"
                                     class="dashboard-filter form-control">
                                 <option value="2021">2021</option>
                                 <option value="2022">2022</option>
@@ -99,7 +88,72 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="tile">
+                    <h3 class="tile-title">THỐNG KÊ DOANH THU THEO NĂM</h3>
+                    <form autocomplete="off" class="input-row">
+                        <div class="input-col">
+                            <p class="input-label">Lọc theo:</p>
+                            <select id="yearSelect2" onchange="changeYearRevenue(this.value)"
+                                    class="dashboard-filter form-control">
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023" selected>2023</option>
+                            </select>
+                        </div>
+                    </form>
+                    <div class="col-md-12">
+                        <canvas id="revenue"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="tile">
+                    <h3 class="tile-title">THỐNG KÊ DOANH SỐ THEO NGÀY </h3>
+                    <form autocomplete="off" class="input-row">
+
+                        <div class="input-col">
+                            <p class="input-label">Từ ngày:</p>
+                            <input type="text" id="datepicker1" class="form-control">
+                            <input style="margin-top: 15px" type="button" id="btn-dashboard-filter"
+                                   class="btn btn-primary btn-sm" value="Lọc kết quả">
+                        </div>
+                        <div class="input-col">
+                            <p class="input-label">Đến ngày:</p>
+                            <input type="text" id="datepicker2" class="form-control">
+                        </div>
+                    </form>
+                    <div class="col-md-12">
+                        <canvas id="productSoldChartDay"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="tile">
+                    <h3 class="tile-title">THỐNG KÊ DOANH THU THEO NGÀY</h3>
+                    <form autocomplete="off" class="input-row">
+
+                        <div class="input-col">
+                            <p class="input-label">Từ ngày:</p>
+                            <input type="text" id="datepicker3" class="form-control">
+                            <input style="margin-top: 15px" type="button" id="btn-dashboard-filter1"
+                                   class="btn btn-primary btn-sm" value="Lọc kết quả">
+                        </div>
+                        <div class="input-col">
+                            <p class="input-label">Đến ngày:</p>
+                            <input type="text" id="datepicker4" class="form-control">
+                        </div>
+
+                    </form>
+                    <div class="col-md-12">
+                        <canvas id="revenueDay"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Tổng đơn hàng -->
         <div class="row">
@@ -136,7 +190,7 @@
                 </div>
             </div>
         </div>
-
+        <!--đơn hàng chưa xử lý-->
         <div class="row">
             <div class="col-md-12">
                 <div class="tile">
@@ -173,6 +227,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Sản phẩm yêu thích nhất -->
         <div class="row">
             <div class="col-md-12">

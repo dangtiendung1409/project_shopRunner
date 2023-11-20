@@ -1,16 +1,16 @@
-<!-- Essential javascripts for application to work-->
 <script src="admin/js/jquery-3.2.1.min.js"></script>
-
 <script type="text/javascript" src="admin/js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="admin/js/plugins/dataTables.bootstrap.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 <script type="text/javascript">
 
     $( function() {
-        $( "#datepicker" ).datepicker({
+        $( "#datepicker1" ).datepicker({
             prevText:"Tháng trước",
             nextText:"Tháng sau",
             dateFormat:"yy-mm-dd",
@@ -24,56 +24,50 @@
             dayNamesMin: ["thứ 2","thứ 3","thứ 4","thứ 5","thứ 6","thứ 7","chủ nhật"],
             duration: "slow"
         });
+        $( "#datepicker3" ).datepicker({
+            prevText:"Tháng trước",
+            nextText:"Tháng sau",
+            dateFormat:"yy-mm-dd",
+            dayNamesMin: ["thứ 2","thứ 3","thứ 4","thứ 5","thứ 6","thứ 7","chủ nhật"],
+            duration: "slow"
+        });
+        $( "#datepicker4" ).datepicker({
+            prevText:"Tháng trước",
+            nextText:"Tháng sau",
+            dateFormat:"yy-mm-dd",
+            dayNamesMin: ["thứ 2","thứ 3","thứ 4","thứ 5","thứ 6","thứ 7","chủ nhật"],
+            duration: "slow"
+        });
     } );
 
 
 </script>
-<script type="text/javascript" src="admin/js/plugins/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Script cho biểu đồ đầu tiên -->
 <script>
-    let ctx = document.getElementById('productSoldChart').getContext('2d');
-    let chart;
+    let ctxSoldChart = document.getElementById('productSoldChart').getContext('2d');
+    let chartSold;
 
-    document.getElementById('btn-dashboard-filter').addEventListener('click', function () {
-        const selectedYear = document.getElementById('yearSelect').value;
-        const startDate = document.getElementById('datepicker').value;
-        const endDate = document.getElementById('datepicker2').value;
-
-        fetchChartData(selectedYear, startDate, endDate);
-    });
-
-    function fetchChartData(year, startDate, endDate) {
-        let url = `/admin/revenue-chart?`;
-
-        if (year) {
-            url += `year=${year}`;
-        }
-
-        if (startDate && endDate) {
-            url += `&start_date=${startDate}&end_date=${endDate}`;
-        }
-
-        fetch(url)
+    function fetchSoldChartData(year) {
+        fetch(`/admin/revenue-chart?year=${year}`)
             .then(response => response.json())
             .then(data => {
-                if (chart) {
-                    chart.data.labels = data.labels;
-
-                    // Update both datasets
-                    chart.data.datasets[0].data = data.productsSold;
-                    chart.data.datasets[1].data = data.revenue;
-
-                    chart.update();
+                if (chartSold) {
+                    chartSold.data.labels = data.labels;
+                    chartSold.data.datasets[0].data = data.productsSold;
+                    chartSold.update();
                 } else {
-                    createChart(data); // Create chart if it doesn't exist
+                    createSoldChart(data); // Tạo biểu đồ nếu chưa có
                 }
             });
     }
 
-    fetchChartData(2023, '2023-01-01', '2023-12-31'); // Fetch initial chart data for the default year
+    // Hàm thay đổi năm cho biểu đồ đầu tiên
+    function changeYearProductSold(year) {
+        fetchSoldChartData(year);
+    }
 
-    function createChart(data) {
-        chart = new Chart(ctx, {
+    function createSoldChart(data) {
+        chartSold = new Chart(ctxSoldChart, {
             type: 'bar',
             data: {
                 labels: data.labels,
@@ -83,14 +77,7 @@
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 2
-                },
-                    {
-                        label: 'Doanh thu',
-                        data: data.revenue,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 2
-                    }]
+                }]
             },
             options: {
                 scales: {
@@ -104,9 +91,190 @@
             }
         });
     }
-</script>
+
+    // Fetch dữ liệu mặc định khi trang được load
+    fetchSoldChartData(2023); // Thay đổi ngày mặc định cho phù hợp với nhu cầu của bạn
 
 </script>
+
+<!-- Script cho biểu đồ thứ hai -->
+<script>
+    let ctxRevenueChart = document.getElementById('revenue').getContext('2d');
+    let chartRevenue;
+
+    function fetchRevenueData(year) {
+        fetch(`/admin/revenue-chart-doanh-thu?year=${year}`)
+            .then(response => response.json())
+            .then(data => {
+                if (chartRevenue) {
+                    chartRevenue.data.labels = data.labels;
+                    chartRevenue.data.datasets[0].data = data.revenue;
+                    chartRevenue.update();
+                } else {
+                    createRevenueChart(data);
+                }
+            });
+    }
+
+    // Hàm thay đổi năm cho biểu đồ thứ hai
+    function changeYearRevenue(year) {
+        fetchRevenueData(year);
+    }
+
+    function createRevenueChart(data) {
+        chartRevenue = new Chart(ctxRevenueChart, {
+            type: 'bar',
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    label: 'Doanh thu',
+                    data: data.revenue,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        stepSize: 10,
+                        max: 10000,
+                        min: 0,
+                    }
+                }
+            }
+        });
+    }
+
+    // Fetch dữ liệu mặc định khi trang được load
+    fetchRevenueData(2023); // Thay đổi ngày mặc định cho phù hợp với nhu cầu của bạn
+
+</script>
+
+<!-- Script cho biểu đồ thứ ba -->
+<script>
+    let ctxSoldChartDay = document.getElementById('productSoldChartDay').getContext('2d');
+    let chartSoldDay;
+
+    document.getElementById('btn-dashboard-filter').addEventListener('click', function () {
+        let startDate = document.getElementById('datepicker1').value;
+        let endDate = document.getElementById('datepicker2').value;
+
+        fetchSoldChartDataDay(startDate, endDate);
+    });
+
+    function fetchSoldChartDataDay(startDate, endDate) {
+        fetch(`/admin/revenue-chart-day?start_date=${startDate}&end_date=${endDate}`)
+            .then(response => response.json())
+            .then(data => {
+                updateSoldChartDay(data);
+            });
+    }
+
+    function updateSoldChartDay(data) {
+        if (chartSoldDay) {
+            chartSoldDay.data.labels = data.labels;
+            chartSoldDay.data.datasets[0].data = data.productsSoldDay;
+            chartSoldDay.update();
+        } else {
+            createSoldChartDay(data);
+        }
+    }
+
+    function createSoldChartDay(data) {
+        chartSoldDay = new Chart(ctxSoldChartDay, {
+            type: 'bar',
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    label: 'Sản phẩm đã bán',
+                    data: data.productsSoldDay,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        stepSize: 10,
+                        max: 100,
+                        min: 0,
+                    }
+                }
+            }
+        });
+    }
+
+    // Thực hiện fetch dữ liệu mặc định khi trang được load
+    fetchSoldChartDataDay('2023-11-01', '2023-11-25'); // Thay đổi ngày mặc định cho phù hợp với nhu cầu của bạn
+
+</script>
+<!-- Script cho biểu đồ thứ bốn -->
+<script>
+    let ctxRevenueDay = document.getElementById('revenueDay').getContext('2d');
+    let chartRevenueDay;
+
+    document.getElementById('btn-dashboard-filter1').addEventListener('click', function () {
+        let startDate = document.getElementById('datepicker3').value;
+        let endDate = document.getElementById('datepicker4').value;
+
+        fetchRevenueDataDay(startDate, endDate);
+    });
+
+    function fetchRevenueDataDay(startDate, endDate) {
+        fetch(`/admin/revenue-chart-doanh-thu-day?start_date=${startDate}&end_date=${endDate}`)
+            .then(response => response.json())
+            .then(data => {
+                updateRevenueChartDay(data);
+            });
+    }
+
+    function updateRevenueChartDay(data) {
+        if (chartRevenueDay) {
+            chartRevenueDay.data.labels = data.labels;
+            chartRevenueDay.data.datasets[0].data = data.revenueDay;
+            chartRevenueDay.update();
+        } else {
+            createRevenueChartDay(data);
+        }
+    }
+
+    function createRevenueChartDay(data) {
+        chartRevenueDay = new Chart(ctxRevenueDay, {
+            type: 'bar',
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    label: 'Doanh thu',
+                    data: data.revenueDay,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        stepSize: 10,
+                        max: 3000,
+                        min: 0,
+                    }
+                }
+            }
+        });
+    }
+
+    // Thực hiện fetch dữ liệu mặc định khi trang được load
+    fetchRevenueDataDay('2023-11-01', '2023-11-25'); // Thay đổi ngày mặc định cho phù hợp với nhu cầu của bạn
+
+</script>
+
+
+
 
 <script>
     oTable = $('#sampleTable').dataTable();
@@ -219,4 +387,6 @@
         ga('send', 'pageview');
     }
 </script>
+
+
 

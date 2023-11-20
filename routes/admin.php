@@ -37,4 +37,9 @@ Route::get('/admin-rating-details/{product_id}', [\App\Http\Controllers\RatingCo
 
 // báo cáo doanh thu
 Route::get('/admin-bao-cao-doanh-thu', [\App\Http\Controllers\baoCaoDoanhThuController::class, "baoCaoDoanhThu"]);
+// theo năm
 Route::get("/revenue-chart", [\App\Http\Controllers\baoCaoDoanhThuController::class, "revenueChart"]);
+Route::get("/revenue-chart-doanh-thu", [\App\Http\Controllers\baoCaoDoanhThuController::class, "revenueChartDoanhThu"]);
+//theo ngày
+Route::get("/revenue-chart-day", [\App\Http\Controllers\baoCaoDoanhThuController::class, "revenueChartDay"]);
+Route::get("/revenue-chart-doanh-thu-day", [\App\Http\Controllers\baoCaoDoanhThuController::class, "revenueChartDoanhThuDay"]);
