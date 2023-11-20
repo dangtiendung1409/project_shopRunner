@@ -20,19 +20,20 @@ class baoCaoDoanhThuController
             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
         ];
 
-        $query = Order::selectRaw('MONTH(updated_at) AS month, COUNT(*) AS products_sold, SUM(grand_total) AS total_revenue')
+        $query = Order::selectRaw('MONTH(updated_at) AS month, SUM(order_products.qty) AS products_sold, SUM(orders.grand_total) AS total_revenue')
+            ->join('order_products', 'orders.id', '=', 'order_products.order_id')
+            ->where('orders.status', '4') // Consider only completed orders
             ->groupBy('month')
-            ->orderBy('month')
-            ->where('status', '4');
+            ->orderBy('month');
 
         if ($request->has('year')) {
-            $query->whereYear('updated_at', $year);
+            $query->whereYear('orders.updated_at', $year);
         }
 
         if ($request->has('start_date') && $request->has('end_date')) {
             $startDate = $request->input('start_date');
             $endDate = $request->input('end_date');
-            $query->whereBetween('updated_at', [$startDate, $endDate]);
+            $query->whereBetween('orders.updated_at', [$startDate, $endDate]);
         }
 
         $data = $query->get();
@@ -40,24 +41,21 @@ class baoCaoDoanhThuController
         $productsSoldByMonth = $data->pluck('products_sold', 'month')->toArray();
         $revenueByMonth = $data->pluck('total_revenue', 'month')->toArray();
 
-
         $productsSold = [];
-
+        $revenue = [];
 
         foreach (range(1, 12) as $month) {
             $productsSold[] = $productsSoldByMonth[$month] ?? 0;
             $revenue[] = $revenueByMonth[$month] ?? 0;
-
         }
 
         return response()->json([
             'labels' => $monthLabels,
             'productsSold' => $productsSold,
             'revenue' => $revenue,
-
-
         ]);
     }
+
 
     public function baoCaoDoanhThu() {
         // ô số liệu tổng hợp
@@ -68,6 +66,9 @@ class baoCaoDoanhThuController
         $totalCancelledOrders = Order::getTotalCancelledOrders();
         $outOfStockProductCount = Product::outOfStock()->count();
 
+        // đơn hàng chờ xác nhận
+
+        $pendingOrders = Order::where('status', Order::PENDING)->paginate(10);
 
         // bảng sản phẩm đã hết
         $outOfStockProducts = Product::outOfStock()
@@ -75,14 +76,23 @@ class baoCaoDoanhThuController
             ->paginate(5);
 
         // bảng sản phẩm bán chạy
-        $bestSellingProducts = Product::withCount('orders')
-            ->whereHas('orders', function ($query) {
-                $query->where('status', '!=', Order::COMPLETE);
-            })
-            ->orderBy('orders_count', 'desc')
-            ->take(50)
+        $bestSellingProducts = DB::table('order_products')
+            ->join('orders', 'order_products.order_id', '=', 'orders.id')
+            ->where('orders.status', 4) // Chỉ lấy đơn hàng có trạng thái đã hoàn thành
+            ->select('order_products.product_id', DB::raw('SUM(order_products.qty) as total_qty_sold'))
+            ->groupBy('order_products.product_id')
+            ->orderBy('total_qty_sold', 'desc')
             ->paginate(10);
 
+        $bestSellingProductDetails = [];
+
+        foreach ($bestSellingProducts as $product) {
+            $productDetail = Product::find($product->product_id);
+            if ($productDetail) {
+                $productDetail->total_qty_sold = $product->total_qty_sold;
+                $bestSellingProductDetails[] = $productDetail;
+            }
+        }
 
         // bảng sản phẩm yêu thích
         $mostFavoriteProducts = FavoriteOrder::select('product_id', DB::raw('COUNT(user_id) as favorite_count'))
@@ -142,11 +152,12 @@ class baoCaoDoanhThuController
             'mostFavoriteProductDetails' => $mostFavoriteProductDetails,
             'mostFavoriteProducts' => $mostFavoriteProducts,
 
+            'bestSellingProductDetails' => $bestSellingProductDetails,
             'bestSellingProducts' => $bestSellingProducts,
             'orderTotals'=> $orderTotals,
             'orders' => $orders,
-            'productsFromReviews' => $productsFromReviews
-
+            'productsFromReviews' => $productsFromReviews,
+            'pendingOrders' => $pendingOrders,
         ]);
     }
 }

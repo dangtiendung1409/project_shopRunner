@@ -26,10 +26,14 @@ class Product extends Model
     public function Category(){
         return $this->belongsTo(Category::class);
     }
-    public function Orders(){
-        return $this->belongsToMany(Order::class, "order_products");
+    public function orders(){
+        return $this->belongsToMany(Order::class, 'order_products')->withPivot('qty');
     }
-    // Trong file Product.php (hoặc tương đương)
+
+    public function getSoldQuantity()
+    {
+        return $this->orders()->sum('order_products.qty');
+    }
     public function averageRating()
     {
         return $this->reviews()->avg('rating');

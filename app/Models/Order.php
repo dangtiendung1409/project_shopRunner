@@ -36,6 +36,14 @@ class Order extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+    public function getSoldQuantityByProduct()
+    {
+        return DB::table('order_products')
+            ->join('orders', 'order_products.order_id', '=', 'orders.id')
+            ->where('orders.status', self::COMPLETE) // Chỉ lấy đơn hàng có trạng thái đã hoàn thành
+            ->select('order_products.product_id', DB::raw('SUM(order_products.qty) as total_qty_sold'))
+            ->groupBy('order_products.product_id');
+    }
 
     public static function getTotalCancelledOrders() {
         return Order::where('status', Order::CANCEL)->count();

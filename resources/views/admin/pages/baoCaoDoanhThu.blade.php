@@ -137,6 +137,42 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <div>
+                        <h3 class="tile-title">ĐƠN HÀNG CHƯA ĐƯỢC XỬ LÝ </h3>
+                    </div>
+                    <div class="tile-body">
+                        <table class="table table-hover table-bordered" id="sampleTableOrder">
+                            <thead>
+                            <tr>
+                                <th>ID đơn hàng</th>
+                                <th>Tên Khách hàng</th>
+                                <th>Email Khách hàng</th>
+                                <th>Số điện thoại</th>
+                                <th>Tổng tiền</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($pendingOrders as $order)
+                                <tr>
+                                    <td>{{ $order->id }}</td>
+                                    <td>{{ $order->full_name }}</td>
+                                    <td>{{ $order->email }}</td>
+                                    <td>{{ $order->tel }}</td>
+                                    <td>{{ $order->getGrandTotal() }}</td>
+                                    <td>{!! $order->getStatus() !!}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        {!! $pendingOrders->links("pagination::bootstrap-4") !!}
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Sản phẩm yêu thích nhất -->
         <div class="row">
             <div class="col-md-12">
@@ -230,6 +266,7 @@
                         <h3 class="tile-title">SẢN PHẨM BÁN CHẠY</h3>
                     </div>
                     <div class="tile-body">
+                        @if ($bestSellingProducts->count() > 0)
                         <table class="table table-hover table-bordered" id="sampleTableFavorite">
                             <thead>
                             <tr>
@@ -242,7 +279,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse ($bestSellingProducts as $product)
+                            @foreach ($bestSellingProductDetails as $product)
                                 <tr>
                                     <td>{{ $product->id }}</td>
                                     <td>
@@ -250,17 +287,17 @@
                                     </td>
                                     <td>{{ $product->name }}</td>
                                     <td>${{ number_format($product->price, 2) }}</td>
-                                    <td>{{ $product->orders_count }}</td>
+                                    <td>{{ $product->total_qty_sold }}</td> <!-- Thay $product-> total_sold thành $product->total_qty_sold -->
                                     <td>{{ $product->category->name }}</td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5">Không có sản phẩm bán chạy nào.</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
+
                             </tbody>
                         </table>
-                        {!! $bestSellingProducts->links("pagination::bootstrap-4") !!}
+                        @else
+                            <p>Không có sản phẩm bán chạy nào.</p>
+                        @endif
+{{--                        {!! $bestSellingProducts->links("pagination::bootstrap-4") !!}--}}
                     </div>
                 </div>
             </div>
