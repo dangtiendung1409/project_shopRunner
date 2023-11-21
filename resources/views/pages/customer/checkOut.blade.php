@@ -65,7 +65,7 @@
                             </div>
                             <!-- Thêm data-shipping-cost để lưu giá vận chuyển của từng phương thức -->
                             <div class="checkout__input__checkbox">
-                                <p>Shipping method<span>*</span></p>
+                                <p style="font-size: 18px ; font-family: Roboto,sans-serif;">Shipping method<span>*</span></p>
                                 <label for="acc" data-shipping-cost="5">
                                     Express
                                     <input name="shipping_method" @if(old("shipping_method")== "Express") checked @endif value="Express" type="radio" id="acc">

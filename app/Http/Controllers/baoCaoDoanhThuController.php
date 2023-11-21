@@ -175,7 +175,7 @@ class baoCaoDoanhThuController
             ->select('order_products.product_id', DB::raw('SUM(order_products.qty) as total_qty_sold'))
             ->groupBy('order_products.product_id')
             ->orderBy('total_qty_sold', 'desc')
-            ->paginate(10);
+            ->paginate(5);
 
         $bestSellingProductDetails = [];
 
@@ -207,7 +207,7 @@ class baoCaoDoanhThuController
             ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
             ->groupBy('products.id')
             ->orderBy('average_rating', 'desc')
-            ->paginate(10);
+            ->paginate(5);
 
 
         // bảng tổng đơn hàng

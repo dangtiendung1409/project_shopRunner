@@ -23,7 +23,7 @@
             @if($order->payment_method == "Paypal" && !$order->is_paid)
                 <h3 style="margin-top: 80px; color: #e0a800" class="title_confirmation">Please pay again</h3>
             @else
-                <h3 style="margin-top: 80px;" class="title_confirmation">Thank you. Your order has been received.</h3>
+                <h3 style="margin-top: 80px;font-size: 28px ; font-family: Roboto,sans-serif;" class="title_confirmation">Thank you. Your order has been received.</h3>
             @endif
             <div class="row order_d_inner">
                 <div class="col-lg-4">

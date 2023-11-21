@@ -88,6 +88,7 @@ class HomeController
     {
         $products = Product::where("category_id", $category->id)
             ->orderBy("created_at", "desc")->paginate(12);
+
         return view("pages.customer.category", compact("products" ))->render();
     }
 
@@ -111,10 +112,19 @@ class HomeController
             ->orderBy("created_at", "desc")
             ->limit(4)
             ->get();
-
+        $soldQuantity = $product->getSoldQuantity();
         $favoriteCount = FavoriteOrder::where('name', $product->name)->count();
 
-        return view("pages.customer.shopDetails", compact("product",  "relate" , "ratings", "favoriteCount", "avgRating", "avgStarRating", "ratingCount")); // , "avgRating", "avgStarRating"
+        return view("pages.customer.shopDetails", compact(
+            "product",
+            "relate" ,
+            "soldQuantity",
+            "ratings",
+            "favoriteCount",
+            "avgRating",
+            "avgStarRating",
+            "ratingCount"
+        ));
     }
 
 
@@ -383,7 +393,9 @@ class HomeController
 
     // user : account , trạng thái dơn hàng , danh sách sản phẩm yêu thích
     public function myOrder(){
-        $Order = Order::where('user_id', auth()->user()->id)->orderBy("created_at", "desc")->get();
+        $Order = Order::where('user_id', auth()->user()->id)
+            ->orderBy("created_at", "desc")
+            ->paginate(5);
         return view("pages.customer.myOrder", ['orders' => $Order]);
     }
 
@@ -391,7 +403,7 @@ class HomeController
         $orders = Order::where('user_id', auth()->user()->id)
             ->where('status', 0)  // Thêm điều kiện status là 0
             ->orderBy("created_at", "desc")
-            ->get();
+            ->paginate(5);
 
         return view("pages.customer.myOrderPending", ['orders' => $orders]);
     }
@@ -400,7 +412,7 @@ class HomeController
         $orders = Order::where('user_id', auth()->user()->id)
             ->where('status', 1)  // Thêm điều kiện status là 0
             ->orderBy("created_at", "desc")
-            ->get();
+            ->paginate(5);
 
         return view("pages.customer.myOrderConfirmed", ['orders' => $orders]);
     }
@@ -409,7 +421,7 @@ class HomeController
         $orders = Order::where('user_id', auth()->user()->id)
             ->where('status', 2)  // Thêm điều kiện status là 0
             ->orderBy("created_at", "desc")
-            ->get();
+            ->paginate(5);
 
         return view("pages.customer.myOrderShipping", ['orders' => $orders]);
     }
@@ -418,7 +430,7 @@ class HomeController
         $orders = Order::where('user_id', auth()->user()->id)
             ->where('status', 3)  // Thêm điều kiện status là 0
             ->orderBy("created_at", "desc")
-            ->get();
+            ->paginate(5);
 
         return view("pages.customer.myOrderShipped", ['orders' => $orders]);
     }
@@ -427,7 +439,7 @@ class HomeController
         $orders = Order::where('user_id', auth()->user()->id)
             ->where('status', 4)  // Thêm điều kiện status là 0
             ->orderBy("created_at", "desc")
-            ->get();
+            ->paginate(5);
 
         return view("pages.customer.myOrderComplete", ['orders' => $orders]);
     }
@@ -436,7 +448,7 @@ class HomeController
         $orders = Order::where('user_id', auth()->user()->id)
             ->where('status', 5)  // Thêm điều kiện status là 0
             ->orderBy("created_at", "desc")
-            ->get();
+            ->paginate(5);
 
         return view("pages.customer.myOrderCancel", ['orders' => $orders]);
     }
