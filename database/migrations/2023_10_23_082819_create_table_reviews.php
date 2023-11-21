@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger("product_id");
             $table->integer("rating");
             $table->longText("message");
-            $table->tinyInteger("status")->nullable();
+//            $table->tinyInteger("status")->nullable();
             $table->timestamps();
 
             $table->foreign("user_id")->references("id")->on("users");

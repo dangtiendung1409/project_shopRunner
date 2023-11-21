@@ -23,9 +23,6 @@ return new class extends Migration
             $table->foreign("category_id")->references("id")->on("categories");
 //            $table->string("status");
 //            $table->unsignedBigInteger('brand_id')->default(0);
-//            $table->unsignedBigInteger("review_id")->default(0);
-//            $table->foreign("brand_id")->references("id")->on("brands");
-//            $table->foreign("review_id")->references("id")->on("reviews");
 
             $table->timestamps();
             $table->softDeletes();
