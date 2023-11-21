@@ -212,10 +212,6 @@ class HomeController
         // Nếu mọi thứ đều ổn, tiến hành đến trang thanh toán
         return view("pages.customer.checkOut", compact("cartShop", "subtotal", "total"));
     }
-
-
-
-
     public function placeOrder(Request $request){
         $request->validate([
             "full_name"=>"required|min:6",
@@ -385,7 +381,6 @@ class HomeController
         return view("pages.customer.aboutUs");
     }
 
-
     // user : account , trạng thái dơn hàng , danh sách sản phẩm yêu thích
     public function myOrder(){
         $Order = Order::where('user_id', auth()->user()->id)->orderBy("created_at", "desc")->get();
@@ -489,8 +484,6 @@ class HomeController
     public function changePassword(){
         return view("pages.customer.changePassword");
     }
-
-
     public function updatePassword(Request $request)
     {
         $request->validate([
@@ -511,7 +504,6 @@ class HomeController
         return redirect()->route('change-password')->with('success', 'Password updated successfully.');
 
     }
-
     public function addToFavorite(Request $request)
     {
         // Lấy dữ liệu từ request
@@ -573,7 +565,6 @@ class HomeController
         // Redirect hoặc trả về phản hồi thích hợp
         return redirect()->back()->with('success', 'Xóa toàn bộ yêu thích thành công');
     }
-
     public function favoriteOrder()
     {
         // Lấy danh sách các sản phẩm yêu thích từ cơ sở dữ liệu
@@ -634,5 +625,6 @@ class HomeController
 //        dd(session("cartShop"));
         return view("pages.customer.thankYou",compact("order"));
     }
+    // rating
 
 }

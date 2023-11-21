@@ -90,7 +90,7 @@ class RatingController extends Controller
             $avgRating = 0;
             $avgStarRating = 0;
         }
-        return view("pages.customer.rating", compact("ratings", "product", "avgRating", "avgStarRating"));
+        return view("pages.customer.rating", compact("ratings", "product", "avgRating", "avgStarRating","ratingCount"));
     }
 
 
@@ -110,34 +110,46 @@ class RatingController extends Controller
     public function addRating(Request $request){
         if ($request->isMethod('post')){
             $data = $request->all();
-        }
-        if (!Auth::check()){
-            $message = "Login to rate this product!!!";
-            Session::flash('error', $message);
-            return redirect()->back();
-        }
 
-        if (!isset($data['rating'])){
-            $message = "You need to rate the product";
-            Session::flash('error', $message);
-            return redirect()->back();
-        }
+            if (!Auth::check()){
+                $message = "Login to rate this product!!!";
+                Session::flash('error', $message);
+                return redirect()->back();
+            }
 
-        $ratingCount = Review::where(['user_id'=>Auth::user()->id, 'product_id'=>$data['product_id']])->count();
-        if ($ratingCount>0){
-            $message = "Your rating already exists for this product";
-            Session::flash('error', $message);
-            return redirect()->back();
-        } else{
-            $rating = new Review;
-            $rating->user_id = Auth::user()->id;
-            $rating->product_id = $data['product_id'];
-            $rating->message = $data['message'];
-            $rating->rating = $data['rating'];
-            $rating->save();
-            $message = "Thanks for rating this product!!";
-            Session::flash('success', $message);
-            return redirect()->back();
+            if (!isset($data['rating'])){
+                $message = "You need to rate the product";
+                Session::flash('error', $message);
+                return redirect()->back();
+            }
+
+            $ratingCount = Review::where(['user_id'=>Auth::user()->id, 'product_id'=>$data['product_id']])->count();
+            if ($ratingCount > 0){
+                $message = "Your rating already exists for this product";
+                Session::flash('error', $message);
+                return redirect()->back();
+            } else {
+                $rating = new Review;
+                $rating->user_id = Auth::user()->id;
+                $rating->product_id = $data['product_id'];
+                $rating->message = $data['message'];
+                $rating->rating = $data['rating'];
+                $rating->save();
+
+                $message = "Thanks for rating this product!!";
+                Session::flash('success', $message);
+                $product = Product::where('id', $data['product_id'])->first();
+
+                if ($product) {
+                    // Chuyển hướng về trang chi tiết sản phẩm sau khi thêm đánh giá thành công
+                    return redirect()->route('details', ['product' => $product->slug]);
+                } else {
+                    // Xử lý nếu không tìm thấy sản phẩm
+                    return redirect()->back(); // Hoặc điều hướng về trang khác tuỳ vào yêu cầu của bạn
+                }
+            }
         }
     }
+
+
 }
