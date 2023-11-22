@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Brands::factory(10)->create();
         \App\Models\Category::factory(10)->create();
-        \App\Models\Product::factory(500)->create();
+        \App\Models\Product::factory(100)->create();
 
 
         $orders = Order::all(); //select * from orders

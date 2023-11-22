@@ -203,7 +203,7 @@ class baoCaoDoanhThuController
         }
         // review
         $productsFromReviews = Product::has('reviews')
-            ->select('products.*', DB::raw('COALESCE(AVG(reviews.rating), 0) as average_rating'))
+            ->select('products.id', DB::raw('COALESCE(AVG(reviews.rating), 0) as average_rating'))
             ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
 //            ->groupBy('products.id')
             ->orderBy('average_rating', 'desc')
