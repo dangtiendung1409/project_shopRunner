@@ -83,7 +83,7 @@
                                         <span style="margin-left: 25px" class="text-danger">: Out of Stock</span>
                                     @endif
                                 </li>
-                                <li><a href="#"><span>Sold</span> : {{$product->Orders->count()}}</a></li>
+                                <li><a href="#"><span>Sold</span> : {{$product->getSoldQuantity()}}</a></li>
 
 
                             </ul>

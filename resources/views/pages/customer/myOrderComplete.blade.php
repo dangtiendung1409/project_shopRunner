@@ -62,35 +62,38 @@
                     <p style="color: black">{{ $orders->count() }} order </p>
                 </div>
             </div>
-            <div style="border-top: 1px solid #DDE1EF;" class="content-top1 d-flex flex-wrap">
-                <div class="col-sm-2">
-                    <a style="font-weight: bold; color: #777777" href="{{url("/my-order")}}" >All</a>
-                </div>
+            <style>
+                .content-top1 {
+                    border-top: 1px solid #DDE1EF;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    padding: 3px; /* Điều chỉnh khoảng cách nếu cần thiết */
+                }
 
-                <div class="col-sm-2">
-                    <a  style="font-weight: bold; color: #777777" href="{{url("/my-order-pending")}}"  type="button"  >Pending</a>
-                </div>
+                .btn {
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 5px; /* Điều chỉnh khoảng cách giữa các nút */
+                    padding: 10px; /* Điều chỉnh padding của nút */
+                    border: 1px solid transparent;
+                    border-radius: 5px;
+                    transition: all 0.3s ease;
+                }
 
-                <div class="col-sm-2">
-                    <a style="font-weight: bold; color: #777777"   type="button" href="{{url("/my-order-confirmed")}}"  >Confirmed</a>
-                </div>
 
-                <div class="col-sm-2">
-                    <a style="font-weight: bold; color: #777777"  type="button" href="{{url("/my-order-shipping")}}" >Shipping</a>
-                </div>
-
-                <div class="col-sm-2">
-                    <a style="font-weight: bold; color: #777777"  type="button" href="{{url("/my-order-shipped")}}" >Shipped</a>
-                </div>
-
-                <div class="col-sm-2">
-                    <a style="color: #ff5722;font-weight: bold"  type="button" href="{{url("/my-order-complete")}}" >Complete</a>
-                </div>
-
-                <div class="col-sm-2">
-                    <a style="font-weight: bold; color: #777777"  type="button" href="{{url("/my-order-cancel")}}" >Cancel</a>
-                </div>
+            </style>
+            <div class="content-top1 d-flex">
+                <a href="{{url("/my-order")}}" class="btn">All</a>
+                <a href="{{url("/my-order-pending")}}" class="btn">Pending</a>
+                <a href="{{url("/my-order-confirmed")}}" class="btn">Confirmed</a>
+                <a href="{{url("/my-order-shipping")}}" class="btn">Shipping</a>
+                <a href="{{url("/my-order-shipped")}}" class="btn">Shipped</a>
+                <a style="color: #ff5722;font-weight: bold" href="{{url("/my-order-complete")}}" class="btn">Complete</a>
+                <a  type="button" href="{{url("/my-order-cancel")}}" class="btn cancel-btn">Cancel</a>
             </div>
+
 
 
             <table class="order-table">
@@ -104,7 +107,7 @@
                     <th>Payment Method</th>
                     <th>Paid</th>
                     <th>Status</th>
-                    <th >Action</th>
+                    <th width="60">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -119,8 +122,9 @@
                         <td>{{$item->payment_method}}</td>
                         <td>{!! $item->getPaid() !!}</td>
                         <td>{!! $item->getStatus() !!}</td>
-                        <td >
-                            <button style="border: 1px solid black" type="submit">    <a href="{{ url("order-detail", ['orders' => $item->id]) }}">Chi tiết</a>
+                        <td>
+                            <button  type="submit">
+                                <a href="{{ url("order-detail", ['orders' => $item->id]) }}">Chi tiết</a>
                             </button>
                         </td>
 
@@ -129,6 +133,11 @@
                 <!-- Thêm các hàng khác tương tự cho các đơn hàng khác -->
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center">
+                <div class="mt-3 ">
+                    {!! $orders->links("pagination::bootstrap-4") !!}
+                </div>
+            </div>
         </div>
     </div>
 @endsection

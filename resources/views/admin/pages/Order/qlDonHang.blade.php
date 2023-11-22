@@ -96,7 +96,8 @@
                                     <td>{!! $item->getPaid() !!}</td>
                                     <td>{!! $item->getStatus() !!}</td>
                                     <td >
-                                        <button style="padding: 7px 7px;" class="site-btn"  type="submit">    <a href="{{ url("admin/admin-detail", ['order' => $item->id]) }}">Chi tiết</a>
+                                        <button style="padding: 7px 7px;" class="site-btn"  type="submit">
+                                            <a href="{{ url("admin/admin-detail", ['order' => $item->id]) }}">Chi tiết</a>
                                         </button>
                                     </td>
                                 </tr>

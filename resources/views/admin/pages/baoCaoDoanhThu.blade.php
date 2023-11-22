@@ -352,7 +352,7 @@
                         @else
                             <p>Không có sản phẩm bán chạy nào.</p>
                         @endif
-{{--                        {!! $bestSellingProducts->links("pagination::bootstrap-4") !!}--}}
+                        {!! $bestSellingProducts->links("pagination::bootstrap-4") !!}
                     </div>
                 </div>
             </div>
