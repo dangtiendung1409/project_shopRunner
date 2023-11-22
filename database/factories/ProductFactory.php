@@ -26,7 +26,8 @@ class ProductFactory extends Factory
             "thumbnail"=>"/customer/img/product/product".random_int(1,30).".jpg",
             "qty" => random_int(2,50),
             "description" => $this->faker->text(700),
-            "category_id" => random_int(1,10)
+            "category_id" => random_int(1,10),
+            "brand_id" => random_int(1,10)
         ];
     }
 

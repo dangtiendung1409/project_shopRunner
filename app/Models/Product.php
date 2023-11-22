@@ -76,6 +76,13 @@ class Product extends Model
         }
         return $query;
     }
+    public function scopeBranding($query,$request){
+        if($request->has("brand_id")&& $request->get("brand_id") != 0){
+            $brand_id = $request->get("brand_id");
+            $query->where("brand_id",$brand_id);
+        }
+        return $query;
+    }
     public function scopeOutOfStock($query)
     {
         return $query->where('qty', 0);

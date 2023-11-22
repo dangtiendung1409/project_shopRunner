@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SendContactEmail;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\favoriteOrder;
@@ -46,43 +47,83 @@ class HomeController
 
 
     // category
-    public function categoryShop(Product $product,Request $request){
-        $query = Product::Search($request)->FilterCategory($request)->FromPrice($request)->ToPrice($request)->orderBy("created_at", "desc");
+    public function categoryShop(Product $product, Request $request)
+    {
+        // Lấy query ban đầu từ các phương thức tìm kiếm và lọc
+        $query = Product::Search($request)->FilterCategory($request)->FromPrice($request)->ToPrice($request);
+
+        // Sắp xếp theo ngày tạo mới nhất
+        $query->orderBy("created_at", "desc");
+
+        // Lấy tổng điểm đánh giá và số lượt đánh giá
         $ratingSum = Review::where('product_id', $product->id)->sum('rating');
         $ratingCount = Review::where('product_id', $product->id)->count();
-        if ($ratingCount > 0) {
-            $avgRating = round($ratingSum / $ratingCount, 2);
-            $avgStarRating = round($ratingSum / $ratingCount);
-        } else {
-            // If there are no reviews, set default values
-            $avgRating = 0;
-            $avgStarRating = 0;
-        }
-        if ($request ->price){
-//            dd($request->price);
+
+        // Tính trung bình điểm đánh giá và trung bình điểm đánh giá theo sao
+        $avgRating = $ratingCount > 0 ? round($ratingSum / $ratingCount, 2) : 0;
+        $avgStarRating = $ratingCount > 0 ? round($ratingSum / $ratingCount) : 0;
+
+        // Lọc theo giá nếu có
+        if ($request->price) {
             $price = $request->price;
-            switch ($price){
+            switch ($price) {
                 case 1:
-                    $query->where('price', '<' , 20);
+                    $query->where('price', '<', 20);
                     break;
                 case 2:
-                    $query->whereBetween('price',[20, 40]);
+                    $query->whereBetween('price', [20, 40]);
                     break;
                 case 3:
-                    $query->whereBetween('price',[40, 60]);
+                    $query->whereBetween('price', [40, 60]);
                     break;
                 case 4:
-                    $query->whereBetween('price',[60, 80]);
+                    $query->whereBetween('price', [60, 80]);
                     break;
                 case 5:
                     $query->where('price', '>', 80);
                     break;
             }
         }
+
+        // Lấy danh sách thương hiệu (brands) từ cơ sở dữ liệu
+        $brands = Brand::all();
+
+        // Thêm điều kiện lọc theo thương hiệu nếu có
+        if ($request->brand_id) {
+            $query->where('brand_id', $request->brand_id);
+        } elseif ($request->selectedCategories || $request->selectedPrices || $request->selectedBrands) {
+            // Nếu có giá trị trong các selected items, phân tích và xử lý
+            $selectedCategories = explode(",", $request->selectedCategories);
+            $selectedPrices = explode(",", $request->selectedPrices);
+            $selectedBrands = explode(",", $request->selectedBrands);
+
+            foreach ($selectedCategories as $selectedCategory) {
+                // Xử lý mỗi selected category tương ứng
+                // ...
+            }
+
+            foreach ($selectedPrices as $selectedPrice) {
+                // Xử lý mỗi selected price tương ứng
+                // ...
+            }
+
+            foreach ($selectedBrands as $selectedBrand) {
+                // Xử lý mỗi selected brand tương ứng
+                // ...
+            }
+        }
+
+        // Lấy dữ liệu paginated
         $products = $query->paginate(12);
+
+        // Lấy danh sách danh mục
         $categories = Category::all();
-        return view("pages.customer.categoryShop", compact("products", "categories", "avgRating", "avgStarRating")); //, "avgRating", "avgStarRating"
+
+        // Truyền biến vào view
+        return view("pages.customer.categoryShop", compact("products", "categories", "avgRating", "avgStarRating", "brands"));
     }
+
+
 
     public function category(Category $category)
     {
@@ -91,6 +132,7 @@ class HomeController
 
         return view("pages.customer.category", compact("products" ))->render();
     }
+
 
     // detials
     public function details(Product $product, Request $request)
