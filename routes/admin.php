@@ -27,9 +27,6 @@ Route::get('/admin-edit-san-pham/{product}', [\App\Http\Controllers\ProductContr
 Route::put('/admin-edit-san-pham/{product}', [\App\Http\Controllers\ProductController::class,"update"]);
 Route::delete("/admin-delete-san-pham/{product}", [\App\Http\Controllers\ProductController::class, "delete"]);
 
-// quản lý thông tin khuyến mãi
-Route::get('/admin-quan-ly-thong-tin-khuyen-mai', [\App\Http\Controllers\adminController::class,"qlThongTinKhuyenMai"]);
-Route::get('/admin-add-thong-tin-khuyen-mai', [\App\Http\Controllers\adminController::class,"addThongTinKhuyenMai"]);
 
 // rating
 Route::get('/admin-rating', [\App\Http\Controllers\RatingController::class,"adminRating"]);

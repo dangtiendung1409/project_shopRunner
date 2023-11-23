@@ -93,7 +93,8 @@
                 </div>
             </div>
             @if($order->payment_method == "Paypal" && !$order->is_paid)
-                <a style="float: right; margin-top: 10px;" href="{{url('/check-out')}}" class="btn btn-warning">Thanh toán lại</a>
+                <a style="float: right; margin-top: 10px;" href="{{url('/check-out')}}" class="btn btn-warning">
+                    Payment again</a>
             @endif
         </div>
 

@@ -104,34 +104,13 @@ class adminController extends Controller
         try {
             $user->delete();
 
-            return redirect()->to("admin/admin-quan-ly-nhan-vien")->with("success", "Xóa sản phẩm thành công");
+            return redirect()->to("admin/admin-quan-ly-nhan-vien")->with("Product deletion successful");
         } catch (\Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }
     }
 
-    public function qlThongTinKhuyenMai(){
 
-
-        return view("admin.pages.qlThongTinKhuyenMai");
-    }
-
-    public function addThongTinKhuyenMai(Request $request){
-
-        $applyFor = $request->input('apply_for');
-        $searchText = $request->input('search_text');
-        $results = [];
-
-        if ($applyFor === 'product') {
-            $results = Product::where('name', 'LIKE', '%' . $searchText . '%')->get();
-        } elseif ($applyFor === 'category') {
-            $results = Category::where('name', 'LIKE', '%' . $searchText . '%')->get();
-        } elseif ($applyFor === 'category_single') {
-            // Xử lý tìm kiếm cho loại khác nếu cần
-        }
-
-        return view("admin.pages.addThongTinKhuyenMai", ['results' => $results]);
-    }
     public function qlKhachHang(){
         $user = User::whereNull('role')->get();
         return view("admin.pages.User.qlKhachHang", compact("user"));

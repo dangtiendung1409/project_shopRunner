@@ -75,27 +75,27 @@
                 @elseif($order->status === 2 )
                     <form method="post" action="{{ route('update_order_status', ['order' => $order->id]) }}">
                         @csrf
-                        <button onclick="return confirm('Chắc chắn muốn cập nhập trạng thái thành: Đã giao hàng')" type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Đã giao hàng</button>
+                        <button onclick="return confirm('Surely you want to update the status to: Shipped')" type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Đã giao hàng</button>
                     </form>
                 @elseif($order->status === 1 )
                     <form method="post" action="{{ route('update_order_status', ['order' => $order->id]) }}">
                         @csrf
-                        <button onclick="return confirm('Chắc chắn muốn cập nhập trạng thái thành: Đang giao hàng')" type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Giao hàng</button>
+                        <button onclick="return confirm('Definitely want to update the status to: Shipping')" type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Giao hàng</button>
                     </form>
 
                     <form method="post" action="{{ route('update_order_status_cancel', ['order' => $order->id]) }}">
                         @csrf
-                        <button onclick="return confirm('Chắc chắn muốn hủy đơn hàng')" type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
+                        <button onclick="return confirm('Definitely want to cancel the order')" type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
                     </form>
                 @elseif($order->status === 0 )
                     <form method="post" action="{{ route('update_order_status', ['order' => $order->id]) }}">
                         @csrf
-                        <button onclick="return confirm('Chắc chắn muốn cập nhập trạng thái thành: Đã xác nhận')" type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Xác nhận</button>
+                        <button onclick="return confirm('Surely you want to update the status to: Confirmed')" type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Xác nhận</button>
                     </form>
 
                     <form method="post" action="{{ route('update_order_status_cancel', ['order' => $order->id]) }}">
                         @csrf
-                        <button onclick="return confirm('Chắc chắn muốn hủy đơn hàng')" type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
+                        <button onclick="return confirm('Definitely want to cancel the order')" type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
                     </form>
                 @endif
             </div>

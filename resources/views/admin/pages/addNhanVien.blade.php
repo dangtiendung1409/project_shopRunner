@@ -4,14 +4,14 @@
     <main class="app-content">
         <div class="app-title">
             <ul class="app-breadcrumb breadcrumb">
-                <li class="breadcrumb-item">Danh sách nhân viên</li>
-                <li class="breadcrumb-item"><a href="#">Thêm nhân viên</a></li>
+                <li class="breadcrumb-item">List of employee</li>
+                <li class="breadcrumb-item"><a href="#">More staff</a></li>
             </ul>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="tile">
-                    <h3 class="tile-title">Tạo mới bhaan viên</h3>
+                    <h3 class="tile-title">Create new employee</h3>
                     <div class="tile-body">
                         <form class="row" action="{{url("admin/admin-add-nhan-vien")}}" method="post" enctype="multipart/form-data">
                             @csrf

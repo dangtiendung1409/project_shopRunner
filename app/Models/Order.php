@@ -53,17 +53,17 @@ class Order extends Model
         return "$".number_format($this->grand_total,2);
     }
     public function getPaid(){
-        return $this->is_paid?"<span class='btn btn-success'>Đã thanh toán</span>"
-            :"<span class='btn btn-secondary'>Chưa thanh toán</span>";
+        return $this->is_paid?"<span class='btn btn-success'>Paid</span>"
+            :"<span class='btn btn-secondary'>Unpaid</span>";
     }
     public function getStatus(){
         switch ($this->status){
-            case self::PENDING: return "<span class='text-secondary'>Chờ xác nhận</span>";
-            case self::CONFIRMED: return "<span class='text-info'>Đã xác nhận</span>";
-            case self::SHIPPING: return "<span class='text-warning'>Đang giao hàng</span>";
-            case self::SHIPPED: return "<span class='text-primary'>Đã giao hàng</span>";
-            case self::COMPLETE: return "<span class='text-success'>Hoàn thành</span>";
-            case self::CANCEL: return "<span class='text-danger'>Huỷ</span>";
+            case self::PENDING: return "<span class='text-secondary'>Pending</span>";
+            case self::CONFIRMED: return "<span class='text-info'>Confirmed</span>";
+            case self::SHIPPING: return "<span class='text-warning'>Shipping</span>";
+            case self::SHIPPED: return "<span class='text-primary'>Shipped</span>";
+            case self::COMPLETE: return "<span class='text-success'>Complete</span>";
+            case self::CANCEL: return "<span class='text-danger'>Cancel</span>";
         }
     }
 

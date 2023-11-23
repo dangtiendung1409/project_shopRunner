@@ -4,15 +4,16 @@
     <main class="app-content">
         <div class="app-title">
             <ul class="app-breadcrumb breadcrumb">
-                <li class="breadcrumb-item">Danh sách sản phẩm</li>
-                <li class="breadcrumb-item"><a href="#">chỉnh sửa sản phẩm</a></li>
+                <li class="breadcrumb-item">DList of employee</li>
+                <li class="breadcrumb-item"><a href="#">
+                        Edit staff</a></li>
             </ul>
             <div id="clock"></div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="tile">
-                    <h3 class="tile-title">Tạo mới sản phẩm</h3>
+                    <h3 class="tile-title">Edit staff</h3>
                     <div class="tile-body">
                         <form class="row"  action="{{url("admin/admin-edit-nhan-vien",['user'=>$user->id])}}" method="post" enctype="multipart/form-data">
                             @csrf

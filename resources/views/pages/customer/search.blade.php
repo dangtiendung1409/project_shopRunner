@@ -12,7 +12,8 @@
                                     @if(count($product) > 0)
                                     <p>Find {{count($product)}} product</p>
                                     @else
-                                        <p>Không tìm thấy sản phẩm</p>
+                                        <p>
+                                            No products found</p>
                                     @endif
                                 </div>
                             </div>

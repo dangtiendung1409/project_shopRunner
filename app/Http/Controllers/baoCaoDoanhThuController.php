@@ -202,12 +202,7 @@ class baoCaoDoanhThuController
             }
         }
         // review
-        $productsFromReviews = Product::has('reviews')
-            ->select('products.id', DB::raw('COALESCE(AVG(reviews.rating), 0) as average_rating'))
-            ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
-//            ->groupBy('products.id')
-            ->orderBy('average_rating', 'desc')
-            ->paginate(5);
+
 
 
         // bảng tổng đơn hàng
@@ -249,7 +244,6 @@ class baoCaoDoanhThuController
             'bestSellingProducts' => $bestSellingProducts,
             'orderTotals'=> $orderTotals,
             'orders' => $orders,
-            'productsFromReviews' => $productsFromReviews,
             'pendingOrders' => $pendingOrders,
         ]);
     }

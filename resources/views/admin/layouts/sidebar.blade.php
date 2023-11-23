@@ -27,8 +27,7 @@
         <li><a class="app-menu__item active" href="{{url("admin/admin-bao-cao-doanh-thu")}}"><i class='app-menu__icon bx bx-pie-chart-alt-2'></i>
                 <span class="app-menu__label">Báo cáo doanh thu</span></a>
         </li>
-        <li><a class="app-menu__item" href="{{url("admin/admin-quan-ly-thong-tin-khuyen-mai")}}"><i class='app-menu__icon bx bx-user-voice'></i>
-                <span class="app-menu__label">Thông tin khuyến mãi</span></a></li>
+
 {{--                <li><a class="app-menu__item haha" href="phan-mem-ban-hang.html"><i class='app-menu__icon bx bx-cart-alt'></i>--}}
 {{--                        <span class="app-menu__label">POS Bán Hàng</span></a></li>--}}
 {{--        <li><a class="app-menu__item" href="table-data-banned.html"><i class='app-menu__icon bx bx-run'></i><span--}}

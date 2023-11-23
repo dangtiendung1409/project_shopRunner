@@ -121,7 +121,8 @@
                         <td>{!! $item->getPaid() !!}</td>
                         <td>{!! $item->getStatus() !!}</td>
                         <td >
-                            <button style="border: 1px solid black" type="submit">    <a href="{{ url("order-detail", ['orders' => $item->id]) }}">Chi tiết</a>
+                            <button style="padding: 7px 7px; border-radius: 5px" class="site-btn"  type="submit">
+                                <a style="color: white" href="{{ url("order-detail", ['orders' => $item->id]) }}">Detail</a>
                             </button>
                         </td>
 

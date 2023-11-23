@@ -398,7 +398,7 @@
 
             // Kiểm tra số lượng nhập vào
             if (inputQty > productQtyInStock) {
-                errorMessage.textContent = 'Số lượng nhập vào lớn hơn số lượng hàng trong kho.';
+                errorMessage.textContent = 'The quantity imported is greater than the quantity in stock.';
                 event.preventDefault(); // Ngăn chặn việc thêm vào giỏ hàng
             } else {
                 errorMessage.textContent = ''; // Xóa thông báo lỗi nếu số lượng hợp lệ

@@ -178,13 +178,13 @@ class HomeController
             if($item->id == $product->id){
                 $item->buy_qty = $item->buy_qty + $buy_qty;
                 session(["cartShop"=>$cartShop]);
-                return redirect()->back()->with("success","Đã thêm sản phẩm vào giỏ hàng");
+                return redirect()->back()->with("success","Product added to cart");
             }
         }
         $product->buy_qty = $buy_qty;
         $cartShop[] = $product;
         session(["cartShop"=>$cartShop]);
-        return redirect()->back()->with("success","Đã thêm sản phẩm vào giỏ hàng");
+        return redirect()->back()->with("success","Product added to cart");
     }
 
 
@@ -224,11 +224,11 @@ class HomeController
         }
 
         session(["cartShop" => $cartShop]);
-        return redirect()->back()->with("success", "Đã cập nhật giỏ hàng");
+        return redirect()->back()->with("success", "Shopping cart updated");
     }
     public function clearCart(){
         session()->forget("cartShop");
-        return redirect()->back()->with("success", "Đã xóa tất cả sản phẩm khỏi giỏ hàng");
+        return redirect()->back()->with("success", "All products have been removed from the cart");
     }
 
     // check out
@@ -243,7 +243,7 @@ class HomeController
 
             if ($product->qty < $item->buy_qty) {
                 // Sản phẩm không đủ số lượng
-                $errorMessages['error_'.$item->id] = 'Sản phẩm đã hết hàng hoặc không đủ số lượng.';
+                $errorMessages['error_'.$item->id] = 'The product is out of stock or in insufficient quantity.';
                 $can_checkout = false;
             }
 
@@ -281,7 +281,7 @@ class HomeController
 
         if (!$user) {
             // Người dùng chưa đăng nhập, thực hiện xử lý tương ứng hoặc thông báo lỗi.
-            return redirect()->back()->with('error', 'Bạn cần đăng nhập để đặt hàng.');
+            return redirect()->back()->with('error', 'You need to log in to place an order.');
         }
 
         // calculate
@@ -592,7 +592,7 @@ class HomeController
         $favoriteOrder->thumbnail = $thumbnail;
         $favoriteOrder->save();
 
-        return redirect()->back()->with('success', 'Thêm sản phẩm vào danh sách yêu thích thành công');
+        return redirect()->back()->with('success', 'Added product to favorites list successfully');
         return response()->json(['favorite' => true]); // Nếu sản phẩm đã được yêu thích
 
     }
@@ -617,7 +617,7 @@ class HomeController
         FavoriteOrder::truncate(); // Xóa toàn bộ dữ liệu trong bảng FavoriteProduct
 
         // Redirect hoặc trả về phản hồi thích hợp
-        return redirect()->back()->with('success', 'Xóa toàn bộ yêu thích thành công');
+        return redirect()->back()->with('success', 'Successfully deleted all favorites');
     }
     public function favoriteOrder()
     {

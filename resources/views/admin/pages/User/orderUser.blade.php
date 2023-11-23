@@ -4,7 +4,7 @@
     <main class="app-content">
         <div class="app-title">
             <ul class="app-breadcrumb breadcrumb side">
-                <li class="breadcrumb-item active"><a href="#"><b>Danh sách đơn hàng của {{ $user->name }}</b></a></li>
+                <li class="breadcrumb-item active"><a href="#"><b>List of orders {{ $user->name }}</b></a></li>
             </ul>
             <div id="clock"></div>
         </div>
@@ -16,11 +16,11 @@
 
                             <div class="col-sm-2">
                                 <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
-                                        class="fas fa-print"></i> In dữ liệu</a>
+                                        class="fas fa-print"></i> Print data</a>
                             </div>
                             <div class="col-sm-2">
                                 <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                                        class="fas fa-trash-alt"></i> Xóa tất cả </a>
+                                        class="fas fa-trash-alt"></i> Delete All</a>
                             </div>
                         </div>
 
@@ -40,20 +40,20 @@
                             <div class="input-group input-group-sm mr-2" style="width: 150px; margin-left: 5px;">
                                 <select style="height: 45px;" name="paid" class="form-control">
                                     <option >Select piad</option>
-                                    <option value="1">Đã thanh toán</option>
-                                    <option value="0">Chưa thanh toán</option>
+                                    <option value="1">Paid</option>
+                                    <option value="0">Unpaid</option>
                                 </select>
                             </div>
 
                             <div class="input-group input-group-sm mr-2" style="width: 150px; margin-left: 5px;">
                                 <select style="height: 45px;" name="status" class="form-control">
                                     <option value="0" >select status</option>
-                                    <option value="pending" >Chờ xác nhận</option>
-                                    <option value="confirmed" >Đã xác nhận</option>
-                                    <option value="shipping" >Đang giao hàng</option>
-                                    <option value="shipped">Đã giao hàng</option>
-                                    <option value="complete" >Hoàn thành</option>
-                                    <option value="cancel" >Huỷ</option>
+                                    <option value="pending" >Pending</option>
+                                    <option value="confirmed" >Confirmed</option>
+                                    <option value="shipping" >Shipping</option>
+                                    <option value="shipped">Shipped</option>
+                                    <option value="complete" >Complete</option>
+                                    <option value="cancel" >Cancel</option>
                                 </select>
 
                             </div>
@@ -72,7 +72,7 @@
                             <thead>
                             <tr>
                                 <th width="10"><input type="checkbox" id="all"></th>
-                                <th>ID đơn hàng</th>
+                                <th>ID </th>
                                 <th>Created At</th>
                                 <th>Full Name</th>
                                 <th>Grand Total</th>
@@ -96,7 +96,7 @@
                                             <td>{!!$order->getPaid() !!}</td>
                                             <td>{!!$order->getStatus() !!}</td>
                                             <td >
-                                                <button style="padding: 7px 7px;" class="site-btn" type="submit"> <a href="{{ url("admin/admin-order-user-detail/{$order->id}")}}">Chi tiết</a>
+                                                <button style="padding: 7px 7px;" class="site-btn" type="submit"> <a href="{{ url("admin/admin-order-user-detail/{$order->id}")}}">Detail</a>
                                                 </button>
                                             </td>
                                         </tr>

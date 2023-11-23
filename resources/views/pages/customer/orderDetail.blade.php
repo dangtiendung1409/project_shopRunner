@@ -112,7 +112,7 @@
                                         <td>{{$item->pivot->price}}</td>
                                         <td>{{$item->pivot->qty}}</td>
                                         <td>${{$item->pivot->qty*$item->pivot->price}}</td>
-                                        @if ($order->getStatus() == "<span class='text-success'>Hoàn thành</span>")
+                                        @if ($order->getStatus() == "<span class='text-success'>Complete</span>")
                                             <td>
                                                 <div class="col-sm-2">
                                                     <a class="btn btn-dark" href="{{url("/review",["product"=>$item->slug])}}">Review</a>
@@ -130,14 +130,14 @@
                     @if( $order->status === 3 )
                         <form method="post" action="{{ url('update-complete', ['order' => $order->id]) }}">
                             @csrf
-                            <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Đã nhận hàng</button>
+                            <button type="submit" class="btn btn-warning" style="float: right; margin-top: 10px;">Has received the goods</button>
                         </form>
 
-                        <button  type="submit" class="btn btn-danger" style="float: right; margin-top: -3px;  margin-right: 10px;">Đổi trả</button>
+                        <button  type="submit" class="btn btn-danger" style="float: right; margin-top: -3px;  margin-right: 10px;">exchange or return goods</button>
                     @elseif($order->status === 0 )
                         <form method="post" action="{{ url('update-order-status-cancel', ['order' => $order->id]) }}">
                             @csrf
-                            <button  onclick="return confirm('Chắc chắn muốn hủy đơn hàng này')" type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Hủy</button>
+                            <button  onclick="return confirm('Definitely want to cancel this order')" type="submit" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px;">Cancel</button>
                         </form>
 
                     @endif

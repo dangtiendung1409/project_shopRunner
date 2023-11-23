@@ -3,7 +3,7 @@
     <main class="app-content">
         <div class="app-title">
             <ul class="app-breadcrumb breadcrumb side">
-                <li class="breadcrumb-item active"><a href="#"><b>Danh sách nhân viên</b></a></li>
+                <li class="breadcrumb-item active"><a href="#"><b>List of employee</b></a></li>
             </ul>
             <div id="clock"></div>
         </div>
@@ -17,17 +17,17 @@
                             <div class="col-sm-2">
 
                                 <a class="btn btn-add btn-sm" href="{{url("admin/admin-add-nhan-vien")}}" title="Thêm"><i class="fas fa-plus"></i>
-                                    Tạo mới nhân viên</a>
+                                    Create new employee</a>
                             </div>
 
                             <div class="col-sm-2">
                                 <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
-                                        class="fas fa-print"></i> In dữ liệu</a>
+                                        class="fas fa-print"></i>Print Data</a>
                             </div>
 
                             <div class="col-sm-2">
                                 <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                                        class="fas fa-trash-alt"></i> Xóa tất cả </a>
+                                        class="fas fa-trash-alt"></i> Delete all </a>
                             </div>
                         </div>
                         <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
@@ -41,7 +41,7 @@
                                 <th width="20">Thumbnail</th>
                                 <th width="150">Address</th>
                                 <th>Telephone</th>
-                                <th width="70">Tính năng</th>
+                                <th width="70">Action</th>
                             </tr>
                             </thead>
                             <tbody>

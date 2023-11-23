@@ -4,7 +4,7 @@
     <main class="app-content">
         <div class="app-title">
             <ul class="app-breadcrumb breadcrumb side">
-                <li class="breadcrumb-item active"><a href="#"><b>Danh sách sản phẩm</b></a></li>
+                <li class="breadcrumb-item active"><a href="#"><b>List of products</b></a></li>
             </ul>
             <div id="clock"></div>
         </div>
@@ -16,16 +16,18 @@
                             <div class="col-sm-2">
 
                                 <a class="btn btn-add btn-sm" href="{{url("admin/admin-add-san-pham")}}" title="Thêm"><i class="fas fa-plus"></i>
-                                    Tạo mới sản phẩm</a>
+
+                                    Create new products</a>
                             </div>
 
                             <div class="col-sm-2">
                                 <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
-                                        class="fas fa-print"></i> In dữ liệu</a>
+                                        class="fas fa-print"></i>
+                                    Print data</a>
                             </div>
                             <div class="col-sm-2">
                                 <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                                        class="fas fa-trash-alt"></i> Xóa tất cả </a>
+                                        class="fas fa-trash-alt"></i>Delete all </a>
                             </div>
                         </div>
 
@@ -61,12 +63,12 @@
                             <tr>
                                 <th width="10"><input type="checkbox" id="all"></th>
                                 <th>Id</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Ảnh</th>
-                                <th>Số lượng</th>
-                                <th>Giá tiền</th>
-                                <th>Danh mục</th>
-                                <th width="70px">Chức năng</th>
+                                <th> Name</th>
+                                <th>Image</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Category</th>
+                                <th width="70px">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -84,7 +86,7 @@
                                     <form action="{{url("admin/admin-delete-san-pham",['products'=>$item->id])}}" method="POST">
                                         @csrf
                                         @method("DELETE")
-                                        <button onclick="return confirm('Chắc chắn muốn xoá sản phẩm: {{$item->name}}')" class="btn btn-primary btn-sm trash" type="submit"
+                                        <button onclick="return confirm('Definitely want to delete the product: {{$item->name}}')" class="btn btn-primary btn-sm trash" type="submit"
                                                ><i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>

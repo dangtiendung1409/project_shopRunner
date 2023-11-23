@@ -3,7 +3,8 @@
     <main class="app-content">
         <div class="app-title">
             <ul class="app-breadcrumb breadcrumb side">
-                <li class="breadcrumb-item active"><a href="#"><b>Danh sách sản phẩm</b></a></li>
+                <li class="breadcrumb-item active"><a href="#"><b>
+                            List of products</b></a></li>
             </ul>
             <div id="clock"></div>
         </div>
@@ -14,11 +15,11 @@
                         <div class="row element-button">
                             <div class="col-sm-2">
                                 <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
-                                        class="fas fa-print"></i> In dữ liệu</a>
+                                        class="fas fa-print"></i> Print data</a>
                             </div>
                             <div class="col-sm-2">
                                 <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                                        class="fas fa-trash-alt"></i> Xóa tất cả </a>
+                                        class="fas fa-trash-alt"></i> Delete all</a>
                             </div>
                         </div>
                         <form style="display: flex" action="{{ route('admin-rating-details', ['product_id' => $product_id]) }}" method="get">
@@ -44,10 +45,10 @@
                             <tr>
                                 <th width="10"><input type="checkbox" id="all"></th>
                                 <th>Id</th>
-                                <th>Tên khách hàng</th>
+                                <th>Customer name</th>
                                 <th>Email</th>
                                 <th>message</th>
-                                <th>Số sao đánh giá </th>
+                                <th>Number of rating stars </th>
                                 <th>Created_at</th>
                             </tr>
                             </thead>

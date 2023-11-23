@@ -73,7 +73,7 @@ class ProductController extends Controller
             ]);
 
 
-            return redirect()->to("admin/admin-quan-ly-san-pham")->with("success", "Thêm sản phẩm thành công");
+            return redirect()->to("admin/admin-quan-ly-san-pham")->with("success", "Added product successfully");
         } catch (\Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }
@@ -122,7 +122,7 @@ class ProductController extends Controller
         try {
             $product->delete();
 
-            return redirect()->to("admin/admin-quan-ly-san-pham")->with("success", "Xóa sản phẩm thành công");
+            return redirect()->to("admin/admin-quan-ly-san-pham")->with("success", "Product deletion successful");
         } catch (\Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }

@@ -82,6 +82,16 @@
                     transition: all 0.3s ease;
                 }
 
+                .site-btn {
+                    font-size: 13px;
+                    background: #ff5732;
+                    border: 2px solid #ff5732;
+                    border-radius: 5px;
+                    display: inline-block;
+                    padding: 3px 3px;
+
+                }
+
 
             </style>
             <div class="content-top1 d-flex">
@@ -99,7 +109,7 @@
             <table class="order-table">
                 <thead>
                 <tr>
-                    <th>ID đơn hàng</th>
+                    <th>ID </th>
                     <th>Created At</th>
                     <th>Grand Total</th>
                     <th>Full Name</th>
@@ -107,7 +117,7 @@
                     <th>Payment Method</th>
                     <th>Paid</th>
                     <th>Status</th>
-                    <th >Action</th>
+                    <th width="60">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -123,7 +133,9 @@
                         <td>{!! $item->getPaid() !!}</td>
                         <td>{!! $item->getStatus() !!}</td>
                         <td >
-                            <button style="border: 1px solid black" type="submit">    <a href="{{ url("order-detail", ['orders' => $item->id]) }}">Chi tiết</a>
+
+                            <button style="padding: 7px 7px;" class="site-btn"  type="submit">
+                                <a style="color: white" href="{{ url("order-detail", ['orders' => $item->id]) }}">Detail</a>
                             </button>
                         </td>
 
@@ -131,8 +143,8 @@
                 @endforeach
                 </tbody>
             </table>
-            <div class="d-flex justify-content-center">
-                <div class="mt-3 ">
+            <div style="float: right; margin-top: -10px;" class="d-flex justify-content-center">
+                <div  class="mt-3 ">
                     {!! $orders->links("pagination::bootstrap-4") !!}
                 </div>
             </div>

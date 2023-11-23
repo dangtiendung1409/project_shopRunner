@@ -23,7 +23,7 @@
     <section class="shopping-cart spad">
         <div class="container">
             @if(count($cartShop)==0)
-                <p>Không có sản phẩm nào trong giỏ hàng</p>
+                <p>There are no products in the cart</p>
             @else
 
                 <div class="row">
@@ -61,9 +61,9 @@
                                                             <input  type="text" name="buy_qty" value="{{ $item->buy_qty }}">
                                                         </div>
                                                         @if ($item->buy_qty > $item->qty)
-                                                            <p class="text-danger">Sản phẩm đã hết hàng</p>
+                                                            <p class="text-danger">The product is out of stock</p>
                                                         @endif
-                                                        <button type="submit" class="btn btn-update update-button">Cập nhật</button>
+                                                        <button type="submit" class="btn btn-update update-button">Update</button>
                                                     </form>
                                                 </div>
                                             </td>
