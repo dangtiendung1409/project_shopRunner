@@ -25,10 +25,7 @@
                                         class="fas fa-print"></i>
                                     Print data</a>
                             </div>
-                            <div class="col-sm-2">
-                                <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                                        class="fas fa-trash-alt"></i>Delete all </a>
-                            </div>
+
                         </div>
 
                         <form style="display: flex" action="{{url("admin/admin-quan-ly-san-pham")}}" method="get">

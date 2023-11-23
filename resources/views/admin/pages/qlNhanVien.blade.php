@@ -25,10 +25,7 @@
                                         class="fas fa-print"></i>Print Data</a>
                             </div>
 
-                            <div class="col-sm-2">
-                                <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                                        class="fas fa-trash-alt"></i> Delete all </a>
-                            </div>
+
                         </div>
                         <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
                                id="sampleTable">
