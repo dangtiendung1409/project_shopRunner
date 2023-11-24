@@ -382,8 +382,8 @@
             <p><b>Hệ thống quản lý V2.0 | Code by Trường</b></p>
         </div>
     </main>
-    @include("admin.layouts.js_BaoCao")
+        @include("admin.layouts.js_BaoCao")
 
-@endsection
+    @endsection
 
 

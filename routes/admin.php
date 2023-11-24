@@ -1,4 +1,6 @@
 <?php
+// dashboard
+Route::get('/admin-dashboard', [\App\Http\Controllers\adminController::class,"adminDashboard"]);
 // quản lý nhân viên
 Route::get('/admin-quan-ly-nhan-vien', [\App\Http\Controllers\adminController::class,"qlNhanVien"]);
 Route::get('/admin-edit-nhan-vien/{user}', [\App\Http\Controllers\adminController::class,"editNhanVien"]);

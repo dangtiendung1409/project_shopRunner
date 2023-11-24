@@ -9,6 +9,9 @@
     </div>
     <hr>
     <ul class="app-menu">
+        <li><a class="app-menu__item active" href="{{url("admin/admin-dashboard")}}"><i class='app-menu__icon bx bx-tachometer'></i>
+                <span class="app-menu__label">
+Dashboard</span></a></li>
         <li><a class="app-menu__item active" href="{{url("admin/admin-quan-ly-nhan-vien")}}"><i class='app-menu__icon bx bx-id-card'></i>
                 <span class="app-menu__label">
 Employee manager</span></a></li>

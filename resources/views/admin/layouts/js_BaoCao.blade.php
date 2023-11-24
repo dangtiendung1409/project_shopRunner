@@ -72,7 +72,7 @@
             data: {
                 labels: data.labels,
                 datasets: [{
-                    label: 'Sản phẩm đã bán',
+                    label: 'Products sold',
                     data: data.productsSold,
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
@@ -127,7 +127,7 @@
             data: {
                 labels: data.labels,
                 datasets: [{
-                    label: 'Doanh thu',
+                    label: 'Revenue',
                     data: data.revenue,
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',
@@ -188,7 +188,7 @@
             data: {
                 labels: data.labels,
                 datasets: [{
-                    label: 'Sản phẩm đã bán',
+                    label: 'Products sold',
                     data: data.productsSoldDay,
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
@@ -248,7 +248,7 @@
             data: {
                 labels: data.labels,
                 datasets: [{
-                    label: 'Doanh thu',
+                    label: 'Revenue',
                     data: data.revenueDay,
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',

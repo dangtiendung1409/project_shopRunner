@@ -3,16 +3,118 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\favoriteOrder;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class adminController extends Controller
 {
 
+    public function adminDashboard(){
+        // ô số liệu tổng hợp
+        $totalUser = User::whereNull('role')->count();
+        $totalEmployees = User::where('role', 'employee')->count();
+        $totalProducts = Product::count();
+        $totalOrders = Order::count();
+        $totalRevenue = Order::where('status', '4')->sum('grand_total');
+        $totalCancelledOrders = Order::getTotalCancelledOrders();
+        $outOfStockProductCount = Product::outOfStock()->count();
+
+        // đơn hàng chờ xác nhận
+
+        $pendingOrders = Order::where('status', Order::PENDING)->paginate(5);
+
+        // bảng sản phẩm đã hết
+        $outOfStockProducts = Product::outOfStock()
+            ->orderBy("id", "desc")
+            ->paginate(5);
+
+        // bảng sản phẩm bán chạy
+        $bestSellingProducts = DB::table('order_products')
+            ->join('orders', 'order_products.order_id', '=', 'orders.id')
+            ->where('orders.status', 4) // Chỉ lấy đơn hàng có trạng thái đã hoàn thành
+            ->select('order_products.product_id', DB::raw('SUM(order_products.qty) as total_qty_sold'))
+            ->groupBy('order_products.product_id')
+            ->orderBy('total_qty_sold', 'desc')
+            ->paginate(5);
+
+        $bestSellingProductDetails = [];
+
+        foreach ($bestSellingProducts as $product) {
+            $productDetail = Product::find($product->product_id);
+            if ($productDetail) {
+                $productDetail->total_qty_sold = $product->total_qty_sold;
+                $bestSellingProductDetails[] = $productDetail;
+            }
+        }
+
+        // bảng sản phẩm yêu thích
+        $mostFavoriteProducts = FavoriteOrder::select('product_id', DB::raw('COUNT(user_id) as favorite_count'))
+            ->groupBy('product_id')
+            ->orderByRaw('COUNT(user_id) DESC')
+            ->paginate(200);
+
+        $mostFavoriteProductDetails = [];
+
+        foreach ($mostFavoriteProducts as $product) {
+            $productDetail = Product::find($product->product_id);
+            if ($productDetail) {
+                $mostFavoriteProductDetails[] = $productDetail;
+            }
+        }
+        // review
+
+
+
+        // bảng tổng đơn hàng
+        $orders = Order::select('id', 'full_name', 'grand_total')
+            ->with('Products')
+            ->paginate(10);
+
+
+        $orderTotals = [];
+
+        foreach ($orders as $order) {
+            $orderTotal = [
+                'order_id' => $order->id,
+                'customer' => $order->full_name,
+                'products' => $order->Products->pluck('name')->implode(', '),
+                'total_quantity' => $order->Products->count(),
+                'total_amount' => $order->getGrandTotal(),
+            ];
+
+            $orderTotals[] = $orderTotal;
+        }
+
+
+        // Truyền số liệu vào view và trả về view
+        return view("admin.pages.adminDashboard", [
+            'totalEmployees' => $totalEmployees,
+            'totalUser' =>  $totalUser,
+
+            'totalProducts' => $totalProducts,
+            'totalOrders' => $totalOrders,
+            'totalRevenue' => $totalRevenue,
+            'totalCancelledOrders' => $totalCancelledOrders,
+
+            'outOfStockProductCount' => $outOfStockProductCount,
+            'outOfStockProducts' => $outOfStockProducts,
+
+            'mostFavoriteProductDetails' => $mostFavoriteProductDetails,
+            'mostFavoriteProducts' => $mostFavoriteProducts,
+
+            'bestSellingProductDetails' => $bestSellingProductDetails,
+            'bestSellingProducts' => $bestSellingProducts,
+            'orderTotals'=> $orderTotals,
+            'orders' => $orders,
+            'pendingOrders' => $pendingOrders,
+        ]);
+    }
     public function qlNhanVien(){
         $user =User::where('role', 'EMPLOYEE')->get();
         return view("admin.pages.qlNhanVien",compact("user"));
