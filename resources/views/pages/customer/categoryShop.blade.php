@@ -52,47 +52,46 @@
 
                         <div class="input-group input-group-sm" style="width: 150px;float:left">
                             <div class="input-group-append">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fas fa-search"></i>
+                                <button style="background-color: #ff5732; color: whitesmoke" type="submit" class="btn btn-default">
+                                    Lọc
                                 </button>
                             </div>
                         </div>
                     </form>
                     <div class="row">
+
                         @foreach($products as $item)
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="{{ asset($item->thumbnail) }}">
                                         <ul class="product__hover">
-                                            <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                            <li><a href="#"><img src="/customer/img/icon/compare.png" alt="">
-                                                    <span>Compare</span></a>
-                                            </li>
-                                            <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
+
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
                                         <h6 >{{$item->name}}</h6>
                                         <a href="{{url("/details",["product"=>$item->slug])}}" class="add-cart">+ Add To Cart</a>
                                         <div class="rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
+                                            @php
+                                                $avgRating = $avgRatings[$item->id]['avgRating'];
+                                                $avgStarRating = $avgRatings[$item->id]['avgStarRating'];
+                                            @endphp
+                                            @if ($avgRating > 0)
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    @if ($i <= $avgStarRating)
+                                                        <i class="fa fa-star" style="color: #ffc700"></i>
+                                                    @else
+                                                        <i class="fa fa-star-o"></i>
+                                                    @endif
+                                                @endfor
+                                            @else
+                                                <p>Not assessed yet</p>
+                                            @endif
+
                                         </div>
+
                                         <h5>${{$item->price}}</h5>
-                                        <div class="product__color__select">
-                                            <label for="pc-40">
-                                                <input type="radio" id="pc-40">
-                                            </label>
-                                            <label class="active black" for="pc-41">
-                                                <input type="radio" id="pc-41">
-                                            </label>
-                                            <label class="grey" for="pc-42">
-                                                <input type="radio" id="pc-42">
-                                            </label>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -132,3 +131,4 @@
     </section>
     <!-- Shop Section End -->
 @endsection
+

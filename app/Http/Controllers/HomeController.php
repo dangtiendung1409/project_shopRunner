@@ -33,8 +33,30 @@ class HomeController
     public function home(Request $request){
 
         $products = Product::all();
+        $avgRatings = [];
+        foreach ($products as $item) {
+            $ratingSum = Review::where('product_id', $item->id)->sum('rating');
+            $ratingCount = Review::where('product_id', $item->id)->count();
 
-        return view("pages.customer.home",compact("products"));
+            if ($ratingCount > 0) {
+                $avgRating = round($ratingSum / $ratingCount, 2);
+                $avgStarRating = round($ratingSum / $ratingCount);
+            } else {
+                $avgRating = 0;
+                $avgStarRating = 0;
+            }
+
+            $avgRatings[$item->id] = [
+                'avgRating' => $avgRating,
+                'avgStarRating' => $avgStarRating
+            ];
+        }
+
+        return view("pages.customer.home",compact(
+            "products",
+            "avgRatings",
+            "ratingCount"
+        ));
     }
 
     // search
@@ -47,41 +69,38 @@ class HomeController
 
 
     // category
-    public function categoryShop(Request $request){
-        $query = Product::Search($request)->FromPrice($request)->ToPrice($request)->orderBy("created_at", "desc");
-
-        if ($request->category_id && $request->category_id != 0) {
-            $query->where('category_id', $request->category_id);
-        }
-        if ($request->price){
-            $price = $request->price;
-            switch ($price){
-                case 1:
-                    $query->where('price', '<' , 20);
-                    break;
-                case 2:
-                    $query->whereBetween('price',[20, 40]);
-                    break;
-                case 3:
-                    $query->whereBetween('price',[40, 60]);
-                    break;
-                case 4:
-                    $query->whereBetween('price',[60, 80]);
-                    break;
-                case 5:
-                    $query->where('price', '>', 80);
-                    break;
-            }
-        }
-
-
-        // Lấy danh sách các danh mục ở đây
-        $categories = Category::all();  // Giả sử bạn có một model Category
-
+    public function categoryShop(Request $request) {
+        $query = Product::Search($request)->FilterCategory($request)->FromPrice($request)->ToPrice($request)->orderBy("created_at", "desc");
         $products = $query->paginate(12);
 
-        // Truyền cả $products và $categories vào view
-        return view("pages.customer.categoryShop", compact("products", "categories"));
+        // Tính toán đánh giá trung bình và số lượng đánh giá cho toàn bộ danh sách sản phẩm
+        $avgRatings = [];
+        foreach ($products as $item) {
+            $ratingSum = Review::where('product_id', $item->id)->sum('rating');
+            $ratingCount = Review::where('product_id', $item->id)->count();
+
+            if ($ratingCount > 0) {
+                $avgRating = round($ratingSum / $ratingCount, 2);
+                $avgStarRating = round($ratingSum / $ratingCount);
+            } else {
+                $avgRating = 0;
+                $avgStarRating = 0;
+            }
+
+            $avgRatings[$item->id] = [
+                'avgRating' => $avgRating,
+                'avgStarRating' => $avgStarRating
+            ];
+        }
+
+        $categories = Category::all();
+
+        return view("pages.customer.categoryShop", compact(
+            "products",
+            "categories",
+            "avgRatings",
+            "ratingCount"
+        ));
     }
 
 
@@ -92,9 +111,31 @@ class HomeController
 
         $products = Product::where("category_id", $category->id)
             ->orderBy("created_at", "desc")->paginate(12);
+        $avgRatings = [];
+        foreach ($products as $item) {
+            $ratingSum = Review::where('product_id', $item->id)->sum('rating');
+            $ratingCount = Review::where('product_id', $item->id)->count();
 
+            if ($ratingCount > 0) {
+                $avgRating = round($ratingSum / $ratingCount, 2);
+                $avgStarRating = round($ratingSum / $ratingCount);
+            } else {
+                $avgRating = 0;
+                $avgStarRating = 0;
+            }
+
+            $avgRatings[$item->id] = [
+                'avgRating' => $avgRating,
+                'avgStarRating' => $avgStarRating
+            ];
+        }
         // Pass both $products and $categories to the view
-        return view("pages.customer.category", compact("products", "categories"));
+        return view("pages.customer.category", compact(
+            "products",
+            "avgRatings",
+            "ratingCount",
+            "categories"
+        ));
     }
 
 

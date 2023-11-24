@@ -143,8 +143,8 @@
                 @endforeach
                 </tbody>
             </table>
-            <div style="float: right; margin-top: -10px;" class="d-flex justify-content-center">
-                <div  class="mt-3 ">
+            <div class="d-flex justify-content-center">
+                <div class="mt-3 ">
                     {!! $orders->links("pagination::bootstrap-4") !!}
                 </div>
             </div>

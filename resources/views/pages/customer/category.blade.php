@@ -52,8 +52,8 @@
 
                         <div class="input-group input-group-sm" style="width: 150px;float:left">
                             <div class="input-group-append">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fas fa-search"></i>
+                                <button style="background-color: #ff5732; color: whitesmoke" type="submit" class="btn btn-default">
+                                   Lọc
                                 </button>
                             </div>
                         </div>
@@ -75,11 +75,22 @@
                                         <h6 >{{$item->name}}</h6>
                                         <a href="{{url("/details",["product"=>$item->slug])}}" class="add-cart">+ Add To Cart</a>
                                         <div class="rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
+                                            @php
+                                                $avgRating = $avgRatings[$item->id]['avgRating'];
+                                                $avgStarRating = $avgRatings[$item->id]['avgStarRating'];
+                                            @endphp
+                                            @if ($avgRating > 0)
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    @if ($i <= $avgStarRating)
+                                                        <i class="fa fa-star" style="color: #ffc700"></i>
+                                                    @else
+                                                        <i class="fa fa-star-o"></i>
+                                                    @endif
+                                                @endfor
+                                            @else
+                                                <p>Not assessed yet</p>
+                                            @endif
+
                                         </div>
                                         <h5>${{$item->price}}</h5>
                                         <div class="product__color__select">

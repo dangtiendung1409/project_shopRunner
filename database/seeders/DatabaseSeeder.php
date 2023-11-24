@@ -37,7 +37,6 @@ class DatabaseSeeder extends Seeder
             $employee->save();
         }
 
-        \App\Models\Brands::factory(10)->create();
         \App\Models\Category::factory(10)->create();
         \App\Models\Product::factory(100)->create();
 

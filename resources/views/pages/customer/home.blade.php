@@ -99,116 +99,113 @@
                     <ul class="filter__controls">
                         <li class="active" data-filter="*">Best Sellers</li>
                         <li data-filter=".new-arrivals">New Arrivals</li>
-                        <li data-filter=".hot-sales">Hot Sales</li>
+                        <li data-filter=".hot-sales">Most Favorite Product</li>
                     </ul>
                 </div>
             </div>
             <div class="row product__filter">
 
-                @foreach($products->take(1) as $item)
+                @foreach($products->take(4) as $item)
                     <div class="col-lg-3 col-md-6 col-sm-6 mix best-sellers">
                         <div class="product__item">
                             <div class="product__item__pic set-bg" data-setbg="{{ asset($item->thumbnail) }}">
                                 <ul class="product__hover">
-                                    <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                    <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                                    <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
+
                                 </ul>
                             </div>
                             <div class="product__item__text">
                                 <h6>{{$item->name}}</h6>
                                 <a href="{{url("/details",["product"=>$item->slug])}}" class="add-cart">+ Add To Cart</a>
                                 <div class="rating">
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
+                                    @php
+                                        $avgRating = $avgRatings[$item->id]['avgRating'];
+                                        $avgStarRating = $avgRatings[$item->id]['avgStarRating'];
+                                    @endphp
+                                    @if ($avgRating > 0)
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <= $avgStarRating)
+                                                <i class="fa fa-star" style="color: #ffc700"></i>
+                                            @else
+                                                <i class="fa fa-star-o"></i>
+                                            @endif
+                                        @endfor
+                                    @else
+                                        <p>Not assessed yet</p>
+                                    @endif
+
                                 </div>
                                 <h5>${{ $item->price }}</h5>
-                                <div class="product__color__select">
-                                    <label for="pc-1">
-                                        <input type="radio" id="pc-1">
-                                    </label>
-                                    <label class="active black" for="pc-2">
-                                        <input type="radio" id="pc-2">
-                                    </label>
-                                    <label class="grey" for="pc-3">
-                                        <input type="radio" id="pc-3">
-                                    </label>
-                                </div>
+
                             </div>
                         </div>
                     </div>
                 @endforeach
-                    @foreach($products->take(3) as $item)
+                    @foreach($products->skip(2)->take(2) as $item)
                         <div class="col-lg-3 col-md-6 col-sm-6 mix  new-arrivals">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="{{ asset($item->thumbnail) }}">
                                     <ul class="product__hover">
-                                        <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
+
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
                                     <h6>{{$item->name}}</h6>
                                     <a href="{{url("/details",["product"=>$item->slug])}}" class="add-cart">+ Add To Cart</a>
                                     <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
+                                        @php
+                                            $avgRating = $avgRatings[$item->id]['avgRating'];
+                                            $avgStarRating = $avgRatings[$item->id]['avgStarRating'];
+                                        @endphp
+                                        @if ($avgRating > 0)
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                @if ($i <= $avgStarRating)
+                                                    <i class="fa fa-star" style="color: #ffc700"></i>
+                                                @else
+                                                    <i class="fa fa-star-o"></i>
+                                                @endif
+                                            @endfor
+                                        @else
+                                            <p>Not assessed yet</p>
+                                        @endif
+
                                     </div>
                                     <h5>${{ $item->price }}</h5>
-                                    <div class="product__color__select">
-                                        <label for="pc-1">
-                                            <input type="radio" id="pc-1">
-                                        </label>
-                                        <label class="active black" for="pc-2">
-                                            <input type="radio" id="pc-2">
-                                        </label>
-                                        <label class="grey" for="pc-3">
-                                            <input type="radio" id="pc-3">
-                                        </label>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     @endforeach
-                    @foreach($products->take(4) as $item)
+                    @foreach($products->skip(2)->take(2) as $item)
                         <div class="col-lg-3 col-md-6 col-sm-6 mix  hot-sales">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="{{ asset($item->thumbnail) }}">
                                     <ul class="product__hover">
-                                        <li><a href="#"><img src="/customer/img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                                        <li><a href="#"><img src="/customer/img/icon/search.png" alt=""></a></li>
+
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
                                     <h6>{{$item->name}}</h6>
                                     <a href="{{url("/details",["product"=>$item->slug])}}" class="add-cart">+ Add To Cart</a>
                                     <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
+                                        @php
+                                            $avgRating = $avgRatings[$item->id]['avgRating'];
+                                            $avgStarRating = $avgRatings[$item->id]['avgStarRating'];
+                                        @endphp
+                                        @if ($avgRating > 0)
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                @if ($i <= $avgStarRating)
+                                                    <i class="fa fa-star" style="color: #ffc700"></i>
+                                                @else
+                                                    <i class="fa fa-star-o"></i>
+                                                @endif
+                                            @endfor
+                                        @else
+                                            <p>Not assessed yet</p>
+                                        @endif
+
                                     </div>
                                     <h5>${{ $item->price }}</h5>
-                                    <div class="product__color__select">
-                                        <label for="pc-1">
-                                            <input type="radio" id="pc-1">
-                                        </label>
-                                        <label class="active black" for="pc-2">
-                                            <input type="radio" id="pc-2">
-                                        </label>
-                                        <label class="grey" for="pc-3">
-                                            <input type="radio" id="pc-3">
-                                        </label>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>

@@ -20,7 +20,8 @@ class Product extends Model
         "thumbnail",
         "qty",
         "description",
-        "category_id"
+        "category_id",
+        "brand_id"
     ];
 
     public function Category(){
@@ -28,6 +29,10 @@ class Product extends Model
     }
     public function orders(){
         return $this->belongsToMany(Order::class, 'order_products')->withPivot('qty');
+    }
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
 
     public function getSoldQuantity()
