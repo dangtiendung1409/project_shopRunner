@@ -630,9 +630,19 @@ class HomeController
         // Lấy danh sách các sản phẩm yêu thích từ cơ sở dữ liệu
         $favoriteProducts = FavoriteOrder::where('user_id', auth()->user()->id)->get();
 
-        // Truyền danh sách sản phẩm yêu thích đến view "favoriteOrder"
-        return view("pages.customer.favoriteOrder", compact('favoriteProducts'));
+        // Lấy thông tin sản phẩm tương ứng với từng sản phẩm yêu thích
+        $products = [];
+        foreach ($favoriteProducts as $favoriteProduct) {
+            $product = Product::find($favoriteProduct->product_id); // Điều chỉnh nếu tên cột khác
+            if ($product) {
+                $products[] = $product;
+            }
+        }
+
+        // Truyền danh sách sản phẩm yêu thích và thông tin sản phẩm đến view "favoriteOrder"
+        return view("pages.customer.favoriteOrder", compact('favoriteProducts', 'products'));
     }
+
     public function Profile()
     {
         return view("pages.customer.profile");

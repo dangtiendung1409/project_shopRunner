@@ -75,13 +75,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($favoriteProducts as $product)
+                @foreach ($favoriteProducts as $index => $product)
                     <tr>
                         <td><img width="100px" src="{{ $product->thumbnail }}" alt=""></td>
-                        <td>{{ $product->name }}</td>
+                        <td><a href="{{ url("/details", ["product" => $products[$index]->slug]) }}" class="product-name">{{ $product->name }}</a></td>
                         <td>{{ $product->price }}</td>
                         <td>
-                            <a href="{{ url('/remove-favorite') }}?product_id={{ $product->id }}" class="remove-favorite-button"><i class="fa-solid fa-xmark"></i></a>
+                            <a href="{{ url('/remove-favorite') }}?product_id={{ $product->id }}" class="remove-favorite-button">
+                                <i class="fa-solid fa-xmark"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach
@@ -95,6 +97,16 @@
         </div>
 
     </div>
+    <style>
+        .menu a, .product-name {
+            text-decoration: none; /* Loại bỏ gạch chân */
+            color: black; /* Thiết lập màu chữ */
+        }
+
+        .menu a:hover, .product-name:hover {
+            color: black; /* Thiết lập màu chữ cho trạng thái hover */
+        }
+    </style>
 
 
 @endsection
