@@ -134,7 +134,6 @@
             display: flex;
             justify-content: space-between;
         }
-
         .Order_list{
             width: 60%;
             background-color: white;
@@ -206,7 +205,7 @@
     <div class="header">
         <h1>Thank You!</h1>
         <p>Your order #<strong>{{$order->id}}</strong> has been successfully placed.<br>
-            We sent an email to <strong>{{ $order->address }}</strong> with your order confirmation and receipt. If the email hasn't arrived<br>
+            We sent an email to <strong>{{ $order->email }}</strong> with your order confirmation and receipt. If the email hasn't arrived<br>
             within two minutes, please check your spam folder to see if the email was routed there.</p>
         <p><span style="margin-right: 5px;"><i class="fa-regular fa-clock"></i></span><strong>Time Placed</strong>: 16/10/2023 16:12 CEST</p>
     </div>
@@ -220,7 +219,7 @@
                     <p class="card-text">Date:  {{ $order->created_at->format('d/m/Y') }}</p>
                     <p class="card-text">Payment method: {{ $order->payment_method }}</p>
                     @if ($order->getStatus() != '<span class="text-danger">Huỷ</span>')
-                    <p class="card-text">Status: {!! $order->getStatus() !!}</p>
+                        <p class="card-text">Status: {!! $order->getStatus() !!}</p>
                     @endif
                 </div>
             </div>
@@ -257,15 +256,19 @@
             <h4>Order List</h4>
 
             <div class="Order_list_product" >
-                <div class="Order_list_product1">
+                @foreach($order->Products as $item)
 
-                    <h5>adidas forum</h5>
-                </div>
-                <div class="quantity">
-                </div>
-                <div class="total">
-                    <p>${{ $order->grand_total }}</p>
-                </div>
+                    <div class="Order_list_product1">
+
+                        <h5>{{$item->name}}</h5>
+                    </div>
+                    <div class="quantity">
+                        <p>Qty:{{$item->qty}}</p>
+                    </div>
+                    <div class="total">
+                        <p>${{$item->pivot->qty*$item->pivot->price}}</p>
+                    </div>
+                @endforeach
             </div>
 
         </div>
@@ -274,8 +277,8 @@
             <h4>Order Summary</h4>
 
             <ul>
-                <li>Subtotal <span>$189.50</span></li>
-                <li class="vat">VAT <span>10%</span></li>
+                <li>Subtotal <span>{{$item->pivot->qty*$item->pivot->price}}</span></li>
+                <li class="vat">Tax <span>10%</span></li>
                 <li>Total <span>${{ $order->grand_total }}</span></li>
             </ul>
         </div>

@@ -70,8 +70,9 @@ class HomeController
 
     // category
     public function categoryShop(Request $request) {
-        $query = Product::Search($request)->FilterCategory($request)->FromPrice($request)->ToPrice($request)->orderBy("created_at", "desc");
+        $query = Product::Search($request)->FromPrice($request)->ToPrice($request)->orderBy("created_at", "desc");
         $products = $query->paginate(12);
+
 
         // Tính toán đánh giá trung bình và số lượng đánh giá cho toàn bộ danh sách sản phẩm
         $avgRatings = [];
