@@ -205,8 +205,8 @@
 <div class="container">
     <div class="header">
         <h1>Thank You!</h1>
-        <p>Your order #<strong>156</strong> has been successfully placed.<br>
-            We sent an email to <strong>dung@gmail.com</strong> with your order confirmation and receipt. If the email hasn't arrived<br>
+        <p>Your order #<strong>{{$order->id}}</strong> has been successfully placed.<br>
+            We sent an email to <strong>{{ $order->address }}</strong> with your order confirmation and receipt. If the email hasn't arrived<br>
             within two minutes, please check your spam folder to see if the email was routed there.</p>
         <p><span style="margin-right: 5px;"><i class="fa-regular fa-clock"></i></span><strong>Time Placed</strong>: 16/10/2023 16:12 CEST</p>
     </div>
@@ -215,10 +215,13 @@
             <div class="card">
                 <i class="fas fa-map-marked-alt fa-3x mx-auto mt-3"></i>
                 <div class="card-body text-center">
-                    <strong style="font-size: 23px;" class="card-title">Shipping</strong>
-                    <p class="card-text">456 Business Avenue</p>
-                    <p class="card-text">City, Country</p>
-                    <p class="card-text">Phone: +987654321</p>
+                    <strong style="font-size: 23px;" class="card-title">Order Info</strong>
+                    <p class="card-text">Order number: {{$order->id}}</p>
+                    <p class="card-text">Date:  {{ $order->created_at->format('d/m/Y') }}</p>
+                    <p class="card-text">Payment method: {{ $order->payment_method }}</p>
+                    @if ($order->getStatus() != '<span class="text-danger">Huỷ</span>')
+                    <p class="card-text">Status: {!! $order->getStatus() !!}</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -227,10 +230,10 @@
             <div class="card">
                 <i class="fa-regular fa-credit-card fa-3x mx-auto mt-3"></i>
                 <div class="card-body text-center">
-                    <strong style="font-size: 23px;" class="card-title">Billing details</strong>
-                    <p class="card-text">456 Business Avenue</p>
-                    <p class="card-text">City, Country</p>
-                    <p class="card-text">Phone: +987654321</p>
+                    <strong style="font-size: 23px;" class="card-title">Customer Information</strong>
+                    <p class="card-text">Full Name: {{ $order->full_name}}</p>
+                    <p class="card-text">Telephone: {{ $order->tel}}</p>
+                    <p class="card-text">Email: {{ $order->email }}</p>
                 </div>
             </div>
         </div>
@@ -239,10 +242,9 @@
             <div class="card">
                 <i class="fa-solid fa-truck-moving fa-3x mx-auto mt-3"></i>
                 <div class="card-body text-center">
-                    <strong style="font-size: 23px;" class="card-title">Shipping Method</strong>
-                    <p class="card-text">789 Mobile Street</p>
-                    <p class="card-text">City, Country</p>
-                    <p class="card-text">Phone: +543216789</p>
+                    <strong style="font-size: 23px;" class="card-title">Shipping</strong>
+                    <p class="card-text">Shipping method: {{ $order->shipping_method }}</p>
+                    <p class="card-text">Address: {{ $order->address }}</p>
                 </div>
             </div>
         </div>
@@ -260,10 +262,9 @@
                     <h5>adidas forum</h5>
                 </div>
                 <div class="quantity">
-                    <p>Qty: 1</p>
                 </div>
                 <div class="total">
-                    <p>$19</p>
+                    <p>${{ $order->grand_total }}</p>
                 </div>
             </div>
 
@@ -275,7 +276,7 @@
             <ul>
                 <li>Subtotal <span>$189.50</span></li>
                 <li class="vat">VAT <span>10%</span></li>
-                <li>Total <span>$189.50</span></li>
+                <li>Total <span>${{ $order->grand_total }}</span></li>
             </ul>
         </div>
 
