@@ -88,7 +88,7 @@
                     <!-- col-12 -->
                     <div class="col-md-12">
                         <div class="tile">
-                            <h3 class="tile-title">The most favorite product</h3>
+                            <h3 class="tile-title">SELLING PRODUCTS</h3>
                             <div>
                                 <table class="table table-hover">
                                     <thead>
@@ -96,24 +96,20 @@
                                         <th>ID Product</th>
                                         <th>Product Name</th>
                                         <th>Price</th>
-                                        <th>Category</th>
+                                        <th>Quantity sold</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @forelse ($mostFavoriteProductDetails as $product)
+                                    @foreach ($bestSellingProductDetails as $product)
                                         <tr>
                                             <td>{{ $product->id }}</td>
                                             <td>{{ $product->name }}</td>
                                             <td>${{ number_format($product->price, 2) }}</td>
-                                            <td>{{ $product->category->name }}</td>
+                                            <td>{{ $product->total_qty_sold }}</td>
 
                                         </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="4">
-                                                There are no favorite products.</td>
-                                        </tr>
-                                    @endforelse
+                                    @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

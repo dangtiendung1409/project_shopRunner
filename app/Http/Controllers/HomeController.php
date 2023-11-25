@@ -69,7 +69,7 @@ class HomeController
 
 
     // category
-    public function categoryShop(Request $request) {
+    public function categoryShop(Product $product,Request $request) {
         $query = Product::Search($request)->FromPrice($request)->ToPrice($request)->orderBy("created_at", "desc");
         $products = $query->paginate(12);
 
@@ -93,7 +93,6 @@ class HomeController
                 'avgStarRating' => $avgStarRating
             ];
         }
-
         $categories = Category::all();
 
         return view("pages.customer.categoryShop", compact(

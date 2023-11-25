@@ -27,7 +27,7 @@ Product Management</span></a>
                 <span style="margin-left: 21px" class="app-menu__label">Customer management</span></a>
         </li>
         <li><a class="app-menu__item" href="{{url("admin/admin-rating")}}"><i class='app-menu__icon bx bx-calendar-check'></i>
-                <span class="app-menu__label">Review</span></a></li>
+                <span class="app-menu__label">Review management</span></a></li>
 
         <li><a class="app-menu__item active" href="{{url("admin/admin-bao-cao-doanh-thu")}}"><i class='app-menu__icon bx bx-pie-chart-alt-2'></i>
                 <span class="app-menu__label">Sales report</span></a>

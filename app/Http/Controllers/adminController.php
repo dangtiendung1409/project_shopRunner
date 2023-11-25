@@ -18,7 +18,6 @@ class adminController extends Controller
     public function adminDashboard(){
         // ô số liệu tổng hợp
         $totalUser = User::whereNull('role')->count();
-        $totalEmployees = User::where('role', 'employee')->count();
         $totalProducts = Product::count();
         $totalOrders = Order::count();
         $totalRevenue = Order::where('status', '4')->sum('grand_total');
@@ -29,10 +28,6 @@ class adminController extends Controller
 
         $pendingOrders = Order::where('status', Order::PENDING)->paginate(5);
 
-        // bảng sản phẩm đã hết
-        $outOfStockProducts = Product::outOfStock()
-            ->orderBy("id", "desc")
-            ->paginate(5);
 
         // bảng sản phẩm bán chạy
         $bestSellingProducts = DB::table('order_products')
@@ -53,48 +48,9 @@ class adminController extends Controller
             }
         }
 
-        // bảng sản phẩm yêu thích
-        $mostFavoriteProducts = FavoriteOrder::select('product_id', DB::raw('COUNT(user_id) as favorite_count'))
-            ->groupBy('product_id')
-            ->orderByRaw('COUNT(user_id) DESC')
-            ->paginate(200);
-
-        $mostFavoriteProductDetails = [];
-
-        foreach ($mostFavoriteProducts as $product) {
-            $productDetail = Product::find($product->product_id);
-            if ($productDetail) {
-                $mostFavoriteProductDetails[] = $productDetail;
-            }
-        }
-        // review
-
-
-
-        // bảng tổng đơn hàng
-        $orders = Order::select('id', 'full_name', 'grand_total')
-            ->with('Products')
-            ->paginate(10);
-
-
-        $orderTotals = [];
-
-        foreach ($orders as $order) {
-            $orderTotal = [
-                'order_id' => $order->id,
-                'customer' => $order->full_name,
-                'products' => $order->Products->pluck('name')->implode(', '),
-                'total_quantity' => $order->Products->count(),
-                'total_amount' => $order->getGrandTotal(),
-            ];
-
-            $orderTotals[] = $orderTotal;
-        }
-
 
         // Truyền số liệu vào view và trả về view
         return view("admin.pages.adminDashboard", [
-            'totalEmployees' => $totalEmployees,
             'totalUser' =>  $totalUser,
 
             'totalProducts' => $totalProducts,
@@ -103,15 +59,9 @@ class adminController extends Controller
             'totalCancelledOrders' => $totalCancelledOrders,
 
             'outOfStockProductCount' => $outOfStockProductCount,
-            'outOfStockProducts' => $outOfStockProducts,
-
-            'mostFavoriteProductDetails' => $mostFavoriteProductDetails,
-            'mostFavoriteProducts' => $mostFavoriteProducts,
 
             'bestSellingProductDetails' => $bestSellingProductDetails,
             'bestSellingProducts' => $bestSellingProducts,
-            'orderTotals'=> $orderTotals,
-            'orders' => $orders,
             'pendingOrders' => $pendingOrders,
         ]);
     }

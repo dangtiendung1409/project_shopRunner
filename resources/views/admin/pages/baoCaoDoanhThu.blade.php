@@ -240,51 +240,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Sản phẩm yêu thích nhất -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="tile">
-                    <div>
-                        <h3 class="tile-title">MOST FAVORITE PRODUCTS</h3>
-                    </div>
-                    <div class="tile-body">
-                        <table class="table table-hover table-bordered" id="sampleTableFavorite">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>
-                                    Product's name</th>
-                                <th>Price</th>
-                                <th>Category</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @forelse ($mostFavoriteProductDetails as $product)
-                                <tr>
-                                    <td>{{ $product->id }}</td>
-                                    <td>{{ $product->name }}</td>
-
-                                    <td>${{ number_format($product->price, 2) }}</td>
-                                    <td>{{ $product->category->name }}</td>
-
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="4">
-                                        There are no favorite products.</td>
-                                </tr>
-                            @endforelse
-                            </tbody>
-                        </table>
-                        {!! $mostFavoriteProducts->links("pagination::bootstrap-4") !!}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
         <!-- Sản phẩm bán chạy -->
         <div class="row">
             <div class="col-md-12">
@@ -300,11 +255,9 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Image</th>
-                                <th>
-                                    Product's name</th>
+                                <th>Product's name</th>
                                 <th>Price</th>
-                                <th>
-                                    Quantity sold</th>
+                                <th>Quantity sold</th>
                                 <th>Category</th>
                             </tr>
                             </thead>
@@ -364,7 +317,7 @@
                                     <td>{{ $product->name }}</td>
                                     <td><img src="{{ $product->thumbnail }}" alt="Product Image" width="100px"></td>
                                     <td>{{ $product->qty }}</td>
-                                    <td><span class="badge bg-danger">Hết hàng</span></td>
+                                    <td><span class="badge bg-danger">Out of stock</span></td>
                                     <td>${{ number_format($product->price, 2) }}</td>
                                     <td>{{ $product->Category->name }}</td>
                                 </tr>
