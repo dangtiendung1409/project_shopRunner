@@ -21,9 +21,6 @@ return new class extends Migration
             $table->longText("description")->nullable();
             $table->unsignedBigInteger("category_id");
             $table->foreign("category_id")->references("id")->on("categories");
-//            $table->string("status");
-//            $table->unsignedBigInteger('brand_id')->default(0);
-
             $table->timestamps();
             $table->softDeletes();
         });

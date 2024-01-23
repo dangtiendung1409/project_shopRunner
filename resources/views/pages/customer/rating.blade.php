@@ -67,7 +67,7 @@
 
                                             @foreach($starRatings as $rating => $count)
                                                 <li>
-                                                    <a href="#"  class="filter-rating" data-rating="{{ $rating }}">
+                                                      <a href="#"  class="filter-rating" data-rating="{{ $rating }}">
                                                         {{$rating}} Star
                                                         @php
                                                             for ($i = 0; $i < $rating; $i++) {
@@ -223,5 +223,3 @@
 
 
 @stop()
-
-

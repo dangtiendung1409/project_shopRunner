@@ -55,7 +55,6 @@ class HomeController
         return view("pages.customer.home",compact(
             "products",
             "avgRatings",
-            "ratingCount"
         ));
     }
 
